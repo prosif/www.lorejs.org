@@ -30,7 +30,7 @@ jobs:
           command: npm install
       - run:
           name: deploy-site
-          command: surge /tmp/workspace/public master.lorejs.org
+          command: ./node_modules/.bin/surge /tmp/workspace/public master.lorejs.org
 
 
 workflows:
