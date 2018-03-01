@@ -52,7 +52,7 @@ export default (props) => {
         loading screen will look like this:
       </p>
 
-      <img src="/assets/images/recipes/loading-screen.png" alt="Loading Screen" style="width: 100%" />
+      <img src="/assets/images/recipes/loading-screen.png" alt="Loading Screen" style={{ width: '100%' }} />
 
       <h1>
         Todo

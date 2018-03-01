@@ -31,24 +31,24 @@ export default (props) => {
         <code>post</code>, the default map is as follows:
       </p>
 
-      <table style="margin-left: 24px; margin-bottom: 12px; margin-top: 12px;">
+      <table style={{ marginLeft: '24px', marginBottom: '12px', marginTop: '12px' }}>
         <thead>
         <tr>
-          <th style="text-align: left">Action</th>
-          <th style="text-align: left">ActionType</th>
-          <th style="text-align: left">Reducer</th>
+          <th style={{ textAlign: 'left' }}>Action</th>
+          <th style={{ textAlign: 'left' }}>ActionType</th>
+          <th style={{ textAlign: 'left' }}>Reducer</th>
         </tr>
         </thead>
         <tbody>
         <tr>
-          <td style="text-align: left; padding-right: 24px;">post.find</td>
-          <td style="text-align: left; padding-right: 24px;">FETCH_POSTS</td>
-          <td style="text-align: left">post.find</td>
+          <td style={{ textAlign: 'left', paddingRight: '24px' }}>post.find</td>
+          <td style={{ textAlign: 'left', paddingRight: '24px' }}>FETCH_POSTS</td>
+          <td style={{ textAlign: 'left' }}>post.find</td>
         </tr>
         <tr>
-          <td style="text-align: left; padding-right: 24px;">post.get</td>
-          <td style="text-align: left; padding-right: 24px;">FETCH_POST</td>
-          <td style="text-align: left">post.byId</td>
+          <td style={{ textAlign: 'left', paddingRight: '24px' }}>post.get</td>
+          <td style={{ textAlign: 'left', paddingRight: '24px' }}>FETCH_POST</td>
+          <td style={{ textAlign: 'left' }}>post.byId</td>
         </tr>
         </tbody>
       </table>
