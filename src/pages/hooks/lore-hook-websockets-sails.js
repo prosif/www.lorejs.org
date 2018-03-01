@@ -76,7 +76,7 @@ export default (props) => {
           var namespace = this.namespace;
           // we have to make a GET request to this endpoint before we're connected
           this.io.socket.get(namespace, function() {
-            console.log(\`Connected to ${namespace}\`);
+            console.log(\`Connected to \${namespace}\`);
           });
         },
 
