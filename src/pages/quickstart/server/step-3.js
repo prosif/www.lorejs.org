@@ -369,7 +369,7 @@ export default (props) => {
 
             headers() {
               return {
-                Authorization: \\\`Bearer ${auth.getToken()}\\\`
+                Authorization: \`Bearer \${auth.getToken()}\`
               };
             },
 
@@ -389,7 +389,7 @@ export default (props) => {
 
             headers() {
               return {
-                Authorization: \`Bearer ${auth.getToken()}\`
+                Authorization: \`Bearer \${auth.getToken()}\`
               };
             },
 
@@ -468,7 +468,7 @@ export default (props) => {
 
             headers() {
               return {
-                Authorization: \\\`Bearer ${auth.getToken()}\\\`
+                Authorization: \`Bearer \${auth.getToken()}\`
               };
             },
 
@@ -496,7 +496,7 @@ export default (props) => {
 
             headers() {
               return {
-                Authorization: \`Bearer ${auth.getToken()}\`
+                Authorization: \`Bearer \${auth.getToken()}\`
               };
             },
 
