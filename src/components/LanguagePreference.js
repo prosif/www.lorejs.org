@@ -19,9 +19,15 @@ export default class LanguagePreference extends React.Component {
   // }
 
   componentWillMount() {
-    this.setState({
-      language: localStorage ? localStorage.getItem('language') : 'ES6'
-    })
+    try {
+      this.setState({
+        language: localStorage ? localStorage.getItem('language') : 'ES6'
+      })
+    } catch(error) {
+      this.setState({
+        language: 'ES6'
+      })
+    }
   }
 
   setLanguage(language) {
