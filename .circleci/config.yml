@@ -3,7 +3,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:6.11.1
+      - image: circleci/node:6
     steps:
       - checkout
       - run:
@@ -19,6 +19,8 @@ jobs:
 
 
   deploy:
+    docker:
+      - image: circleci/node:6
     steps:
       - checkout
       - attach_workspace:
