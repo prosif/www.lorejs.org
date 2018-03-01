@@ -93,7 +93,7 @@ export default (props) => {
       // these "guess" the namespace and event based on conventions
       // can be provided explicitly by the user
       var conventions = {
-        namespace: config.pluralize ? \`/${pluralize(modelName)}\` : \`/${modelName}\`,
+        namespace: config.pluralize ? \`\${pluralize(modelName)}\` : \`\${modelName}\`,
         event: modelName
       };
 
