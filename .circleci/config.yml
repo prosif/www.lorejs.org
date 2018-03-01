@@ -24,16 +24,13 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-          at: /tmp/public
-#      - run:
-#          name: install-packages
-#          command: npm install
-#      - run:
-#          name: install-packages
-#          command: npm install
+          at: /tmp/workspace
+      - run:
+          name: install-packages
+          command: npm install
       - run:
           name: deploy-site
-          command: surge /tmp/public master.lorejs.org
+          command: surge /tmp/workspace/public master.lorejs.org
 
 
 workflows:
