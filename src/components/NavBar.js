@@ -41,7 +41,18 @@ export default (props) => {
                 <li role="separator" className="divider"></li>
                 <NavLink title="Videos" url="/videos/" location={location} />
                 <NavLink title="Architecture" url="/architecture/" location={location} />
-            </ul>
+              </ul>
+            </li>
+            <li className="dropdown">
+              <a href="#" className="dropdown-toggle" data-toggle="dropdown">
+                Forms (new)<span className="caret" />
+              </a>
+              <ul className="dropdown-menu">
+                <NavLink title="Concept" url="/forms/concept/" location={location} />
+                <li role="separator" className="divider"></li>
+                <NavLink title="Bootstrap v3" url="/forms/bootstrap/" location={location} />
+                <NavLink title="Material UI" url="/forms/material-ui/" location={location} />
+              </ul>
             </li>
             <li>
               <a href="https://github.com/lore/lore">GitHub</a>
