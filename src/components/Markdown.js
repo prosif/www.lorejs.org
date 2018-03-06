@@ -59,9 +59,8 @@ export default class Markdown extends React.Component {
 
     const html = marked(`
 \`\`\`${type || 'jsx'}
-${_.replace(_.replace(text, /\n      /g, '\n'), '\n','')}
-\`\`\`
-  `);
+${_.replace(_.replace(text, /\n      /g, '\n'), '\n','')}\`\`\`
+    `);
 
     return (
       <div
