@@ -48,8 +48,8 @@ export default (props) => {
         <CodeTab syntax="ES5" text={`
         ...
           propTypes: {
-            tweet: React.PropTypes.object.isRequired,
-            user: React.PropTypes.object.isRequired
+            tweet: PropTypes.object.isRequired,
+            user: PropTypes.object.isRequired
           },
 
           getDefaultProps: function() {
@@ -67,7 +67,7 @@ export default (props) => {
         ...
         `}/>
         <CodeTab syntax="ES6" text={`
-        class Tweet extends Component {
+        class Tweet extends React.Component {
           ...
         }
 
@@ -88,7 +88,7 @@ export default (props) => {
         };
         `}/>
         <CodeTab syntax="ESNext" text={`
-        export default class Tweet extends Component {
+        export default class Tweet extends React.Component {
 
           static propTypes = {
             tweet: PropTypes.object.isRequired,
@@ -119,9 +119,11 @@ export default (props) => {
         <CodeTab syntax="ES5" text={`
         ...
           render: function() {
-            var tweet = this.props.tweet;
-            var user = this.props.user;
-            var timestamp = moment(tweet.data.createdAt).fromNow().split(' ago')[0];
+            const {
+              tweet,
+              user
+            } = this.props;
+            const timestamp = moment(tweet.data.createdAt).fromNow().split(' ago')[0];
 
             return (
               <li className="list-group-item tweet">
@@ -149,8 +151,10 @@ export default (props) => {
         <CodeTab syntax="ES6" text={`
         ...
           render() {
-            const tweet = this.props.tweet;
-            const user = this.props.user;
+            const {
+              tweet,
+              user
+            } = this.props;
             const timestamp = moment(tweet.data.createdAt).fromNow().split(' ago')[0];
 
             return (
@@ -179,8 +183,10 @@ export default (props) => {
         <CodeTab syntax="ESNext" text={`
         ...
           render() {
-            const tweet = this.props.tweet;
-            const user = this.props.user;
+            const {
+              tweet,
+              user
+            } = this.props;
             const timestamp = moment(tweet.data.createdAt).fromNow().split(' ago')[0];
 
             return (
@@ -232,15 +238,17 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
-        var moment = require('moment');
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
+        import moment from 'moment';
 
-        module.exports = React.createClass({
+        export default createReactClass({
           displayName: 'Tweet',
 
           propTypes: {
-            tweet: React.PropTypes.object.isRequired,
-            user: React.PropTypes.object.isRequired
+            tweet: PropTypes.object.isRequired,
+            user: PropTypes.object.isRequired
           },
 
           getDefaultProps: function() {
@@ -257,9 +265,11 @@ export default (props) => {
           },
 
           render: function() {
-            var tweet = this.props.tweet;
-            var user = this.props.user;
-            var timestamp = moment(tweet.data.createdAt).fromNow().split(' ago')[0];
+            const {
+              tweet,
+              user
+            } = this.props;
+            const timestamp = moment(tweet.data.createdAt).fromNow().split(' ago')[0];
 
             return (
               <li className="list-group-item tweet">
@@ -286,14 +296,17 @@ export default (props) => {
         });
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
         import moment from 'moment';
 
-        class Tweet extends Component {
+        class Tweet extends React.Component {
 
           render() {
-            const tweet = this.props.tweet;
-            const user = this.props.user;
+            const {
+              tweet,
+              user
+            } = this.props;
             const timestamp = moment(tweet.data.createdAt).fromNow().split(' ago')[0];
 
             return (
@@ -339,10 +352,11 @@ export default (props) => {
         export default Tweet;
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
         import moment from 'moment';
 
-        class Tweet extends Component {
+        class Tweet extends React.Component {
 
           static propTypes = {
             tweet: PropTypes.object.isRequired,
@@ -361,8 +375,10 @@ export default (props) => {
           };
 
           render() {
-            const tweet = this.props.tweet;
-            const user = this.props.user;
+            const {
+              tweet,
+              user
+            } = this.props;
             const timestamp = moment(tweet.data.createdAt).fromNow().split(' ago')[0];
 
             return (

@@ -95,16 +95,20 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
-        var _ = require('lodash');
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
+        import _ from 'lodash';
 
         function getDisplayName(Component) {
           return Component.displayName || Component.name || 'Component';
         }
 
-        module.exports = function(options = {}) {
-          var propName = options.propName;
-          var modelName = options.modelName;
+        export default function(options = {}) {
+          const {
+            propName,
+            modelName
+          } = options.propName;
 
           if (!propName) {
             throw new Error('propName is required');
@@ -115,13 +119,13 @@ export default (props) => {
           }
 
           return function(DecoratedComponent) {
-            var displayName = 'InfiniteScrolling(' + getDisplayName(DecoratedComponent) + ')';
+            const displayName = 'InfiniteScrolling(' + getDisplayName(DecoratedComponent) + ')';
 
-            return React.createClass({
+            return createReactClass({
               displayName: displayName,
 
               contextTypes: {
-                store: React.PropTypes.object.isRequired
+                store: PropTypes.object.isRequired
               },
 
               getInitialState: function() {
@@ -133,21 +137,21 @@ export default (props) => {
               },
 
               componentWillReceiveProps: function(nextProps) {
-                var storeState = this.context.store.getState();
-                var pages = this.state.pages;
+                const storeState = this.context.store.getState();
+                const { pages } = this.state;
 
                 // Whenever the component re-renders, we need to rebuild our collection of pages
                 // by fetching them back out of the Store. If we don't do this, our state data
                 // will always be stale - we'll never know when data finishes being fetched, and
                 // in the cases where some of the data is being modified, such as being updated
                 // or deleted, we won't get a change to react to those changes and inform the user.
-                var nextPages = pages.map(function(page) {
-                  var query = JSON.stringify(page.query);
+                let nextPages = pages.map(function(page) {
+                  const query = JSON.stringify(page.query);
                   return storeState[modelName].find[query];
                 });
 
-                var currentQuery = JSON.stringify(this.props[propName].query.where);
-                var nextQuery = JSON.stringify(nextProps[propName].query.where);
+                const currentQuery = JSON.stringify(this.props[propName].query.where);
+                const nextQuery = JSON.stringify(nextProps[propName].query.where);
 
                 if (currentQuery !== nextQuery) {
                   nextPages = [
@@ -161,15 +165,15 @@ export default (props) => {
               },
 
               onLoadMore: function() {
-                var storeState = this.context.store.getState();
-                var pages = this.state.pages;
-                var lastPage = pages[pages.length - 1];
-                var nextPageNumber = Number(lastPage.query.pagination.page) + 1;
-                var query = lastPage.query;
+                const storeState = this.context.store.getState();
+                const { pages } = this.state;
+                const lastPage = pages[pages.length - 1];
+                const nextPageNumber = Number(lastPage.query.pagination.page) + 1;
+                const query = lastPage.query;
 
                 // Build the next page's query from the previous page. The only
                 // thing we're changing is the page of data we want to fetch
-                var nextQuery = {
+                const nextQuery = {
                   where: query.where,
                   pagination: _.defaults({
                     page: nextPageNumber
@@ -178,11 +182,11 @@ export default (props) => {
 
                 // See if the next page has already been fetched, and used the cached page
                 // if available
-                var nextPage = storeState[modelName].find[JSON.stringify(nextQuery)];
+                let nextPage = storeState[modelName].find[JSON.stringify(nextQuery)];
 
                 if (!nextPage) {
                   // The 'find' action has a slightly different interface than the 'getState' call
-                  // in 'lore.connect'. When calling the 'find' action directly, you need to pass
+                  // in 'connect'. When calling the 'find' action directly, you need to pass
                   // in the 'where' clause and the 'pagination' information as different arguments,
                   // like 'lore.actions.tweet.find(where, pagination)'
                   nextPage = lore.actions[modelName].find(nextQuery.where, nextQuery.pagination).payload;
@@ -206,7 +210,9 @@ export default (props) => {
         };
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React, { PropTypes } from 'react';
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
         import _ from 'lodash';
 
         function getDisplayName(Component) {
@@ -228,7 +234,7 @@ export default (props) => {
           return function(DecoratedComponent) {
             const displayName = 'InfiniteScrolling(' + getDisplayName(DecoratedComponent) + ')';
 
-            return React.createClass({
+            return createReactClass({
               displayName: displayName,
 
               contextTypes: {
@@ -245,7 +251,7 @@ export default (props) => {
 
               componentWillReceiveProps: function(nextProps) {
                 const storeState = this.context.store.getState();
-                const pages = this.state.pages;
+                const { pages } = this.state;
 
                 // Whenever the component re-renders, we need to rebuild our collection of pages
                 // by fetching them back out of the Store. If we don't do this, our state data
@@ -273,7 +279,7 @@ export default (props) => {
 
               onLoadMore: function() {
                 const storeState = this.context.store.getState();
-                const pages = this.state.pages;
+                const { pages } = this.state;
                 const lastPage = pages[pages.length - 1];
                 const nextPageNumber = Number(lastPage.query.pagination.page) + 1;
                 const query = lastPage.query;
@@ -293,7 +299,7 @@ export default (props) => {
 
                 if (!nextPage) {
                   // The 'find' action has a slightly different interface than the 'getState' call
-                  // in 'lore.connect'. When calling the 'find' action directly, you need to pass
+                  // in 'connect'. When calling the 'find' action directly, you need to pass
                   // in the 'where' clause and the 'pagination' information as different arguments,
                   // like 'lore.actions.tweet.find(where, pagination)'
                   nextPage = lore.actions[modelName].find(nextQuery.where, nextQuery.pagination).payload;
@@ -317,7 +323,9 @@ export default (props) => {
         };
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React, { PropTypes } from 'react';
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
         import _ from 'lodash';
 
         function getDisplayName(Component) {
@@ -339,7 +347,7 @@ export default (props) => {
           return function(DecoratedComponent) {
             const displayName = 'InfiniteScrolling(' + getDisplayName(DecoratedComponent) + ')';
 
-            return React.createClass({
+            return createReactClass({
               displayName: displayName,
 
               contextTypes: {
@@ -356,7 +364,7 @@ export default (props) => {
 
               componentWillReceiveProps: function(nextProps) {
                 const storeState = this.context.store.getState();
-                const pages = this.state.pages;
+                const { pages } = this.state;
 
                 // Whenever the component re-renders, we need to rebuild our collection of pages
                 // by fetching them back out of the Store. If we don't do this, our state data
@@ -384,7 +392,7 @@ export default (props) => {
 
               onLoadMore: function() {
                 const storeState = this.context.store.getState();
-                const pages = this.state.pages;
+                const { pages } = this.state;
                 const lastPage = pages[pages.length - 1];
                 const nextPageNumber = Number(lastPage.query.pagination.page) + 1;
                 const query = lastPage.query;
@@ -404,7 +412,7 @@ export default (props) => {
 
                 if (!nextPage) {
                   // The 'find' action has a slightly different interface than the 'getState' call
-                  // in 'lore.connect'. When calling the 'find' action directly, you need to pass
+                  // in 'connect'. When calling the 'find' action directly, you need to pass
                   // in the 'where' clause and the 'pagination' information as different arguments,
                   // like 'lore.actions.tweet.find(where, pagination)'
                   nextPage = lore.actions[modelName].find(nextQuery.where, nextQuery.pagination).payload;
@@ -461,21 +469,25 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
-        var PayloadStates = require('../constants/PayloadStates');
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
+        import PayloadStates from '../constants/PayloadStates';
 
-        module.exports = React.createClass({
+        export default createReactClass({
           displayName: 'LoadMoreButton',
 
           propTypes: {
-            lastPage: React.PropTypes.object.isRequired,
-            onLoadMore: React.PropTypes.func.isRequired,
-            nextPageMetaField: React.PropTypes.string.isRequired
+            lastPage: PropTypes.object.isRequired,
+            onLoadMore: PropTypes.func.isRequired,
+            nextPageMetaField: PropTypes.string.isRequired
           },
 
           render: function() {
-            var lastPage = this.props.lastPage;
-            var nextPageMetaField = this.props.nextPageMetaField;
+            const {
+              lastPage,
+              nextPageMetaField
+            } = this.props;
 
             if(lastPage.state === PayloadStates.FETCHING) {
               return (
@@ -505,14 +517,17 @@ export default (props) => {
         });
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
         import PayloadStates from '../constants/PayloadStates';
 
-        class LoadMoreButton extends Component {
+        class LoadMoreButton extends React.Component {
 
           render() {
-            const lastPage = this.props.lastPage;
-            const nextPageMetaField = this.props.nextPageMetaField;
+            const {
+              lastPage,
+              nextPageMetaField
+            } = this.props;
 
             if(lastPage.state === PayloadStates.FETCHING) {
               return (
@@ -550,10 +565,11 @@ export default (props) => {
         export default LoadMoreButton;
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
         import PayloadStates from '../constants/PayloadStates';
 
-        class LoadMoreButton extends Component {
+        class LoadMoreButton extends React.Component {
 
           static propTypes = {
             lastPage: PropTypes.object.isRequired,
@@ -562,8 +578,10 @@ export default (props) => {
           };
 
           render() {
-            const lastPage = this.props.lastPage;
-            const nextPageMetaField = this.props.nextPageMetaField;
+            const {
+              lastPage,
+              nextPageMetaField
+            } = this.props;
 
             if(lastPage.state === PayloadStates.FETCHING) {
               return (
@@ -607,9 +625,9 @@ export default (props) => {
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
         ...
-        var InfiniteScrolling = require('../decorators/InfiniteScrolling');
+        import InfiniteScrolling from '../decorators/InfiniteScrolling';
 
-        module.exports = lore.connect(function(getState, props){
+        export default connect(function(getState, props){
           return {
             tweets: getState('tweet.find', {
               pagination: {
@@ -619,7 +637,7 @@ export default (props) => {
           }
         })(
           InfiniteScrolling({ propName: 'tweets', modelName: 'tweet' })(
-            React.createClass({
+            createReactClass({
               displayName: 'Feed',
               ...
             })
@@ -630,11 +648,11 @@ export default (props) => {
         ...
         import InfiniteScrolling from '../decorators/InfiniteScrolling';
 
-        class Feed extends Component {
+        class Feed extends React.Component {
           ...
         }
 
-        export default lore.connect(function(getState, props){
+        export default connect(function(getState, props){
           return {
             tweets: getState('tweet.find', {
               pagination: {
@@ -652,7 +670,7 @@ export default (props) => {
         ...
         import InfiniteScrolling from '../decorators/InfiniteScrolling';
 
-        @lore.connect(function(getState, props){
+        @connect(function(getState, props){
           return {
             tweets: getState('tweet.find', {
               pagination: {
@@ -662,7 +680,7 @@ export default (props) => {
           }
         })
         @InfiniteScrolling({ propName: 'tweets', modelName: 'tweet' })
-        class Feed extends Component {
+        class Feed extends React.Component {
           ...
         }
         `}/>
@@ -675,14 +693,14 @@ export default (props) => {
           react to the input before invoking the child function.
         </p>
         <p>
-          In the code above, <code>lore.connect</code> wraps <code>InfiniteScrolling</code> which in turn wraps <code>Feed</code>. You can also think of them
-          as components (since they are), which would then mean <code>lore.connect</code> renders <code>InfiniteScrolling</code> which in turn
-          renders <code>Feed</code>.
+          In the code above, <code>connect</code> wraps <code>InfiniteScrolling</code> which in turn
+          wraps <code>Feed</code>. You can also think of them as components (since they are), which would then
+          mean <code>connect</code> renders <code>InfiniteScrolling</code> which in turn renders <code>Feed</code>.
         </p>
       </blockquote>
 
       <p>
-        The ESNext implementation is the easiest to visually understand. First, we're using <code>lore.connect</code> to declare (and
+        The ESNext implementation is the easiest to visually understand. First, we're using <code>connect</code> to declare (and
         fetch) the first page of tweets. The resulting <code>tweets</code> property is passed to the <code>InfiniteScrolling</code> decorator. This
         decorator requires two properties, <code>propName</code> and <code>modelName</code>. The first, <code>propName</code>, is the name of the property
         being passed in that we want to implement infinite scrolling for. The second property, <code>modelName</code>, is the name
@@ -706,24 +724,24 @@ export default (props) => {
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
         ...
-        var LoadMoreButton = require('./LoadMoreButton');
+        import LoadMoreButton from './LoadMoreButton';
 
         ...
-        React.createClass({
+        createReactClass({
           displayName: 'Feed',
 
           propTypes: {
-            pages: React.PropTypes.array.isRequired,
-            onLoadMore: React.PropTypes.func.isRequired
+            pages: PropTypes.array.isRequired,
+            onLoadMore: PropTypes.func.isRequired
           },
 
           ...
 
           render: function() {
-            var pages = this.props.pages;
-            var numberOfPages = pages.length;
-            var firstPage = pages[0];
-            var lastPage = pages[pages.length - 1];
+            const { pages } = this.props;
+            const numberOfPages = pages.length;
+            const firstPage = pages[0];
+            const lastPage = pages[pages.length - 1];
 
             if (numberOfPages === 1 && lastPage.state === PayloadStates.FETCHING) {
               return (
@@ -733,7 +751,7 @@ export default (props) => {
               );
             }
 
-            var tweetListItems = _.flatten(pages.map(function(tweets) {
+            const tweetListItems = _.flatten(pages.map(function(tweets) {
               return tweets.data.map(this.renderTweet);
             }.bind(this)));
 
@@ -760,11 +778,11 @@ export default (props) => {
         ...
         import LoadMoreButton from './LoadMoreButton';
         ...
-        class Feed extends Component {
+        class Feed extends React.Component {
           ...
 
           render() {
-            const pages = this.props.pages;
+            const { pages } = this.props;
             const numberOfPages = pages.length;
             const firstPage = pages[0];
             const lastPage = pages[pages.length - 1];
@@ -809,7 +827,7 @@ export default (props) => {
         ...
         import LoadMoreButton from './LoadMoreButton';
         ...
-        class Feed extends Component {
+        class Feed extends React.Component {
 
           static propTypes = {
             pages: PropTypes.array.isRequired,
@@ -819,7 +837,7 @@ export default (props) => {
           ...
 
           render() {
-            const pages = this.props.pages;
+            const { pages } = this.props;
             const numberOfPages = pages.length;
             const firstPage = pages[0];
             const lastPage = pages[pages.length - 1];
@@ -900,9 +918,9 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var auth = require('../src/utils/auth');
+        import auth from '../src/utils/auth';
 
-        module.exports = {
+        export default {
 
           default: {
 
@@ -1006,21 +1024,25 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
-        var PayloadStates = require('../constants/PayloadStates');
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
+        import PayloadStates from '../constants/PayloadStates';
 
-        module.exports = React.createClass({
+        export default createReactClass({
           displayName: 'LoadMoreButton',
 
           propTypes: {
-            lastPage: React.PropTypes.object.isRequired,
-            onLoadMore: React.PropTypes.func.isRequired,
-            nextPageMetaField: React.PropTypes.string.isRequired
+            lastPage: PropTypes.object.isRequired,
+            onLoadMore: PropTypes.func.isRequired,
+            nextPageMetaField: PropTypes.string.isRequired
           },
 
           render: function() {
-            var lastPage = this.props.lastPage;
-            var nextPageMetaField = this.props.nextPageMetaField;
+            const {
+              lastPage,
+              nextPageMetaField
+            } = this.props;
 
             if(lastPage.state === PayloadStates.FETCHING) {
               return (
@@ -1050,14 +1072,17 @@ export default (props) => {
         });
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
         import PayloadStates from '../constants/PayloadStates';
 
-        class LoadMoreButton extends Component {
+        class LoadMoreButton extends React.Component {
 
           render() {
-            const lastPage = this.props.lastPage;
-            const nextPageMetaField = this.props.nextPageMetaField;
+            const {
+              lastPage,
+              nextPageMetaField
+            } = this.props;
 
             if(lastPage.state === PayloadStates.FETCHING) {
               return (
@@ -1095,10 +1120,11 @@ export default (props) => {
         export default LoadMoreButton;
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
         import PayloadStates from '../constants/PayloadStates';
 
-        class LoadMoreButton extends Component {
+        class LoadMoreButton extends React.Component {
 
           static propTypes = {
             lastPage: PropTypes.object.isRequired,
@@ -1107,8 +1133,10 @@ export default (props) => {
           };
 
           render() {
-            const lastPage = this.props.lastPage;
-            const nextPageMetaField = this.props.nextPageMetaField;
+            const {
+              lastPage,
+              nextPageMetaField
+            } = this.props;
 
             if(lastPage.state === PayloadStates.FETCHING) {
               return (
@@ -1147,16 +1175,20 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
-        var _ = require('lodash');
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
+        import _ from 'lodash';
 
         function getDisplayName(Component) {
           return Component.displayName || Component.name || 'Component';
         }
 
-        module.exports = function(options = {}) {
-          var propName = options.propName;
-          var modelName = options.modelName;
+        export default function(options = {}) {
+          const {
+            propName,
+            modelName
+          } = options.propName;
 
           if (!propName) {
             throw new Error('propName is required');
@@ -1167,13 +1199,13 @@ export default (props) => {
           }
 
           return function(DecoratedComponent) {
-            var displayName = 'InfiniteScrolling(' + getDisplayName(DecoratedComponent) + ')';
+            const displayName = 'InfiniteScrolling(' + getDisplayName(DecoratedComponent) + ')';
 
-            return React.createClass({
+            return createReactClass({
               displayName: displayName,
 
               contextTypes: {
-                store: React.PropTypes.object.isRequired
+                store: PropTypes.object.isRequired
               },
 
               getInitialState: function() {
@@ -1185,21 +1217,21 @@ export default (props) => {
               },
 
               componentWillReceiveProps: function(nextProps) {
-                var storeState = this.context.store.getState();
-                var pages = this.state.pages;
+                const storeState = this.context.store.getState();
+                const { pages } = this.state;
 
                 // Whenever the component re-renders, we need to rebuild our collection of pages
                 // by fetching them back out of the Store. If we don't do this, our state data
                 // will always be stale - we'll never know when data finishes being fetched, and
                 // in the cases where some of the data is being modified, such as being updated
                 // or deleted, we won't get a change to react to those changes and inform the user.
-                var nextPages = pages.map(function(page) {
-                  var query = JSON.stringify(page.query);
+                let nextPages = pages.map(function(page) {
+                  const query = JSON.stringify(page.query);
                   return storeState[modelName].find[query];
                 });
 
-                var currentQuery = JSON.stringify(this.props[propName].query.where);
-                var nextQuery = JSON.stringify(nextProps[propName].query.where);
+                const currentQuery = JSON.stringify(this.props[propName].query.where);
+                const nextQuery = JSON.stringify(nextProps[propName].query.where);
 
                 if (currentQuery !== nextQuery) {
                   nextPages = [
@@ -1213,15 +1245,15 @@ export default (props) => {
               },
 
               onLoadMore: function() {
-                var storeState = this.context.store.getState();
-                var pages = this.state.pages;
-                var lastPage = pages[pages.length - 1];
-                var nextPageNumber = Number(lastPage.query.pagination.page) + 1;
-                var query = lastPage.query;
+                const storeState = this.context.store.getState();
+                const { pages } = this.state;
+                const lastPage = pages[pages.length - 1];
+                const nextPageNumber = Number(lastPage.query.pagination.page) + 1;
+                const query = lastPage.query;
 
                 // Build the next page's query from the previous page. The only
                 // thing we're changing is the page of data we want to fetch
-                var nextQuery = {
+                const nextQuery = {
                   where: query.where,
                   pagination: _.defaults({
                     page: nextPageNumber
@@ -1230,11 +1262,11 @@ export default (props) => {
 
                 // See if the next page has already been fetched, and used the cached page
                 // if available
-                var nextPage = storeState[modelName].find[JSON.stringify(nextQuery)];
+                let nextPage = storeState[modelName].find[JSON.stringify(nextQuery)];
 
                 if (!nextPage) {
                   // The 'find' action has a slightly different interface than the 'getState' call
-                  // in 'lore.connect'. When calling the 'find' action directly, you need to pass
+                  // in 'connect'. When calling the 'find' action directly, you need to pass
                   // in the 'where' clause and the 'pagination' information as different arguments,
                   // like 'lore.actions.tweet.find(where, pagination)'
                   nextPage = lore.actions[modelName].find(nextQuery.where, nextQuery.pagination).payload;
@@ -1258,7 +1290,9 @@ export default (props) => {
         };
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React, { PropTypes } from 'react';
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
         import _ from 'lodash';
 
         function getDisplayName(Component) {
@@ -1280,7 +1314,7 @@ export default (props) => {
           return function(DecoratedComponent) {
             const displayName = 'InfiniteScrolling(' + getDisplayName(DecoratedComponent) + ')';
 
-            return React.createClass({
+            return createReactClass({
               displayName: displayName,
 
               contextTypes: {
@@ -1297,7 +1331,7 @@ export default (props) => {
 
               componentWillReceiveProps: function(nextProps) {
                 const storeState = this.context.store.getState();
-                const pages = this.state.pages;
+                const { pages } = this.state;
 
                 // Whenever the component re-renders, we need to rebuild our collection of pages
                 // by fetching them back out of the Store. If we don't do this, our state data
@@ -1325,7 +1359,7 @@ export default (props) => {
 
               onLoadMore: function() {
                 const storeState = this.context.store.getState();
-                const pages = this.state.pages;
+                const { pages } = this.state;
                 const lastPage = pages[pages.length - 1];
                 const nextPageNumber = Number(lastPage.query.pagination.page) + 1;
                 const query = lastPage.query;
@@ -1345,7 +1379,7 @@ export default (props) => {
 
                 if (!nextPage) {
                   // The 'find' action has a slightly different interface than the 'getState' call
-                  // in 'lore.connect'. When calling the 'find' action directly, you need to pass
+                  // in 'connect'. When calling the 'find' action directly, you need to pass
                   // in the 'where' clause and the 'pagination' information as different arguments,
                   // like 'lore.actions.tweet.find(where, pagination)'
                   nextPage = lore.actions[modelName].find(nextQuery.where, nextQuery.pagination).payload;
@@ -1369,7 +1403,9 @@ export default (props) => {
         };
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React, { PropTypes } from 'react';
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
         import _ from 'lodash';
 
         function getDisplayName(Component) {
@@ -1391,7 +1427,7 @@ export default (props) => {
           return function(DecoratedComponent) {
             const displayName = 'InfiniteScrolling(' + getDisplayName(DecoratedComponent) + ')';
 
-            return React.createClass({
+            return createReactClass({
               displayName: displayName,
 
               contextTypes: {
@@ -1408,7 +1444,7 @@ export default (props) => {
 
               componentWillReceiveProps: function(nextProps) {
                 const storeState = this.context.store.getState();
-                const pages = this.state.pages;
+                const { pages } = this.state;
 
                 // Whenever the component re-renders, we need to rebuild our collection of pages
                 // by fetching them back out of the Store. If we don't do this, our state data
@@ -1436,7 +1472,7 @@ export default (props) => {
 
               onLoadMore: function() {
                 const storeState = this.context.store.getState();
-                const pages = this.state.pages;
+                const { pages } = this.state;
                 const lastPage = pages[pages.length - 1];
                 const nextPageNumber = Number(lastPage.query.pagination.page) + 1;
                 const query = lastPage.query;
@@ -1456,7 +1492,7 @@ export default (props) => {
 
                 if (!nextPage) {
                   // The 'find' action has a slightly different interface than the 'getState' call
-                  // in 'lore.connect'. When calling the 'find' action directly, you need to pass
+                  // in 'connect'. When calling the 'find' action directly, you need to pass
                   // in the 'where' clause and the 'pagination' information as different arguments,
                   // like 'lore.actions.tweet.find(where, pagination)'
                   nextPage = lore.actions[modelName].find(nextQuery.where, nextQuery.pagination).payload;
@@ -1487,13 +1523,16 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
-        var Tweet = require('./Tweet');
-        var PayloadStates = require('../constants/PayloadStates');
-        var InfiniteScrolling = require('../decorators/InfiniteScrolling');
-        var LoadMoreButton = require('./LoadMoreButton');
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
+        import { connect } from 'lore-hook-connect';
+        import Tweet from './Tweet';
+        import PayloadStates from '../constants/PayloadStates';
+        import InfiniteScrolling from '../decorators/InfiniteScrolling';
+        import LoadMoreButton from './LoadMoreButton';
 
-        module.exports = lore.connect(function(getState, props){
+        export default connect(function(getState, props){
           return {
             tweets: getState('tweet.find', {
               pagination: {
@@ -1503,12 +1542,12 @@ export default (props) => {
           }
         })(
         InfiniteScrolling({ propName: 'tweets', modelName: 'tweet' })(
-        React.createClass({
+        createReactClass({
           displayName: 'Feed',
 
           propTypes: {
-            pages: React.PropTypes.array.isRequired,
-            onLoadMore: React.PropTypes.func.isRequired
+            pages: PropTypes.array.isRequired,
+            onLoadMore: PropTypes.func.isRequired
           },
 
           renderTweet: function(tweet) {
@@ -1518,10 +1557,10 @@ export default (props) => {
           },
 
           render: function() {
-            var pages = this.props.pages;
-            var numberOfPages = pages.length;
-            var firstPage = pages[0];
-            var lastPage = pages[pages.length - 1];
+            const { pages } = this.props;
+            const numberOfPages = pages.length;
+            const firstPage = pages[0];
+            const lastPage = pages[pages.length - 1];
 
             if (numberOfPages === 1 && lastPage.state === PayloadStates.FETCHING) {
               return (
@@ -1531,7 +1570,7 @@ export default (props) => {
               );
             }
 
-            var tweetListItems = _.flatten(pages.map(function(tweets) {
+            const tweetListItems = _.flatten(pages.map(function(tweets) {
               return tweets.data.map(this.renderTweet);
             }.bind(this)));
 
@@ -1556,13 +1595,15 @@ export default (props) => {
         );
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
+        import { connect } from 'lore-hook-connect';
         import Tweet from './Tweet';
         import PayloadStates from '../constants/PayloadStates';
         import InfiniteScrolling from '../decorators/InfiniteScrolling';
         import LoadMoreButton from './LoadMoreButton';
 
-        class Feed extends Component {
+        class Feed extends React.Component {
 
           renderTweet(tweet) {
             return (
@@ -1571,7 +1612,7 @@ export default (props) => {
           }
 
           render() {
-            const pages = this.props.pages;
+            const { pages } = this.props;
             const numberOfPages = pages.length;
             const firstPage = pages[0];
             const lastPage = pages[pages.length - 1];
@@ -1607,7 +1648,7 @@ export default (props) => {
           onLoadMore: PropTypes.func.isRequired
         };
 
-        export default lore.connect(function(getState, props){
+        export default connect(function(getState, props){
           return {
             tweets: getState('tweet.find', {
               pagination: {
@@ -1622,13 +1663,15 @@ export default (props) => {
         );
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
+        import { connect } from 'lore-hook-connect';
         import Tweet from './Tweet';
         import PayloadStates from '../constants/PayloadStates';
         import InfiniteScrolling from '../decorators/InfiniteScrolling';
         import LoadMoreButton from './LoadMoreButton';
 
-        @lore.connect(function(getState, props){
+        @connect(function(getState, props){
           return {
             tweets: getState('tweet.find', {
               pagination: {
@@ -1638,7 +1681,7 @@ export default (props) => {
           }
         })
         @InfiniteScrolling({ propName: 'tweets', modelName: 'tweet' })
-        class Feed extends Component {
+        class Feed extends React.Component {
 
           static propTypes = {
             pages: PropTypes.array.isRequired,
@@ -1652,7 +1695,7 @@ export default (props) => {
           }
 
           render() {
-            const pages = this.props.pages;
+            const { pages } = this.props;
             const numberOfPages = pages.length;
             const firstPage = pages[0];
             const lastPage = pages[pages.length - 1];

@@ -40,11 +40,11 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var Router = require('react-router');
+        import { Link } from 'react-router';
         ...
-        <Router.Link className="navbar-brand" to="/">
+        <Link className="navbar-brand" to="/">
           Lore Quickstart
-        </Router.Link>
+        </Link>
         `} />
         <CodeTab syntax="ES6" text={`
         import { Link } from 'react-router';
@@ -85,10 +85,11 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
-        var Router = require('react-router');
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import { Link } from 'react-router';
 
-        module.exports = React.createClass({
+        export default createReactClass({
           displayName: 'Header',
 
           render: function() {
@@ -96,9 +97,9 @@ export default (props) => {
               <nav className="navbar navbar-default navbar-static-top header">
                 <div className="container">
                   <div className="navbar-header">
-                    <Router.Link className="navbar-brand" to="/">
+                    <Link className="navbar-brand" to="/">
                       Lore Quickstart
-                    </Router.Link>
+                    </Link>
                   </div>
                 </div>
               </nav>
@@ -110,7 +111,7 @@ export default (props) => {
         import React, { Component } from 'react';
         import { Link } from 'react-router';
 
-        class Header extends Component {
+        class Header extends React.Component {
 
           render() {
             return (
@@ -134,7 +135,7 @@ export default (props) => {
         import React, { Component } from 'react';
         import { Link } from 'react-router';
 
-        class Header extends Component {
+        class Header extends React.Component {
 
           render() {
             return (

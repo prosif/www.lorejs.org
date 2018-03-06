@@ -209,7 +209,7 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        module.exports = {
+        export default {
 
           ...
 
@@ -303,7 +303,7 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        module.exports = {
+        export default {
 
           default: {
 
@@ -367,7 +367,7 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        module.exports = {
+        export default {
 
           attributes: {
             text: {

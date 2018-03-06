@@ -42,14 +42,16 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
-        var auth = require('../utils/auth');
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
+        import auth from '../utils/auth';
 
-        module.exports = React.createClass({
+        export default createReactClass({
           displayName: 'Logout',
 
           propTypes: {
-            router: React.PropTypes.object.isRequired
+            router: PropTypes.object.isRequired
           },
 
           componentDidMount: function(){
@@ -68,10 +70,11 @@ export default (props) => {
         });
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
         import auth from '../utils/auth';
 
-        class Logout extends Component {
+        class Logout extends React.Component {
 
           componentDidMount(){
             auth.deleteToken();
@@ -94,10 +97,11 @@ export default (props) => {
         export default Logout;
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
         import auth from '../utils/auth';
 
-        class Logout extends Component {
+        class Logout extends React.Component {
 
           static propTypes = {
             router: PropTypes.object.isRequired
@@ -131,9 +135,9 @@ export default (props) => {
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
         ...
-        var Logout = require('./src/components/Logout');
+        import Logout from './src/components/Logout';
 
-        module.exports = (
+        export default (
           <Route>
             <Route path="/login" component={Login} />
             <Route path="/logout" component={Logout} />
@@ -194,13 +198,13 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var Router = require('react-router');
+        import { Link } from 'react-router';
         ...
           render: function() {
             ...
-              <Router.Link className="btn btn-primary" to="/logout">
+              <Link className="btn btn-primary" to="/logout">
                 Logout
-              </Router.Link>
+              </Link>
             ...
           }
         ...
@@ -262,14 +266,16 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
-        var auth = require('../utils/auth');
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
+        import auth from '../utils/auth';
 
-        module.exports = React.createClass({
+        export default createReactClass({
           displayName: 'Logout',
 
           propTypes: {
-            router: React.PropTypes.object.isRequired
+            router: PropTypes.object.isRequired
           },
 
           componentDidMount: function(){
@@ -288,10 +294,11 @@ export default (props) => {
         });
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
         import auth from '../utils/auth';
 
-        class Logout extends Component {
+        class Logout extends React.Component {
 
           componentDidMount(){
             auth.deleteToken();
@@ -314,10 +321,11 @@ export default (props) => {
         export default Logout;
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
         import auth from '../utils/auth';
 
-        class Logout extends Component {
+        class Logout extends React.Component {
 
           static propTypes = {
             router: PropTypes.object.isRequired
@@ -347,21 +355,20 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
-        var Route = require('react-router').Route;
-        var IndexRoute = require('react-router').IndexRoute;
-        var UserIsAuthenticated = require('./src/decorators/UserIsAuthenticated');
+        import React from 'react';
+        import { Route, IndexRoute, Redirect } from 'react-router';
+        import UserIsAuthenticated from './src/decorators/UserIsAuthenticated';
 
         /**
          * Routes
          */
-        var Master = require('./src/components/Master');
-        var Layout = require('./src/components/Layout');
-        var Feed = require('./src/components/Feed');
-        var Login = require('./src/components/Login');
-        var Logout = require('./src/components/Logout');
+        import Master from './src/components/Master';
+        import Layout from './src/components/Layout';
+        import Feed from './src/components/Feed';
+        import Login from './src/components/Login';
+        import Logout from './src/components/Logout';
 
-        module.exports = (
+        export default (
           <Route>
             <Route path="/login" component={Login} />
             <Route path="/logout" component={Logout} />
@@ -436,14 +443,16 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
-        var Router = require('react-router');
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
+        import { Link } from 'react-router';
 
-        module.exports = React.createClass({
+        export default createReactClass({
           displayName: 'Profile',
 
           propTypes: {
-            user: React.PropTypes.object.isRequired
+            user: PropTypes.object.isRequired
           },
 
           getDefaultProps: function() {
@@ -459,7 +468,7 @@ export default (props) => {
           },
 
           render: function() {
-            var user = this.props.user;
+            const { user } = this.props;
 
             return (
               <div className="card profile">
@@ -478,9 +487,9 @@ export default (props) => {
                       <li>Delete your own tweets</li>
                     </ul>
                   </div>
-                  <Router.Link className="btn btn-primary" to="/logout">
+                  <Link className="btn btn-primary" to="/logout">
                     Logout
-                  </Router.Link>
+                  </Link>
                 </div>
               </div>
             );
@@ -489,13 +498,14 @@ export default (props) => {
         });
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
         import { Link } from 'react-router';
 
-        class Profile extends Component {
+        class Profile extends React.Component {
 
           render() {
-            const user = this.props.user;
+            const { user } = this.props;
 
             return (
               <div className="card profile">
@@ -540,10 +550,11 @@ export default (props) => {
         export default Profile;
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
         import { Link } from 'react-router';
 
-        class Profile extends Component {
+        class Profile extends React.Component {
 
           static propTypes = {
             user: PropTypes.object.isRequired
@@ -560,7 +571,7 @@ export default (props) => {
           };
 
           render() {
-            const user = this.props.user;
+            const { user } = this.props;
 
             return (
               <div className="card profile">

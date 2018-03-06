@@ -29,13 +29,13 @@ export default (props) => {
       </p>
 
       <p>
-        Open up <code>src/components/Feed</code> and modify the <code>lore.connect</code> call to look like this (adding the <code>populate</code> attribute
+        Open up <code>src/components/Feed</code> and modify the <code>connect</code> call to look like this (adding the <code>populate</code> attribute
         to the pagination parameters):
       </p>
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        module.exports = lore.connect(function(getState, props){
+        export default connect(function(getState, props){
           return {
             tweets: getState('tweet.find', {
               pagination: {
@@ -49,7 +49,7 @@ export default (props) => {
         );
         `}/>
         <CodeTab syntax="ES6" text={`
-        export default lore.connect(function(getState, props){
+        export default connect(function(getState, props){
           return {
             tweets: getState('tweet.find', {
               pagination: {
@@ -63,7 +63,7 @@ export default (props) => {
         );
         `}/>
         <CodeTab syntax="ESNext" text={`
-        @lore.connect(function(getState, props){
+        @connect(function(getState, props){
           return {
             tweets: getState('tweet.find', {
               pagination: {
@@ -114,7 +114,7 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        module.exports = {
+        export default {
 
           attributes: {
             text: {
@@ -201,7 +201,7 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        module.exports = {
+        export default {
 
           attributes: {
             text: {
@@ -259,14 +259,16 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
-        var Tweet = require('./Tweet');
-        var PayloadStates = require('../constants/PayloadStates');
-        var Router = require('react-router');
-        var InfiniteScrolling = require('../decorators/InfiniteScrolling');
-        var LoadMoreButton = require('./LoadMoreButton');
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
+        import { connect } from 'lore-hook-connect';
+        import Tweet from './Tweet';
+        import PayloadStates from '../constants/PayloadStates';
+        import InfiniteScrolling from '../decorators/InfiniteScrolling';
+        import LoadMoreButton from './LoadMoreButton';
 
-        module.exports = lore.connect(function(getState, props){
+        export default connect(function(getState, props){
           return {
             tweets: getState('tweet.find', {
               pagination: {
@@ -277,12 +279,12 @@ export default (props) => {
           }
         })(
         InfiniteScrolling({ propName: 'tweets', modelName: 'tweet' })(
-        React.createClass({
+        createReactClass({
           displayName: 'Feed',
 
           propTypes: {
-            pages: React.PropTypes.array.isRequired,
-            onLoadMore: React.PropTypes.func.isRequired
+            pages: PropTypes.array.isRequired,
+            onLoadMore: PropTypes.func.isRequired
           },
 
           renderTweet: function(tweet) {
@@ -292,10 +294,10 @@ export default (props) => {
           },
 
           render: function() {
-            var pages = this.props.pages;
-            var numberOfPages = pages.length;
-            var firstPage = pages[0];
-            var lastPage = pages[pages.length - 1];
+            const { pages } = this.props;
+            const numberOfPages = pages.length;
+            const firstPage = pages[0];
+            const lastPage = pages[pages.length - 1];
 
             if (numberOfPages === 1 && lastPage.state === PayloadStates.FETCHING) {
               return (
@@ -305,7 +307,7 @@ export default (props) => {
               );
             }
 
-            var tweetListItems = _.flatten(pages.map(function(tweets) {
+            const tweetListItems = _.flatten(pages.map(function(tweets) {
               return tweets.data.map(this.renderTweet);
             }.bind(this)));
 
@@ -330,13 +332,14 @@ export default (props) => {
         );
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
         import Tweet from './Tweet';
         import PayloadStates from '../constants/PayloadStates';
         import InfiniteScrolling from '../decorators/InfiniteScrolling';
         import LoadMoreButton from './LoadMoreButton';
 
-        class Feed extends Component {
+        class Feed extends React.Component {
 
           renderTweet(tweet) {
             return (
@@ -345,7 +348,7 @@ export default (props) => {
           }
 
           render() {
-            const pages = this.props.pages;
+            const { pages } = this.props;
             const numberOfPages = pages.length;
             const firstPage = pages[0];
             const lastPage = pages[pages.length - 1];
@@ -384,7 +387,7 @@ export default (props) => {
           tweets: PropTypes.object.isRequired
         };
 
-        export default lore.connect(function(getState, props){
+        export default connect(function(getState, props){
           return {
             tweets: getState('tweet.find', {
               pagination: {
@@ -400,13 +403,15 @@ export default (props) => {
         );
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
+        import { connect } from 'lore-hook-connect';
         import Tweet from './Tweet';
         import PayloadStates from '../constants/PayloadStates';
         import InfiniteScrolling from '../decorators/InfiniteScrolling';
         import LoadMoreButton from './LoadMoreButton';
 
-        @lore.connect(function(getState, props){
+        @connect(function(getState, props){
           return {
             tweets: getState('tweet.find', {
               pagination: {
@@ -417,7 +422,7 @@ export default (props) => {
           }
         })
         @InfiniteScrolling({ propName: 'tweets', modelName: 'tweet' })
-        class Feed extends Component {
+        class Feed extends React.Component {
 
           static propTypes = {
             pages: PropTypes.array.isRequired,
@@ -431,7 +436,7 @@ export default (props) => {
           }
 
           render() {
-            const pages = this.props.pages;
+            const { pages } = this.props;
             const numberOfPages = pages.length;
             const firstPage = pages[0];
             const lastPage = pages[pages.length - 1];

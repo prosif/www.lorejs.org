@@ -30,10 +30,10 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
-        var AuthorizationGenerator = require('lore-auth').AuthorizationGenerator;
+        import React from 'react';
+        import { AuthorizationGenerator } from 'lore-auth';
 
-        module.exports = AuthorizationGenerator({
+        export default AuthorizationGenerator({
           wrapperDisplayName: 'UserIsAuthorized',
 
           isAuthorized: function(storeState) {
@@ -88,23 +88,24 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
-        var AuthorizationGenerator = require('lore-auth').AuthorizationGenerator;
+        import React from 'react';
+        import PropTypes from 'prop-types';
+        import { AuthorizationGenerator } from 'lore-auth';
 
-        module.exports = AuthorizationGenerator({
+        export default AuthorizationGenerator({
           wrapperDisplayName: 'UserCanEditTweet',
 
           propTypes: {
-            tweet: React.PropTypes.object.isRequired
+            tweet: PropTypes.object.isRequired
           },
 
           contextTypes: {
-            user: React.PropTypes.object.isRequired
+            user: PropTypes.object.isRequired
           },
 
           isAuthorized: function(storeState) {
-            var tweet = this.props.tweet;
-            var user = this.context.user;
+            const { tweet } = this.props;
+            const { user } = this.context;
 
             return tweet.data.userId === user.id;
           }
@@ -112,7 +113,8 @@ export default (props) => {
         });
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React, { PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
         import { AuthorizationGenerator } from 'lore-auth';
 
         export default AuthorizationGenerator({
@@ -123,19 +125,20 @@ export default (props) => {
           },
 
           contextTypes: {
-            user: React.PropTypes.object.isRequired
+            user: PropTypes.object.isRequired
           },
 
           isAuthorized(storeState) {
-            var tweet = this.props.tweet;
-            var user = this.context.user;
+            const { tweet } = this.props;
+            const { user } = this.context;
 
             return tweet.data.userId === user.id;
           }
         })
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React, { PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
         import { AuthorizationGenerator } from 'lore-auth';
 
         export default AuthorizationGenerator({
@@ -146,12 +149,12 @@ export default (props) => {
           },
 
           contextTypes: {
-            user: React.PropTypes.object.isRequired
+            user: PropTypes.object.isRequired
           },
 
           isAuthorized(storeState) {
-            var tweet = this.props.tweet;
-            var user = this.context.user;
+            const { tweet } = this.props;
+            const { user } = this.context;
 
             return tweet.data.userId === user.id;
           }
@@ -170,22 +173,22 @@ export default (props) => {
         Wrap the Edit Link
       </h3>
       <p>
-        To use this decorator, open the <code>EditLink</code> component and decorate the component just like you would when using
-        <code>lore.connect</code>.
+        To use this decorator, open the <code>EditLink</code> component and decorate the component just like you
+        would when using <code>connect</code>.
       </p>
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var UserCanEditTweet = require('../decorators/UserCanEditTweet');
+        import UserCanEditTweet from '../decorators/UserCanEditTweet';
 
-        module.exports = UserCanEditTweet(React.createClass({
+        export default UserCanEditTweet(createReactClass({
           ...
         }));
         `}/>
         <CodeTab syntax="ES6" text={`
         import UserCanEditTweet from '../decorators/UserCanEditTweet';
 
-        class EditLink extends Component {
+        class EditLink extends React.Component {
           ...
         }
 
@@ -195,7 +198,7 @@ export default (props) => {
         import UserCanEditTweet from '../decorators/UserCanEditTweet';
 
         @UserCanEditTweet
-        class EditLink extends Component {
+        class EditLink extends React.Component {
           ...
         }
         `}/>
@@ -231,10 +234,11 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
-        var AuthorizationGenerator = require('lore-auth').AuthorizationGenerator;
+        import React from 'react';
+        import PropTypes from 'prop-types';
+        import { AuthorizationGenerator } from 'lore-auth';
 
-        module.exports = AuthorizationGenerator({
+        export default AuthorizationGenerator({
           wrapperDisplayName: 'UserCanEditTweet',
 
           propTypes: {
@@ -242,19 +246,20 @@ export default (props) => {
           },
 
           contextTypes: {
-            user: React.PropTypes.object.isRequired
+            user: PropTypes.object.isRequired
           },
 
           isAuthorized(storeState) {
-            var tweet = this.props.tweet;
-            var user = this.context.user;
+            const { tweet } = this.props;
+            const { user } = this.context;
 
             return tweet.data.userId === user.id;
           }
         });
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React, { PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
         import { AuthorizationGenerator } from 'lore-auth';
 
         export default AuthorizationGenerator({
@@ -265,19 +270,20 @@ export default (props) => {
           },
 
           contextTypes: {
-            user: React.PropTypes.object.isRequired
+            user: PropTypes.object.isRequired
           },
 
           isAuthorized(storeState) {
-            var tweet = this.props.tweet;
-            var user = this.context.user;
+            const { tweet } = this.props;
+            const { user } = this.context;
 
             return tweet.data.userId === user.id;
           }
         })
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React, { PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
         import { AuthorizationGenerator } from 'lore-auth';
 
         export default AuthorizationGenerator({
@@ -288,12 +294,12 @@ export default (props) => {
           },
 
           contextTypes: {
-            user: React.PropTypes.object.isRequired
+            user: PropTypes.object.isRequired
           },
 
           isAuthorized(storeState) {
-            var tweet = this.props.tweet;
-            var user = this.context.user;
+            const { tweet } = this.props;
+            const { user } = this.context;
 
             return tweet.data.userId === user.id;
           }
@@ -307,18 +313,20 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
-        var UserCanEditTweet = require('../decorators/UserCanEditTweet');
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
+        import UserCanEditTweet from '../decorators/UserCanEditTweet';
 
-        module.exports = UserCanEditTweet(React.createClass({
+        export default UserCanEditTweet(createReactClass({
           displayName: 'EditLink',
 
           propTypes: {
-            tweet: React.PropTypes.object.isRequired
+            tweet: PropTypes.object.isRequired
           },
 
           onEdit: function() {
-            var tweet = this.props.tweet;
+            const { tweet } = this.props;
 
             function updateTweet(params) {
               lore.actions.tweet.update(tweet, params);
@@ -343,11 +351,12 @@ export default (props) => {
         }));
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
         import UserCanEditTweet from '../decorators/UserCanEditTweet';
 
         @UserCanEditTweet
-        class EditLink extends Component {
+        class EditLink extends React.Component {
 
           constructor(props) {
             super(props);
@@ -355,7 +364,7 @@ export default (props) => {
           }
 
           onEdit() {
-            var tweet = this.props.tweet;
+            const { tweet } = this.props;
 
             function updateTweet(params) {
               lore.actions.tweet.update(tweet, params);
@@ -386,11 +395,12 @@ export default (props) => {
         export default UserCanEditTweet(EditLink);
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
         import UserCanEditTweet from '../decorators/UserCanEditTweet';
 
         @UserCanEditTweet
-        class EditLink extends Component {
+        class EditLink extends React.Component {
 
           constructor(props) {
             super(props);
@@ -402,7 +412,7 @@ export default (props) => {
           };
 
           onEdit() {
-            var tweet = this.props.tweet;
+            const { tweet } = this.props;
 
             function updateTweet(params) {
               lore.actions.tweet.update(tweet, params);

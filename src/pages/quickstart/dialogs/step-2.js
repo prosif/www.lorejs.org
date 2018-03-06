@@ -132,9 +132,10 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
+        import React from 'react';
+        import createReactClass from 'create-react-class';
 
-        module.exports = React.createClass({
+        export default createReactClass({
           displayName: 'CreateButton',
 
           onClick: function() {
@@ -161,7 +162,7 @@ export default (props) => {
         <CodeTab syntax="ES6" text={`
         import React, { Component } from 'react';
 
-        class CreateButton extends Component {
+        class CreateButton extends React.Component {
 
           onClick() {
             lore.dialog.show(() => {
@@ -189,7 +190,7 @@ export default (props) => {
         <CodeTab syntax="ESNext" text={`
         import React, { Component } from 'react';
 
-        class CreateButton extends Component {
+        class CreateButton extends React.Component {
 
           onClick() {
             lore.dialog.show(() => {

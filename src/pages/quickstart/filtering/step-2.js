@@ -24,14 +24,15 @@ export default (props) => {
         Add User Tweets Component
       </h3>
       <p>
-        First we need a component to display the user's tweets. The behavior of this component is identical to the Feed, with
-        one exception; we only want to display tweets the <em>current user created</em>. So start off by copying the <code>Feed</code> component
-        and renaming it <code>UserTweets</code>. Then update the <em>lore.connect</em> call to look like this:
+        First we need a component to display the user's tweets. The behavior of this component is identical to the
+        Feed, with one exception; we only want to display tweets the <em>current user created</em>. So start off
+        by copying the <code>Feed</code> component and renaming it <code>UserTweets</code>. Then update
+        the <em>connect</em> call to look like this:
       </p>
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        module.exports = lore.connect(function(getState, props){
+        export default connect(function(getState, props){
           return {
             tweets: getState('tweet.find', {
               where: {
@@ -45,7 +46,7 @@ export default (props) => {
         })
         `}/>
         <CodeTab syntax="ES6" text={`
-        export default lore.connect(function(getState, props){
+        export default connect(function(getState, props){
           return {
             tweets: getState('tweet.find', {
               where: {
@@ -59,7 +60,7 @@ export default (props) => {
         })(UserTweets);
         `}/>
         <CodeTab syntax="ESNext" text={`
-        @lore.connect(function(getState, props){
+        @connect(function(getState, props){
           return {
             tweets: getState('tweet.find', {
               where: {
@@ -95,9 +96,9 @@ export default (props) => {
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
         ...
-        var UserTweets = require('./src/components/UserTweets');
+        import UserTweets from './src/components/UserTweets';
 
-        module.exports = (
+        export default (
           <Route>
             <Route path="/login" component={Login} />
             <Route path="/logout" component={Logout} />
@@ -179,13 +180,16 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
-        var Tweet = require('./Tweet');
-        var PayloadStates = require('../constants/PayloadStates');
-        var InfiniteScrolling = require('../decorators/InfiniteScrolling');
-        var LoadMoreButton = require('./LoadMoreButton');
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
+        import { connect } from 'lore-hook-connect';
+        import Tweet from './Tweet';
+        import PayloadStates from '../constants/PayloadStates';
+        import InfiniteScrolling from '../decorators/InfiniteScrolling';
+        import LoadMoreButton from './LoadMoreButton';
 
-        module.exports = lore.connect(function(getState, props){
+        export default connect(function(getState, props){
           return {
             tweets: getState('tweet.find', {
               where: {
@@ -198,12 +202,12 @@ export default (props) => {
           }
         })(
         InfiniteScrolling({ propName: 'tweets', modelName: 'tweet' })(
-        React.createClass({
+        createReactClass({
           displayName: 'UserTweets',
 
           propTypes: {
-            pages: React.PropTypes.array.isRequired,
-            onLoadMore: React.PropTypes.func.isRequired
+            pages: PropTypes.array.isRequired,
+            onLoadMore: PropTypes.func.isRequired
           },
 
           renderTweet: function(tweet) {
@@ -213,10 +217,10 @@ export default (props) => {
           },
 
           render: function() {
-            var pages = this.props.pages;
-            var numberOfPages = pages.length;
-            var firstPage = pages[0];
-            var lastPage = pages[pages.length - 1];
+            const { pages } = this.props;
+            const numberOfPages = pages.length;
+            const firstPage = pages[0];
+            const lastPage = pages[pages.length - 1];
 
             if (numberOfPages === 1 && lastPage.state === PayloadStates.FETCHING) {
               return (
@@ -226,7 +230,7 @@ export default (props) => {
               );
             }
 
-            var tweetListItems = _.flatten(pages.map(function(tweets) {
+            const tweetListItems = _.flatten(pages.map(function(tweets) {
               return tweets.data.map(this.renderTweet);
             }.bind(this)));
 
@@ -251,13 +255,15 @@ export default (props) => {
         );
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
+        import { connect } from 'lore-hook-connect';
         import Tweet from './Tweet';
         import PayloadStates from '../constants/PayloadStates';
         import InfiniteScrolling from '../decorators/InfiniteScrolling';
         import LoadMoreButton from './LoadMoreButton';
 
-        class UserTweets extends Component {
+        class UserTweets extends React.Component {
 
           renderTweet(tweet) {
             return (
@@ -266,10 +272,10 @@ export default (props) => {
           }
 
           render() {
-            var pages = this.props.pages;
-            var numberOfPages = pages.length;
-            var firstPage = pages[0];
-            var lastPage = pages[pages.length - 1];
+            const { pages } = this.props;
+            const numberOfPages = pages.length;
+            const firstPage = pages[0];
+            const lastPage = pages[pages.length - 1];
 
             if (numberOfPages === 1 && lastPage.state === PayloadStates.FETCHING) {
               return (
@@ -279,7 +285,7 @@ export default (props) => {
               );
             }
 
-            var tweetListItems = _.flatten(pages.map(function(tweets) {
+            const tweetListItems = _.flatten(pages.map(function(tweets) {
               return tweets.data.map(this.renderTweet);
             }.bind(this)));
 
@@ -303,7 +309,7 @@ export default (props) => {
           onLoadMore: PropTypes.func.isRequired
         };
 
-        export default lore.connect(function(getState, props){
+        export default connect(function(getState, props){
           return {
             tweets: getState('tweet.find', {
               where: {
@@ -319,13 +325,15 @@ export default (props) => {
         )(UserTweets);
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
+        import { connect } from 'lore-hook-connect';
         import Tweet from './Tweet';
         import PayloadStates from '../constants/PayloadStates';
         import InfiniteScrolling from '../decorators/InfiniteScrolling';
         import LoadMoreButton from './LoadMoreButton';
 
-        @lore.connect(function(getState, props){
+        @connect(function(getState, props){
           return {
             tweets: getState('tweet.find', {
               where: {
@@ -338,7 +346,7 @@ export default (props) => {
           }
         })
         @InfiniteScrolling({ propName: 'tweets', modelName: 'tweet' })
-        class UserTweets extends Component {
+        class UserTweets extends React.Component {
 
           static propTypes = {
             pages: PropTypes.array.isRequired,
@@ -352,10 +360,10 @@ export default (props) => {
           }
 
           render() {
-            var pages = this.props.pages;
-            var numberOfPages = pages.length;
-            var firstPage = pages[0];
-            var lastPage = pages[pages.length - 1];
+            const { pages } = this.props;
+            const numberOfPages = pages.length;
+            const firstPage = pages[0];
+            const lastPage = pages[pages.length - 1];
 
             if (numberOfPages === 1 && lastPage.state === PayloadStates.FETCHING) {
               return (
@@ -365,7 +373,7 @@ export default (props) => {
               );
             }
 
-            var tweetListItems = _.flatten(pages.map(function(tweets) {
+            const tweetListItems = _.flatten(pages.map(function(tweets) {
               return tweets.data.map(this.renderTweet);
             }.bind(this)));
 
@@ -394,22 +402,21 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
-        var Route = require('react-router').Route;
-        var IndexRoute = require('react-router').IndexRoute;
-        var UserIsAuthenticated = require('./src/decorators/UserIsAuthenticated');
+        import React from 'react';
+        import { Route, IndexRoute, Redirect } from 'react-router';
+        import UserIsAuthenticated from './src/decorators/UserIsAuthenticated';
 
         /**
          * Routes
          */
-        var Master = require('./src/components/Master');
-        var Layout = require('./src/components/Layout');
-        var Feed = require('./src/components/Feed');
-        var Login = require('./src/components/Login');
-        var Logout = require('./src/components/Logout');
-        var UserTweets = require('./src/components/UserTweets');
+        import Master from './src/components/Master');
+        import Layout from './src/components/Layout');
+        import Feed from './src/components/Feed');
+        import Login from './src/components/Login');
+        import Logout from './src/components/Logout');
+        import UserTweets from './src/components/UserTweets');
 
-        module.exports = (
+        export default (
           <Route>
             <Route path="/login" component={Login} />
             <Route path="/logout" component={Logout} />

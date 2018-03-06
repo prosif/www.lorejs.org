@@ -73,15 +73,20 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        module.exports = AuthenticationGenerator({
+        import React from 'react';
+        import { AuthenticationGenerator } from 'lore-auth';
+
+        export default AuthenticationGenerator({
           wrapperDisplayName: 'UserIsAuthenticated',
 
           // redirectUrl: '/login',
 
-          isAuthenticated: function() {
+          // redirectQueryParamName: 'redirect',
+
+          isAuthenticated () {
             return true;
           }
-        });
+        })
         `}/>
         <CodeTab syntax="ES6" text={`
         import React from 'react';
@@ -130,7 +135,7 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var auth = require('../utils/auth');
+        import auth from '../utils/auth';
         ...
           isAuthenticated: function() {
             return auth.hasToken();
@@ -186,11 +191,11 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
-        var AuthenticationGenerator = require('lore-auth').AuthenticationGenerator;
-        var auth = require('../utils/auth');
+        import React from 'react';
+        import { AuthenticationGenerator } from 'lore-auth';
+        import auth from '../utils/auth';
 
-        module.exports = AuthenticationGenerator({
+        export default AuthenticationGenerator({
           wrapperDisplayName: 'UserIsAuthenticated',
 
           // redirectUrl: '/login',

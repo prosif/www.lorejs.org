@@ -37,13 +37,15 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
 
-        module.exports = React.createClass({
+        export default createReactClass({
           displayName: 'Profile',
 
           propTypes: {
-            user: React.PropTypes.object.isRequired
+            user: PropTypes.object.isRequired
           },
 
           getDefaultProps: function() {
@@ -59,7 +61,7 @@ export default (props) => {
           },
 
           render: function() {
-            var user = this.props.user;
+            const { user } = this.props;
 
             return (
               <div className="card profile">
@@ -89,12 +91,13 @@ export default (props) => {
         });
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
 
-        class Profile extends Component {
+        class Profile extends React.Component {
 
           render() {
-            const user = this.props.user;
+            const { user } = this.props;
 
             return (
               <div className="card profile">
@@ -139,9 +142,10 @@ export default (props) => {
         export default Profile;
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
 
-        class Profile extends Component {
+        class Profile extends React.Component {
 
           static propTypes = {
             user: PropTypes.object.isRequired
@@ -158,7 +162,7 @@ export default (props) => {
           };
 
           render() {
-            const user = this.props.user;
+            const { user } = this.props;
 
             return (
               <div className="card profile">
@@ -202,7 +206,7 @@ export default (props) => {
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
         ...
-        var Profile = require('./Profile');
+        import Profile from './Profile';
 
         ...
 
@@ -309,13 +313,15 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
 
-        module.exports = React.createClass({
+        export default createReactClass({
           displayName: 'Profile',
 
           propTypes: {
-            user: React.PropTypes.object.isRequired
+            user: PropTypes.object.isRequired
           },
 
           getDefaultProps: function() {
@@ -331,7 +337,7 @@ export default (props) => {
           },
 
           render: function() {
-            var user = this.props.user;
+            const { user } = this.props;
 
             return (
               <div className="card profile">
@@ -361,12 +367,13 @@ export default (props) => {
         });
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
 
-        class Profile extends Component {
+        class Profile extends React.Component {
 
           render() {
-            const user = this.props.user;
+            const { user } = this.props;
 
             return (
               <div className="card profile">
@@ -411,9 +418,10 @@ export default (props) => {
         export default Profile;
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
 
-        class Profile extends Component {
+        class Profile extends React.Component {
 
           static propTypes = {
             user: PropTypes.object.isRequired
@@ -430,7 +438,7 @@ export default (props) => {
           };
 
           render() {
-            const user = this.props.user;
+            const { user } = this.props;
 
             return (
               <div className="card profile">
@@ -474,11 +482,12 @@ export default (props) => {
          * top-level navigation. All other components should be rendered by route handlers.
          **/
 
-        var React = require('react');
-        var Header = require('./Header');
-        var Profile = require('./Profile');
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import Header from './Header';
+        import Profile from './Profile';
 
-        module.exports = React.createClass({
+        export default createReactClass({
           displayName: 'Layout',
 
           render: function() {
@@ -502,11 +511,12 @@ export default (props) => {
         });
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
         import Header from './Header';
         import Profile from './Profile';
 
-        class Layout extends Component {
+        class Layout extends React.Component {
 
           render() {
             return (
@@ -535,7 +545,7 @@ export default (props) => {
         import Header from './Header';
         import Profile from './Profile';
 
-        class Layout extends Component {
+        class Layout extends React.Component {
 
           render() {
             return (

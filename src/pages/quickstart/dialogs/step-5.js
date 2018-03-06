@@ -39,17 +39,19 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
 
-        module.exports = React.createClass({
+        export default createReactClass({
           displayName: 'EditLink',
 
           propTypes: {
-            tweet: React.PropTypes.object.isRequired
+            tweet: PropTypes.object.isRequired
           },
 
           onEdit: function() {
-            var tweet = this.props.tweet;
+            const { tweet } = this.props;
 
             function updateTweet(params) {
               lore.actions.tweet.update(tweet, params);
@@ -74,9 +76,10 @@ export default (props) => {
         });
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
 
-        class EditLink extends Component {
+        class EditLink extends React.Component {
 
           constructor(props) {
             super(props);
@@ -84,7 +87,7 @@ export default (props) => {
           }
 
           onEdit() {
-            var tweet = this.props.tweet;
+            const { tweet } = this.props;
 
             function updateTweet(params) {
               lore.actions.tweet.update(tweet, params);
@@ -115,9 +118,10 @@ export default (props) => {
         export default EditLink;
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
 
-        class EditLink extends Component {
+        class EditLink extends React.Component {
 
           constructor(props) {
             super(props);
@@ -129,7 +133,7 @@ export default (props) => {
           };
 
           onEdit() {
-            var tweet = this.props.tweet;
+            const { tweet } = this.props;
 
             function updateTweet(params) {
               lore.actions.tweet.update(tweet, params);
@@ -168,7 +172,7 @@ export default (props) => {
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
         ...
-        var EditLink = require('./EditLink');
+        import EditLink from './EditLink';
 
         ...
           render: function() {
@@ -304,17 +308,19 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
 
-        module.exports = React.createClass({
+        export default createReactClass({
           displayName: 'EditLink',
 
           propTypes: {
-            tweet: React.PropTypes.object.isRequired
+            tweet: PropTypes.object.isRequired
           },
 
           onEdit: function() {
-            var tweet = this.props.tweet;
+            const { tweet } = this.props;
 
             function updateTweet(params) {
               lore.actions.tweet.update(tweet, params);
@@ -339,9 +345,10 @@ export default (props) => {
         });
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
 
-        class EditLink extends Component {
+        class EditLink extends React.Component {
 
           constructor(props) {
             super(props);
@@ -349,7 +356,7 @@ export default (props) => {
           }
 
           onEdit() {
-            var tweet = this.props.tweet;
+            const { tweet } = this.props;
 
             function updateTweet(params) {
               lore.actions.tweet.update(tweet, params);
@@ -380,9 +387,10 @@ export default (props) => {
         export default EditLink;
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
 
-        class EditLink extends Component {
+        class EditLink extends React.Component {
 
           constructor(props) {
             super(props);
@@ -394,7 +402,7 @@ export default (props) => {
           };
 
           onEdit() {
-            var tweet = this.props.tweet;
+            const { tweet } = this.props;
 
             function updateTweet(params) {
               lore.actions.tweet.update(tweet, params);
@@ -428,12 +436,15 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
-        var moment = require('moment');
-        var EditLink = require('./EditLink');
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
+        import { connect } from 'lore-hook-connect';
+        import moment from 'moment';
+        import EditLink from './EditLink';
 
-        module.exports = lore.connect(function(getState, props){
-          var tweet = props.tweet;
+        export default connect(function(getState, props){
+          const { tweet } = props;
 
           return {
             user: getState('user.byId', {
@@ -441,18 +452,20 @@ export default (props) => {
             })
           };
         })(
-        React.createClass({
+        createReactClass({
           displayName: 'Tweet',
 
           propTypes: {
-            tweet: React.PropTypes.object.isRequired,
-            user: React.PropTypes.object.isRequired
+            tweet: PropTypes.object.isRequired,
+            user: PropTypes.object.isRequired
           },
 
           render: function() {
-            var tweet = this.props.tweet;
-            var user = this.props.user;
-            var timestamp = moment(tweet.data.createdAt).fromNow().split(' ago')[0];
+            const {
+              tweet,
+              user
+            } = this.props;
+            const timestamp = moment(tweet.data.createdAt).fromNow().split(' ago')[0];
 
             return (
               <li className="list-group-item tweet">
@@ -483,15 +496,19 @@ export default (props) => {
         );
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
+        import { connect } from 'lore-hook-connect';
         import moment from 'moment';
         import EditLink from './EditLink';
 
-        class Tweet extends Component {
+        class Tweet extends React.Component {
 
           render() {
-            const tweet = this.props.tweet;
-            const user = this.props.user;
+            const {
+              tweet,
+              user
+            } = this.props;
             const timestamp = moment(tweet.data.createdAt).fromNow().split(' ago')[0];
 
             return (
@@ -523,7 +540,7 @@ export default (props) => {
 
         Tweet.propTypes = {
           tweet: PropTypes.object.isRequired,
-          user: React.PropTypes.object.isRequired
+          user: PropTypes.object.isRequired
         };
 
         Tweet.defaultProps = {
@@ -537,8 +554,8 @@ export default (props) => {
           }
         };
 
-        export default lore.connect(function(getState, props){
-          var tweet = props.tweet;
+        export default connect(function(getState, props){
+          const { tweet } = props;
 
           return {
             user: getState('user.byId', {
@@ -548,11 +565,13 @@ export default (props) => {
         })(Tweet);
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
+        import { connect } from 'lore-hook-connect';
         import moment from 'moment';
         import EditLink from './EditLink';
 
-        @lore.connect(function(getState, props){
+        @connect(function(getState, props){
           const tweet = props.tweet;
 
           return {
@@ -561,7 +580,7 @@ export default (props) => {
             })
           };
         })
-        class Tweet extends Component {
+        class Tweet extends React.Component {
 
           static propTypes = {
             tweet: PropTypes.object.isRequired,
@@ -569,8 +588,10 @@ export default (props) => {
           };
 
           render() {
-            const tweet = this.props.tweet;
-            const user = this.props.user;
+            const {
+              tweet,
+              user
+            } = this.props;
             const timestamp = moment(tweet.data.createdAt).fromNow().split(' ago')[0];
 
             return (

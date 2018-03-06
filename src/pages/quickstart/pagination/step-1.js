@@ -104,7 +104,7 @@ export default (props) => {
       </p>
 
       <Markdown text={`
-      lore.connect(function(getState, props) {
+      connect(function(getState, props) {
         return {
           tweets: getState('tweet.find')
         }
@@ -119,12 +119,12 @@ export default (props) => {
       </p>
 
       <p>
-        Update the <code>lore.connect</code> call in your <code>Feed</code> component to look like this:
+        Update the <code>connect</code> call in your <code>Feed</code> component to look like this:
       </p>
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        module.exports = lore.connect(function(getState, props) {
+        export default connect(function(getState, props) {
           return {
             tweets: getState('tweet.find', {
               pagination: {
@@ -133,17 +133,17 @@ export default (props) => {
             })
           }
         })(
-        React.createClass({
+        createReactClass({
           ...
         })
         )
         `}/>
         <CodeTab syntax="ES6" text={`
-        class Feed extends Component {
+        class Feed extends React.Component {
          ...
         }
 
-        export default lore.connect(function(getState, props) {
+        export default connect(function(getState, props) {
           return {
             tweets: getState('tweet.find', {
               pagination: {
@@ -154,7 +154,7 @@ export default (props) => {
         })(Feed);
         `}/>
         <CodeTab syntax="ESNext" text={`
-        @lore.connect(function(getState, props) {
+        @connect(function(getState, props) {
           return {
             tweets: getState('tweet.find', {
               pagination: {
@@ -163,7 +163,7 @@ export default (props) => {
             })
           }
         })
-        class Feed extends Component {
+        class Feed extends React.Component {
          ...
         }
         `}/>
@@ -191,26 +191,26 @@ export default (props) => {
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
         ...
-        var Router = require('react-router');
+        import { Link } from 'react-router';
 
         ...
-        React.createClass({
+        createReactClass({
           ...
 
           renderPaginationLink: function(page, currentPage) {
             return (
               <li key={page} className={currentPage === String(page) ? 'active' : ''}>
-                <Router.Link to={{ pathname: '/', query: { page: page } }}>
+                <Link to={{ pathname: '/', query: { page: page } }}>
                   {page}
-                </Router.Link>
+                </Link>
               </li>
             );
           },
 
           render: function() {
-            var tweets = this.props.tweets;
-            var currentPage = tweets.query.pagination.page;
-            var paginationLinks = [];
+            const { tweets } = this.props;
+            const currentPage = tweets.query.pagination.page;
+            const paginationLinks = [];
 
             if (tweets.state === PayloadStates.FETCHING) {
               return (
@@ -222,8 +222,8 @@ export default (props) => {
 
             // calculate the number of pagination links from our metadata, then
             // generate an array of pagination links
-            var numberOfPages = Math.ceil(tweets.meta.totalCount / tweets.meta.perPage);
-            for (var pageNumber = 1; pageNumber <= numberOfPages; pageNumber++) {
+            const numberOfPages = Math.ceil(tweets.meta.totalCount / tweets.meta.perPage);
+            for (let pageNumber = 1; pageNumber <= numberOfPages; pageNumber++) {
               paginationLinks.push(this.renderPaginationLink(pageNumber, currentPage));
             }
 
@@ -251,7 +251,7 @@ export default (props) => {
         import { Link } from 'react-router';
 
         ...
-        class Feed extends Component {
+        class Feed extends React.Component {
 
           ...
 
@@ -266,7 +266,7 @@ export default (props) => {
           }
 
           render() {
-            const tweets = this.props.tweets;
+            const { tweets } = this.props;
             const currentPage = tweets.query.pagination.page;
             const paginationLinks = [];
 
@@ -280,8 +280,8 @@ export default (props) => {
 
             // calculate the number of pagination links from our metadata, then
             // generate an array of pagination links
-            let numberOfPages = Math.ceil(tweets.meta.totalCount / tweets.meta.perPage);
-            for (var pageNumber = 1; pageNumber <= numberOfPages; pageNumber++) {
+            const numberOfPages = Math.ceil(tweets.meta.totalCount / tweets.meta.perPage);
+            for (let pageNumber = 1; pageNumber <= numberOfPages; pageNumber++) {
               paginationLinks.push(this.renderPaginationLink(pageNumber, currentPage));
             }
 
@@ -308,7 +308,7 @@ export default (props) => {
         import { Link } from 'react-router';
 
         ...
-        class Feed extends Component {
+        class Feed extends React.Component {
 
           ...
 
@@ -323,7 +323,7 @@ export default (props) => {
           }
 
           render() {
-            const tweets = this.props.tweets;
+            const { tweets } = this.props;
             const currentPage = tweets.query.pagination.page;
             const paginationLinks = [];
 
@@ -337,8 +337,8 @@ export default (props) => {
 
             // calculate the number of pagination links from our metadata, then
             // generate an array of pagination links
-            let numberOfPages = Math.ceil(tweets.meta.totalCount / tweets.meta.perPage);
-            for (var pageNumber = 1; pageNumber <= numberOfPages; pageNumber++) {
+            const numberOfPages = Math.ceil(tweets.meta.totalCount / tweets.meta.perPage);
+            for (let pageNumber = 1; pageNumber <= numberOfPages; pageNumber++) {
               paginationLinks.push(this.renderPaginationLink(pageNumber, currentPage));
             }
 
@@ -401,9 +401,9 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var auth = require('../src/utils/auth');
+        import auth from '../src/utils/auth';
 
-        module.exports = {
+        export default {
 
           default: {
 
@@ -504,12 +504,15 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
-        var Tweet = require('./Tweet');
-        var PayloadStates = require('../constants/PayloadStates');
-        var Router = require('react-router');
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
+        import { connect } from 'lore-hook-connect';
+        import Tweet from './Tweet';
+        import PayloadStates from '../constants/PayloadStates';
+        import { Link } from 'react-router';
 
-        module.exports = lore.connect(function(getState, props){
+        export default connect(function(getState, props){
           return {
             tweets: getState('tweet.find', {
               pagination: {
@@ -518,11 +521,11 @@ export default (props) => {
             })
           }
         })(
-        React.createClass({
+        createReactClass({
           displayName: 'Feed',
 
           propTypes: {
-            tweets: React.PropTypes.object.isRequired
+            tweets: PropTypes.object.isRequired
           },
 
           renderTweet: function(tweet) {
@@ -534,17 +537,17 @@ export default (props) => {
           renderPaginationLink: function(page, currentPage) {
             return (
               <li key={page} className={currentPage === String(page) ? 'active' : ''}>
-                <Router.Link to={{ pathname: '/', query: { page: page } }}>
+                <Link to={{ pathname: '/', query: { page: page } }}>
                   {page}
-                </Router.Link>
+                </Link>
               </li>
             );
           },
 
           render: function() {
-            var tweets = this.props.tweets;
-            var currentPage = tweets.query.pagination.page;
-            var paginationLinks = [];
+            const { tweets } = this.props;
+            const currentPage = tweets.query.pagination.page;
+            const paginationLinks = [];
 
             if (tweets.state === PayloadStates.FETCHING) {
               return (
@@ -556,8 +559,8 @@ export default (props) => {
 
             // calculate the number of pagination links from our metadata, then
             // generate an array of pagination links
-            var numberOfPages = Math.ceil(tweets.meta.totalCount / tweets.meta.perPage);
-            for (var pageNumber = 1; pageNumber <= numberOfPages; pageNumber++) {
+            const numberOfPages = Math.ceil(tweets.meta.totalCount / tweets.meta.perPage);
+            for (let pageNumber = 1; pageNumber <= numberOfPages; pageNumber++) {
               paginationLinks.push(this.renderPaginationLink(pageNumber, currentPage));
             }
 
@@ -582,12 +585,14 @@ export default (props) => {
         );
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
+        import { connect } from 'lore-hook-connect';
         import Tweet from './Tweet';
         import PayloadStates from '../constants/PayloadStates';
         import { Link } from 'react-router';
 
-        class Feed extends Component {
+        class Feed extends React.Component {
 
           renderTweet(tweet) {
             return (
@@ -606,7 +611,7 @@ export default (props) => {
           }
 
           render() {
-            const tweets = this.props.tweets;
+            const { tweets } = this.props;
             const currentPage = tweets.query.pagination.page;
             const paginationLinks = [];
 
@@ -620,8 +625,8 @@ export default (props) => {
 
             // calculate the number of pagination links from our metadata, then
             // generate an array of pagination links
-            let numberOfPages = Math.ceil(tweets.meta.totalCount / tweets.meta.perPage);
-            for (var pageNumber = 1; pageNumber <= numberOfPages; pageNumber++) {
+            const numberOfPages = Math.ceil(tweets.meta.totalCount / tweets.meta.perPage);
+            for (let pageNumber = 1; pageNumber <= numberOfPages; pageNumber++) {
               paginationLinks.push(this.renderPaginationLink(pageNumber, currentPage));
             }
 
@@ -647,7 +652,7 @@ export default (props) => {
           tweets: PropTypes.object.isRequired
         };
 
-        export default lore.connect(function(getState, props){
+        export default connect(function(getState, props){
           return {
             tweets: getState('tweet.find', {
               pagination: {
@@ -658,12 +663,14 @@ export default (props) => {
         })(Feed);
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
+        import { connect } from 'lore-hook-connect';
         import Tweet from './Tweet';
         import PayloadStates from '../constants/PayloadStates';
         import { Link } from 'react-router';
 
-        @lore.connect(function(getState, props){
+        @connect(function(getState, props){
           return {
             tweets: getState('tweet.find', {
               pagination: {
@@ -672,7 +679,7 @@ export default (props) => {
             })
           }
         })
-        class Feed extends Component {
+        class Feed extends React.Component {
 
           static propTypes = {
             tweets: PropTypes.object.isRequired
@@ -695,7 +702,7 @@ export default (props) => {
           }
 
           render() {
-            const tweets = this.props.tweets;
+            const { tweets } = this.props;
             const currentPage = tweets.query.pagination.page;
             const paginationLinks = [];
 
@@ -709,8 +716,8 @@ export default (props) => {
 
             // calculate the number of pagination links from our metadata, then
             // generate an array of pagination links
-            let numberOfPages = Math.ceil(tweets.meta.totalCount / tweets.meta.perPage);
-            for (var pageNumber = 1; pageNumber <= numberOfPages; pageNumber++) {
+            const numberOfPages = Math.ceil(tweets.meta.totalCount / tweets.meta.perPage);
+            for (let pageNumber = 1; pageNumber <= numberOfPages; pageNumber++) {
               paginationLinks.push(this.renderPaginationLink(pageNumber, currentPage));
             }
 

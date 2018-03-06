@@ -30,17 +30,19 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
 
-        module.exports = React.createClass({
+        export default createReactClass({
           displayName: 'Tweet',
 
           propTypes: {
-            tweet: React.PropTypes.object.isRequired
+            tweet: PropTypes.object.isRequired
           },
 
           render: function() {
-            var tweet = this.props.tweet;
+            const { tweet } = this.props;
 
             return (
               {/* render tweet */}
@@ -49,11 +51,12 @@ export default (props) => {
         });
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
 
-        export default class Tweet extends Component {
+        export default class Tweet extends React.Component {
           render() {
-            const tweet = this.props.tweet;
+            const { tweet } = this.props;
 
             return (
               {/* render tweet */}
@@ -68,16 +71,17 @@ export default (props) => {
         export default Tweet;
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
 
-        export default class Tweet extends Component {
+        export default class Tweet extends React.Component {
 
           static propTypes = {
             tweet: PropTypes.object.isRequired
           }
 
           render() {
-            const tweet = this.props.tweet;
+            const { tweet } = this.props;
 
             return (
               {/* render tweet */}

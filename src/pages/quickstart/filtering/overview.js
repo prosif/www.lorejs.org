@@ -61,28 +61,30 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
-        var Router = require('react-router');
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
+        import { Link, IndexLink } from 'react-router';
 
-        module.exports = React.createClass({
+        export default createReactClass({
           displayName: 'Filter',
 
           contextTypes: {
-            user: React.PropTypes.object.isRequired
+            user: PropTypes.object.isRequired
           },
 
           render: function() {
-            var user = this.context.user;
+            const { user } = this.context;
 
             return (
               <div className="filter">
                 <ul className="list-group">
-                  <Router.IndexLink className="list-group-item" activeClassName="active" to="/">
+                  <IndexLink className="list-group-item" activeClassName="active" to="/">
                     Feed
-                  </Router.IndexLink>
-                  <Router.Link className="list-group-item" activeClassName="active" to={"/users/" + user.id}>
+                  </IndexLink>
+                  <Link className="list-group-item" activeClassName="active" to={"/users/" + user.id}>
                     My Tweets
-                  </Router.Link>
+                  </Link>
                 </ul>
               </div>
             );
@@ -91,13 +93,14 @@ export default (props) => {
         });
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
         import { Link, IndexLink } from 'react-router';
 
-        class Filter extends Component {
+        class Filter extends React.Component {
 
           render() {
-            const user = this.context.user;
+            const { user } = this.context;
 
             return (
               <div className="filter">
@@ -122,17 +125,18 @@ export default (props) => {
         export default Filter;
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
         import { Link, IndexLink } from 'react-router';
 
-        class Filter extends Component {
+        class Filter extends React.Component {
 
           static contextTypes = {
             user: PropTypes.object.isRequired
           };
 
           render() {
-            const user = this.context.user;
+            const { user } = this.context;
 
             return (
               <div className="filter">
@@ -164,9 +168,9 @@ export default (props) => {
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
         ...
-        var Filter = require('./Filter');
+        import Filter from './Filter';
 
-        module.exports = React.createClass({
+        export default createReactClass({
           displayName: 'Layout',
 
           render: function() {
@@ -194,7 +198,7 @@ export default (props) => {
         ...
         import Filter from './Filter';
 
-        class Layout extends Component {
+        class Layout extends React.Component {
 
           render() {
             return (
@@ -222,7 +226,7 @@ export default (props) => {
         ...
         import Filter from './Filter';
 
-        class Layout extends Component {
+        class Layout extends React.Component {
 
           render() {
             return (
@@ -277,18 +281,20 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
-        var Router = require('react-router');
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
+        import { Link } from 'react-router';
 
-        module.exports = React.createClass({
+        export default createReactClass({
           displayName: 'Filter',
 
           contextTypes: {
-            user: React.PropTypes.object.isRequired
+            user: PropTypes.object.isRequired
           },
 
           render: function() {
-            var user = this.context.user;
+            const { user } = this.context;
 
             return (
               <div className="filter">
@@ -296,9 +302,9 @@ export default (props) => {
                   <Router.IndexLink className="list-group-item" activeClassName="active" to="/">
                     Feed
                   </Router.IndexLink>
-                  <Router.Link className="list-group-item" activeClassName="active" to={"/users/" + user.id}>
+                  <Link className="list-group-item" activeClassName="active" to={"/users/" + user.id}>
                     My Tweets
-                  </Router.Link>
+                  </Link>
                 </ul>
               </div>
             );
@@ -307,13 +313,14 @@ export default (props) => {
         });
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
         import { Link, IndexLink } from 'react-router';
 
-        class Filter extends Component {
+        class Filter extends React.Component {
 
           render() {
-            const user = this.context.user;
+            const { user } = this.context;
 
             return (
               <div className="filter">
@@ -338,17 +345,18 @@ export default (props) => {
         export default Filter;
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
         import { Link, IndexLink } from 'react-router';
 
-        class Filter extends Component {
+        class Filter extends React.Component {
 
           static contextTypes = {
             user: PropTypes.object.isRequired
           };
 
           render() {
-            const user = this.context.user;
+            const { user } = this.context;
 
             return (
               <div className="filter">
@@ -376,13 +384,14 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
-        var logo = require('../../assets/images/logo.png');
-        var Header = require('./Header');
-        var Profile = require('./Profile');
-        var Filter = require('./Filter');
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import logo from '../../assets/images/logo.png';
+        import Header from './Header';
+        import Profile from './Profile';
+        import Filter from './Filter';
 
-        module.exports = React.createClass({
+        export default createReactClass({
           displayName: 'Layout',
 
           render: function() {
@@ -412,7 +421,7 @@ export default (props) => {
         import Profile from './Profile';
         import Filter from './Filter';
 
-        class Layout extends Component {
+        class Layout extends React.Component {
 
           render() {
             return (
@@ -443,7 +452,7 @@ export default (props) => {
         import Profile from './Profile';
         import Filter from './Filter';
 
-        class Layout extends Component {
+        class Layout extends React.Component {
 
           render() {
             return (

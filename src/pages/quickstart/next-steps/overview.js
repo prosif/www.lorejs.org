@@ -61,9 +61,9 @@ export default (props) => {
 
       <Markdown text={`
       ...
-      var timestamp = moment().format();
+      const timestamp = moment().format();
 
-      module.exports = lore.connect(function(getState, props) {
+      export default connect(function(getState, props) {
         return {
           tweets: getState('tweet.find', {
             where: {
@@ -80,7 +80,7 @@ export default (props) => {
           })
         }
       })(
-      React.createClass({
+      createReactClass({
         displayName: 'Feed',
         ...
       })
@@ -117,13 +117,13 @@ export default (props) => {
       </p>
 
       <Markdown text={`
-      var timestamp = moment().format();
+      const timestamp = moment().format();
       ...
-      var storeState = lore.store.getState();
+      const storeState = lore.store.getState();
 
-      var newTweets = Object.keys(storeState.tweet.byId).filter(function(id) {
-        var tweet = storeState.tweet.byId[id];
-        var createdAt = moment(tweet.data.createdAt);
+      const newTweets = Object.keys(storeState.tweet.byId).filter(function(id) {
+        const tweet = storeState.tweet.byId[id];
+        const createdAt = moment(tweet.data.createdAt);
         return createdAt.diff(timestamp) > 0;
       }).map(function(id) {
         return storeState.tweet.byId[id];
@@ -138,13 +138,13 @@ export default (props) => {
       </p>
 
       <Markdown text={`
-      var timestamp = moment().format();
+      const timestamp = moment().format();
       ...
-      var storeState = lore.store.getState();
+      const storeState = lore.store.getState();
 
-      var newTweets = Object.keys(storeState.tweet.byCid).filter(function(cid) {
-        var tweet = storeState.tweet.byCid[cid];
-        var createdAt = moment(tweet.data.createdAt);
+      const newTweets = Object.keys(storeState.tweet.byCid).filter(function(cid) {
+        const tweet = storeState.tweet.byCid[cid];
+        const createdAt = moment(tweet.data.createdAt);
         return createdAt.diff(timestamp) > 0;
       }).map(function(cid) {
         return storeState.tweet.byCid[cid];

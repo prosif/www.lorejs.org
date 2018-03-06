@@ -30,23 +30,24 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
-        var AuthorizationGenerator = require('lore-auth').AuthorizationGenerator;
+        import React from 'react';
+        import PropTypes from 'prop-types';
+        import { AuthorizationGenerator } from 'lore-auth';
 
-        module.exports = AuthorizationGenerator({
+        export default AuthorizationGenerator({
           wrapperDisplayName: 'UserCanDeleteTweet',
 
           propTypes: {
-            tweet: React.PropTypes.object.isRequired
+            tweet: PropTypes.object.isRequired
           },
 
           contextTypes: {
-            user: React.PropTypes.object.isRequired
+            user: PropTypes.object.isRequired
           },
 
           isAuthorized: function(storeState) {
-            var tweet = this.props.tweet;
-            var user = this.context.user;
+            const { tweet } = this.props;
+            const { user } = this.context;
 
             return tweet.data.userId === user.id;
           }
@@ -54,7 +55,8 @@ export default (props) => {
         });
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React, { PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
         import { AuthorizationGenerator } from 'lore-auth';
 
         export default AuthorizationGenerator({
@@ -65,19 +67,20 @@ export default (props) => {
           },
 
           contextTypes: {
-            user: React.PropTypes.object.isRequired
+            user: PropTypes.object.isRequired
           },
 
           isAuthorized(storeState) {
-            var tweet = this.props.tweet;
-            var user = this.context.user;
+            const { tweet } = this.props;
+            const { user } = this.context;
 
             return tweet.data.userId === user.id;
           }
         })
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React, { PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
         import { AuthorizationGenerator } from 'lore-auth';
 
         export default AuthorizationGenerator({
@@ -88,12 +91,12 @@ export default (props) => {
           },
 
           contextTypes: {
-            user: React.PropTypes.object.isRequired
+            user: PropTypes.object.isRequired
           },
 
           isAuthorized(storeState) {
-            var tweet = this.props.tweet;
-            var user = this.context.user;
+            const { tweet } = this.props;
+            const { user } = this.context;
 
             return tweet.data.userId === user.id;
           }
@@ -105,22 +108,22 @@ export default (props) => {
         Wrap the Delete Link
       </h3>
       <p>
-        To use this decorator, open the <code>DeleteLink</code> component and decorate the component just like you would when using
-        <code>lore.connect</code>.
+        To use this decorator, open the <code>DeleteLink</code> component and decorate the component just like you
+        would when using <code>connect</code>.
       </p>
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var UserCanDeleteTweet = require('../decorators/UserCanDeleteTweet');
+        import UserCanDeleteTweet from '../decorators/UserCanDeleteTweet';
 
-        module.exports = UserCanDeleteTweet(React.createClass({
+        export default UserCanDeleteTweet(createReactClass({
           ...
         }));
         `}/>
         <CodeTab syntax="ES6" text={`
         import UserCanDeleteTweet from '../decorators/UserCanDeleteTweet';
 
-        class DeleteLink extends Component {
+        class DeleteLink extends React.Component {
           ...
         }
 
@@ -130,7 +133,7 @@ export default (props) => {
         import UserCanDeleteTweet from '../decorators/UserCanDeleteTweet';
 
         @UserCanDeleteTweet
-        class DeleteLink extends Component {
+        class DeleteLink extends React.Component {
           ...
         }
         `}/>
@@ -166,10 +169,11 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
-        var AuthorizationGenerator = require('lore-auth').AuthorizationGenerator;
+        import React from 'react';
+        import PropTypes from 'prop-types';
+        import { AuthorizationGenerator } from 'lore-auth';
 
-        module.exports = AuthorizationGenerator({
+        export default AuthorizationGenerator({
           wrapperDisplayName: 'UserCanDeleteTweet',
 
           propTypes: {
@@ -177,19 +181,20 @@ export default (props) => {
           },
 
           contextTypes: {
-            user: React.PropTypes.object.isRequired
+            user: PropTypes.object.isRequired
           },
 
           isAuthorized(storeState) {
-            var tweet = this.props.tweet;
-            var user = this.context.user;
+            const { tweet } = this.props;
+            const { user } = this.context;
 
             return tweet.data.userId === user.id;
           }
         });
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React, { PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
         import { AuthorizationGenerator } from 'lore-auth';
 
         export default AuthorizationGenerator({
@@ -200,19 +205,20 @@ export default (props) => {
           },
 
           contextTypes: {
-            user: React.PropTypes.object.isRequired
+            user: PropTypes.object.isRequired
           },
 
           isAuthorized(storeState) {
-            var tweet = this.props.tweet;
-            var user = this.context.user;
+            const { tweet } = this.props;
+            const { user } = this.context;
 
             return tweet.data.userId === user.id;
           }
         })
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React, { PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
         import { AuthorizationGenerator } from 'lore-auth';
 
         export default AuthorizationGenerator({
@@ -223,12 +229,12 @@ export default (props) => {
           },
 
           contextTypes: {
-            user: React.PropTypes.object.isRequired
+            user: PropTypes.object.isRequired
           },
 
           isAuthorized(storeState) {
-            var tweet = this.props.tweet;
-            var user = this.context.user;
+            const { tweet } = this.props;
+            const { user } = this.context;
 
             return tweet.data.userId === user.id;
           }
@@ -242,18 +248,20 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
-        var UserCanDeleteTweet = require('../decorators/UserCanDeleteTweet');
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
+        import UserCanDeleteTweet from '../decorators/UserCanDeleteTweet';
 
-        module.exports = UserCanDeleteTweet(React.createClass({
+        export default UserCanDeleteTweet(createReactClass({
           displayName: 'DeleteLink',
 
           propTypes: {
-            tweet: React.PropTypes.object.isRequired
+            tweet: PropTypes.object.isRequired
           },
 
           onDestroy: function() {
-            var tweet = this.props.tweet;
+            const { tweet } = this.props;
 
             function destroyTweet() {
               lore.actions.tweet.destroy(tweet);
@@ -278,10 +286,11 @@ export default (props) => {
         }));
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
         import UserCanDeleteTweet from '../decorators/UserCanDeleteTweet';
 
-        class DeleteLink extends Component {
+        class DeleteLink extends React.Component {
 
           constructor(props) {
             super(props);
@@ -289,7 +298,7 @@ export default (props) => {
           }
 
           onDestroy() {
-            var tweet = this.props.tweet;
+            const { tweet } = this.props;
 
             function destroyTweet() {
               lore.actions.tweet.destroy(tweet);
@@ -320,11 +329,12 @@ export default (props) => {
         export default UserCanDeleteTweet(DeleteLink);
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
         import UserCanDeleteTweet from '../decorators/UserCanDeleteTweet';
 
         @UserCanDeleteTweet
-        class DeleteLink extends Component {
+        class DeleteLink extends React.Component {
 
           static propTypes = {
             tweet: PropTypes.object.isRequired
@@ -336,7 +346,7 @@ export default (props) => {
           }
 
           onDestroy() {
-            var tweet = this.props.tweet;
+            const { tweet } = this.props;
 
             function destroyTweet() {
               lore.actions.tweet.destroy(tweet);

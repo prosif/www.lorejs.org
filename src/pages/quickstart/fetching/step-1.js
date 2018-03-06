@@ -113,7 +113,7 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        module.exports = {
+        export default {
           default: {
             apiRoot: 'http://localhost:1337'
           }

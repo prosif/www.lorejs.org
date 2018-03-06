@@ -37,9 +37,10 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
+        import React from 'react';
+        import createReactClass from 'create-react-class';
 
-        module.exports = React.createClass({
+        export default createReactClass({
           displayName: 'CreateButton',
 
           onClick: function() {
@@ -60,9 +61,10 @@ export default (props) => {
         });
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
 
-        class CreateButton extends Component {
+        class CreateButton extends React.Component {
 
           onClick() {
             console.log('Create tweet!');
@@ -84,9 +86,10 @@ export default (props) => {
         export default CreateButton;
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
 
-        class CreateButton extends Component {
+        class CreateButton extends React.Component {
 
           onClick() {
             console.log('Create tweet!');
@@ -118,11 +121,12 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
-        var Router = require('react-router');
-        var CreateButton = require('./CreateButton');
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import { Link } from 'react-router';
+        import CreateButton from './CreateButton';
 
-        module.exports = React.createClass({
+        export default createReactClass({
           displayName: 'Header',
 
           render: function() {
@@ -130,9 +134,9 @@ export default (props) => {
               <nav className="navbar navbar-default navbar-static-top header">
                 <div className="container">
                   <div className="navbar-header">
-                    <Router.Link className="navbar-brand" to="/">
+                    <Link className="navbar-brand" to="/">
                       Lore Quickstart
-                    </Router.Link>
+                    </Link>
                   </div>
                   <CreateButton/>
                 </div>
@@ -143,11 +147,12 @@ export default (props) => {
         });
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
         import { Link } from 'react-router';
         import CreateButton from './CreateButton';
 
-        class Header extends Component {
+        class Header extends React.Component {
 
           render() {
             return (
@@ -169,11 +174,12 @@ export default (props) => {
         export default Header;
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
         import { Link } from 'react-router';
         import CreateButton from './CreateButton';
 
-        class Header extends Component {
+        class Header extends React.Component {
 
           render() {
             return (
@@ -220,9 +226,10 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
+        import React from 'react';
+        import createReactClass from 'create-react-class';
 
-        module.exports = React.createClass({
+        export default createReactClass({
           displayName: 'CreateButton',
 
           onClick: function() {
@@ -243,9 +250,10 @@ export default (props) => {
         });
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
 
-        class CreateButton extends Component {
+        class CreateButton extends React.Component {
 
           onClick() {
             console.log('Create tweet!');
@@ -269,7 +277,7 @@ export default (props) => {
         <CodeTab syntax="ESNext" text={`
         import React, { Component } from 'react';
 
-        class CreateButton extends Component {
+        class CreateButton extends React.Component {
 
           onClick() {
             console.log('Create tweet!');
@@ -298,11 +306,12 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
-        var Router = require('react-router');
-        var CreateButton = require('./CreateButton');
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import { Link } from 'react-router';
+        import CreateButton from './CreateButton';
 
-        module.exports = React.createClass({
+        export default createReactClass({
           displayName: 'Header',
 
           render: function() {
@@ -310,9 +319,9 @@ export default (props) => {
               <nav className="navbar navbar-default navbar-static-top header">
                 <div className="container">
                   <div className="navbar-header">
-                    <Router.Link className="navbar-brand" to="/">
+                    <Link className="navbar-brand" to="/">
                       Lore Quickstart
-                    </Router.Link>
+                    </Link>
                   </div>
                   <CreateButton/>
                 </div>
@@ -323,11 +332,12 @@ export default (props) => {
         });
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
         import { Link } from 'react-router';
         import CreateButton from './CreateButton';
 
-        class Header extends Component {
+        class Header extends React.Component {
 
           render() {
             return (
@@ -349,11 +359,12 @@ export default (props) => {
         export default Header;
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
         import { Link } from 'react-router';
         import CreateButton from './CreateButton';
 
-        class Header extends Component {
+        class Header extends React.Component {
 
           render() {
             return (

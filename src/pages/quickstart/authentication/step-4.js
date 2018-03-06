@@ -29,7 +29,7 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var auth = require('../utils/auth');
+        import auth from '../utils/auth';
         ...
           onAuthentication: function(authResult) {
             auth.saveToken(authResult.idToken);
@@ -140,11 +140,12 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
-        var Auth0Lock = require('auth0-lock').default;
-        var auth = require('../utils/auth');
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import { Auth0Lock } from 'auth0-lock';
+        import auth from '../utils/auth';
 
-        module.exports = React.createClass({
+        export default createReactClass({
           displayName: 'Login',
 
           componentDidMount: function() {
@@ -157,8 +158,10 @@ export default (props) => {
           },
 
           getLock: function(){
-            var clientId = lore.config.auth0.clientId;
-            var domain = lore.config.auth0.domain;
+            const {
+              clientId,
+              domain
+            } = lore.config.auth0;
 
             return new Auth0Lock(clientId, domain, {
               auth: {
@@ -190,11 +193,12 @@ export default (props) => {
         });
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
         import Auth0Lock from 'auth0-lock';
         import auth from '../utils/auth';
 
-        class Login extends Component {
+        class Login extends React.Component {
 
           constructor(props) {
             super(props);
@@ -215,8 +219,10 @@ export default (props) => {
           }
 
           getLock(){
-            var clientId = lore.config.auth0.clientId;
-            var domain = lore.config.auth0.domain;
+            const {
+              clientId,
+              domain
+            } = lore.config.auth0;
 
             return new Auth0Lock(clientId, domain, {
               auth: {
@@ -254,11 +260,12 @@ export default (props) => {
         export default Login;
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
         import Auth0Lock from 'auth0-lock';
         import auth from '../utils/auth';
 
-        class Login extends Component {
+        class Login extends React.Component {
 
           static propTypes = {
             router: PropTypes.object.isRequired
@@ -283,8 +290,10 @@ export default (props) => {
           }
 
           getLock(){
-            var clientId = lore.config.auth0.clientId;
-            var domain = lore.config.auth0.domain;
+            const {
+              clientId,
+              domain
+            } = lore.config.auth0;
 
             return new Auth0Lock(clientId, domain, {
               auth: {

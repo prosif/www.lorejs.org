@@ -46,12 +46,12 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        module.exports = React.createClass({
+        export default createReactClass({
 
           ...
 
           render: function() {
-            var user = this.props.user;
+            const { user } = this.props;
 
             if (user.state === PayloadStates.FETCHING) {
               return (
@@ -71,12 +71,12 @@ export default (props) => {
         }
         `}/>
         <CodeTab syntax="ES6" text={`
-        class Master extends Component {
+        class Master extends React.Component {
 
           ...
 
           render() {
-            const user = this.props.user;
+            const { user } = this.props;
 
             if (user.state === PayloadStates.FETCHING) {
               return (
@@ -96,12 +96,12 @@ export default (props) => {
         }
         `}/>
         <CodeTab syntax="ESNext" text={`
-        class Master extends Component {
+        class Master extends React.Component {
 
           ...
 
           render() {
-            const user = this.props.user;
+            const { user } = this.props;
 
             if (user.state === PayloadStates.FETCHING) {
               return (
@@ -149,12 +149,12 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        module.exports = React.createClass({
+        export default createReactClass({
 
           ...
 
           render: function() {
-            var user = this.props.user;
+            const { user } = this.props;
 
             if (user.state === PayloadStates.FETCHING) {
               return (
@@ -182,12 +182,12 @@ export default (props) => {
         }
         `}/>
         <CodeTab syntax="ES6" text={`
-        class Master extends Component {
+        class Master extends React.Component {
 
           ...
 
           render() {
-            const user = this.props.user;
+            const { user } = this.props;
 
             if (user.state === PayloadStates.FETCHING) {
               return (
@@ -215,12 +215,12 @@ export default (props) => {
         }
         `}/>
         <CodeTab syntax="ESNext" text={`
-        class Master extends Component {
+        class Master extends React.Component {
 
           ...
 
           render() {
-            const user = this.props.user;
+            const { user } = this.props;
 
             if (user.state === PayloadStates.FETCHING) {
               return (
@@ -283,7 +283,7 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        module.exports = {
+        export default {
 
           default: {
 
@@ -339,9 +339,9 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var auth = require('../src/utils/auth');
+        import auth from '../src/utils/auth';
 
-        module.exports = {
+        export default {
 
           default: {
 
@@ -430,9 +430,9 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var auth = require('../src/utils/auth');
+        import auth from '../src/utils/auth';
 
-        module.exports = {
+        export default {
 
           default: {
 
@@ -521,24 +521,27 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
-        var PayloadStates = require('../constants/PayloadStates');
-        require('../../assets/css/main.css');
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
+        import { connect } from 'lore-hook-connect';
+        import PayloadStates from '../constants/PayloadStates';
+        import '../../assets/css/main.css';
 
-        module.exports = lore.connect(function(getState, props) {
+        export default connect(function(getState, props) {
           return {
             user: getState('currentUser')
           };
         }, { subscribe: true })(
-          React.createClass({
+          createReactClass({
             displayName: 'Master',
 
             propTypes: {
-              user: React.PropTypes.object.isRequired
+              user: PropTypes.object.isRequired
             },
 
             childContextTypes: {
-              user: React.PropTypes.object
+              user: PropTypes.object
             },
 
             getChildContext: function() {
@@ -548,7 +551,7 @@ export default (props) => {
             },
 
             render: function() {
-              var user = this.props.user;
+              const { user } = this.props;
 
               if (user.state === PayloadStates.FETCHING) {
                 return (
@@ -576,11 +579,13 @@ export default (props) => {
         );
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
+        import { connect } from 'lore-hook-connect';
         import PayloadStates from '../constants/PayloadStates';
         import '../../assets/css/main.css';
 
-        class Master extends Component {
+        class Master extends React.Component {
 
           getChildContext() {
             return {
@@ -589,7 +594,7 @@ export default (props) => {
           }
 
           render() {
-            const user = this.props.user;
+            const { user } = this.props;
 
             if (user.state === PayloadStates.FETCHING) {
               return (
@@ -624,23 +629,25 @@ export default (props) => {
           user: PropTypes.object
         };
 
-        export default lore.connect(function(getState, props) {
+        export default connect(function(getState, props) {
           return {
             user: getState('currentUser')
           };
         }, { subscribe: true })(Master);
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
+        import { connect } from 'lore-hook-connect';
         import PayloadStates from '../constants/PayloadStates';
         import '../../assets/css/main.css';
 
-        @lore.connect(function(getState, props) {
+        @connect(function(getState, props) {
           return {
             user: getState('currentUser')
           };
         }, { subscribe: true })
-        class Master extends Component {
+        class Master extends React.Component {
 
           static propTypes = {
             user: PropTypes.object.isRequired
@@ -657,7 +664,7 @@ export default (props) => {
           }
 
           render() {
-            const user = this.props.user;
+            const { user } = this.props;
 
             if (user.state === PayloadStates.FETCHING) {
               return (

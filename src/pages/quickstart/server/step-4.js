@@ -80,9 +80,9 @@ export default (props) => {
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
         ...
-        var ActionTypes = require('lore-utils').ActionTypes;
+        import { ActionTypes } from 'lore-utils';
 
-        module.exports React.createClass({
+        export default createReactClass({
 
           ...
 
@@ -102,7 +102,7 @@ export default (props) => {
         ...
         import { ActionTypes } from 'lore-utils';
 
-        class Logout extends Component {
+        class Logout extends React.Component {
 
           ...
 
@@ -122,7 +122,7 @@ export default (props) => {
         ...
         import { ActionTypes } from 'lore-utils';
 
-        class Logout extends Component {
+        class Logout extends React.Component {
 
           ...
 
@@ -170,15 +170,17 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
-        var auth = require('../utils/auth');
-        var ActionTypes = require('lore-utils').ActionTypes;
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
+        import auth from '../utils/auth';
+        import { ActionTypes } from 'lore-utils';
 
-        module.exports = React.createClass({
+        export default createReactClass({
           displayName: 'Logout',
 
           propTypes: {
-            router: React.PropTypes.object.isRequired
+            router: PropTypes.object.isRequired
           },
 
           componentDidMount: function(){
@@ -201,11 +203,12 @@ export default (props) => {
         });
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
         import auth from '../utils/auth';
         import { ActionTypes } from 'lore-utils';
 
-        class Logout extends Component {
+        class Logout extends React.Component {
 
           static propTypes = {
             router: PropTypes.object.isRequired
@@ -232,11 +235,12 @@ export default (props) => {
         export default Logout;
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
         import auth from '../utils/auth';
         import { ActionTypes } from 'lore-utils';
 
-        class Logout extends Component {
+        class Logout extends React.Component {
 
           static propTypes = {
             router: PropTypes.object.isRequired

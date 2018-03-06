@@ -43,29 +43,29 @@ export default (props) => {
       `}/>
 
       <p>
-        Next open up <code>index.js</code> and locate the call for <code>lore.summon(...)</code>. Here you can see a list of all the hooks
-        the framework includes by default. You've already seen some of these in action; the <code>actions</code> hook converts your
-        models into actions, the <code>reducers</code> hook creates reducers for each of your models, and the <code>connect</code> hook adds
-        the <code>lore.connect</code> decorator that invokes actions to fetch data if it doesn't exist in the store.
+        Next open up <code>index.js</code> and locate the call for <code>lore.summon(...)</code>. Here you can see
+        a list of all the hooks the framework includes by default. You've already seen some of these in action;
+        the <code>actions</code> hook converts your models into actions, the <code>reducers</code> hook creates
+        reducers for each of your models, and the <code>connect</code> hook adds the <code>connect</code> decorator
+        that invokes actions to fetch data if it doesn't exist in the store.
       </p>
 
       <Markdown text={`
       lore.summon({
         hooks: {
-          auth: require('lore-hook-auth'),
-          actions: require('lore-hook-actions'),
-          bindActions: require('lore-hook-bind-actions'),
-          collections: require('lore-hook-collections'),
-          connections: require('lore-hook-connections'),
-          connect: require('lore-hook-connect'),
-          dialog: require('lore-hook-dialog'),
-          models: require('lore-hook-models'),
-          react: require('lore-hook-react'),
-          reducers: require('lore-hook-reducers'),
-          redux: _.extend(require('lore-hook-redux'), {
+          auth,
+          actions,
+          bindActions,
+          collections,
+          connections,
+          connect,
+          models,
+          react,
+          reducers,
+          redux: _.extend(redux, {
             dependencies: ['reducers', 'auth']
           }),
-          router: require('lore-hook-router')
+          router
         }
       });
       `}/>
@@ -75,12 +75,17 @@ export default (props) => {
       </p>
 
       <Markdown text={`
+      ...
+      import dialog from 'lore-hook-dialog';
+      import dialogs from 'lore-hook-dialogs-bootstrap';
+      ...
+
       lore.summon({
         hooks: {
           ...
-          dialog: require('lore-hook-dialog'),
-          dialogs: require('lore-hook-dialogs-bootstrap'),
-          models: require('lore-hook-models'),
+          dialog,
+          dialogs,
+          models,
           ...
         }
       });
@@ -136,31 +141,46 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var lore = require('lore');
-        var _ = require('lodash');
+        import lore from 'lore';
+        import _ from 'lodash';
 
         // Allows you to access your lore app globally as well as from within
         // the console. Remove this line if you don't want to be able to do that.
         window.lore = lore;
 
+        // Hooks
+        import auth from 'lore-hook-auth';
+        import actions from 'lore-hook-actions';
+        import bindActions from 'lore-hook-bind-actions';
+        import collections from 'lore-hook-collections';
+        import connections from 'lore-hook-connections';
+        import connect from 'lore-hook-connect';
+        import dialog from 'lore-hook-dialog-bootstrap';
+        import dialogs from 'lore-hook-dialogs-bootstrap';
+        import models from 'lore-hook-models';
+        import react from 'lore-hook-react';
+        import reducers from 'lore-hook-reducers';
+        import redux from 'lore-hook-redux';
+        import router from 'lore-hook-router';
+
         // Summon the app!
         lore.summon({
           hooks: {
-            auth: require('lore-hook-auth'),
-            actions: require('lore-hook-actions'),
-            bindActions: require('lore-hook-bind-actions'),
-            collections: require('lore-hook-collections'),
-            connections: require('lore-hook-connections'),
-            connect: require('lore-hook-connect'),
-            dialog: require('lore-hook-dialog'),
-            dialogs: require('lore-hook-dialogs-bootstrap'),
-            models: require('lore-hook-models'),
-            react: require('lore-hook-react'),
-            reducers: require('lore-hook-reducers'),
-            redux: _.extend(require('lore-hook-redux'), {
+            auth,
+            actions,
+            bindActions,
+            collections,
+            connections,
+            connect,
+            dialog,
+            dialogs,
+            models,
+            react,
+            reducers,
+            redux: _.extend(redux, {
               dependencies: ['reducers', 'auth']
             }),
-            router: require('lore-hook-router')
+            router
           }
         });
         `}/>
@@ -172,24 +192,39 @@ export default (props) => {
         // the console. Remove this line if you don't want to be able to do that.
         window.lore = lore;
 
+        // Hooks
+        import auth from 'lore-hook-auth';
+        import actions from 'lore-hook-actions';
+        import bindActions from 'lore-hook-bind-actions';
+        import collections from 'lore-hook-collections';
+        import connections from 'lore-hook-connections';
+        import connect from 'lore-hook-connect';
+        import dialog from 'lore-hook-dialog-bootstrap';
+        import dialogs from 'lore-hook-dialogs-bootstrap';
+        import models from 'lore-hook-models';
+        import react from 'lore-hook-react';
+        import reducers from 'lore-hook-reducers';
+        import redux from 'lore-hook-redux';
+        import router from 'lore-hook-router';
+
         // Summon the app!
         lore.summon({
           hooks: {
-            auth: require('lore-hook-auth'),
-            actions: require('lore-hook-actions'),
-            bindActions: require('lore-hook-bind-actions'),
-            collections: require('lore-hook-collections'),
-            connections: require('lore-hook-connections'),
-            connect: require('lore-hook-connect'),
-            dialog: require('lore-hook-dialog'),
-            dialogs: require('lore-hook-dialogs-bootstrap'),
-            models: require('lore-hook-models'),
-            react: require('lore-hook-react'),
-            reducers: require('lore-hook-reducers'),
-            redux: _.extend(require('lore-hook-redux'), {
+            auth,
+            actions,
+            bindActions,
+            collections,
+            connections,
+            connect,
+            dialog,
+            dialogs,
+            models,
+            react,
+            reducers,
+            redux: _.extend(redux, {
               dependencies: ['reducers', 'auth']
             }),
-            router: require('lore-hook-router')
+            router
           }
         });
         `}/>
@@ -201,24 +236,39 @@ export default (props) => {
         // the console. Remove this line if you don't want to be able to do that.
         window.lore = lore;
 
+        // Hooks
+        import auth from 'lore-hook-auth';
+        import actions from 'lore-hook-actions';
+        import bindActions from 'lore-hook-bind-actions';
+        import collections from 'lore-hook-collections';
+        import connections from 'lore-hook-connections';
+        import connect from 'lore-hook-connect';
+        import dialog from 'lore-hook-dialog-bootstrap';
+        import dialogs from 'lore-hook-dialogs-bootstrap';
+        import models from 'lore-hook-models';
+        import react from 'lore-hook-react';
+        import reducers from 'lore-hook-reducers';
+        import redux from 'lore-hook-redux';
+        import router from 'lore-hook-router';
+
         // Summon the app!
         lore.summon({
           hooks: {
-            auth: require('lore-hook-auth'),
-            actions: require('lore-hook-actions'),
-            bindActions: require('lore-hook-bind-actions'),
-            collections: require('lore-hook-collections'),
-            connections: require('lore-hook-connections'),
-            connect: require('lore-hook-connect'),
-            dialog: require('lore-hook-dialog'),
-            dialogs: require('lore-hook-dialogs-bootstrap'),
-            models: require('lore-hook-models'),
-            react: require('lore-hook-react'),
-            reducers: require('lore-hook-reducers'),
-            redux: _.extend(require('lore-hook-redux'), {
+            auth,
+            actions,
+            bindActions,
+            collections,
+            connections,
+            connect,
+            dialog,
+            dialogs,
+            models,
+            react,
+            reducers,
+            redux: _.extend(redux, {
               dependencies: ['reducers', 'auth']
             }),
-            router: require('lore-hook-router')
+            router
           }
         });
         `}/>

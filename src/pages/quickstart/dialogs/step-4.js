@@ -33,7 +33,7 @@ export default (props) => {
       </p>
 
       <Markdown text={`
-      module.exports = {
+      export default {
         attributes: {
           text: {
             type: 'text',
@@ -119,7 +119,7 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var _ = require('lodash');
+        import _ from 'lodash';
 
         ...
           onClick: function() {
@@ -225,7 +225,7 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        module.exports = React.createClass({
+        export default createReactClass({
           ...
 
           renderTweet: function(tweet) {
@@ -238,7 +238,7 @@ export default (props) => {
         })
         `}/>
         <CodeTab syntax="ES6" text={`
-        class Feed extends Component {
+        class Feed extends React.Component {
           ...
 
           renderTweet(tweet) {
@@ -251,7 +251,7 @@ export default (props) => {
         }
         `}/>
         <CodeTab syntax="ESNext" text={`
-        class Feed extends Component {
+        class Feed extends React.Component {
           ...
 
           renderTweet(tweet) {
@@ -289,7 +289,7 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        module.exports = {
+        export default {
           attributes: {
             text: {
               type: 'text',
@@ -329,10 +329,11 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
-        var _ = require('lodash');
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import _ from 'lodash';
 
-        module.exports = React.createClass({
+        export default createReactClass({
           displayName: 'CreateButton',
 
           onClick: function() {
@@ -367,7 +368,7 @@ export default (props) => {
         import React, { Component } from 'react';
         import _ from 'lodash';
 
-        class CreateButton extends Component {
+        class CreateButton extends React.Component {
 
           onClick() {
             function createTweet(params) {
@@ -402,7 +403,7 @@ export default (props) => {
         <CodeTab syntax="ESNext" text={`
         import React, { Component } from 'react';
 
-        class CreateButton extends Component {
+        class CreateButton extends React.Component {
 
           onClick() {
             function createTweet(params) {
@@ -442,20 +443,23 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
-        var Tweet = require('./Tweet');
-        var PayloadStates = require('../constants/PayloadStates');
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
+        import { connect } from 'lore-hook-connect';
+        import Tweet from './Tweet';
+        import PayloadStates from '../constants/PayloadStates';
 
-        module.exports = lore.connect(function(getState, props){
+        export default connect(function(getState, props){
           return {
             tweets: getState('tweet.find')
           }
         })(
-        React.createClass({
+        createReactClass({
           displayName: 'Feed',
 
           propTypes: {
-            tweets: React.PropTypes.object.isRequired
+            tweets: PropTypes.object.isRequired
           },
 
           renderTweet: function(tweet) {
@@ -465,7 +469,7 @@ export default (props) => {
           },
 
           render: function() {
-            var tweets = this.props.tweets;
+            const { tweets } = this.props;
 
             if (tweets.state === PayloadStates.FETCHING) {
               return (
@@ -491,11 +495,13 @@ export default (props) => {
         );
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
+        import { connect } from 'lore-hook-connect';
         import Tweet from './Tweet';
         import PayloadStates from '../constants/PayloadStates';
 
-        class Feed extends Component {
+        class Feed extends React.Component {
 
           renderTweet(tweet) {
             return (
@@ -504,7 +510,7 @@ export default (props) => {
           }
 
           render() {
-            const tweets = this.props.tweets;
+            const { tweets } = this.props;
 
             if (tweets.state === PayloadStates.FETCHING) {
               return (
@@ -553,23 +559,25 @@ export default (props) => {
           }
         })();
 
-        export default lore.connect(function(getState, props){
+        export default connect(function(getState, props){
           return {
             tweets: getState('tweet.find')
           }
         })(Feed);
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
+        import { connect } from 'lore-hook-connect';
         import Tweet from './Tweet';
         import PayloadStates from '../constants/PayloadStates';
 
-        @lore.connect(function(getState, props){
+        @connect(function(getState, props){
           return {
             tweets: getState('tweet.find')
           }
         })
-        class Feed extends Component {
+        class Feed extends React.Component {
 
           static propTypes = {
             tweets: PropTypes.object.isRequired
@@ -603,7 +611,7 @@ export default (props) => {
           }
 
           render() {
-            const tweets = this.props.tweets;
+            const { tweets } = this.props;
 
             if (tweets.state === PayloadStates.FETCHING) {
               return (

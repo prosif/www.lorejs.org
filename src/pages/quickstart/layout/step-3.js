@@ -44,9 +44,11 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
 
-        module.exports = React.createClass({
+        export default createReactClass({
           displayName: 'Header',
 
           propTypes: {},
@@ -59,9 +61,10 @@ export default (props) => {
         });
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
 
-        class Header extends Component {
+        class Header extends React.Component {
 
           constructor(props) {
             super(props);
@@ -85,9 +88,10 @@ export default (props) => {
         export default Header;
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
 
-        class Header extends Component {
+        class Header extends React.Component {
 
           static propTypes = {}
 
@@ -186,7 +190,7 @@ export default (props) => {
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
         // src/components/Layout.js
-        var Header = require('./Header');
+        import Header from './Header';
         ...
           render: function() {
             return (
@@ -271,9 +275,12 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
+        import { connect } from 'lore-hook-connect';
 
-        module.exports = React.createClass({
+        export default createReactClass({
           displayName: 'Header',
 
           render: function() {
@@ -293,9 +300,11 @@ export default (props) => {
         });
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
+        import { connect } from 'lore-hook-connect';
 
-        class Header extends Component {
+        class Header extends React.Component {
 
           render() {
             return (
@@ -316,9 +325,10 @@ export default (props) => {
         export default Header;
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
 
-        class Header extends Component {
+        class Header extends React.Component {
 
           render() {
             return (
@@ -346,10 +356,11 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
-        var Header = require('./Header');
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import Header from './Header';
 
-        module.exports = React.createClass({
+        export default createReactClass({
           displayName: 'Layout',
 
           render: function() {
@@ -370,10 +381,11 @@ export default (props) => {
         });
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
         import Header from './Header';
 
-        class Layout extends Component {
+        class Layout extends React.Component {
 
           render() {
             return (
@@ -395,10 +407,11 @@ export default (props) => {
         export default Layout;
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
         import Header from './Header';
 
-        class Layout extends Component {
+        class Layout extends React.Component {
 
           render() {
             return (

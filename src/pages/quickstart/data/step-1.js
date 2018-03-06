@@ -37,16 +37,16 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var Feed = React.createClass({
+        const Feed = createReactClass({
           ...
           propTypes: {
-            tweets: React.PropTypes.object.isRequired
+            tweets: PropTypes.object.isRequired
           },
           ...
         })
         `}/>
         <CodeTab syntax="ES6" text={`
-        class Feed extends Component {
+        class Feed extends React.Component {
           ...
         }
 
@@ -55,7 +55,7 @@ export default (props) => {
         };
         `}/>
         <CodeTab syntax="ESNext" text={`
-        class Feed extends Component {
+        class Feed extends React.Component {
 
           static propTypes = {
             tweets: PropTypes.object.isRequired
@@ -80,10 +80,10 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var Feed = React.createClass({
+        const Feed = createReactClass({
           ...
           getDefaultProps: function() {
-            var tweet = {
+            const tweet = {
               id: 1,
               cid: 'c1',
               state: 'RESOLVED',
@@ -106,7 +106,7 @@ export default (props) => {
         })
         `}/>
         <CodeTab syntax="ES6" text={`
-        class Feed extends Component {
+        class Feed extends React.Component {
           ...
         }
 
@@ -134,7 +134,7 @@ export default (props) => {
         })();
         `}/>
         <CodeTab syntax="ESNext" text={`
-        class Feed extends Component {
+        class Feed extends React.Component {
           ...
           static defaultProps = (function() {
             const tweet = {
@@ -218,7 +218,7 @@ export default (props) => {
           },
 
           render: function() {
-            var tweets = this.props.tweets;
+            const { tweets } = this.props;
 
             return (
               <div className="feed">
@@ -244,7 +244,7 @@ export default (props) => {
           }
 
           render() {
-            const tweets = this.props.tweets;
+            const { tweets } = this.props;
 
             return (
               <div className="feed">
@@ -270,7 +270,7 @@ export default (props) => {
           }
 
           render() {
-            const tweets = this.props.tweets;
+            const { tweets } = this.props;
 
             return (
               <div className="feed">
@@ -327,17 +327,19 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        var React = require('react');
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
 
-        module.exports = React.createClass({
+        export default createReactClass({
           displayName: 'Feed',
 
           propTypes: {
-            tweets: React.PropTypes.object.isRequired
+            tweets: PropTypes.object.isRequired
           },
 
           getDefaultProps: function() {
-            var tweet = {
+            const tweet = {
               id: 1,
               cid: 'c1',
               state: 'RESOLVED',
@@ -366,7 +368,7 @@ export default (props) => {
           },
 
           render: function() {
-            var tweets = this.props.tweets;
+            const { tweets } = this.props;
 
             return (
               <div className="feed">
@@ -383,9 +385,10 @@ export default (props) => {
         });
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
 
-        class Feed extends Component {
+        class Feed extends React.Component {
 
           renderTweet(tweet) {
             return (
@@ -396,7 +399,7 @@ export default (props) => {
           }
 
           render() {
-            const tweets = this.props.tweets;
+            const { tweets } = this.props;
 
             return (
               <div className="feed">
@@ -440,9 +443,10 @@ export default (props) => {
         export default Feed;
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React, { Component, PropTypes } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
 
-        class Feed extends Component {
+        class Feed extends React.Component {
 
           static propTypes = {
             tweets: PropTypes.object.isRequired
@@ -478,7 +482,7 @@ export default (props) => {
           }
 
           render() {
-            var tweets = this.props.tweets;
+            const { tweets } = this.props;
 
             return (
               <div className="feed">
