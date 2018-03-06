@@ -49,20 +49,26 @@ export default class LanguagePreference extends React.Component {
           <div style={{ paddingBottom: '16px' }}>
             The code in this quickstart can be displayed in one of three versions of JavaScript. Which version would you like to see?
           </div>
+          <blockquote>
+            Note that all versions use <strong>import</strong> and <strong>export</strong> statements, as well as
+            syntax like <strong>const</strong>, <strong>let</strong>. The only difference between ES5 and ES6 is
+            how you prefer to construct your React components.
+          </blockquote>
           <div className="list-group" style={{ marginBottom: 0 }}>
             <button className={'list-group-item' + (language === 'ES5' ? ' active' : '')} style={{ outline: 'none' }} onClick={() => {
               this.setLanguage('ES5')
             }}>
               <h4 className="list-group-item-heading">ES5</h4>
               <p className="list-group-item-text">
-                I prefer to use <strong>React.createClass</strong>, import code using <strong>require</strong>, and use <strong>none of the syntax introduced in ES6</strong>.</p>
+                I prefer to use <strong>createReactClass</strong> for my components.
+              </p>
             </button>
             <button className={'list-group-item' + (language === 'ES6' ? ' active' : '')} style={{ outline: 'none' }} onClick={() => {
               this.setLanguage('ES6')
             }}>
               <h4 className="list-group-item-heading">ES6</h4>
               <p className="list-group-item-text">
-                I prefer to use <strong>classes</strong> with <strong>React.Component</strong>, load modules using <strong>import</strong> and <strong>export</strong>, enjoy using syntax like <strong>const</strong>, <strong>let</strong>, and <strong>default parameters</strong>.
+                I prefer to create my components with <strong>classes</strong> using <strong>React.Component</strong>.
               </p>
             </button>
             <button className={'list-group-item' + (language === 'ESNext' ? ' active' : '')} style={{ outline: 'none' }} onClick={() => {
@@ -70,7 +76,8 @@ export default class LanguagePreference extends React.Component {
             }}>
               <h4 className="list-group-item-heading">ESNext</h4>
               <p className="list-group-item-text">
-                I prefer to use <strong>ES6 syntax</strong>, but also want to use next-gen features like <strong>static property types</strong> and <strong>decorators</strong>.
+                I prefer to use <strong>React.Component</strong>, but also want to use next-gen features
+                like <strong>static property types</strong> and <strong>decorators</strong>.
               </p>
             </button>
           </div>
