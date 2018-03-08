@@ -33,28 +33,53 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
+        import Master from './src/components/Master';
+        import Layout from './src/components/Layout';
+        import UserIsAuthenticated from './src/decorators/UserIsAuthenticated';
 
+        export default (
+          <Route component={UserIsAuthenticated(Master)}>
+            <Route path="/" component={Layout} />
+          </Route>
+        );
         `}/>
         <CodeTab syntax="ES6" text={`
+        import Master from './src/components/Master';
+        import Layout from './src/components/Layout';
+        import UserIsAuthenticated from './src/decorators/UserIsAuthenticated';
 
+        export default (
+          <Route component={UserIsAuthenticated(Master)}>
+            <Route path="/" component={Layout} />
+          </Route>
+        );
         `}/>
         <CodeTab syntax="ESNext" text={`
+        import Master from './src/components/Master';
+        import Layout from './src/components/Layout';
+        import UserIsAuthenticated from './src/decorators/UserIsAuthenticated';
 
+        export default (
+          <Route component={UserIsAuthenticated(Master)}>
+            <Route path="/" component={Layout} />
+          </Route>
+        );
         `}/>
       </CodeTabs>
 
       <p>
-        If you're familiar with <a href="https://github.com/ReactTraining/react-router">react-router</a> this file should look very
-        familiar. React Router is one of the core libraries that Lore is built on, and this file exposes the routes that are
-        passed to <code>react-router</code>.
+        If you're familiar with <a href="https://github.com/ReactTraining/react-router">react-router</a> this file
+        should look very familiar. React Router is one of the core libraries that Lore is built on, and this file
+        exposes the routes that are passed to <code>react-router</code>.
       </p>
 
       <blockquote>
         <p>
-          Lore makes no modifications to these routes or to the behavior of React Router, so if you have any questions about
-          the syntax, or specific routing-related needs, all of React Router's
-          <Link to="https://github.com/ReactTraining/react-router/tree/master/docs">documentation</Link> and
-          <Link to="https://github.com/ReactTraining/react-router/tree/master/examples">examples</Link> will be directly applicable to Lore.
+          Lore makes no modifications to these routes or to the behavior of React Router, so if you have any
+          questions about the syntax, or specific routing-related needs, all of React
+          Router's <a href="https://github.com/ReactTraining/react-router/tree/v3/docs">
+          documentation</a> and <a href="https://github.com/ReactTraining/react-router/tree/v3/examples">
+          examples</a> will be directly applicable to Lore.
         </p>
       </blockquote>
 

@@ -45,6 +45,8 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
+        import { connect } from 'lore-hook-connect';
+
         export default connect(function(getState, props){
           const { tweet } = props;
 
@@ -62,6 +64,8 @@ export default (props) => {
         );
         `}/>
         <CodeTab syntax="ES6" text={`
+        import { connect } from 'lore-hook-connect';
+
         class Tweet extends React.Component {
           ...
         }
@@ -77,6 +81,8 @@ export default (props) => {
         })(Tweet);
         `}/>
         <CodeTab syntax="ESNext" text={`
+        import { connect } from 'lore-hook-connect';
+
         @connect(function(getState, props){
           const tweet = props.tweet;
 
@@ -151,8 +157,8 @@ export default (props) => {
         import React from 'react';
         import createReactClass from 'create-react-class';
         import PropTypes from 'prop-types';
-        import { connect } from 'lore-hook-connect';
         import moment from 'moment';
+        import { connect } from 'lore-hook-connect';
 
         export default connect(function(getState, props){
           const { tweet } = props;
@@ -219,8 +225,8 @@ export default (props) => {
         <CodeTab syntax="ES6" text={`
         import React from 'react';
         import PropTypes from 'prop-types';
-        import { connect } from 'lore-hook-connect';
         import moment from 'moment';
+        import { connect } from 'lore-hook-connect';
 
         class Tweet extends React.Component {
 
@@ -272,8 +278,8 @@ export default (props) => {
         <CodeTab syntax="ESNext" text={`
         import React from 'react';
         import PropTypes from 'prop-types';
-        import { connect } from 'lore-hook-connect';
         import moment from 'moment';
+        import { connect } from 'lore-hook-connect';
 
         @connect(function(getState, props){
           const tweet = props.tweet;

@@ -27,7 +27,7 @@ export default (props) => {
 
       <p>
         If you need to define collection specific behavior (such as parsing server responses or defining headers to add
-        to requests) you should do that in <Link to="/features/config/connections/">'config/connections.js'</Link>.
+        to requests) you should do that in <Link to="/anatomy/config/connections/">'config/connections.js'</Link>.
       </p>
 
       <p>

@@ -22,17 +22,17 @@ export default (props) => {
             <NavLink title="Introduction" url="/features/" />
 
             <li className="doc-section">Config</li>
-            <NavLink title="actions" url="/features/config/actions/" />
-            <NavLink title="auth" url="/features/config/auth/" />
-            <NavLink title="collections" url="/features/config/collections/" />
-            <NavLink title="connect" url="/features/config/connect/" />
-            <NavLink title="connections" url="/features/config/connections/" />
-            <NavLink title="dialog" url="/features/config/dialog/" />
-            <NavLink title="local" url="/features/config/local/" />
-            <NavLink title="models" url="/features/config/models/" />
-            <NavLink title="reducers" url="/features/config/reducers/" />
-            <NavLink title="redux" url="/features/config/redux/" />
-            <NavLink title="router" url="/features/config/router/" />
+            <NavLink title="actions" url="/anatomy/config/actions/" />
+            <NavLink title="auth" url="/anatomy/config/auth/" />
+            <NavLink title="collections" url="/anatomy/config/collections/" />
+            <NavLink title="connect" url="/anatomy/config/connect/" />
+            <NavLink title="connections" url="/anatomy/config/connections/" />
+            <NavLink title="dialog" url="/anatomy/config/dialog/" />
+            <NavLink title="local" url="/anatomy/config/local/" />
+            <NavLink title="models" url="/anatomy/config/models/" />
+            <NavLink title="reducers" url="/anatomy/config/reducers/" />
+            <NavLink title="redux" url="/anatomy/config/redux/" />
+            <NavLink title="router" url="/anatomy/config/router/" />
           </ul>
           {children}
         </div>

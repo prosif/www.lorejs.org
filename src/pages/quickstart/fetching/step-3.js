@@ -60,8 +60,8 @@ export default (props) => {
 
       <blockquote>
         <p>
-          You can learn more about <code>connect</code> in the <Link to="/architecture/connect/">concept documentation</Link> as well as the documentation
-          for <Link to="/features/config/connect/">configuring connect</Link>.
+          You can learn more about configuring <code>connect</code> in the <Link to="/concepts/core/connect/">concept
+          documentation</Link>.
         </p>
       </blockquote>
 
@@ -84,11 +84,16 @@ export default (props) => {
         Wrap Feed with Connect
       </h3>
       <p>
-        To use <code>connect</code>, open up your <code>Feed</code> component and wrap it with the decorator like this:
+        To use <code>connect</code>, we first need to import it from the <code>lore-hook-connect</code> package,
+        which is already included in your project (we'll introduce hooks later in this tutorial). Open up
+        your <code>Feed</code> component and wrap it with the decorator like this:
       </p>
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
+        ...
+        import { connect } from 'lore-hook-connect';
+
         export default connect(function(getState, props){
           return {
             tweets: getState('tweet.find')
@@ -100,6 +105,9 @@ export default (props) => {
         );
         `}/>
         <CodeTab syntax="ES6" text={`
+        ...
+        import { connect } from 'lore-hook-connect';
+
         class Feed extends React.Component {
           ...
         };
@@ -111,6 +119,9 @@ export default (props) => {
         })(Feed);
         `}/>
         <CodeTab syntax="ESNext" text={`
+        ...
+        import { connect } from 'lore-hook-connect';
+
         @connect(function(getState, props){
           return {
             tweets: getState('tweet.find')

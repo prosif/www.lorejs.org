@@ -42,7 +42,7 @@ export default (props) => {
         Paste this data into <code>db.json</code>:
       </p>
 
-      <Markdown type="json" text={`
+      <Markdown text={`
       {
         "users": [
           {
@@ -121,7 +121,7 @@ export default (props) => {
           {
             "id": 7,
             "userId": 7,
-            "text": "Something is written in archaic script. I will translate... R...o...i...h...c...l...e...m? Roihclem? System error! I reversed it! It says \"Melchior!\".",
+            "text": "Something is written in archaic script. I will translate... R...o...i...h...c...l...e...m? Roihclem? System error! I reversed it! It says \\"Melchior!\\".",
             "createdAt": "2016-11-26T04:03:25.546Z"
           }
         ]

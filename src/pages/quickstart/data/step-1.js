@@ -37,8 +37,9 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        const Feed = createReactClass({
-          ...
+        export default createReactClass({
+          displayName: 'Feed',
+
           propTypes: {
             tweets: PropTypes.object.isRequired
           },
@@ -177,14 +178,16 @@ export default (props) => {
         getDefaultProps: function() {
           return {
             tweets: {
-              data: [{
-                id: 1,
-                data: {
-                  user: 1,
-                  text: 'Nothing can beat science!',
-                  createdAt: '2016-10-04T05:10:49.382Z'
+              data: [
+                {
+                  id: 1,
+                  data: {
+                    user: 1,
+                    text: 'Nothing can beat science!',
+                    createdAt: '2016-10-04T05:10:49.382Z'
+                  }
                 }
-              }]
+              ]
             }
           }
         },

@@ -36,13 +36,66 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
 
+        export default createReactClass({
+          displayName: 'Feed',
+
+          render() {
+            return (
+              <div className="feed">
+                <h2 className="title">
+                  Feed
+                </h2>
+                <ul className="media-list tweets">
+                  {/* Tweets */}
+                </ul>
+              </div>
+            )
+          }
+        });
         `}/>
         <CodeTab syntax="ES6" text={`
+        class Feed extends Component {
 
+          render() {
+            return (
+              <div className="feed">
+                <h2 className="title">
+                  Feed
+                </h2>
+                <ul className="media-list tweets">
+                  {/* Tweets */}
+                </ul>
+              </div>
+            );
+          }
+
+        }
+
+        export default Feed;
         `}/>
         <CodeTab syntax="ESNext" text={`
+        class Feed extends Component {
 
+          render() {
+            return (
+              <div className="feed">
+                <h2 className="title">
+                  Feed
+                </h2>
+                <ul className="media-list tweets">
+                  {/* Tweets */}
+                </ul>
+              </div>
+            );
+          }
+
+        }
+
+        export default Feed;
         `}/>
       </CodeTabs>
 
@@ -61,13 +114,40 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
+        ...
+        import Feed from './src/components/Feed';
 
+        export default (
+          <Route component={UserIsAuthenticated(Master)}>
+            <Route path="/" component={Layout}>
+              <IndexRoute component={Feed} />
+            </Route>
+          </Route>
+        )
         `}/>
         <CodeTab syntax="ES6" text={`
+        ...
+        import Feed from './src/components/Feed';
 
+        export default (
+          <Route component={UserIsAuthenticated(Master)}>
+            <Route path="/" component={Layout}>
+              <IndexRoute component={Feed} />
+            </Route>
+          </Route>
+        )
         `}/>
         <CodeTab syntax="ESNext" text={`
+        ...
+        import Feed from './src/components/Feed';
 
+        export default (
+          <Route component={UserIsAuthenticated(Master)}>
+            <Route path="/" component={Layout}>
+              <IndexRoute component={Feed} />
+            </Route>
+          </Route>
+        )
         `}/>
       </CodeTabs>
 
@@ -130,13 +210,74 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
 
+        export default createReactClass({
+          displayName: 'Feed',
+
+          render() {
+            return (
+              <div className="feed">
+                <h2 className="title">
+                  Feed
+                </h2>
+                <ul className="media-list tweets">
+                  {/* Tweets */}
+                </ul>
+              </div>
+            )
+          }
+        });
         `}/>
         <CodeTab syntax="ES6" text={`
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
 
+        class Feed extends Component {
+
+          render() {
+            return (
+              <div className="feed">
+                <h2 className="title">
+                  Feed
+                </h2>
+                <ul className="media-list tweets">
+                  {/* Tweets */}
+                </ul>
+              </div>
+            );
+          }
+
+        }
+
+        export default Feed;
         `}/>
         <CodeTab syntax="ESNext" text={`
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
 
+        class Feed extends Component {
+
+          render() {
+            return (
+              <div className="feed">
+                <h2 className="title">
+                  Feed
+                </h2>
+                <ul className="media-list tweets">
+                  {/* Tweets */}
+                </ul>
+              </div>
+            );
+          }
+
+        }
+
+        export default Feed;
         `}/>
       </CodeTabs>
 
@@ -147,13 +288,82 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
+        import React from 'react';
+        import { Route, IndexRoute, Redirect } from 'react-router';
 
+        /**
+         * Wrapping the Master component with this decorator provides an easy way
+         * to redirect the user to a login experience if we don't know who they are.
+         */
+        import UserIsAuthenticated from './src/decorators/UserIsAuthenticated';
+
+        /**
+         * Routes are used to declare your view hierarchy
+         * See: https://github.com/rackt/react-router/blob/master/docs/API.md
+         */
+        import Master from './src/components/Master';
+        import Layout from './src/components/Layout';
+        import Feed from './src/components/Feed';
+
+        export default (
+          <Route component={UserIsAuthenticated(Master)}>
+            <Route path="/" component={Layout}>
+              <IndexRoute component={Feed} />
+            </Route>
+          </Route>
+        );
         `}/>
         <CodeTab syntax="ES6" text={`
+        import React from 'react';
+        import { Route, IndexRoute, Redirect } from 'react-router';
 
+        /**
+         * Wrapping the Master component with this decorator provides an easy way
+         * to redirect the user to a login experience if we don't know who they are.
+         */
+        import UserIsAuthenticated from './src/decorators/UserIsAuthenticated';
+
+        /**
+         * Routes are used to declare your view hierarchy
+         * See: https://github.com/rackt/react-router/blob/master/docs/API.md
+         */
+        import Master from './src/components/Master';
+        import Layout from './src/components/Layout';
+        import Feed from './src/components/Feed';
+
+        export default (
+          <Route component={UserIsAuthenticated(Master)}>
+            <Route path="/" component={Layout}>
+              <IndexRoute component={Feed} />
+            </Route>
+          </Route>
+        );
         `}/>
         <CodeTab syntax="ESNext" text={`
+        import React from 'react';
+        import { Route, IndexRoute, Redirect } from 'react-router';
 
+        /**
+         * Wrapping the Master component with this decorator provides an easy way
+         * to redirect the user to a login experience if we don't know who they are.
+         */
+        import UserIsAuthenticated from './src/decorators/UserIsAuthenticated';
+
+        /**
+         * Routes are used to declare your view hierarchy
+         * See: https://github.com/rackt/react-router/blob/master/docs/API.md
+         */
+        import Master from './src/components/Master';
+        import Layout from './src/components/Layout';
+        import Feed from './src/components/Feed';
+
+        export default (
+          <Route component={UserIsAuthenticated(Master)}>
+            <Route path="/" component={Layout}>
+              <IndexRoute component={Feed} />
+            </Route>
+          </Route>
+        );
         `}/>
       </CodeTabs>
 
@@ -164,13 +374,94 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
+        /**
+         * This component is intended to reflect the high level structure of your application,
+         * and render any components that are common across all views, such as the header or
+         * top-level navigation. All other components should be rendered by route handlers.
+         **/
 
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import Header from './Header';
+
+        export default createReactClass({
+          displayName: 'Layout',
+
+          render() {
+            return (
+              <div>
+                <Header />
+                <div className="container">
+                  <div className="row">
+                    <div className="col-md-offset-3 col-md-6">
+                      {React.cloneElement(this.props.children)}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          }
+        });
         `}/>
         <CodeTab syntax="ES6" text={`
+        /**
+         * This component is intended to reflect the high level structure of your application,
+         * and render any components that are common across all views, such as the header or
+         * top-level navigation. All other components should be rendered by route handlers.
+         **/
 
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import Header from './Header';
+
+        class Layout extends React.Component {
+          render() {
+            return (
+              <div>
+                <Header />
+                <div className="container">
+                  <div className="row">
+                    <div className="col-md-offset-3 col-md-6">
+                      {React.cloneElement(this.props.children)}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          }
+        };
+
+        export default Layout;
         `}/>
         <CodeTab syntax="ESNext" text={`
+        /**
+         * This component is intended to reflect the high level structure of your application,
+         * and render any components that are common across all views, such as the header or
+         * top-level navigation. All other components should be rendered by route handlers.
+         **/
 
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import Header from './Header';
+
+        class Layout extends React.Component {
+          render() {
+            return (
+              <div>
+                <Header />
+                <div className="container">
+                  <div className="row">
+                    <div className="col-md-offset-3 col-md-6">
+                      {React.cloneElement(this.props.children)}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          }
+        };
+
+        export default Layout;
         `}/>
       </CodeTabs>
 

@@ -113,21 +113,22 @@ export default (props) => {
       `}/>
 
       <p>
-        When Lore retrieves data from an API endpoint (such as <code>/tweets/1</code>), it embeds the resource attributes from the
-        response in the <code>data</code> property and then wraps those attributes in a structure that provides some metadata about the
-        resource.
+        When Lore retrieves data from an API endpoint (such as <code>/tweets/1</code>), it embeds the resource
+        attributes from the response in the <code>data</code> property and then wraps those attributes in a
+        structure that provides some metadata about the resource.
       </p>
 
       <p>
-        This might seem a tad verbose at first glance, but each property solves a specific problem, which you can
-        <Link to="/features/foundation/data-structure/">read more about about in the docs</Link> if you'd like. But what
-        you need to know for the quickstart is that the data structure is designed to solve application concerns related to
-        optimistic updates, visual communication, server errors, and detecting when resources have been created - all
-        important elements of a good user experience.
+        This might seem a tad verbose at first glance, but each property solves a specific problem, which you
+        can <Link to="/features/foundation/data-structure/">read more about about in the docs</Link> if you'd
+        like. But what you need to know for the quickstart is that the data structure is designed to solve
+        application concerns related to optimistic updates, visual communication, server errors, and detecting
+        when resources have been created - all important elements of a good user experience.
       </p>
 
       <p>
-        For endpoints that return a list of resources, such as <code>/tweets</code>, Lore use's a similar data structure:
+        For endpoints that return a list of resources, such as <code>/tweets</code>, Lore use's a similar
+        data structure:
       </p>
 
       <Markdown text={`
@@ -143,9 +144,10 @@ export default (props) => {
       `}/>
 
       <p>
-        Here <code>data</code> is an array that contains the individual resources in the server response (each wrapped in the structure
-        above) and then provides metadata about the list such as what query was made to the API and what the state of that
-        query is (typically whether the data is still being fetched or the query has been resolved).
+        Here <code>data</code> is an array that contains the individual resources in the server response (each
+        wrapped in the structure above) and then provides metadata about the list such as what query was made
+        to the API and what the state of that query is (typically whether the data is still being fetched or the
+        query has been resolved).
       </p>
 
 
@@ -154,7 +156,8 @@ export default (props) => {
       </h2>
 
       <p>
-        In the next step, we'll use this structure to add some mock data as we <Link to="../step-1/">build the Tweet component</Link>.
+        In the next step, we'll use this structure to add some mock data as
+        we <Link to="../step-1/">build the Tweet component</Link>.
       </p>
 
     </Template>

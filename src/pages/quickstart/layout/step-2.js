@@ -69,7 +69,10 @@ export default (props) => {
         right: 15px;
         z-index: 1000;
         border-radius: 100px;
-        outline: none;
+      }
+
+      .create-button:focus {
+        outline: none !important;
       }
 
       /*
@@ -128,8 +131,8 @@ export default (props) => {
         margin-bottom: 64px;
       }
 
-      .footer button {
-        outline: none;
+      .footer button:focus {
+        outline: none !important;
       }
 
       /*
@@ -245,7 +248,10 @@ export default (props) => {
         right: 15px;
         z-index: 1000;
         border-radius: 100px;
-        outline: none;
+      }
+
+      .create-button:focus {
+        outline: none !important;
       }
 
       /*
@@ -304,8 +310,8 @@ export default (props) => {
         margin-bottom: 64px;
       }
 
-      .footer button {
-        outline: none;
+      .footer button:focus {
+        outline: none !important;
       }
 
       /*
