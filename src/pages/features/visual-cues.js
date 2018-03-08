@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'gatsby-link';
-import Template from '../../components/templates/Feature';
+import Template from '../../components/templates/Features';
 import Markdown from '../../components/Markdown';
 import CodeTabs from '../../components/CodeTabs';
 import CodeTab from '../../components/CodeTab';
@@ -32,7 +32,7 @@ export default (props) => {
         Usage
       </h3>
       <p>
-        This section demonstrates how to <em>use</em> the <Link to="/features/foundation/data-structure/">data structure provided by Lore</Link> so
+        This section demonstrates how to <em>use</em> the <Link to="/features/data-structure/">data structure provided by Lore</Link> so
         please read that first if you're unfamiliar with the data structure.
       </p>
 

@@ -29,7 +29,7 @@ export default (props) => {
       <p>
         There are a number of popular options for serving static content, with two popular ones being <Link to="http://surge.sh">Surge</Link>
         and <Link to="https://pages.github.com">GitHub Pages</Link>. Not all options have similar feature sets though, and you can see a
-        comparison between Surge and GitHub Pages in the "Feature Comparison" video <Link to="/features/foundation/publishing/">at this link</Link>.
+        comparison between Surge and GitHub Pages in the "Feature Comparison" video <Link to="/publishing/">at this link</Link>.
       </p>
 
       <p>

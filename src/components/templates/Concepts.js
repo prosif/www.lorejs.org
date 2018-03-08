@@ -30,22 +30,12 @@ export default (props) => {
             <NavLink title="Routing" url="/concepts/core/routing/" />
 
             <li className="doc-section">Server Communication</li>
-            <NavLink title="Server Communication" url="/concepts/foundation/server-communication/" />
+            <NavLink title="Server Communication" url="/concepts/server-communication/" />
 
             <li className="doc-section">Data Structure</li>
             <NavLink title="Overview" url="/concepts/data-structure/" />
             <NavLinkPlaceholder title="Models (todo)" />
             <NavLinkPlaceholder title="Collections (todo)" />
-
-            <li className="doc-section">Building</li>
-            <NavLink title="Overview" url="/concepts/build-system/" />
-            <NavLinkPlaceholder title="Development (todo)" />
-            <NavLinkPlaceholder title="Production (todo)" />
-
-            <li className="doc-section">Publishing</li>
-            <NavLink title="Overview" url="/concepts/publishing/" />
-            <NavLink title="Surge" url="/concepts/publishing/surge/" />
-            <NavLink title="GitHub Pages" url="/concepts/publishing/github-pages/" />
           </ul>
           {children}
         </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'gatsby-link';
-import Template from '../../components/templates/Feature';
+import Template from '../../components/templates/Features';
 import Markdown from '../../components/Markdown';
 import CodeTabs from '../../components/CodeTabs';
 import CodeTab from '../../components/CodeTab';
@@ -32,7 +32,7 @@ export default (props) => {
         Usage
       </h3>
       <p>
-        Lore handles 404 errors by treating them as a special case of <Link to="/features/challenges/error-handling/">Error Handling</Link>.
+        Lore handles 404 errors by treating them as a special case of <Link to="/features/error-handling/">Error Handling</Link>.
         Normally if you were fetching a <code>post</code> with an <code>id</code> of 1, and the API returned a 404 status code, the action creator
         blueprint would emit an action with a payload that looks like this:
       </p>

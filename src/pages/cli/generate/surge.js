@@ -18,7 +18,7 @@ export default (props) => {
 
       <p>
         Details about this process can be found in
-        the <Link to="/features/foundation/publishing/surge/">docs for publishing to Surge</Link>.
+        the <Link to="/publishing/providers/surge/">docs for publishing to Surge</Link>.
       </p>
     </Template>
   )

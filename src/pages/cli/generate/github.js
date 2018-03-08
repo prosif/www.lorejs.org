@@ -18,7 +18,7 @@ export default (props) => {
 
       <p>
         Details about this process can be found in
-        the <Link to="/features/foundation/publishing/github-pages/">docs for publishing to GitHub Pages</Link>.
+        the <Link to="/publishing/providers/github-pages/">docs for publishing to GitHub Pages</Link>.
       </p>
     </Template>
   )

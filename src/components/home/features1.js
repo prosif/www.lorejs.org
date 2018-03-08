@@ -40,7 +40,7 @@ export default (props) => {
                 imageMarginBottom="20px"
                 title="Redux"
                 description="Lore uses conventions to provide overridable blueprints for actions and reducers, along with a decorator that allows components to declare the data they need."
-                url="/features/foundation/server-communication/"
+                url="/concepts/server-communication/"
               />
             </ul>
           </div>

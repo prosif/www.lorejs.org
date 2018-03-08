@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'gatsby-link';
-import Template from '../../../components/templates/Concepts';
+import Template from '../../../components/templates/Publishing';
 import Markdown from '../../../components/Markdown';
 import CodeTabs from '../../../components/CodeTabs';
 import CodeTab from '../../../components/CodeTab';

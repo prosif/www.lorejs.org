@@ -24,16 +24,17 @@ export default (props) => {
           <ul className="nav navbar-nav navbar-right nav-bordered">
             <NavLink layout="audience" title="Audience" url="/audience/" location={location} />
             <NavLink layout="quickstart" title="Quickstart" url="/quickstart/" location={location} />
+            <NavLink layout="features" title="Features" url="/features/" location={location} />
             <li className="dropdown">
               <a href="#" className="dropdown-toggle" data-toggle="dropdown">
                 Documentation<span className="caret" />
               </a>
               <ul className="dropdown-menu">
-                <NavLink title="Libraries" url="/libraries/" location={location} />
+                <NavLink title="Core Libraries" url="/libraries/" location={location} />
                 <NavLink title="Concepts" url="/concepts/" location={location} />
                 <NavLink title="Anatomy" url="/anatomy/" location={location} />
-                <NavLink title="Features" url="/features/" location={location} />
                 <NavLink title="Hooks" url="/hooks/" location={location} />
+                <NavLink title="Publishing" url="/publishing/" location={location} />
                 <li role="separator" className="divider"></li>
                 <NavLink title="CLI" url="/cli/" location={location} />
                 <li role="separator" className="divider"></li>

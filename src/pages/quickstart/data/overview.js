@@ -120,7 +120,7 @@ export default (props) => {
 
       <p>
         This might seem a tad verbose at first glance, but each property solves a specific problem, which you
-        can <Link to="/features/foundation/data-structure/">read more about about in the docs</Link> if you'd
+        can <Link to="/features/data-structure/">read more about about in the docs</Link> if you'd
         like. But what you need to know for the quickstart is that the data structure is designed to solve
         application concerns related to optimistic updates, visual communication, server errors, and detecting
         when resources have been created - all important elements of a good user experience.

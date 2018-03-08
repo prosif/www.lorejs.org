@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'gatsby-link';
-import Template from '../../../components/templates/Concepts';
+import Template from '../../../components/templates/Publishing';
 import Markdown from '../../../components/Markdown';
 import CodeTabs from '../../../components/CodeTabs';
 import CodeTab from '../../../components/CodeTab';
@@ -46,8 +46,8 @@ export default (props) => {
       </p>
 
       <ul>
-        <li><Link to="/features/foundation/publishing/surge/">Surge</Link></li>
-        <li><Link to="/features/foundation/publishing/github-pages/">GitHub Pages</Link></li>
+        <li><Link to="/publishing/providers/surge/">Surge</Link></li>
+        <li><Link to="/publishing/providers/github-pages/">GitHub Pages</Link></li>
       </ul>
     </Template>
   )

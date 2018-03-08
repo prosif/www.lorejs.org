@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'gatsby-link';
-import Template from '../../components/templates/Feature';
+import Template from '../../components/templates/Features';
 import Markdown from '../../components/Markdown';
 import CodeTabs from '../../components/CodeTabs';
 import CodeTab from '../../components/CodeTab';
@@ -32,8 +32,8 @@ export default (props) => {
         Usage
       </h3>
       <p>
-        As described in <Link to="/features/foundation/data-structure/">Data Structure</Link> and {' '}
-        <Link to="/features/challenges/visual-cues/">Visual Cues</Link> the default actions in Lore include payload
+        As described in <Link to="/features/data-structure/">Data Structure</Link> and {' '}
+        <Link to="/features/visual-cues/">Visual Cues</Link> the default actions in Lore include payload
         states for <code>ERROR_FETCHING</code>, <code>ERROR_CREATING</code>, <code>ERROR_UPDATING</code> and
         <code>ERROR_DELETING</code>. There is also an <code>error</code> field included in every <code>model</code> and <code>collection</code> that
         defaults to an empty object;

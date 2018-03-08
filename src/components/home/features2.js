@@ -29,7 +29,7 @@ export default (props) => {
                 icon="database"
                 title="Data Structure"
                 description="Enables data-driven components by supplying components with both data <em>and</em> context."
-                url="/features/foundation/data-structure"
+                url="/features/data-structure"
               />
             </ul>
           </div>
@@ -39,7 +39,7 @@ export default (props) => {
                 icon="share"
                 title="AJAX Abstraction"
                 description="Layered communication tier able to communicate with multiple API servers and capable of adapting to changes in data contracts."
-                url="/features/challenges/ajax-abstraction"
+                url="/features/ajax-abstraction"
               />
             </ul>
           </div>
@@ -49,7 +49,7 @@ export default (props) => {
                 icon="funnel"
                 title="Filtering"
                 description="Useful for viewing a subset of data that matches a specific criteria."
-                url="/features/challenges/filtering"
+                url="/features/filtering"
               />
             </ul>
           </div>
@@ -62,7 +62,7 @@ export default (props) => {
                 icon="dots-three-horizontal"
                 title="Pagination"
                 description="Useful for moving through large datasets, and providing the user with a sliced view of the data."
-                url="/features/challenges/pagination"
+                url="/features/pagination"
               />
             </ul>
           </div>
@@ -72,7 +72,7 @@ export default (props) => {
                 icon="dots-three-vertical"
                 title="Infinite Scrolling"
                 description="Mobile friendly style of pagination that aggregates fetched data into a single scrollable list."
-                url="/features/challenges/infinite-scrolling"
+                url="/features/infinite-scrolling"
               />
             </ul>
           </div>
@@ -82,7 +82,7 @@ export default (props) => {
                 icon="publish"
                 title="WebSockets (beta)"
                 description="Add support for real-time updates through simple configuration, and make a big improvement to the user experience of any team-based application."
-                url="/features/challenges/websockets"
+                url="/features/websockets"
               />
             </ul>
           </div>
@@ -95,7 +95,7 @@ export default (props) => {
                 icon="image"
                 title="Visual Cues"
                 description="Easily discover and communicate when data is being updated, fetched or contains an error."
-                url="/features/challenges/visual-cues"
+                url="/features/visual-cues"
               />
             </ul>
           </div>
@@ -105,7 +105,7 @@ export default (props) => {
                 icon="flow-branch"
                 title="Optimistic Updates"
                 description="Makes your application feel snappy and responsive by assuming server calls will be successful."
-                url="/features/challenges/optimistic-updates"
+                url="/features/optimistic-updates"
               />
             </ul>
           </div>
@@ -115,7 +115,7 @@ export default (props) => {
                 icon="message"
                 title="Dialogs"
                 description="Helpful utilities to automatically mount, configure and display dialogs."
-                url="/features/challenges/dialogs"
+                url="/features/dialogs"
               />
             </ul>
           </div>
@@ -128,7 +128,7 @@ export default (props) => {
                 icon="chat"
                 title="Wizards"
                 description="Easily discover when the server confirms data creation before moving onto the next step."
-                url="/features/challenges/wizards"
+                url="/features/wizards"
               />
             </ul>
           </div>
@@ -138,7 +138,7 @@ export default (props) => {
                 icon="new"
                 title="Error Handling"
                 description="Server errors are passed to components and clearly communicated."
-                url="/features/challenges/error-handling"
+                url="/features/error-handling"
               />
             </ul>
           </div>
@@ -148,7 +148,7 @@ export default (props) => {
                 icon="help-with-circle"
                 title="404 Pages"
                 description="Discover and communicate when resources can't be found."
-                url="/features/challenges/404-pages"
+                url="/features/404-pages"
               />
             </ul>
           </div>

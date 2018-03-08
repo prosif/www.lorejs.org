@@ -29,7 +29,7 @@ export default (props) => {
       </h3>
       <p>
         Since Infinite Scrolling shares the same infrastructure as traditional pagination, please
-        see <Link to="/features/challenges/pagination/">Pagination</Link> for a description of how to implement support for it.
+        see <Link to="/features/pagination/">Pagination</Link> for a description of how to implement support for it.
       </p>
     </Template>
   )
