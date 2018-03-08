@@ -21,14 +21,6 @@ export default (props) => {
           <ul id="markdown-toc">
             <NavLink title="Introduction" url="/concepts/" />
 
-            <li className="doc-section">Core Libraries</li>
-            <NavLink title="React" url="/concepts/libraries/react/" />
-            <NavLink title="Webpack" url="/concepts/libraries/webpack/" />
-            <NavLink title="Redux" url="/concepts/libraries/redux/" />
-            <NavLink title="React-Router" url="/concepts/libraries/react-router/" />
-            <NavLinkPlaceholder title="Axios (todo)" />
-            <NavLink title="Gulp" url="/concepts/libraries/gulp/" />
-
             <li className="doc-section">Concepts</li>
             <NavLink title="Actions" url="/concepts/core/actions/" />
             <NavLink title="Reducers" url="/concepts/core/reducers/" />
