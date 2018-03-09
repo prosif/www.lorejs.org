@@ -6,10 +6,14 @@ export default (props) => {
   return (
     <Template>
       <h1>
-        Introduction
+        .babelrc
       </h1>
       <p>
-        This section describes the application structure.
+        This file contains the settings for the preset and plugins that determine how your project is transpiled.
+      </p>
+      <p>
+        To learn more about this file, see the <a href="https://babeljs.io/docs/usage/babelrc/">.babelrc
+        documentation</a> on the Babel website.
       </p>
     </Template>
   );

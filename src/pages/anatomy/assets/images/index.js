@@ -6,10 +6,10 @@ export default (props) => {
   return (
     <Template>
       <h1>
-        Introduction
+        /assets/images
       </h1>
       <p>
-        This section describes the application structure.
+        A place to store images.
       </p>
     </Template>
   );

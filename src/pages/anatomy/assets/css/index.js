@@ -6,10 +6,13 @@ export default (props) => {
   return (
     <Template>
       <h1>
-        Introduction
+        /assets/css
       </h1>
       <p>
-        This section describes the application structure.
+        A place to store CSS files.
+      </p>
+      <p>
+        Feel free to delete this folder if you do not wish to use vanilla CSS.
       </p>
     </Template>
   );

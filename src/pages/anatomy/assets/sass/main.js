@@ -6,10 +6,13 @@ export default (props) => {
   return (
     <Template>
       <h1>
-        Introduction
+        /assets/sass/main.scss
       </h1>
       <p>
-        This section describes the application structure.
+        The default SASS file.
+      </p>
+      <p>
+        For new projects, this imports the styles from <code>../css/main.css</code>
       </p>
     </Template>
   );

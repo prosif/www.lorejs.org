@@ -6,10 +6,13 @@ export default (props) => {
   return (
     <Template>
       <h1>
-        Introduction
+        /assets/images/logo.png
       </h1>
       <p>
-        This section describes the application structure.
+        The logo used for the starter template.
+      </p>
+      <p>
+        Feel free to delete this file.
       </p>
     </Template>
   );

@@ -6,10 +6,13 @@ export default (props) => {
   return (
     <Template>
       <h1>
-        Introduction
+        /assets/css/main.css
       </h1>
       <p>
-        This section describes the application structure.
+        The default CSS file.
+      </p>
+      <p>
+        For new projects, this will contain the styles used by the starter template.
       </p>
     </Template>
   );

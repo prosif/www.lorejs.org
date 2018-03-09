@@ -52,8 +52,8 @@ export default (props) => {
               <ul>
                 <NavLink title="env" url="/anatomy/config/env/">
                   <ul>
-                    <NavLink title="development.js" url="/anatomy/config/env/development-js/" />
-                    <NavLink title="production.js" url="/anatomy/config/env/production-js/" />
+                    <NavLink title="development.js" url="/anatomy/config/env/development/" />
+                    <NavLink title="production.js" url="/anatomy/config/env/production/" />
                   </ul>
                 </NavLink>
                 <NavLink title="actions" url="/anatomy/config/actions/" />
@@ -139,15 +139,14 @@ export default (props) => {
             <NavLink title=".editorconfig" url="/anatomy/editorconfig/" />
             <NavLink title=".gitignore" url="/anatomy/gitignore/" />
             <NavLink title=".lorerc" url="/anatomy/lorerc/" />
-            <NavLink title="LICENSE.TXT" url="/anatomy/license-txt/" />
-            <NavLink title="README.md" url="/anatomy/readme-md/" />
-            <NavLink title="db.json" url="/anatomy/db-json/" />
+            <NavLink title="db.json" url="/anatomy/db/" />
             <NavLink title="index.html" url="/anatomy/index-html/" />
             <NavLink title="index.js" url="/anatomy/index-js/" />
-            <NavLink title="package-lock.json" url="/anatomy/package-lock-json/" />
-            <NavLink title="package.json" url="/anatomy/package-json/" />
+            <NavLink title="package.json" url="/anatomy/package/" />
+            <NavLink title="package-lock.json" url="/anatomy/package-lock/" />
             <NavLink title="postcss.config.js" url="/anatomy/postcss-config/" />
-            <NavLink title="routes.js" url="/anatomy/routes-js/" />
+            <NavLink title="README.md" url="/anatomy/readme/" />
+            <NavLink title="routes.js" url="/anatomy/routes/" />
             <NavLink title="webpack.config.js" url="/anatomy/webpack-config/" />
           </ul>
           {children}
