@@ -6,10 +6,11 @@ export default (props) => {
   return (
     <Template>
       <h1>
-        Introduction
+        /config
       </h1>
       <p>
-        This section describes the application structure.
+        This directory contains the project configuration, as well as instructions for how that confirmation should
+        change based on the environment the project is build for (development, production, etc.)
       </p>
     </Template>
   );

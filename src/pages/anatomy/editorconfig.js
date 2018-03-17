@@ -26,6 +26,7 @@ export default (props) => {
       <h4>
         Defaults
       </h4>
+
       <Markdown text={`
       root = true
 

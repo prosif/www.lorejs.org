@@ -10,14 +10,14 @@ export default (props) => {
         index.js
       </h1>
       <p>
-        This is the root JavaScript files of the application, and is responsible for building and mounting the
+        This is the root JavaScript file of the application, and is responsible for building and mounting the
         application to the DOM.
       </p>
       <p>
         It also attaches the Lore singleton to the window, so you can access it from the command line in case
         you need to play with it, such as:
       </p>
-      
+
       <ul>
         <li>
           Manually executing actions (<code>lore.actions.tweet.create(...)</code>)

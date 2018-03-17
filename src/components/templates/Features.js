@@ -12,7 +12,7 @@ export default (props) => {
         <div className="container">
           <h1>Features</h1>
           <p>
-            Documentation for the core functionality of Lore
+            Key features that make up the main value proposition for Lore
           </p>
         </div>
       </div>

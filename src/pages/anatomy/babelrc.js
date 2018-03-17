@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'gatsby-link';
 import Template from '../../components/templates/Anatomy';
+import Markdown from '../../components/Markdown';
 
 export default (props) => {
   return (
@@ -15,6 +16,20 @@ export default (props) => {
         To learn more about this file, see the <a href="https://babeljs.io/docs/usage/babelrc/">.babelrc
         documentation</a> on the Babel website.
       </p>
+
+      <h3>
+        Defaults
+      </h3>
+
+      <Markdown text={`
+      {
+        "presets": [
+          "es2015",
+          "react"
+        ],
+        "plugins": []
+      }
+      `}/>
     </Template>
   );
 };

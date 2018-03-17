@@ -27,6 +27,7 @@ export default (props) => {
       <h4>
         Defaults
       </h4>
+
       <Markdown text={`
       node_modules
       bower_components

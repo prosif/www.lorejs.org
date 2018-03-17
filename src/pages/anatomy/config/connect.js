@@ -10,28 +10,23 @@ export default (props) => {
   return (
     <Template>
       <h1>
-        config/connect.js
+        /config/connect.js
       </h1>
-
       <p>
-        This file is connected to the <code>lore-hook-connect</code> hook and overrides the default connect behaviors.
+        This is the configuration file for <code>lore-hook-connect</code> and is where you define overrides
+        for the default <code>connect</code> behavior.
       </p>
 
       <h2>
         Purpose
       </h2>
       <p>
-        This file is where you define overrides for the connect, which is currently limited to modifying the default
-        reducer-action map.
+        Whenever you create a model in Lore, the conventions will automatically create a set of actions and
+        reducers to support basic CRUD operations and lazy-loading of data from the server.  For example, if
+        you create a model called <code>tweet</code>, the default map is as follows:
       </p>
 
-      <p>
-        Whenever you create a model in Lore, the conventions will automatically create a set of reducers and actions to
-        support basic CRUD operations and lazy-loading of data from the server.  For example, if you create a model called
-        <code>post</code>, the default map is as follows:
-      </p>
-
-      <table style={{ marginLeft: '24px', marginBottom: '12px', marginTop: '12px' }}>
+      <table style={{ marginLeft: '24px', marginBottom: '16px', marginTop: '16px' }}>
         <thead>
         <tr>
           <th style={{ textAlign: 'left' }}>Action</th>
@@ -41,14 +36,14 @@ export default (props) => {
         </thead>
         <tbody>
         <tr>
-          <td style={{ textAlign: 'left', paddingRight: '24px' }}>post.find</td>
-          <td style={{ textAlign: 'left', paddingRight: '24px' }}>FETCH_POSTS</td>
-          <td style={{ textAlign: 'left' }}>post.find</td>
+          <td style={{ textAlign: 'left', paddingRight: '24px' }}>tweet.find</td>
+          <td style={{ textAlign: 'left', paddingRight: '24px' }}>FETCH_TWEETS</td>
+          <td style={{ textAlign: 'left' }}>tweet.find</td>
         </tr>
         <tr>
-          <td style={{ textAlign: 'left', paddingRight: '24px' }}>post.get</td>
-          <td style={{ textAlign: 'left', paddingRight: '24px' }}>FETCH_POST</td>
-          <td style={{ textAlign: 'left' }}>post.byId</td>
+          <td style={{ textAlign: 'left', paddingRight: '24px' }}>tweet.get</td>
+          <td style={{ textAlign: 'left', paddingRight: '24px' }}>FETCH_TWEET</td>
+          <td style={{ textAlign: 'left' }}>tweet.byId</td>
         </tr>
         </tbody>
       </table>
@@ -59,9 +54,11 @@ export default (props) => {
       </p>
 
       <Markdown text={`
-      lore.connect(function(getState, props) {
+      import { connect } from 'lore-hook-connect';
+
+      connect(function(getState, props) {
         return {
-          posts: getState('post.find', { where: {}})
+          posts: getState('post.find')
         }
       })
       `}/>
