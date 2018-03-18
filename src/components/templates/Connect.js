@@ -34,6 +34,9 @@ export default (props) => {
             <NavLink title="findAll" url="/connect/findAll/" />
             <NavLink title="first" url="/connect/first/" />
             <NavLink title="singleton" url="/connect/singleton/" />
+
+            <li className="doc-section">Misc</li>
+            <NavLink title="Extending the Blueprints" url="/connect/extending/" />
           </ul>
           {children}
         </div>
