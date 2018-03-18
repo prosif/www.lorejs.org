@@ -23,7 +23,7 @@ export default (props) => {
 
             <li className="doc-section">Utilities</li>
             <NavLink title="connect" url="/connect/connect/" />
-            <NavLink title="Connect" url="/connect/Connect/" />
+            <NavLink title="Connect" url="/connect/connect-component/" />
             <NavLink title="getState" url="/connect/getState/" />
 
             <li className="doc-section">Blueprints</li>
