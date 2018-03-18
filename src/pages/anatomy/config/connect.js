@@ -2,9 +2,6 @@ import React from 'react';
 import Link from 'gatsby-link';
 import Template from '../../../components/templates/Anatomy';
 import Markdown from '../../../components/Markdown';
-import CodeTabs from '../../../components/CodeTabs';
-import CodeTab from '../../../components/CodeTab';
-import QuickstartBranch from '../../../components/QuickstartBranch';
 
 export default (props) => {
   return (
@@ -18,187 +15,199 @@ export default (props) => {
       </p>
 
       <h2>
-        Purpose
+        Configuration
       </h2>
+
+      <h3>
+        blueprints
+      </h3>
       <p>
-        Whenever you create a model in Lore, the conventions will automatically create a set of actions and
-        reducers to support basic CRUD operations and lazy-loading of data from the server.  For example, if
-        you create a model called <code>tweet</code>, the default map is as follows:
+        Extend or override the built-in blueprints. This is helpful if you want to change the interface for
+        a <code>getState</code> method call.
       </p>
+      <p>
+        Each blueprint is responsible for:
+      </p>
+      <ol>
+        <li>
+          Validating the parameters passed to the getState method
+        </li>
+        <li>
+          Extracting the desired data from the Redux Store
+        </li>
+        <li>
+          <strong>[optional]</strong> Calling the appropriate action if that data does not exist
+        </li>
+      </ol>
+      <p>
+        Lore has seven built-in blueprints:
+      </p>
+      {/*
+      <ul>
+        <li>
+          <strong>all</strong> - used for calls like getState('tweet.all')
+        </li>
+        <li>
+          <strong>byCid</strong> - used for calls like getState('tweet.byCid')
+        </li>
+        <li>
+          <strong>byId</strong> - used for calls like getState('tweet.byId')
+        </li>
+        <li>
+          <strong>find</strong> - used for calls like getState('tweet.find')
+        </li>
+        <li>
+          <strong>findAll</strong> - used for calls like getState('tweet.findAll')
+        </li>
+        <li>
+          <strong>first</strong> - used for calls like getState('tweet.first')
+        </li>
+        <li>
+          <strong>singleton</strong> - used for calls like getState('currentUser')
+        </li>
+      </ul>
+      */}
 
-      <table style={{ marginLeft: '24px', marginBottom: '16px', marginTop: '16px' }}>
-        <thead>
-        <tr>
-          <th style={{ textAlign: 'left' }}>Action</th>
-          <th style={{ textAlign: 'left' }}>ActionType</th>
-          <th style={{ textAlign: 'left' }}>Reducer</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td style={{ textAlign: 'left', paddingRight: '24px' }}>tweet.find</td>
-          <td style={{ textAlign: 'left', paddingRight: '24px' }}>FETCH_TWEETS</td>
-          <td style={{ textAlign: 'left' }}>tweet.find</td>
-        </tr>
-        <tr>
-          <td style={{ textAlign: 'left', paddingRight: '24px' }}>tweet.get</td>
-          <td style={{ textAlign: 'left', paddingRight: '24px' }}>FETCH_TWEET</td>
-          <td style={{ textAlign: 'left' }}>tweet.byId</td>
-        </tr>
-        </tbody>
-      </table>
+      <Markdown text={`
+      import all from 'lore-hook-connect/es/blueprints/all';
+      import byCid from 'lore-hook-connect/es/blueprints/byCid';
+      import byId from 'lore-hook-connect/es/blueprints/byId';
+      import find from 'lore-hook-connect/es/blueprints/find';
+      import findAll from 'lore-hook-connect/es/blueprints/findAll';
+      import first from 'lore-hook-connect/es/blueprints/first';
+      import singleton from 'lore-hook-connect/es/blueprints/singleton';
+
+      blueprints: {
+        all,      // used for calls like getState('tweet.all')
+        byCid,    // used for calls like getState('tweet.byCid')
+        byId,     // used for calls like getState('tweet.byId')
+        find,     // used for calls like getState('tweet.find')
+        findAll,  // used for calls like getState('tweet.findAll')
+        first,    // used for calls like getState('tweet.first')
+        singleton // used for calls like getState('currentUser')
+      }
+      `}/>
 
       <p>
-        To better understand the map, it helps to take a look at the typical usage for <code>lore.connect</code>.  Here we want to
-        retrieve all the posts that have been created.
+        To illustrate how to override a blueprint, let's examine the default syntax to fetch a model by id, which
+        looks like this:
       </p>
 
       <Markdown text={`
-      import { connect } from 'lore-hook-connect';
+      getState('tweet.byId', {
+        id: 1
+      })
+      `}/>
 
-      connect(function(getState, props) {
-        return {
-          posts: getState('post.find')
+      <p>
+        Now let's say you wanted to modify the syntax to use a 'where' clause, to make it similar to
+        the <code>find</code> blueprint like this:
+      </p>
+
+      <Markdown text={`
+      getState('tweet.byId', {
+        where: {
+          id: 1
         }
       })
       `}/>
 
       <p>
-        What happens when <code>getState()</code> is called, is that it looks at the <code>post.find</code> string, which represents the reducer
-        that you want the data for. Lore then looks at the state of that reducer at the time of the function call. If the
-        state for that reducer hasn't been initialized yet (no data has been fetched from the server) it will execute the
-        action on the other side of the map.
+        You could achieve that by overriding the <code>byId</code> blueprint with the implementation below.
       </p>
-
-      <p>
-        So the first time you call <code>getState('post.find')</code> the reducer won't have any data in it. So the connect decorator will
-        invoke the <code>post.find</code> action to retrieve the list of posts. Once the data comes back from the server (passing through
-        whatever parse methods you've specified to transform the data), the action will package up the data and emit an
-        action with an ActionType of <code>FETCH_POSTS</code>.
-      </p>
-
-      <p>
-        This ActionType is something the <code>post.find</code> reducer is configured to look for, and will then store the data, and the
-        app will be notified that there is new data in the store. The app will update, and your component will call
-        <code>getState('post.find')</code> again. But this time Lore will see there *is* data in the reducer state, and so it will
-        return it *without* calling the action this time.
-      </p>
-
-      <h3>
-        Problems This Map Helps Address
-      </h3>
-
-      <h4>
-        1. Duplicate AJAX Calls
-      </h4>
-      <p>
-        If components declare the data they want, and an AJAX call is executed to fetch that data if it doesn't exist, then
-        every time the component renders there's the potential to make an AJAX request. If guards aren't in place to know when
-        an AJAX request is or isn't in flight, you can end up making multiple AJAX requests for the same data. Depending on
-        the number of requests and the rate that components update, this has the potential to severely degrade the usability
-        of your application and apply unnecessary load to the API server.
-      </p>
-
-      <h4>
-        2. Infinite Loop + Browser Crash
-      </h4>
-      <p>
-        A big motivation for establishing conventions around reducers and actions was due to how easy it can be to accidentally
-        end up in an infinite loop in React/Redux in a lazy-loading setup like <code>lore.connect</code> is configured for (a setup where
-        components declare the data they want and something else is responsible for fetching if it doesn't exist).
-      </p>
-
-      <p>
-        If a component requests state, like <code>post.find</code>, and that state doesn't exist, an action will be triggered and the
-        store will be updated to reflect the fact that data is being fetching, and the component will get updated because
-        the reducer state changed. Which will give it another opportunity to request <code>post.find</code>. At this point, there are
-        3 pieces that need to have been linked up properly in order to form a proper guard to prevent duplicate AJAX calls.
-      </p>
-
-      <ol>
-        <li>First, there needs to be a reducer called <code>post.find</code></li>
-        <li>Second there needs to be an action called <code>post.find</code>,</li>
-        <li>Third there needs to be an ActionType called <code>FETCH_POSTS</code> that the action creator emits and the reducer processes.</li>
-      </ol>
-
-      <p>
-        Without conventions, there's a lot of files that need to be copy/pasted to enable that data flow for every
-        model/endpoint you need in your application. If you accidentally <code>require()</code> the wrong file, or forget to make all the
-        necessary changes in your copy/pasted files, or forget to create the ActionType, or forget to make sure the correct
-        ActionType is being emitted and listened for, the component may end up accessing the store again, finding no data,
-        making a request, and updating the store, and getting called again, and accessing the store again, and finding no
-        data, and making a request, and so on.
-      </p>
-
-      <p>
-        It's a conceptually simple bug to solve if you know what to look for, but it can be incredibly time consuming to track
-        down the first time you see if it you don't know what to look for, and you have to manually force-quit the browser tab
-        when it happens.
-      </p>
-
-      <p>
-        This "little" problem can be draining, a huge blocker, and incredibly frustrating for other people working in your
-        project. So a big reason for creating conventions around reducer and actions and setting up a map between them was to
-        solve this problem. This way the framework has the ability to guard against and limit certain situations (at least
-        until you override the conventions).
-      </p>
-
-      <h2>
-        Example Config File
-      </h2>
 
       <Markdown text={`
-      module.exports = {
-
-        reducerActionMap: {
-          'post.find': {
-            action: 'post.find',
-            reducer: 'post.find',
-            blueprint: 'find'
+      blueprints: {
+        byId: {
+          defaults: {
+            where: {
+              id: null
+            }
           },
 
-          'post.byId': {
-            action: 'post.get',
-            reducer: 'post.byId',
-            blueprint: 'byId'
+          verifyParams: function(params) {
+            if (!params.where.id) {
+              throw new Error('Missing required field: id');
+            }
           },
 
-          'currentUser': {
-            action: 'currentUser',
-            reducer: 'currentUser',
-            blueprint: 'singleton'
+          getPayload: function (reducerState, params) {
+            const key = params.where.id;
+            return reducerState[key];
+          },
+
+          callAction: function (action, params) {
+            const id = params.where.id;
+            return action(id).payload;
           }
         }
-
-      };
+      }
       `}/>
 
-      <h2>
-        Configuration Options
-      </h2>
-      <h4>
+      <h3>
         reducerActionMap
-      </h4>
+      </h3>
       <p>
-        Used to override the default reducer-action mapping or associate reducers and actions that weren't created by the
-        framework (i.e. a custom action or reducer you created).
+        This map determines which reducer is inspected for data, and which action is invoked if that data doesn't
+        exist. You can also use this map to override the default reducer-action mapping or associate reducers and
+        actions that weren't created by the framework (such as a custom action or reducer you created).
       </p>
-
       <p>
-        Each map between an reducer and an action requires a blueprint to specify it's behavior. There are three blueprints
-        provided within the framework; <code>find</code>, <code>byId</code> and <code>singleton</code>. If you want to understand how they work see the
-        <Link to="https://github.com/lore/lore/tree/master/packages/lore-hook-connect/src/blueprints">source code for the blueprints</Link>.
+        There are seven <code>getState</code> blueprints built into the framework, with mappings provided below, based
+        on the actions and reducers automatically created by the conventions of the framework.
       </p>
-
       <p>
-        If the built-in blueprints don't work for you, you can use a custom blueprint by providing an object as the
-        value of the blueprint. The code below mimics the built-in singleton blueprint, which assumes there is only
-        one resource provided by the API endpoint (and therefore does not pass arguments to the action creator when
-        invoking it) and also assumes the reducer only stores a single resource (so we don't need to do a lookup to find
-        what we're looking for).
+        The <code>*</code> in the mappings below is special syntax that means <em>"put the name of the model here"</em>.
+        It allows you to say <em>"this mapping applies to all models"</em>. For example, <code>*.find</code> will
+        apply to <code>tweet.find</code>, <code>user.find</code>, etc.
+      </p>
+      <p>
+        You can reuse built-in blueprints by setting the value of blueprint to the name of the blueprint you
+        want to reuse.
       </p>
 
       <Markdown text={`
+      reducerActionMap: {
+        '*.all': {
+          action: null,
+          reducer: '*.byCid',
+          blueprint: 'all'
+        },
+        '*.byCid': {
+          action: null,
+          reducer: '*.byCid',
+          blueprint: 'byCid'
+        },
+        '*.byId': {
+          action: '*.get',
+          reducer: '*.byId',
+          blueprint: 'byId'
+        },
+        '*.find': {
+          action: '*.find',
+          reducer: '*.find',
+          blueprint: 'find'
+        },
+        '*.findAll': {
+          action: '*.find',
+          reducer: '*.find',
+          blueprint: 'findAll'
+        },
+        '*.first': {
+          action: '*.find',
+          reducer: '*.find',
+          blueprint: 'first'
+        }
+      }
+      `}/>
+
+      <p>
+        If the built-in blueprints don't work for you, you can use a custom blueprint by providing an object as
+        the value of the blueprint. The code below mimics the built-in singleton blueprint, which is used by
+        the <code>lore-hook-auth</code> hook to retrieve the <code>currentUser</code>.
+      </p>
+      <Markdown text={`
+      reducerActionMap: {
         'currentUser': {
           action: 'currentUser',
           reducer: 'currentUser',
@@ -206,12 +215,12 @@ export default (props) => {
             getPayload: function(reducerState, params) {
               return reducerState;
             },
-
             callAction: function(action, params) {
               return action().payload;
             }
           }
         }
+      }
       `}/>
     </Template>
   )
