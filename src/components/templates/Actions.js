@@ -12,7 +12,7 @@ export default (props) => {
         <div className="container">
           <h1>Actions</h1>
           <p>
-            Methods for fetching data from a REST API
+            Data-fetching tier for Lore
           </p>
         </div>
       </div>
@@ -27,6 +27,10 @@ export default (props) => {
             <NavLink title="destroy" url="/actions/destroy/" />
             <NavLink title="find" url="/actions/find/" />
             <NavLink title="get" url="/actions/get/" />
+
+            <li className="doc-section">Misc</li>
+            <NavLink title="Extending & Overriding Actions" url="/actions/extending/" />
+            <NavLink title="Extracting Actions" url="/actions/extract/" />
           </ul>
           {children}
         </div>

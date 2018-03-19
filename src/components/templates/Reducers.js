@@ -25,6 +25,10 @@ export default (props) => {
             <NavLink title="find" url="/reducers/find/" />
             <NavLink title="byId" url="/reducers/byId/" />
             <NavLink title="byCid" url="/reducers/byCid/" />
+
+            <li className="doc-section">Misc</li>
+            <NavLink title="Extending & Overriding Reducers" url="/reducers/extending/" />
+            <NavLink title="Extracting Reducers" url="/reducers/extract/" />
           </ul>
           {children}
         </div>
