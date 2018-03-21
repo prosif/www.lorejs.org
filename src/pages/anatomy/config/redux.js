@@ -47,7 +47,7 @@ export default (props) => {
         middleware
       </h4>
       <p>
-        What <Link to="http://redux.js.org/docs/advanced/Middleware.html">middleware</Link> you want Redux to use.
+        What <a href="http://redux.js.org/docs/advanced/Middleware.html">middleware</a> you want Redux to use.
       </p>
     </Template>
   )

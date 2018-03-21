@@ -54,7 +54,7 @@ export default (props) => {
       </p>
 
       <p>
-        If none of those docs are sufficient to answer your question, please <Link to="https://github.com/lore/lore/issues">file an issue</Link>
+        If none of those docs are sufficient to answer your question, please <a href="https://github.com/lore/lore/issues">file an issue</a>
         and we'll answer your question and use it to better expand the documentation for others.
       </p>
     </Template>

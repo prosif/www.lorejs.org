@@ -22,7 +22,7 @@ export default (props) => {
         Clone the Server
       </h3>
       <p>
-        The server we'll need is in a repository on GitHub under <Link to="https://github.com/lore/lore-tutorial-api">lore/lore-tutorial-api</Link>.
+        The server we'll need is in a repository on GitHub under <a href="https://github.com/lore/lore-tutorial-api">lore/lore-tutorial-api</a>.
         Run this command to clone the server into your local environment:
       </p>
 

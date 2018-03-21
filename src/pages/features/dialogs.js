@@ -272,8 +272,8 @@ export default (props) => {
 
       <p>
         If you'd like to try them out or see how they work, please see
-        the <Link to="https://github.com/lore/lore/tree/master/examples/dialogs-bootstrap">Bootstrap Dialog example</Link> or
-        the <Link to="https://github.com/lore/lore/tree/master/examples/dialogs-material-ui">Material UI Dialog example</Link>.
+        the <a href="https://github.com/lore/lore/tree/master/examples/dialogs-bootstrap">Bootstrap Dialog example</a> or
+        the <a href="https://github.com/lore/lore/tree/master/examples/dialogs-material-ui">Material UI Dialog example</a>.
       </p>
 
     </Template>

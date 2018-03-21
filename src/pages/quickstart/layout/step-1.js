@@ -14,7 +14,7 @@ export default (props) => {
       </h1>
 
       <p>
-        In this step we're going to add <Link to="http://getbootstrap.com">Bootstrap</Link> for some quick styling support.
+        In this step we're going to add <a href="http://getbootstrap.com">Bootstrap</a> for some quick styling support.
       </p>
 
       <QuickstartBranch branch="layout.1" />

@@ -20,7 +20,7 @@ export default (props) => {
         <p>
           This section is currently very empty, but will be filled in gradually as the related features of Lore are
           better supported and/or documented. In the meantime, each config file is somewhat self-documented, so feel free
-          to explore and <Link to="https://github.com/lore/lore/issues">file an issue</Link> if you have any questions.
+          to explore and <a href="https://github.com/lore/lore/issues">file an issue</a> if you have any questions.
         </p>
       </blockquote>
     </Template>

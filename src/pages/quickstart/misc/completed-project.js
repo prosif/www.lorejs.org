@@ -41,7 +41,7 @@ export default (props) => {
 
       <blockquote>
         <p>
-          If you're developing on Mac or Windows, you can also use the excellent (and official) <Link to="https://desktop.github.com/">GitHub Desktop Client</Link>.
+          If you're developing on Mac or Windows, you can also use the excellent (and official) <a href="https://desktop.github.com/">GitHub Desktop Client</a>.
         </p>
       </blockquote>
     </Template>

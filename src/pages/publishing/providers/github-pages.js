@@ -13,7 +13,7 @@ export default (props) => {
         Publishing to GitHub Pages
       </h1>
       <p>
-        Instructions for publishing to <Link to="https://pages.github.com">GitHub Pages</Link>.
+        Instructions for publishing to <a href="https://pages.github.com">GitHub Pages</a>.
       </p>
 
       <blockquote>
@@ -72,7 +72,7 @@ export default (props) => {
 
       {/*<!--<h3>Publish Your Project to a User Repository</h3>-->*/}
       {/*<!--<p>-->*/}
-      {/*<!--If you want to publish your project instead to a <Link to="https://help.github.com/articles/user-organization-and-project-pages/#user&#45;&#45;organization-pages">user or organization webpage</Link>,-->*/}
+      {/*<!--If you want to publish your project instead to a <a href="https://help.github.com/articles/user-organization-and-project-pages/#user&#45;&#45;organization-pages">user or organization webpage</a>,-->*/}
       {/*<!--like <code>http://fluffykittens.github.io</code> with no project extension (like /furballs) then you'll need to make-->*/}
       {/*<!--sure your repository is named <code>[username].github.io</code>. When you publish, you'll also need to add an-->*/}
       {/*<!--argument for the branch to set it to <code>master</code>.-->*/}
@@ -148,7 +148,7 @@ export default (props) => {
 
       <p>
         If you want to go this approach and buy a custom domain, and don't already have a DNS provider (or want to switch
-        from the one you currently have), I highly recommend <Link to="https://dnsimple.com">DNSimple</Link>.
+        from the one you currently have), I highly recommend <a href="https://dnsimple.com">DNSimple</a>.
       </p>
     </Template>
   )

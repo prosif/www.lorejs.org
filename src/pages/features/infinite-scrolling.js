@@ -525,7 +525,7 @@ export default (props) => {
 
       <p>
         We won't do that here, but for a working example that does (including an example of error handling) see the
-        <Link to="https://github.com/lore/lore/tree/master/examples/infinite-scrolling">infinite-scrolling example</Link> on GitHub.
+        <a href="https://github.com/lore/lore/tree/master/examples/infinite-scrolling">infinite-scrolling example</a> on GitHub.
       </p>
 
 

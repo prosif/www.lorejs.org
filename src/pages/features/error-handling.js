@@ -23,7 +23,7 @@ export default (props) => {
       </h3>
       <p>
         This video demonstrates what error handling looks like. Screenshots are from the <em>Simply Social</em> prototype
-        that <Link to="https://www.invisionapp.com/">Invision</Link> provides you when you sign up for an account.
+        that <a href="https://www.invisionapp.com/">Invision</a> provides you when you sign up for an account.
       </p>
 
       <Video videoId="rQagIXhEK7s" />

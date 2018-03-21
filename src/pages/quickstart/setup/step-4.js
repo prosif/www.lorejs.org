@@ -12,7 +12,7 @@ export default (props) => {
         Step 4: Setup the Mock API Server
       </h1>
       <p>
-        To emulate a real application, this quickstart will be using <Link to="https://github.com/typicode/json-server">json-server</Link>
+        To emulate a real application, this quickstart will be using <a href="https://github.com/typicode/json-server">json-server</a>
         to provide a mock API.
       </p>
 

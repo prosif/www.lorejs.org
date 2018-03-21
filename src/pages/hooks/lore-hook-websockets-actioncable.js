@@ -13,14 +13,14 @@ export default (props) => {
         lore-hook-websockets-actioncable
       </h1>
       <p>
-        Source code for this hook can be found on GitHub <Link to="https://github.com/lore/lore/tree/master/packages/lore-hook-websockets-actioncable">at this link</Link>.
+        Source code for this hook can be found on GitHub <a href="https://github.com/lore/lore/tree/master/packages/lore-hook-websockets-actioncable">at this link</a>.
       </p>
 
       <h2>
         Purpose
       </h2>
       <p>
-        This hook is built on top of the <Link to="https://github.com/lore/lore/tree/master/packages/lore-websockets">lore-websockets</Link>
+        This hook is built on top of the <a href="https://github.com/lore/lore/tree/master/packages/lore-websockets">lore-websockets</a>
         library and implements the interface for ActionCable.
       </p>
 
@@ -28,7 +28,7 @@ export default (props) => {
         Example
       </h2>
       <p>
-        See the <Link to="https://github.com/lore/lore/tree/master/examples/websockets">websockets example</Link> to see this hook in action.
+        See the <a href="https://github.com/lore/lore/tree/master/examples/websockets">websockets example</a> to see this hook in action.
       </p>
 
       <h2>

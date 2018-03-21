@@ -19,7 +19,7 @@ export default (props) => {
 
       <p>
         At the end of this section your application will look like this (visually identical) but will be running on a real
-        web server hosted by <Link to="http://surge.sh">surge.sh</Link>:
+        web server hosted by <a href="http://surge.sh">surge.sh</a>:
       </p>
 
       <img className="drop-shadow" src="/assets/images/quickstart/filtering/step-1.png" />

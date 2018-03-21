@@ -309,7 +309,7 @@ export default (props) => {
       <p>
         That's a little better, but what's up with that ugly timestamp of <code>2016-10-04T05:10:49.382Z</code>? That's not what we want;
         we want a clear statement like <code>3 days</code> to show how old the Tweet is. Luckily we can easily fix that using a library
-        called <Link to="http://momentjs.com/">moment</Link>. Moment is a date/time library for Javascript, and it's a great
+        called <a href="http://momentjs.com/">moment</a>. Moment is a date/time library for Javascript, and it's a great
         tool for converting timestamps to a more human-friendly format.
       </p>
 

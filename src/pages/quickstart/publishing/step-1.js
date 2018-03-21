@@ -27,14 +27,14 @@ export default (props) => {
         Webpack
       </h3>
       <p>
-        Lore uses <Link to="https://webpack.js.org">Webpack</Link> for the build system. If you're new to webpack, you may find
-        <Link to="https://egghead.io/courses/using-webpack-for-production-javascript-applications">this video series by Kent Dodds</Link>
+        Lore uses <a href="https://webpack.js.org">Webpack</a> for the build system. If you're new to webpack, you may find
+        <a href="https://egghead.io/courses/using-webpack-for-production-javascript-applications">this video series by Kent Dodds</a>
         helpful for getting up to speed quickly.
       </p>
 
       <p>
         The config file for webpack is located at the root of the project and called <code>webpack.config.js</code>. It uses a library
-        called <Link to="https://github.com/kentcdodds/webpack-config-utils">webpack-config-utils</Link> developed by Kent Dodds in order
+        called <a href="https://github.com/kentcdodds/webpack-config-utils">webpack-config-utils</a> developed by Kent Dodds in order
         to allow multiple environment configurations to live within the same config file, such as different configurations
         for development and production.
       </p>
@@ -56,7 +56,7 @@ export default (props) => {
 
       <p>
         It's entirely possible you may never need to modify the config file. If you do, you can learn
-        about the <Link to="https://webpack.js.org/configuration">configuration options in the official webpack documentation</Link>.
+        about the <a href="https://webpack.js.org/configuration">configuration options in the official webpack documentation</a>.
       </p>
 
       <h3>
@@ -211,7 +211,7 @@ export default (props) => {
       </h3>
       <p>
         It is often useful to be able to test the production build locally, before deploying it to the remote
-        server. One simple way to do this is by install the <Link to="https://github.com/tj/serve">serve</Link> library,
+        server. One simple way to do this is by install the <a href="https://github.com/tj/serve">serve</a> library,
         using <code>npm install -g serve</code>.
       </p>
 

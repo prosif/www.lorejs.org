@@ -161,7 +161,7 @@ export default (props) => {
       </h2>
       <p>
         WebSockets is absolutely a focus area for Lore, and beta support is already integrated, which you can see in the
-        <Link to="https://github.com/lore/lore/tree/master/examples/websockets">websockets example</Link> if you're curious. In time the
+        <a href="https://github.com/lore/lore/tree/master/examples/websockets">websockets example</a> if you're curious. In time the
         Quickstart be expanded to demonstrate it as well. But for now, it lives "behind the scenes" until some higher priority
         features are finished (like an elegant solution for creating forms and handling form validation).
       </p>
@@ -172,7 +172,7 @@ export default (props) => {
       <p>
         That's all for now. If you have any questions, issues, features requests, ideas to improve the user experience, or
         just want additional thoughts about how to solve a front-end challenge with Lore, don't hesitate to
-        <Link to="https://github.com/lore/lore/issues">submit an issue</Link> with your thoughts!
+        <a href="https://github.com/lore/lore/issues">submit an issue</a> with your thoughts!
       </p>
 
     </Template>

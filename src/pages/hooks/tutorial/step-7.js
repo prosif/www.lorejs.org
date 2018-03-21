@@ -64,7 +64,7 @@ export default (props) => {
       </p>
 
       <p>
-        But if you plan on <Link to="https://docs.npmjs.com/audience/publishing-npm-packages">publishing your hook to npm</Link>, this
+        But if you plan on <a href="https://docs.npmjs.com/audience/publishing-npm-packages">publishing your hook to npm</a>, this
         may cause problems with projects that consume the code if those projects aren't configured with the same babel presets
         and plugins as your project. In order to make sure your hook works well with any project, it's recommended that you
         modify the <code>main</code> property of your <code>package.json</code> to point to <code>lib/index.js</code> before publishing, so that projects will

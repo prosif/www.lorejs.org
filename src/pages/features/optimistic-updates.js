@@ -212,8 +212,8 @@ export default (props) => {
 
       <p>
         See the call to create the Post at the top, that looks like <code>var model = new Post(params)</code>? The <code>Post</code> constructor
-        there is an instance of <Link to="https://github.com/lore/lore/tree/master/packages/lore-models">lore-models</Link>, the interface
-        and behavior of which is heavily inspired by <Link to="http://backbonejs.org/">Backbone's Models and Collections</Link>. Once the
+        there is an instance of <a href="https://github.com/lore/lore/tree/master/packages/lore-models">lore-models</a>, the interface
+        and behavior of which is heavily inspired by <a href="http://backbonejs.org/">Backbone's Models and Collections</a>. Once the
         post instance is created, the data for the resulting <code>model</code> looks like this:
       </p>
 

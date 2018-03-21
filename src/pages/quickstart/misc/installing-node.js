@@ -26,11 +26,11 @@ export default (props) => {
       </p>
 
       <p>
-        If you are on a Mac, you can use <Link to="https://github.com/creationix/nvm">nvm</Link>.
+        If you are on a Mac, you can use <a href="https://github.com/creationix/nvm">nvm</a>.
       </p>
 
       <p>
-        If you are on a Windows machine, you can use <Link to="https://github.com/coreybutler/nvm-windows">nvm-windows</Link>.
+        If you are on a Windows machine, you can use <a href="https://github.com/coreybutler/nvm-windows">nvm-windows</a>.
       </p>
     </Template>
   )

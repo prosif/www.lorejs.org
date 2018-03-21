@@ -13,7 +13,7 @@ export default (props) => {
         Publishing to Surge
       </h1>
       <p>
-        Instructions for publishing to <Link to="https://surge.sh">Surge</Link>.
+        Instructions for publishing to <a href="https://surge.sh">Surge</a>.
       </p>
 
       <h3>

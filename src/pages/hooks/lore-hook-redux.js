@@ -13,14 +13,14 @@ export default (props) => {
         lore-hook-redux
       </h1>
       <p>
-        Source code for this hook can be found on GitHub <Link to="https://github.com/lore/lore/tree/master/packages/lore-hook-redux">at this link</Link>.
+        Source code for this hook can be found on GitHub <a href="https://github.com/lore/lore/tree/master/packages/lore-hook-redux">at this link</a>.
       </p>
 
       <h2>
         Purpose
       </h2>
       <p>
-        This hooks is responsible for creating the <Link to="http://redux.js.org/docs/basics/Store.html">Redux Store</Link> and applying
+        This hooks is responsible for creating the <a href="http://redux.js.org/docs/basics/Store.html">Redux Store</a> and applying
         any desired middleware.
       </p>
 
@@ -135,7 +135,7 @@ export default (props) => {
 
       <p>
         For example, in some environments (like development) you might want to override just the middleware, and apply apply
-        a store enhancer to enable the <Link to="https://github.com/gaearon/redux-devtools">Redux DevTools</Link>, but leave the rest of
+        a store enhancer to enable the <a href="https://github.com/gaearon/redux-devtools">Redux DevTools</a>, but leave the rest of
         the creation process the same.
       </p>
 

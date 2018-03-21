@@ -18,7 +18,7 @@ export default (props) => {
       </p>
 
       <p>
-        You can learn more about reducers <Link to="http://redux.js.org/docs/basics/Reducers.html">in the official Redux documentation</Link>.
+        You can learn more about reducers <a href="http://redux.js.org/docs/basics/Reducers.html">in the official Redux documentation</a>.
       </p>
 
       <p>

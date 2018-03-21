@@ -13,7 +13,7 @@ export default (props) => {
         Routing
       </h1>
       <p>
-        Lore uses <Link to="https://github.com/reactjs/react-router">React-Router</Link> for the routing tier. There isn't
+        Lore uses <a href="https://github.com/reactjs/react-router">React-Router</a> for the routing tier. There isn't
         much the framework can do to make it easier to use (it's pretty straight forward) but this page will be filled
         with common examples overtime.
       </p>

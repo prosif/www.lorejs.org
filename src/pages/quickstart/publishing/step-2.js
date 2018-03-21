@@ -27,8 +27,8 @@ export default (props) => {
         Choosing a Production Host
       </h3>
       <p>
-        There are a number of popular options for serving static content, with two popular ones being <Link to="http://surge.sh">Surge</Link>
-        and <Link to="https://pages.github.com">GitHub Pages</Link>. Not all options have similar feature sets though, and you can see a
+        There are a number of popular options for serving static content, with two popular ones being <a href="http://surge.sh">Surge</a>
+        and <a href="https://pages.github.com">GitHub Pages</a>. Not all options have similar feature sets though, and you can see a
         comparison between Surge and GitHub Pages in the "Feature Comparison" video <Link to="/publishing/">at this link</Link>.
       </p>
 

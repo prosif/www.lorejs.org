@@ -64,7 +64,7 @@ export default (props) => {
       <p>
         This file is where you define overrides for the default routing behavior. Currently the only option here is how you
         want your routing displayed; using hash history or push state. You can find more information about these options
-        on the <Link to="https://github.com/ReactJSTraining/history">GitHub page for the <code>history</code> library</Link>.
+        on the <a href="https://github.com/ReactJSTraining/history">GitHub page for the <code>history</code> library</a>.
       </p>
 
       <blockquote>

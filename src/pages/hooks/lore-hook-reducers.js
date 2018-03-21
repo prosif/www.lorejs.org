@@ -17,7 +17,7 @@ export default (props) => {
         This hook creates the set of default reducers for every model.
       </p>
       <p>
-        To learn more about the behavior of this hook, see the <Link to="/reducers">Reducers documentation</Link>.
+        To learn more about the behavior of this hook, see the <Link to="/reducers/">Reducers documentation</Link>.
       </p>
 
       <h2>
@@ -25,7 +25,7 @@ export default (props) => {
       </h2>
       <p>
         To learn more about the configuration options for this hook, see the documentation
-        for <Link to="/anatomy/config/reducers">config/reducers.js</Link>.
+        for <Link to="/anatomy/config/reducers/">config/reducers.js</Link>.
       </p>
     </Template>
   )

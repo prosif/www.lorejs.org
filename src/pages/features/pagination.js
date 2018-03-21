@@ -361,7 +361,7 @@ export default (props) => {
         links. Instead you would want to calculate the number of pages based on the total number of <code>Posts</code> in the API (something
         the API should tell you in the result set) divided by the number of Posts in each page. For example, if the API told
         you there were 102 Posts, and you were retrieving 20 posts per page of data, then you tell the user there are 6 pages
-        of data. For an example of how to do this, see the <Link to="https://github.com/lore/lore/tree/master/examples/pagination">pagination example</Link>
+        of data. For an example of how to do this, see the <a href="https://github.com/lore/lore/tree/master/examples/pagination">pagination example</a>
         on GitHub.
       </p>
 

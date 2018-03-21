@@ -13,7 +13,7 @@ export default (props) => {
         lore-hook-bind-actions
       </h1>
       <p>
-        Source code for this hook can be found on GitHub <Link to="https://github.com/lore/lore/tree/master/packages/lore-hook-bind-actions">at this link</Link>.
+        Source code for this hook can be found on GitHub <a href="https://github.com/lore/lore/tree/master/packages/lore-hook-bind-actions">at this link</a>.
       </p>
 
       <h2>
@@ -48,7 +48,7 @@ export default (props) => {
       `}/>
 
       <p>
-        If you read the <Link to="http://redux.js.org/docs/api/bindActionCreators.html">Redux docs for bindActionCreators</Link> you'll notice
+        If you read the <a href="http://redux.js.org/docs/api/bindActionCreators.html">Redux docs for bindActionCreators</a> you'll notice
         that action creators are not normally bound to the Redux store. They're "pure" in the sense that they're just a
         function with some arguments. The <code>bindActionCreators</code> method is what actually takes the <code>dispatch</code> method
         from the Redux store and binds it to the action creator, so it can dispatch messages to the Store.

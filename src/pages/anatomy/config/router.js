@@ -43,7 +43,7 @@ export default (props) => {
         history
       </h4>
       <p>
-        The <Link to="https://github.com/ReactTraining/react-router/blob/master/docs/guides/Histories.md">type of router history</Link> you
+        The <a href="https://github.com/ReactTraining/react-router/blob/master/docs/guides/Histories.md">type of router history</a> you
         want to use in your application. Typically <code>browserHistory</code> if you want to use pushState routes like
         <code>https://www.myapp.com/posts/1</code> or <code>hashHistory</code> if you want to use hash-bang (#) style routes like
         <code>https://www.myapp.com/#/posts/1</code>.

@@ -13,7 +13,7 @@ export default (props) => {
         lore-hook-polling
       </h1>
       <p>
-        Source code for this hook can be found on GitHub <Link to="https://github.com/lore/lore/tree/master/packages/lore-hook-polling">at this link</Link>.
+        Source code for this hook can be found on GitHub <a href="https://github.com/lore/lore/tree/master/packages/lore-hook-polling">at this link</a>.
       </p>
 
       <h2>
