@@ -57,10 +57,15 @@ export default (props) => {
             <NavLink title="Overview" url="/quickstart/dialogs/overview/" />
             <NavLink title="1. Add Create Button" url="/quickstart/dialogs/step-1/" />
             <NavLink title="2. Mounting Dialogs" url="/quickstart/dialogs/step-2/" />
-            <NavLink title="3. Use Hook for Dialogs" url="/quickstart/dialogs/step-3/" />
-            <NavLink title="4. Add Create Dialog" url="/quickstart/dialogs/step-4/" />
-            <NavLink title="5. Add Edit Dialog" url="/quickstart/dialogs/step-5/" />
-            <NavLink title="6. Add Delete Dialog" url="/quickstart/dialogs/step-6/" />
+            <NavLink title="3. Add Create Dialog" url="/quickstart/dialogs/step-3/" />
+            <NavLink title="4. Simplify Dialog" url="/quickstart/dialogs/step-4/" />
+            <NavLink title="5. Generate Dialogs via Hook" url="/quickstart/dialogs/step-5/" />
+            <NavLink title="6. Add Edit Dialog" url="/quickstart/dialogs/step-6/" />
+            <NavLink title="7. Add Delete Dialog" url="/quickstart/dialogs/step-7/" />
+
+            <li className="doc-section">Behavior</li>
+            <NavLink title="Overview" url="/quickstart/behavior/overview/" />
+            <NavLink title="1. Display Tweets Immediately" url="/quickstart/behavior/step-1/" />
 
             <li className="doc-section">Authentication</li>
             <NavLink title="Overview" url="/quickstart/authentication/overview/" />

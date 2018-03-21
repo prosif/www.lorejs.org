@@ -14,7 +14,8 @@ export default (props) => {
       </h1>
 
       <p>
-        In this step we're going to use the <code>connect</code> decorator to enable our Tweet component to declare what data it needs.
+        In this step we're going to use the <code>connect</code> decorator to enable our Tweet component to
+        declare what data it needs.
       </p>
 
       <QuickstartBranch branch="fetching.3" />
@@ -23,8 +24,9 @@ export default (props) => {
         The Connect Decorator
       </h3>
       <p>
-        Lore provides a decorator (also known as a Higher Order Component) that allows components to declare what data they
-        need, and the framework will automatically retrieve it from the API if it doesn't exist in the local store.
+        Lore provides a decorator (also known as a Higher Order Component) that allows components to declare
+        what data they need, and the framework will automatically retrieve it from the API if it doesn't exist
+        in the local store.
       </p>
 
       <p>
@@ -60,24 +62,26 @@ export default (props) => {
 
       <blockquote>
         <p>
-          You can learn more about configuring <code>connect</code> in the <Link to="/concepts/core/connect/">concept
-          documentation</Link>.
+          You can learn more about <code>connect</code> in the <Link to="/connect/">documentation</Link>.
         </p>
       </blockquote>
 
       <p>
-        The first parameter <code>getState</code> is a function that will retrieve a piece of state from the local store, or invoke the
-        appropriate action to fetch that data if it doesn't already exist (i.e. it hasn't been fetched from the server before).
+        The first parameter <code>getState</code> is a function that will retrieve a piece of state from the local
+        store, or invoke the appropriate action to fetch that data if it doesn't already exist (i.e. it hasn't been
+        fetched from the server before).
       </p>
 
       <p>
-        In this example, we're requesting <code>tweet.find</code>. The <code>find</code> reducer is responsible for storing the results of all query
-        and pagination requests made to the server. Since we aren't passing in any query parameters or pagination information,
-        this request translates to <em>"make a call to the /tweets endpoint on the API and give me whatever comes back"</em>.
+        In this example, we're requesting <code>tweet.find</code>. The <code>find</code> reducer is responsible for
+        storing the results of all query and pagination requests made to the server. Since we aren't passing in any
+        query parameters or pagination information, this request translates to <em>"make a call to the /tweets
+        endpoint on the API and give me whatever comes back"</em>.
       </p>
 
       <p>
-        That data will then be passed to our Feed component as <code>tweets</code> since that is what we named the key.
+        That data will then be passed to our Feed component as <code>tweets</code> since that is what we named
+        the key.
       </p>
 
       <h3>
@@ -136,8 +140,8 @@ export default (props) => {
       </CodeTabs>
 
       <p>
-        Once you've wrapped the <code>Feed</code> component, reload the page, and you'll notice the mock data has been replaced by real
-        data from the API!
+        Once you've wrapped the <code>Feed</code> component, reload the page, and you'll notice the mock data has
+        been replaced by real data from the API!
       </p>
 
       <h3>

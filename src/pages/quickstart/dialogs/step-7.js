@@ -10,31 +10,29 @@ export default (props) => {
   return (
     <Template>
       <h1>
-        Step 6: Add Edit Dialog
+        Step 7: Add Delete Link
       </h1>
 
       <p>
-        In this step we're going to add an "edit" link to tweets that will launch a dialog to edit the text.
+        In this step we're going to add a "delete" link to tweets that will launch a dialog to delete the tweet.
       </p>
 
-      <QuickstartBranch branch="dialogs.5" />
+      <QuickstartBranch branch="dialogs.6" />
 
       <h3>
         Create Edit Link
       </h3>
       <p>
-        Run this command to create a component for our edit link:
+        Run this command to create a component for our delete link:
       </p>
 
       <Markdown type="sh" text={`
-      lore generate component EditLink
+      lore generate component DeleteLink
       `}/>
 
       <p>
         Next update the content of the component to look like this. We're going to integrate an <code>onClick</code>
-        handler that will launch and edit dialog when the link is clicked. Unlike the create dialog, we also need to pass
-        in a <code>model</code> that contains the current data. This is required in order to populate the dialog with the existing data
-        we want to edit.
+        handler that will launch a confirmation dialog when the link is clicked.
       </p>
 
       <CodeTabs>
@@ -44,31 +42,31 @@ export default (props) => {
         import PropTypes from 'prop-types';
 
         export default createReactClass({
-          displayName: 'EditLink',
+          displayName: 'DeleteLink',
 
           propTypes: {
             tweet: PropTypes.object.isRequired
           },
 
-          onEdit: function() {
+          onDestroy: function() {
             const { tweet } = this.props;
 
-            function updateTweet(params) {
-              lore.actions.tweet.update(tweet, params);
+            function destroyTweet() {
+              lore.actions.tweet.destroy(tweet);
             }
 
             lore.dialog.show(function() {
-              return lore.dialogs.tweet.update({
+              return lore.dialogs.tweet.destroy({
                 model: tweet,
-                onSubmit: updateTweet
+                onSubmit: destroyTweet
               });
             });
           },
 
           render: function() {
             return (
-              <a className="link" onClick={this.onEdit}>
-                edit
+              <a className="link" onClick={this.onDestroy}>
+                delete
               </a>
             );
           }
@@ -79,100 +77,100 @@ export default (props) => {
         import React from 'react';
         import PropTypes from 'prop-types';
 
-        class EditLink extends React.Component {
+        class DeleteLink extends React.Component {
 
           constructor(props) {
             super(props);
-            this.onEdit = this.onEdit.bind(this);
+            this.onDestroy = this.onDestroy.bind(this);
           }
 
-          onEdit() {
+          onDestroy() {
             const { tweet } = this.props;
 
-            function updateTweet(params) {
-              lore.actions.tweet.update(tweet, params);
+            function destroyTweet() {
+              lore.actions.tweet.destroy(tweet);
             }
 
             lore.dialog.show(function() {
-              return lore.dialogs.tweet.update({
+              return lore.dialogs.tweet.destroy({
                 model: tweet,
-                onSubmit: updateTweet
+                onSubmit: destroyTweet
               });
             });
           }
 
           render() {
             return (
-              <a className="link" onClick={this.onEdit}>
-                edit
+              <a className="link" onClick={this.onDestroy}>
+                delete
               </a>
             );
           }
 
         }
 
-        EditLink.propTypes = {
+        DeleteLink.propTypes = {
           tweet: PropTypes.object.isRequired
         };
 
-        export default EditLink;
+        export default DeleteLink;
         `}/>
         <CodeTab syntax="ESNext" text={`
         import React from 'react';
         import PropTypes from 'prop-types';
 
-        class EditLink extends React.Component {
+        class DeleteLink extends React.Component {
 
           constructor(props) {
             super(props);
-            this.onEdit = this.onEdit.bind(this);
+            this.onDestroy = this.onDestroy.bind(this);
           }
 
           static propTypes = {
             tweet: PropTypes.object.isRequired
           };
 
-          onEdit() {
+          onDestroy() {
             const { tweet } = this.props;
 
-            function updateTweet(params) {
-              lore.actions.tweet.update(tweet, params);
+            function destroyTweet() {
+              lore.actions.tweet.destroy(tweet);
             }
 
             lore.dialog.show(function() {
-              return lore.dialogs.tweet.update({
+              return lore.dialogs.tweet.destroy({
                 model: tweet,
-                onSubmit: updateTweet
+                onSubmit: destroyTweet
               });
             });
           }
 
           render() {
             return (
-              <a className="link" onClick={this.onEdit}>
-                edit
+              <a className="link" onClick={this.onDestroy}>
+                delete
               </a>
             );
           }
 
         }
 
-        export default EditLink;
+        export default DeleteLink;
         `}/>
       </CodeTabs>
 
       <h3>
-        Add an Edit Link to the Tweet
+        Add a Delete Link to the Tweet
       </h3>
       <p>
-        Next we want to add the edit link to each tweet. Open up the <code>Tweet</code> component and modify the render method to look
+        Next we want to add the delete link to each tweet. Open up the <code>Tweet</code> component and modify the render method to look
         like this:
       </p>
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
         ...
-        import EditLink from './EditLink';
+        import DeleteLink from './DeleteLink';
 
         ...
           render: function() {
@@ -196,6 +194,7 @@ export default (props) => {
                   </p>
                   <div>
                     <EditLink tweet={tweet} />
+                    <DeleteLink tweet={tweet} />
                   </div>
                 </div>
               </li>
@@ -205,8 +204,7 @@ export default (props) => {
         `}/>
         <CodeTab syntax="ES6" text={`
         ...
-        import EditLink from './EditLink';
-
+        import DeleteLink from './DeleteLink';
         ...
           render() {
             ...
@@ -229,6 +227,7 @@ export default (props) => {
                   </p>
                   <div>
                     <EditLink tweet={tweet} />
+                    <DeleteLink tweet={tweet} />
                   </div>
                 </div>
               </li>
@@ -238,8 +237,7 @@ export default (props) => {
         `}/>
         <CodeTab syntax="ESNext" text={`
         ...
-        import EditLink from './EditLink';
-
+        import DeleteLink from './DeleteLink';
         ...
           render() {
             ...
@@ -262,6 +260,7 @@ export default (props) => {
                   </p>
                   <div>
                     <EditLink tweet={tweet} />
+                    <DeleteLink tweet={tweet} />
                   </div>
                 </div>
               </li>
@@ -272,17 +271,18 @@ export default (props) => {
       </CodeTabs>
 
       <p>
-        With this change in place, refresh the browser and you should see an <em>"edit"</em> link on each of the tweets. Click this
-        link to edit the text. Once you submit it, if you look at the network requests, you'll see a PUT request is sent to
-        the API to update the tweet.
+        With this change in place, refresh the browser and you should see a <em>"delete"</em> link on each of the tweets. Click this
+        link and you'll be asked to confirm that you want to delete the tweet. Once you confirm, if you look at the network
+        requests, you'll see a DELETE request is sent to the API to delete the tweet.
       </p>
 
       <blockquote>
         <p>
-          The <code>state</code> of the tweet is also changed to <code>UPDATING</code>, so if this were a real application we could add an if
+          The <code>state</code> of the tweet is also changed to <code>DELETING</code>, so if this were a real application we could add an if
           statement to detect when data was being changed and modify our UI to communicate that to the user.
         </p>
       </blockquote>
+
 
       <h3>
         Visual Check-in
@@ -292,7 +292,7 @@ export default (props) => {
         If everything went well, your application should now look like this.
       </p>
 
-      <img className="drop-shadow" src="/assets/images/quickstart/dialogs/step-5.png" />
+      <img className="drop-shadow" src="/assets/images/quickstart/dialogs/step-6.png" />
 
       <h2>
         Code Changes
@@ -303,7 +303,7 @@ export default (props) => {
       </p>
 
       <h3>
-        src/components/EditLink.js
+        src/components/DeleteLink.js
       </h3>
 
       <CodeTabs>
@@ -313,31 +313,31 @@ export default (props) => {
         import PropTypes from 'prop-types';
 
         export default createReactClass({
-          displayName: 'EditLink',
+          displayName: 'DeleteLink',
 
           propTypes: {
             tweet: PropTypes.object.isRequired
           },
 
-          onEdit: function() {
+          onDestroy: function() {
             const { tweet } = this.props;
 
-            function updateTweet(params) {
-              lore.actions.tweet.update(tweet, params);
+            function destroyTweet() {
+              lore.actions.tweet.destroy(tweet);
             }
 
             lore.dialog.show(function() {
-              return lore.dialogs.tweet.update({
+              return lore.dialogs.tweet.destroy({
                 model: tweet,
-                onSubmit: updateTweet
+                onSubmit: destroyTweet
               });
             });
           },
 
           render: function() {
             return (
-              <a className="link" onClick={this.onEdit}>
-                edit
+              <a className="link" onClick={this.onDestroy}>
+                delete
               </a>
             );
           }
@@ -348,85 +348,85 @@ export default (props) => {
         import React from 'react';
         import PropTypes from 'prop-types';
 
-        class EditLink extends React.Component {
+        class DeleteLink extends React.Component {
 
           constructor(props) {
             super(props);
-            this.onEdit = this.onEdit.bind(this);
+            this.onDestroy = this.onDestroy.bind(this);
           }
 
-          onEdit() {
+          onDestroy() {
             const { tweet } = this.props;
 
-            function updateTweet(params) {
-              lore.actions.tweet.update(tweet, params);
+            function destroyTweet() {
+              lore.actions.tweet.destroy(tweet);
             }
 
             lore.dialog.show(function() {
-              return lore.dialogs.tweet.update({
+              return lore.dialogs.tweet.destroy({
                 model: tweet,
-                onSubmit: updateTweet
+                onSubmit: destroyTweet
               });
             });
           }
 
           render() {
             return (
-              <a className="link" onClick={this.onEdit}>
-                edit
+              <a className="link" onClick={this.onDestroy}>
+                delete
               </a>
             );
           }
 
         }
 
-        EditLink.propTypes = {
+        DeleteLink.propTypes = {
           tweet: PropTypes.object.isRequired
         };
 
-        export default EditLink;
+        export default DeleteLink;
         `}/>
         <CodeTab syntax="ESNext" text={`
         import React from 'react';
         import PropTypes from 'prop-types';
 
-        class EditLink extends React.Component {
+        class DeleteLink extends React.Component {
 
           constructor(props) {
             super(props);
-            this.onEdit = this.onEdit.bind(this);
+            this.onDestroy = this.onDestroy.bind(this);
           }
 
           static propTypes = {
             tweet: PropTypes.object.isRequired
           };
 
-          onEdit() {
+          onDestroy() {
             const { tweet } = this.props;
 
-            function updateTweet(params) {
-              lore.actions.tweet.update(tweet, params);
+            function destroyTweet() {
+              lore.actions.tweet.destroy(tweet);
             }
 
             lore.dialog.show(function() {
-              return lore.dialogs.tweet.update({
+              return lore.dialogs.tweet.destroy({
                 model: tweet,
-                onSubmit: updateTweet
+                onSubmit: destroyTweet
               });
             });
           }
 
           render() {
             return (
-              <a className="link" onClick={this.onEdit}>
-                edit
+              <a className="link" onClick={this.onDestroy}>
+                delete
               </a>
             );
           }
 
         }
 
-        export default EditLink;
+        export default DeleteLink;
         `}/>
       </CodeTabs>
 
@@ -442,6 +442,7 @@ export default (props) => {
         import { connect } from 'lore-hook-connect';
         import moment from 'moment';
         import EditLink from './EditLink';
+        import DeleteLink from './DeleteLink';
 
         export default connect(function(getState, props){
           const { tweet } = props;
@@ -486,6 +487,7 @@ export default (props) => {
                   </p>
                   <div>
                     <EditLink tweet={tweet} />
+                    <DeleteLink tweet={tweet} />
                   </div>
                 </div>
               </li>
@@ -501,6 +503,7 @@ export default (props) => {
         import { connect } from 'lore-hook-connect';
         import moment from 'moment';
         import EditLink from './EditLink';
+        import DeleteLink from './DeleteLink';
 
         class Tweet extends React.Component {
 
@@ -530,6 +533,7 @@ export default (props) => {
                   </p>
                   <div>
                     <EditLink tweet={tweet} />
+                    <DeleteLink tweet={tweet} />
                   </div>
                 </div>
               </li>
@@ -570,6 +574,7 @@ export default (props) => {
         import { connect } from 'lore-hook-connect';
         import moment from 'moment';
         import EditLink from './EditLink';
+        import DeleteLink from './DeleteLink';
 
         @connect(function(getState, props){
           const tweet = props.tweet;
@@ -613,6 +618,7 @@ export default (props) => {
                   </p>
                   <div>
                     <EditLink tweet={tweet} />
+                    <DeleteLink tweet={tweet} />
                   </div>
                 </div>
               </li>
@@ -630,7 +636,7 @@ export default (props) => {
       </h2>
 
       <p>
-        Next we're going to <Link to="../step-7/">create a way to delete tweets</Link>.
+        Next we're going to <Link to="../../behavior/overview/">learn how to implement an authentication flow</Link>.
       </p>
 
     </Template>

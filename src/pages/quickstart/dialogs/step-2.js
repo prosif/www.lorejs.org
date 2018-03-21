@@ -20,11 +20,26 @@ export default (props) => {
       <QuickstartBranch branch="dialogs.2" />
 
       <h3>
+        A Note about Hooks
+      </h3>
+      <p>
+        While it may not be obvious, <strong>Lore is essentially a plugin engine</strong>, and in fact most of
+        the functionality and conventions you've seen so far are implemented as a series of plugins that hook
+        into the framework.
+      </p>
+      <p>
+        Because of that, these plugins are referred to as <code>hooks</code>, and we're going to be downloading
+        and installing some additional hooks during this section in order to simplify the goal of mounting and
+        generating dialogs.
+      </p>
+
+      <h3>
         The Dialog Utility
       </h3>
       <p>
-        Lore includes a utility for mounting dialogs found through the method <code>lore.dialog.show(...)</code>. To explain what this
-        method does, open up <code>index.html</code> and find the element in the body with the id of <code>dialog</code>:
+        Lore includes a utility for mounting dialogs found through the method <code>lore.dialog.show(...)</code>. To
+        explain what this method does, open up <code>index.html</code> and find the element in the body with the
+        id of <code>dialog</code>:
       </p>
 
       <Markdown type="html" text={`
@@ -38,9 +53,9 @@ export default (props) => {
       `}/>
 
       <p>
-        When your application runs in the browser, Lore mounts it to the <code>root</code> element. The <code>dialog</code> element is the default
-        target for mounting dialogs, and the <code>lore.dialog.show(...)</code> method is a helper that renders a React component to
-        that element.
+        When your application runs in the browser, Lore mounts it to the <code>root</code> element. The <code>dialog</code> element
+        is the default target for mounting dialogs, and the <code>lore.dialog.show(...)</code> method is a helper
+        that renders a React component to that element.
       </p>
 
       <blockquote>
@@ -48,10 +63,10 @@ export default (props) => {
           Why have two separate mounting targets?
         </p>
         <p>
-          Lore renders dialogs outside the main application in order to prevent them from being nested inside other DOM
-          elements. If you nest dialogs inside other components those components can unintentionally affect the styling of
-          your dialogs (through classes applied to parent elements) or the behavior (such as parent components cancelling the
-          click events in your dialogs).
+          Lore renders dialogs outside the main application in order to prevent them from being nested inside
+          other DOM elements. If you nest dialogs inside other components those components can unintentionally
+          affect the styling of your dialogs (through classes applied to parent elements) or the behavior (such as
+          parent components cancelling the click events in your dialogs).
         </p>
       </blockquote>
 
@@ -59,7 +74,8 @@ export default (props) => {
         Mounting a Component
       </h3>
       <p>
-        To demonstrate this utility, replace the <code>onClick</code> behavior of our <code>CreateButton</code> component with this code:
+        To demonstrate this utility, replace the <code>onClick</code> behavior of our <code>CreateButton</code> component
+        with this code:
       </p>
 
       <CodeTabs>
@@ -99,9 +115,9 @@ export default (props) => {
       </CodeTabs>
 
       <p>
-        Now if you refresh the browser and click the button, you should see the text <em>"Dialog Placeholder"</em> appears at the
-        bottom of the screen (you may have to scroll down to see it). You can also inspect the <code>dialog</code> element to confirm
-        the component was mounted within the <code>dialog</code> element.
+        Now if you refresh the browser and click the button, you should see the text <em>"Dialog Placeholder"</em> appears
+        at the bottom of the screen (you may have to scroll down to see it). You can also inspect
+        the <code>dialog</code> element to confirm the component was mounted within the <code>dialog</code> element.
       </p>
 
       <p>

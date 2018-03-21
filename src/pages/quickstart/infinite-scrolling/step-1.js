@@ -1735,7 +1735,7 @@ export default (props) => {
       </h2>
 
       <p>
-        In the next section we'll add the ability to <Link to="../../filtering/overview">view all tweets or just the ones you created</Link>.
+        In the next section we'll add the ability to <Link to="../../filtering/overview/">view all tweets or just the ones you created</Link>.
       </p>
     </Template>
   )

@@ -10,110 +10,285 @@ export default (props) => {
   return (
     <Template>
       <h1>
-        Step 3: Lore Hooks / Dialog Generation
+        Step 3: Add Create Tweet Dialog
       </h1>
 
       <p>
-        In this step we're going to create and mount a Bootstrap dialog.
+        In this step we're going create a dialog that we can use to create tweets.
       </p>
 
       <QuickstartBranch branch="dialogs.3" />
 
       <h3>
-        Add Hook for Dialog Generation
+        Add Create Tweet Dialog
       </h3>
       <p>
-        While we could go through the steps of manually creating dialogs for creating, updating and deleting tweets, it's
-        pretty tedious, and has little to do Lore. So instead, we're going to install a package that will generate the dialogs
-        for us.
-      </p>
-
-      <p>
-        While it may not be obvious, Lore is essentially a plugin engine. Most of the functionality and conventions you've
-        seen so far are implemented as a series of plugins that hook into the framework. We're going to download and
-        install an additional hooks that will generate our dialogs for us.
-      </p>
-
-      <p>
-        Run the following command to install the package <code>lore-hook-dialogs-bootstrap</code>:
+        First, run this command to create the component we'll use to hold our dialog:
       </p>
 
       <Markdown type="sh" text={`
-      npm install lore-hook-dialogs-bootstrap --save
+      lore generate component CreateTweetDialog
       `}/>
 
       <p>
-        Next open up <code>index.js</code> and locate the call for <code>lore.summon(...)</code>. Here you can see
-        a list of all the hooks the framework includes by default. You've already seen some of these in action;
-        the <code>actions</code> hook converts your models into actions, the <code>reducers</code> hook creates
-        reducers for each of your models, and the <code>connect</code> hook adds the <code>connect</code> decorator
-        that invokes actions to fetch data if it doesn't exist in the store.
+        Next open the file and replace the contents with this:
       </p>
 
       <Markdown text={`
-      lore.summon({
-        hooks: {
-          auth,
-          actions,
-          bindActions,
-          collections,
-          connections,
-          connect,
-          models,
-          react,
-          reducers,
-          redux: _.extend(redux, {
-            dependencies: ['reducers', 'auth']
-          }),
-          router
+      import React from 'react';
+      import createReactClass from 'create-react-class';
+      import PropTypes from 'prop-types';
+      import _ from 'lodash';
+
+      export default createReactClass({
+        displayName: 'CreateTweetDialog',
+
+        propTypes: {
+          title: PropTypes.node,
+          description: PropTypes.node
+        },
+
+        getInitialState: function() {
+          return {
+            data: {
+              text: ''
+            }
+          };
+        },
+
+        componentDidMount: function() {
+          this.show();
+        },
+
+        show: function() {
+          const modal = this.refs.modal;
+          $(modal).modal('show');
+        },
+
+        dismiss: function() {
+          const modal = this.refs.modal;
+          $(modal).modal('hide');
+        },
+
+        onSubmit: function() {
+          const { data } = this.state;
+          lore.actions.tweet.create({
+            userId: 1,
+            text: data.text
+          });
+          this.dismiss();
+        },
+
+        onChange: function(name, value) {
+          const nextData = _.merge({}, this.state.data);
+          nextData[name] = value;
+          this.setState({
+            data: nextData
+          });
+        },
+
+        render: function() {
+          const { data } = this.state;
+
+          return (
+            <div ref="modal" className="modal fade">
+              <div className="modal-dialog">
+                <div className="modal-content">
+                  <div className="modal-header">
+                    <button type="button" className="close" onClick={this.dismiss}>
+                      <span>&times;</span>
+                    </button>
+                    <h4 className="modal-title">
+                      Create Tweet
+                    </h4>
+                  </div>
+                  <div className="modal-body">
+                    <div className="row">
+                      <div className="col-md-12">
+                        <div className="form-group">
+                          <label>Message</label>
+                          <textarea
+                            className="form-control"
+                            rows="3"
+                            value={data.text}
+                            placeholder="What's happening?"
+                            onChange={(event) => {
+                              this.onChange('text', event.target.value)
+                            }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="modal-footer">
+                    <div className="row">
+                      <div className="col-md-12">
+                        <button
+                          type="button"
+                          className="btn btn-default"
+                          onClick={this.dismiss}
+                        >
+                          Cancel
+                        </button>
+                        <button
+                          type="button"
+                          className="btn btn-primary"
+                          disabled={!data.text}
+                          onClick={this.onSubmit}
+                        >
+                          Create
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
         }
+
       });
       `}/>
-
       <p>
-        To use the hook we just installed, simply add it to the <code>hooks</code> object like this:
+        This code will give us a Bootstrap dialog we can use to create tweets. When launched, it will fade into
+        view, and allow us to enter the text for the tweet and submit it.
+      </p>
+      <blockquote>
+        <p>
+          You can learn more about Bootstrap dialogs (called Modals) in
+          the <a href="https://getbootstrap.com/docs/3.3/javascript/#modals">modal documentation</a> on the
+          Bootstrap website.
+        </p>
+      </blockquote>
+      <p>
+        The important part to call out here is the <code>onSubmit</code> handler. Once the user submits the dialog,
+        this function will be invoked. For now, we're simply going to log the data to the console, and then dismiss
+        the dialog.
       </p>
 
       <Markdown text={`
-      ...
-      import dialog from 'lore-hook-dialog';
-      import dialogs from 'lore-hook-dialogs-bootstrap';
-      ...
-
-      lore.summon({
-        hooks: {
-          ...
-          dialog,
-          dialogs,
-          models,
-          ...
-        }
-      });
+      onSubmit: function() {
+        const { data } = this.state;
+        console.log(data);
+        this.dismiss();
+      },
       `}/>
 
       <h3>
-        Try it Out (optional)
+        Show the Dialog
       </h3>
       <p>
-        This hook generates Bootstrap dialogs for every model in your application, and includes experiences for creating,
-        updating and deleting resources. Open up the developer console and enter the following command:
+        Next, update the <code>CreateButton</code> component to mount this dialog instead of our "Dialog Placeholder"
+        text:
       </p>
 
-      <Markdown text={`
-      lore.dialogs.tweet.create()
+      <Markdown type="sh" text={`
+      ...
+      import CreateTweetDialog from './CreateTweetDialog';
+
+      export default createReactClass({
+        ...
+        onClick: function() {
+          lore.dialog.show(function() {
+            return (
+              <CreateTweetDialog />
+            );
+          });
+        },
+        ...
+      });
       `}/>
 
       <p>
-        You'll see it returns a React component. If you provide this component to <code>lore.dialog.show(...)</code> you'll be able to
-        see the dialog be mounted onto the page:
+        Now, when you click the button to create a dialog, a real dialog appears, and you can even fill it and
+        submit the form, causing the data to be logged to the console.
+      </p>
+
+
+      <h3>
+        Save the Tweet
+      </h3>
+      <p>
+        Now we can launch a dialog and get the user input, but we aren't sending it to the API. Let's fix that.
+      </p>
+
+      <p>
+        Instead of logging the user data, we're going to pass it to the <code>tweet.create</code> action. Modify
+        the <code>onSubmit</code> callback to look like this (you'll also need to import <code>lodash</code> at the
+        top of the file):
+      </p>
+
+      <CodeTabs>
+        <CodeTab syntax="ES5" text={`
+        import _ from 'lodash';
+        ...
+          onSubmit() {
+            const { data } = this.state;
+            lore.actions.tweet.create(_.defaults(data, {
+              userId: 1,
+              createdAt: new Date().toISOString()
+            }));
+            this.dismiss();
+          },
+        ...
+        `}/>
+        <CodeTab syntax="ES6" text={`
+        import _ from 'lodash';
+        ...
+          onSubmit() {
+            const { data } = this.state;
+            lore.actions.tweet.create(_.defaults(data, {
+              userId: 1,
+              createdAt: new Date().toISOString()
+            }));
+            this.dismiss();
+          },
+        ...
+        `}/>
+        <CodeTab syntax="ESNext" text={`
+        import _ from 'lodash';
+        ...
+          onSubmit() {
+            const { data } = this.state;
+            lore.actions.tweet.create(_.defaults(data, {
+              userId: 1,
+              createdAt: new Date().toISOString()
+            }));
+            this.dismiss();
+          },
+        ...
+        `}/>
+      </CodeTabs>
+
+      <p>
+        Now when you submit a tweet, the action will send the data to the API. Try it out!
+      </p>
+      <p>
+        It's important to point out that the tweets you create <strong>will not appear on the page</strong> until
+        you refresh the browser. We'll learn how to change that behavior later in the Quickstart, so that the tweets
+        we create will show up at the top of the Feed.
+      </p>
+
+      <h3>
+        What's up with the _.defaults call?
+      </h3>
+
+      <p>
+        Under normal circumstances our action call would only look like this (with no call to <code>_.defaults(...)</code>):
       </p>
 
       <Markdown text={`
-      lore.dialog.show(function() { return lore.dialogs.tweet.create(); })
+      lore.actions.tweet.create(data);
       `}/>
 
       <p>
-        Right now the result isn't very useful, because there aren't any fields. We'll fix that in the next step.
+        But because we're currently using a mock API through <code>json-server</code> some fields that would normally
+        be created by the API (like <code>userId</code> and <code>createdAt</code>) won't exist on the data, and this
+        can break our application code. So for now, we're simply going to create those server-generated properties
+        on the client-side when we create the data.
+      </p>
+      <p>
+        Later in the quickstart, we'll switch to a real API and will be able to delete this modification.
       </p>
 
 
@@ -125,7 +300,7 @@ export default (props) => {
         If everything went well, your application should now look like this.
       </p>
 
-      <img className="drop-shadow" src="/assets/images/quickstart/dialogs/step-3.png" />
+      {/*<img className="drop-shadow" src="/assets/images/quickstart/dialogs/step-3.png" />*/}
 
       <h2>
         Code Changes
@@ -141,136 +316,13 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        import lore from 'lore';
-        import _ from 'lodash';
-
-        // Allows you to access your lore app globally as well as from within
-        // the console. Remove this line if you don't want to be able to do that.
-        window.lore = lore;
-
-        // Hooks
-        import auth from 'lore-hook-auth';
-        import actions from 'lore-hook-actions';
-        import bindActions from 'lore-hook-bind-actions';
-        import collections from 'lore-hook-collections';
-        import connections from 'lore-hook-connections';
-        import connect from 'lore-hook-connect';
-        import dialog from 'lore-hook-dialog-bootstrap';
-        import dialogs from 'lore-hook-dialogs-bootstrap';
-        import models from 'lore-hook-models';
-        import react from 'lore-hook-react';
-        import reducers from 'lore-hook-reducers';
-        import redux from 'lore-hook-redux';
-        import router from 'lore-hook-router';
-
-        // Summon the app!
-        lore.summon({
-          hooks: {
-            auth,
-            actions,
-            bindActions,
-            collections,
-            connections,
-            connect,
-            dialog,
-            dialogs,
-            models,
-            react,
-            reducers,
-            redux: _.extend(redux, {
-              dependencies: ['reducers', 'auth']
-            }),
-            router
-          }
-        });
+        TODO
         `}/>
         <CodeTab syntax="ES6" text={`
-        import lore from 'lore';
-        import _ from 'lodash';
-
-        // Allows you to access your lore app globally as well as from within
-        // the console. Remove this line if you don't want to be able to do that.
-        window.lore = lore;
-
-        // Hooks
-        import auth from 'lore-hook-auth';
-        import actions from 'lore-hook-actions';
-        import bindActions from 'lore-hook-bind-actions';
-        import collections from 'lore-hook-collections';
-        import connections from 'lore-hook-connections';
-        import connect from 'lore-hook-connect';
-        import dialog from 'lore-hook-dialog-bootstrap';
-        import dialogs from 'lore-hook-dialogs-bootstrap';
-        import models from 'lore-hook-models';
-        import react from 'lore-hook-react';
-        import reducers from 'lore-hook-reducers';
-        import redux from 'lore-hook-redux';
-        import router from 'lore-hook-router';
-
-        // Summon the app!
-        lore.summon({
-          hooks: {
-            auth,
-            actions,
-            bindActions,
-            collections,
-            connections,
-            connect,
-            dialog,
-            dialogs,
-            models,
-            react,
-            reducers,
-            redux: _.extend(redux, {
-              dependencies: ['reducers', 'auth']
-            }),
-            router
-          }
-        });
+        TODO
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import lore from 'lore';
-        import _ from 'lodash';
-
-        // Allows you to access your lore app globally as well as from within
-        // the console. Remove this line if you don't want to be able to do that.
-        window.lore = lore;
-
-        // Hooks
-        import auth from 'lore-hook-auth';
-        import actions from 'lore-hook-actions';
-        import bindActions from 'lore-hook-bind-actions';
-        import collections from 'lore-hook-collections';
-        import connections from 'lore-hook-connections';
-        import connect from 'lore-hook-connect';
-        import dialog from 'lore-hook-dialog-bootstrap';
-        import dialogs from 'lore-hook-dialogs-bootstrap';
-        import models from 'lore-hook-models';
-        import react from 'lore-hook-react';
-        import reducers from 'lore-hook-reducers';
-        import redux from 'lore-hook-redux';
-        import router from 'lore-hook-router';
-
-        // Summon the app!
-        lore.summon({
-          hooks: {
-            auth,
-            actions,
-            bindActions,
-            collections,
-            connections,
-            connect,
-            dialog,
-            dialogs,
-            models,
-            react,
-            reducers,
-            redux: _.extend(redux, {
-              dependencies: ['reducers', 'auth']
-            }),
-            router
-          }
-        });
+        TODO
         `}/>
       </CodeTabs>
 

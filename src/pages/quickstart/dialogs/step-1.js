@@ -14,7 +14,8 @@ export default (props) => {
       </h1>
 
       <p>
-        In this step we're going to add a button to our application that will launch a dialog when the user clicks on it.
+        In this step we're going to add a button to our application that will launch a dialog when the user clicks
+        on it.
       </p>
 
       <QuickstartBranch branch="dialogs.1" />
@@ -31,8 +32,9 @@ export default (props) => {
       `}/>
 
       <p>
-        Modify the component to look like this. We're going to add some styling and an <code>onClick</code> callback that will launch
-        the create dialog. For now we'll just have the callback log that it was clicked to the console.
+        Modify the component to look like this. We're going to add some styling and an <code>onClick</code> callback
+        that will launch the create dialog. For now we'll just have the callback write a log to the console saying
+        it was clicked.
       </p>
 
       <CodeTabs>
@@ -116,7 +118,8 @@ export default (props) => {
         Add Button to Header
       </h3>
       <p>
-        Next open up the <code>Header</code> component. Import the <code>CreateButton</code> component and insert it into the render method:
+        Next open the <code>Header</code> component. Then import the <code>CreateButton</code> component and insert it
+        into the render method:
       </p>
 
       <CodeTabs>
