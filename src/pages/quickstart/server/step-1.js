@@ -22,8 +22,9 @@ export default (props) => {
         Clone the Server
       </h3>
       <p>
-        The server we'll need is in a repository on GitHub under <a href="https://github.com/lore/lore-tutorial-api">lore/lore-tutorial-api</a>.
-        Run this command to clone the server into your local environment:
+        The server we'll need is in a repository on GitHub
+        under <a href="https://github.com/lore/lore-tutorial-api">lore/lore-tutorial-api</a>. Run this command to
+        clone the server into your local environment:
       </p>
 
       <CodeTabs>
@@ -108,8 +109,8 @@ export default (props) => {
       </h3>
 
       <p>
-        At this point our application no longer works - this is epected. If you refresh your browser, you should see this
-        error in the console:
+        At this point our application no longer works - this is epected. If you refresh your browser, you should
+        see this error in the console:
       </p>
 
       <Markdown text={`

@@ -68,7 +68,6 @@ export default (props) => {
       <NavLink title="1. Clone the API Server" url="/quickstart/server/step-1/" />
       <NavLink title="2. Parse Server Response" url="/quickstart/server/step-2/" />
       <NavLink title="3. Add Authorization Header" url="/quickstart/server/step-3/" />
-      <NavLink title="4. Reset Store on Logout" url="/quickstart/server/step-4/" />
 
       <li className="doc-section">Pagination</li>
       <NavLink title="Overview" url="/quickstart/pagination/overview/" />
