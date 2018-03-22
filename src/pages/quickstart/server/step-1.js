@@ -52,7 +52,8 @@ export default (props) => {
         Stop the Mock API Server
       </h3>
       <p>
-        Once the dependencies are installed, **stop the mock server**. We'll need the port it's currently running on.
+        Once the dependencies are installed, <strong>stop the mock server</strong>. We'll need the port it's
+        currently running on.
       </p>
 
       <h3>

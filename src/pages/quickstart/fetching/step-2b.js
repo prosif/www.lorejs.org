@@ -14,9 +14,10 @@ export default (props) => {
       </h1>
 
       <p>
-        As you'll soon see, we now have all the code required to fetch tweets from the API. Lore accomplishes this using
-        a philosophy called **convention-over-configuration**. With this approach the framework makes some assumptions about
-        what you want, and then provides you with the ability to override those assumptions if you need to.
+        As you'll soon see, we now have all the code required to fetch tweets from the API. Lore accomplishes this
+        using a philosophy called <strong>convention-over-configuration</strong>. With this approach the framework
+        makes some assumptions about what you want, and then provides you with the ability to override those
+        assumptions if you need to.
       </p>
 
       <p>

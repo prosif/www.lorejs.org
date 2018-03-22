@@ -24,13 +24,14 @@ export default (props) => {
         Request Nested Data
       </h2>
       <p>
-        The first thing we need to do is update our <code>Feed</code> component to tell the API we want it to *populate* the <code>user</code>
-        field in each tweet. We can do that by adding an extra parameter to our request.
+        The first thing we need to do is update our <code>Feed</code> component to tell the API we want it
+        to <em>populate</em> the <code>user</code> field in each tweet. We can do that by adding an extra
+        parameter to our request.
       </p>
 
       <p>
-        Open up <code>src/components/Feed</code> and modify the <code>connect</code> call to look like this (adding the <code>populate</code> attribute
-        to the pagination parameters):
+        Open up <code>src/components/Feed</code> and modify the <code>connect</code> call to look like this
+        (adding the <code>populate</code> attribute to the pagination parameters):
       </p>
 
       <CodeTabs>

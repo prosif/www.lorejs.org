@@ -189,7 +189,7 @@ export default (props) => {
       </h4>
 
       <p>
-        If you *do* want to subscribe the component to changes in the Redux store (which should typically
+        If you <em>do</em> want to subscribe the component to changes in the Redux store (which should typically
         only be done for dialogs and the <code>Master</code> component) provide a second argument of options
         with <code>subscribe</code> set to <code>true</code>:
       </p>
@@ -211,10 +211,11 @@ export default (props) => {
       </h4>
 
       <p>
-        If you want to *force* the component to fetch data on mount, provide a third options argument to the <code>getState</code> call
-        setting <code>forceFetchOnMount</code> to <code>true</code>. This is useful when you need to create an experience that will always fetch
-        data again when the user navigates away from a page and back (emulating the behavior you would experience in a typical
-        server-side rendered application):
+        If you want to <em>force</em> the component to fetch data on mount, provide a third options argument
+        to the <code>getState</code> call setting <code>forceFetchOnMount</code> to <code>true</code>. This is
+        useful when you need to create an experience that will always fetch data again when the user navigates
+        away from a page and back (emulating the behavior you would experience in a typical server-side
+        rendered application):
       </p>
 
       <Markdown text={`

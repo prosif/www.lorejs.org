@@ -129,14 +129,15 @@ export default (props) => {
         Example Usage
       </h2>
       <p>
-        This hook essentially just breaks up the standard Redux store creation process into a single of functions that
-        can be overridden on a per-environment basis, so that you don't have to override the *entire* store creation process.
+        This hook essentially just breaks up the standard Redux store creation process into a single of
+        functions that can be overridden on a per-environment basis, so that you don't have to override
+        the <em>entire</em> store creation process.
       </p>
 
       <p>
-        For example, in some environments (like development) you might want to override just the middleware, and apply apply
-        a store enhancer to enable the <a href="https://github.com/gaearon/redux-devtools">Redux DevTools</a>, but leave the rest of
-        the creation process the same.
+        For example, in some environments (like development) you might want to override just the middleware, and
+        apply apply a store enhancer to enable the <a href="https://github.com/gaearon/redux-devtools">Redux
+        DevTools</a>, but leave the rest of the creation process the same.
       </p>
 
       <p>

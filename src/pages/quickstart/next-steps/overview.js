@@ -25,14 +25,15 @@ export default (props) => {
       </h2>
 
       <p>
-        Ever since we introduced pagination, new tweets stopped showing up in the Feed when you create them. This certainly
-        doesn't match the expected user experience. The reason for this is that the application doesn't know what to do with
-        the new tweets you create. What the application is displaying is exactly what you asked for; the first page of tweets.
+        Ever since we introduced pagination, new tweets stopped showing up in the Feed when you create them.
+        This certainly doesn't match the expected user experience. The reason for this is that the application
+        doesn't know what to do with the new tweets you create. What the application is displaying is exactly
+        what you asked for; the first page of tweets.
       </p>
 
       <p>
-        You'll also notice that if you DO create a tweet, and then you try to load the next page of tweets, the console fills
-        with this error:
+        You'll also notice that if you DO create a tweet, and then you try to load the next page of tweets, the
+        console fills with this error:
       </p>
 
       <Markdown type="sh" text={`
@@ -40,11 +41,11 @@ export default (props) => {
       `}/>
 
       <p>
-        This error is caused by the fact that some of the tweets on the first page are ALSO on the second page. When you
-        created a new tweet, it was saved to the server, and this modified which tweets appear on which page. The 5th tweet
-        on the page you see is actually part of page 2 now. So when you request the second page of tweets, the 5th tweet is
-        included, and React tries to render it twice, which throws the error above, because two React components have the same
-        key (the id of the tweet).
+        This error is caused by the fact that some of the tweets on the first page are ALSO on the second page.
+        When you created a new tweet, it was saved to the server, and this modified which tweets appear on which
+        page. The 5th tweet on the page you see is actually part of page 2 now. So when you request the second
+        page of tweets, the 5th tweet is included, and React tries to render it twice, which throws the error
+        above, because two React components have the same key (the id of the tweet).
       </p>
 
       <p>
@@ -55,8 +56,9 @@ export default (props) => {
         Challenge #1: Pagination Timestamp
       </h3>
       <p>
-        First, you need freeze the timestamp used for pagination. One way to do this is to get the timestamp of when the
-        application loads, and then provide is as an argument in the <code>tweet.find</code> call of the <code>Feed</code> component like this:
+        First, you need freeze the timestamp used for pagination. One way to do this is to get the timestamp of
+        when the application loads, and then provide it as an argument in the <code>tweet.find</code> call of
+        the <code>Feed</code> component like this:
       </p>
 
       <Markdown text={`

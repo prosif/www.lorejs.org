@@ -65,8 +65,9 @@ export default (props) => {
       `}/>
 
       <p>
-        If you already have an account, just enter your email and password when prompted. If you *don't* have an account,
-        entering your email and password will *create* an account. The final experience should look like this:
+        If you already have an account, just enter your email and password when prompted. If you <em>don't</em> have
+        an account, entering your email and password will <em>create</em> an account. The final experience should
+        look like this:
       </p>
 
       <Markdown type="sh" text={`

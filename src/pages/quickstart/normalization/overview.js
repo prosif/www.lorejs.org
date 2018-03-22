@@ -62,10 +62,10 @@ export default (props) => {
       </p>
 
       <p>
-        For the browser, we need to wait for 22 network requests to return before the experience can be displayed as intended,
-        and displaying page two might require *another* 21 network requests. But there's also a less obvious problem nested
-        in the number of network requests; each browser limits the number of concurrent requests to a single domain. Some
-        current request limits are listed below
+        For the browser, we need to wait for 22 network requests to return before the experience can be displayed
+        as intended, and displaying page two might require <em>another</em> 21 network requests. But there's also a
+        less obvious problem nested in the number of network requests; each browser limits the number of concurrent
+        requests to a single domain. Some current request limits are listed below
       </p>
 
       <Markdown type="sh" text={`
@@ -79,10 +79,11 @@ export default (props) => {
       `}/>
 
       <p>
-        In this example, our <code>hostname</code> is <code>localhost:1337</code>. And <code>Concurrent Connections</code> means the browser will limit the
-        number of requests to that domain at any single moment. For <code>Chrome 57</code>, that number is 6, which means if we make
-        20 network requests to retrieve the users for 20 tweets, the browser will only send 6 requests, and then queue the
-        other 14. Once one of the 6 comes back, the browser will send out one of the queued requests.
+        In this example, our <code>hostname</code> is <code>localhost:1337</code>. And <code>Concurrent
+        Connections</code> means the browser will limit the number of requests to that domain at any single
+        moment. For <code>Chrome 57</code>, that number is 6, which means if we make 20 network requests to
+        retrieve the users for 20 tweets, the browser will only send 6 requests, and then queue the other 14. Once
+        one of the 6 comes back, the browser will send out one of the queued requests.
       </p>
 
       <h2>
@@ -134,9 +135,10 @@ export default (props) => {
       `}/>
 
       <p>
-        Alternatively, we can tell the API we want it to nest the user *INSIDE* each tweet, to save us a network request. To
-        see this, make the same call to retrieve tweets but tell the API you want it to *populate* the <code>user</code> field. You can
-        do that by making a request to <code>http://localhost:1337/tweets?populate=user</code>, and you'll see a response like this:
+        Alternatively, we can tell the API we want it to nest the user <em>INSIDE</em> each tweet, to save us a
+        network request. To see this, make the same call to retrieve tweets but tell the API you want it
+        to <em>populate</em> the <code>user</code> field. You can do that by making a request
+        to <code>http://localhost:1337/tweets?populate=user</code>, and you'll see a response like this:
       </p>
 
       <Markdown text={`
@@ -171,9 +173,9 @@ export default (props) => {
       `}/>
 
       <p>
-        By requesting that the API nest the user inside each tweet, we can reduce the number of API calls required to get
-        all the data we need from 22 requests to 2 requests, and it's *always* going to be 2 requests regardless of the number
-        of tweets we request per page.
+        By requesting that the API nest the user inside each tweet, we can reduce the number of API calls required
+        to get all the data we need from 22 requests to 2 requests, and it's <em>always</em> going to be 2 requests
+        regardless of the number of tweets we request per page.
       </p>
 
 

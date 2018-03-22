@@ -19,8 +19,8 @@ export default (props) => {
       </p>
 
       <p>
-        While you *could* argue that validation is a *field* concern, and NOT a *form* concern, I don't think
-        that's true. Most of the time yes, but I say "no" for two reasons:
+        While you <em>could</em> argue that validation is a <em>field</em> concern, and NOT a <em>form</em> concern,
+        I don't think that's true. Most of the time yes, but I say "no" for two reasons:
       </p>
 
       <ul>

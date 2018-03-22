@@ -159,8 +159,8 @@ export default (props) => {
       `}/>
 
       <p>
-        Now that's *a* problem but it's not *the* problem. *The* problem happens when the real data comes back from the
-        server. Let's pretend this is the response from the API server:
+        Now that's <em>a</em> problem but it's not <em>the</em> problem. <em>The</em> problem happens when the
+        real data comes back from the server. Let's pretend this is the response from the API server:
       </p>
 
       <Markdown text={`
@@ -173,14 +173,15 @@ export default (props) => {
       `}/>
 
       <p>
-        The issue is this: the <code>create</code> method needs to emit an action to populate the Redux store with server response, but
-        <em>how do we let the reducers know this is the same data</em>? Normally an <code>id</code> is used to anchor data, to say <em>this and
-        that are the same thing</em>. But we added our optimistic data before the id existed...so what do we do?
+        The issue is this: the <code>create</code> method needs to emit an action to populate the Redux store with
+        server response, but <em>how do we let the reducers know this is the same data</em>? Normally
+        an <code>id</code> is used to anchor data, to say <em>this and that are the same thing</em>. But we added
+        our optimistic data before the id existed...so what do we do?
       </p>
 
       <p>
-        The answer lies in the <code>cid</code> field Lore adds to all data that gets fetched or created. To illustrate let's take a
-        look at a simplified blueprint for the <code>create</code> method:
+        The answer lies in the <code>cid</code> field Lore adds to all data that gets fetched or created. To
+        illustrate let's take a look at a simplified blueprint for the <code>create</code> method:
       </p>
 
       <Markdown text={`

@@ -46,10 +46,10 @@ export default (props) => {
       `}/>
 
       <p>
-        The #root element is where your application is going to be attached. The default *style* tag and
-        <strong>.loading-text</strong> element are there to serve as a minimalistic splash screen while the browser fetches
-        the JavaScript files. It's intended to be a more meaningful alternative to the standard blank white page. The
-        loading screen will look like this:
+        The #root element is where your application is going to be attached. The default <em>style</em> tag
+        and <strong>.loading-text</strong> element are there to serve as a minimalistic splash screen while
+        the browser fetches the JavaScript files. It's intended to be a more meaningful alternative to the
+        standard blank white page. The loading screen will look like this:
       </p>
 
       <img src="/assets/images/recipes/loading-screen.png" alt="Loading Screen" style={{ width: '100%' }} />

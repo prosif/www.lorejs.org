@@ -108,7 +108,7 @@ export default (props) => {
           const {
             propName,
             modelName
-          } = options.propName;
+          } = options;
 
           if (!propName) {
             throw new Error('propName is required');
@@ -220,8 +220,10 @@ export default (props) => {
         }
 
         export default function(options = {}) {
-          const propName = options.propName;
-          const modelName = options.modelName;
+          const {
+            propName,
+            modelName
+          } = options;
 
           if (!propName) {
             throw new Error('propName is required');
@@ -333,8 +335,10 @@ export default (props) => {
         }
 
         export default function(options = {}) {
-          const propName = options.propName;
-          const modelName = options.modelName;
+          const {
+            propName,
+            modelName
+          } = options;
 
           if (!propName) {
             throw new Error('propName is required');
@@ -1188,7 +1192,7 @@ export default (props) => {
           const {
             propName,
             modelName
-          } = options.propName;
+          } = options;
 
           if (!propName) {
             throw new Error('propName is required');
@@ -1300,8 +1304,10 @@ export default (props) => {
         }
 
         export default function(options = {}) {
-          const propName = options.propName;
-          const modelName = options.modelName;
+          const {
+            propName,
+            modelName
+          } = options;
 
           if (!propName) {
             throw new Error('propName is required');
@@ -1413,8 +1419,10 @@ export default (props) => {
         }
 
         export default function(options = {}) {
-          const propName = options.propName;
-          const modelName = options.modelName;
+          const {
+            propName,
+            modelName
+          } = options;
 
           if (!propName) {
             throw new Error('propName is required');

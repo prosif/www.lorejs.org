@@ -61,22 +61,23 @@ export default (props) => {
       `}/>
 
       <p>
-        This function will take an *action* and a *config* object, and will invoke that action every X milliseconds (determined
-        by the <code>interval</code> value in the config object).
+        This function will take an <em>action</em> and a <em>config</em> object, and will invoke that action
+        every X milliseconds (determined by the <code>interval</code> value in the config object).
       </p>
 
       <h3>
         Add Polling Wrapper Function
       </h3>
       <p>
-        You may notice that we don't provide any arguments to the <code>action</code> we invoke in the <code>poll</code> function, and that's
-        intentional.
+        You may notice that we don't provide any arguments to the <code>action</code> we invoke in
+        the <code>poll</code> function, and that's intentional.
       </p>
 
       <p>
-        This hook is designed to repeatedly call any action, but it doesn't know what the interface for any of those actions
-        looks like. But luckily, through the magic of JavaScript, we also don't need to. The <code>action</code> we invoke above is
-        actually a wrapper around the real action, where the arguments are already bound to it.
+        This hook is designed to repeatedly call any action, but it doesn't know what the interface for any
+        of those actions looks like. But luckily, through the magic of JavaScript, we also don't need to.
+        The <code>action</code> we invoke above is actually a wrapper around the real action, where the
+        arguments are already bound to it.
       </p>
 
       <p>
