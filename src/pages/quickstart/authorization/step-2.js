@@ -379,7 +379,8 @@ export default (props) => {
       </h2>
 
       <p>
-        In the next section we're going to <Link to="../../server/overview/">replace the mock server with a real server</Link>.
+        In the next section we're going to <Link to="../step-3/">look at an alternative approach</Link> to hiding
+        components based on authorization rules.
       </p>
     </Template>
   )

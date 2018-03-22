@@ -60,7 +60,8 @@ export default (props) => {
       <li className="doc-section">Authorization</li>
       <NavLink title="Overview" url="/quickstart/authorization/overview/" />
       <NavLink title="1. Hide Edit Link" url="/quickstart/authorization/step-1/" />
-      <NavLink title="2. Hide Delete Link" url="/quickstart/authorization/step-1/" />
+      <NavLink title="2. Hide Delete Link" url="/quickstart/authorization/step-2/" />
+      <NavLink title="2. Alternative Approach" url="/quickstart/authorization/step-3/" />
 
       <li className="doc-section">Server</li>
       <NavLink title="Overview" url="/quickstart/server/overview/" />
