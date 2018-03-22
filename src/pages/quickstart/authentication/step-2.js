@@ -23,36 +23,38 @@ export default (props) => {
         Install Auth0 Package
       </h3>
       <p>
-        We're going to be using Auth0 as the authentication service for this quickstart. Run this command to install the
-        <code>auth0-lock</code> client that we'll be using to login to the application:
+        We're going to be using Auth0 as the authentication service for this quickstart. Run this command to install
+        <code>auth0-js</code>, a library we'll be using to log in to the application:
       </p>
 
       <Markdown type="sh" text={`
-      npm install auth0-lock --save
+      npm install auth0-js --save
       `}/>
 
       <h3>
         Add Auth0 Config
       </h3>
       <p>
-        In order to use Auth0 as the authentication server, our application needs to know two values:
+        In order to use Auth0 as the authentication server, our application needs to know a few values:
       </p>
 
       <ol>
         <li>The URL (domain) of the authentication server</li>
         <li>The client ID of the application we want to authenticate with</li>
+        <li>The URL the user should be redirected to after they login</li>
       </ol>
 
       <p>
-        We're going to add these values to the lore config. But instead of adding them to existing config file, we're going to
-        create a new config file just for Auth0.
+        We're going to add these values to the lore config. But instead of adding them to existing config file,
+        we're going to create a new config file just for Auth0.
       </p>
 
       <blockquote>
         <p>
-          The /config folder in Lore is actually compiled into a single object, which you can access from <code>lore.config</code>. This
-          means you can add your own files to the /config folder and access their values from <code>lore.config</code>. It also means you
-          can change those values on a per-environment basis by redefining them in the <code>/env</code> directory.
+          The /config folder in Lore is actually compiled into a single object, which you can access
+          from <code>lore.config</code>. This means you can add your own files to the /config folder and access
+          their values from <code>lore.config</code>. It also means you can change those values on a
+          per-environment basis by redefining them in the <code>/env</code> directory.
         </p>
       </blockquote>
 
@@ -64,28 +66,40 @@ export default (props) => {
         <CodeTab syntax="ES5" text={`
         // config/auth0.js
         export default {
-          clientId: 'jiY0oBzEEpJuEX738eNl050YAJbPZjbh',
-          domain: 'lorejs.auth0.com'
+          domain: 'lorejs.auth0.com',
+          clientID: 'XFcYHKv1NXCVrbtSaf0JZPRLtYj5UZ7E',
+          redirectUri: 'http://localhost:3000/auth/callback',
+          audience: 'https://lorejs.auth0.com/userinfo',
+          responseType: 'token id_token',
+          scope: 'openid'
         };
         `}/>
         <CodeTab syntax="ES6" text={`
         // config/auth0.js
         export default {
-          clientId: 'jiY0oBzEEpJuEX738eNl050YAJbPZjbh',
-          domain: 'lorejs.auth0.com'
+          domain: 'lorejs.auth0.com',
+          clientID: 'XFcYHKv1NXCVrbtSaf0JZPRLtYj5UZ7E',
+          redirectUri: 'http://localhost:3000/auth/callback',
+          audience: 'https://lorejs.auth0.com/userinfo',
+          responseType: 'token id_token',
+          scope: 'openid'
         }
         `}/>
         <CodeTab syntax="ESNext" text={`
         // config/auth0.js
         export default {
-          clientId: 'jiY0oBzEEpJuEX738eNl050YAJbPZjbh',
-          domain: 'lorejs.auth0.com'
+          domain: 'lorejs.auth0.com',
+          clientID: 'XFcYHKv1NXCVrbtSaf0JZPRLtYj5UZ7E',
+          redirectUri: 'http://localhost:3000/auth/callback',
+          audience: 'https://lorejs.auth0.com/userinfo',
+          responseType: 'token id_token',
+          scope: 'openid'
         }
         `}/>
       </CodeTabs>
 
       <p>
-        You'll now be able to access these values from <code>lore.config.auth0.clientId</code> and <code>lore.config.auth0.domain</code>.
+        You'll now be able to access these values from the <code>lore.config.auth0</code> object.
       </p>
 
 
@@ -101,7 +115,7 @@ export default (props) => {
       `}/>
 
       <p>
-        This component needs to do three things:
+        This component will be responsible for redirecting the user to the Auth0 website to login:
       </p>
 
       <ol>
@@ -118,45 +132,20 @@ export default (props) => {
         <CodeTab syntax="ES5" text={`
         import React from 'react';
         import createReactClass from 'create-react-class';
-        import { Auth0Lock } from 'auth0-lock';
+        import Auth0 from 'auth0-js';
+        import ShowLoadingScreen from './ShowLoadingScreen';
 
         export default createReactClass({
           displayName: 'Login',
 
           componentDidMount: function() {
-            this.lock = this.getLock();
-            this.showLogin();
-          },
-
-          getLock: function(){
-            const {
-              clientId,
-              domain
-            } = lore.config.auth0;
-
-            return new Auth0Lock(clientId, domain, {
-              auth: {
-                redirect: false,
-                sso: false
-              },
-              languageDictionary: {
-                title: "Lore Quickstart"
-              }
-            });
-          },
-
-          onAuthentication: function(authResult) {
-            // save user token to localStorage
-          },
-
-          showLogin: function(){
-            this.lock.on('authenticated', this.onAuthentication);
-            this.lock.show();
+            const auth0 = new Auth0.WebAuth(lore.config.auth0);
+            auth0.authorize();
           },
 
           render: function() {
             return (
-              <div/>
+              <ShowLoadingScreen/>
             );
           }
 
@@ -164,130 +153,58 @@ export default (props) => {
         `}/>
         <CodeTab syntax="ES6" text={`
         import React from 'react';
-        import PropTypes from 'prop-types';
-        import Auth0Lock from 'auth0-lock';
+        import Auth0 from 'auth0-js';
+        import ShowLoadingScreen from './ShowLoadingScreen';
 
-        class Login extends React.Component {
-
-          constructor(props) {
-            super(props);
-
-            // Bind your custom methods so you can access the expected 'this'
-            this.getLock = this.getLock.bind(this);
-            this.onAuthentication = this.onAuthentication.bind(this);
-            this.showLogin = this.showLogin.bind(this);
-          }
+        export default class Login extends React.Component {
 
           componentDidMount() {
-            this.lock = this.getLock();
-            this.showLogin();
-          }
-
-          getLock(){
-            const {
-              clientId,
-              domain
-            } = lore.config.auth0;
-
-            return new Auth0Lock(clientId, domain, {
-              auth: {
-                redirect: false,
-                sso: false
-              },
-              languageDictionary: {
-                title: "Lore Quickstart"
-              }
-            });
-          }
-
-          onAuthentication(authResult) {
-            // save user token to localStorage
-          }
-
-          showLogin(){
-            this.lock.on('authenticated', this.onAuthentication);
-            this.lock.show();
+            const auth0 = new Auth0.WebAuth(lore.config.auth0);
+            auth0.authorize();
           }
 
           render() {
             return (
-              <div/>
+              <ShowLoadingScreen/>
             );
           }
 
-        }
-
-        Login.propTypes = {};
-
-        export default Login;
+        };
         `}/>
         <CodeTab syntax="ESNext" text={`
         import React from 'react';
-        import PropTypes from 'prop-types';
-        import Auth0Lock from 'auth0-lock';
+        import Auth0 from 'auth0-js';
+        import ShowLoadingScreen from './ShowLoadingScreen';
 
-        class Login extends React.Component {
-
-          static propTypes = {};
-
-          constructor(props) {
-            super(props);
-
-            // Bind your custom methods so you can access the expected 'this'
-            this.getLock = this.getLock.bind(this);
-            this.onAuthentication = this.onAuthentication.bind(this);
-            this.showLogin = this.showLogin.bind(this);
-          }
+        export default class Login extends React.Component {
 
           componentDidMount() {
-            this.lock = this.getLock();
-            this.showLogin();
-          }
-
-          getLock(){
-            const {
-              clientId,
-              domain
-            } = lore.config.auth0;
-
-            return new Auth0Lock(clientId, domain, {
-              auth: {
-                redirect: false,
-                sso: false
-              },
-              languageDictionary: {
-                title: "Lore Quickstart"
-              }
-            });
-          }
-
-          onAuthentication(authResult) {
-            // save user token to localStorage
-          }
-
-          showLogin(){
-            this.lock.on('authenticated', this.onAuthentication);
-            this.lock.show();
+            const auth0 = new Auth0.WebAuth(lore.config.auth0);
+            auth0.authorize();
           }
 
           render() {
             return (
-              <div/>
+              <ShowLoadingScreen/>
             );
           }
 
-        }
-
-        export default Login;
+        };
         `}/>
       </CodeTabs>
+
+      <p>
+        When this component is mounted, we extract the <code>auth0</code> config object
+        from <code>lore.config.auth0</code> and pass it to the <code>Auth0.WebAuth</code> function, which will
+        automatically redirect the user to Auth0 when we call <code>auth0.authorize()</code>.
+      </p>
 
       <h3>
         Create the /login route
       </h3>
       <p>
-        Now that the component exists, let's create the corresponding route to display it. Import your <code>Login</code> component into
-        <code>routes.js</code> and update the routes to look like this:
+        Now that the component exists, let's create the corresponding route to display it. Import
+        your <code>Login</code> component into <code>routes.js</code> and update the routes to look like this:
       </p>
 
 
@@ -362,8 +279,29 @@ export default (props) => {
       </ul>
 
       <p>
-        The email format is <code>{"{name}@example.com"}</code>, and the password for all of them is <code>password</code>. So if you wanted to login
-        as marle, you would enter <code>marle@example.com</code> for the email and <code>password</code> for the password.
+        The email format is <code>{"{name}@example.com"}</code>, and the password for all of them
+        is <code>password</code>. So if you wanted to login as <code>marle</code>, you would
+        enter <code>marle@example.com</code> for the email and <code>password</code> for the password.
+      </p>
+
+      <h3>
+        Redirect Error after Login
+      </h3>
+
+      <p>
+        After you login, you'll be taken back to the application, where you'll see the loading screen, but
+        it won't ever go away. If you look at the developer console, you'll see an error that looks like this:
+      </p>
+
+      <Markdown text={`
+      Warning: [react-router]
+      Location "/auth/callback ... did not match any routes
+      `}/>
+
+      <p>
+        This occurs because Auth0 tried to redirect us back to <code>http://localhost:3000/auth/callback</code>,
+        but that route doesn't exist yet. We'll create it soon, but for now, navigate back to the homepage
+        at <code>http://localhost:3000</code>.
       </p>
 
 

@@ -8,11 +8,7 @@ import QuickstartBranch from '../../../components/QuickstartBranch';
 
 export default (props) => {
   return (
-    <Template
-      title="Step 3: Redirect to Login"
-      description="In this step we're going to redirect the user to the /login route if they aren't authenticated."
-      branch="authentication.3"
-    >
+    <Template>
       <h1>
         Step 3: Redirect to Login
       </h1>

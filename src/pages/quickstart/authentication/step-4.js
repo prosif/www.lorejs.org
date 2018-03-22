@@ -10,109 +10,241 @@ export default (props) => {
   return (
     <Template>
       <h1>
-        Step 4: Save the Token & Redirect on Login
+        Step 4: Add Callback Route
       </h1>
 
       <p>
-        In this step we're going to save the user token in local storage and redirect the user after a successful login.
+        In this step we're going to add the redirect route that Auth0 needs, so that we can accept the user token
+        and log the user into the application.
       </p>
 
       <QuickstartBranch branch="authentication.4" />
 
       <h3>
-        Save the Token
+        Auth0 Callback
       </h3>
       <p>
-        Open up the <code>Login</code> component. Import the <code>src/utils/auth</code> utility and update the <code>onAuthentication</code> callback to look
-        like this:
+        After you login, Auth0 redirects you to the URL <code>https://localhost:300/auth/callback</code>, but
+        more importantly, if includes a number of important query parameters that look like this:
       </p>
-
-      <CodeTabs>
-        <CodeTab syntax="ES5" text={`
-        import auth from '../utils/auth';
-        ...
-          onAuthentication: function(authResult) {
-            auth.saveToken(authResult.idToken);
-          },
-        ...
-        `}/>
-        <CodeTab syntax="ES6" text={`
-        import auth from '../utils/auth';
-        ...
-          onAuthentication(authResult) {
-            auth.saveToken(authResult.idToken);
-          }
-        ...
-        `}/>
-        <CodeTab syntax="ESNext" text={`
-        import auth from '../utils/auth';
-        ...
-          onAuthentication(authResult) {
-            auth.saveToken(authResult.idToken);
-          }
-        ...
-        `}/>
-      </CodeTabs>
+      <Markdown text={`
+        access_token=...&expires_in=...&token_type=...&state=...&id_token=...
+      `}/>
 
       <p>
-        With this change in place, whenever the user logs in we will save the idToken provided by Auth0 to localStorage.
+        What we need to do next is build a component that can extract the JWT token we need from those query
+        parameters, and log the user into the application.
       </p>
 
       <h3>
-        Redirect the User
+        Create the AuthCallback Component
       </h3>
       <p>
-        With the token saved to localStorage, we can now redirect the user back to the application, and (because the token
-        now exists) it won't redirect us back. Update the <code>onAuthentication</code> method to look like this (router is provided as a
-        prop by React Router):
+        To do that, we're going to create a component called <code>AuthCallback</code>:
+      </p>
+
+      <Markdown type="sh" text={`
+      lore generate component AuthCallback
+      `}/>
+
+      <p>
+        Update the <code>AuthCallback</code> component to look like this:
       </p>
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-          onAuthentication: function(authResult) {
-            auth.saveToken(authResult.idToken);
-            this.props.router.push('/');
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
+        import Auth0 from 'auth0-js';
+        import ShowLoadingScreen from './ShowLoadingScreen';
+        import auth from '../utils/auth';
+
+        export default createReactClass({
+          displayName: 'AuthCallback',
+
+          propTypes: {
+            router: PropTypes.object.isRequired
           },
+
+          componentDidMount: function() {
+            const { router } = this.props;
+            const auth0 = new Auth0.WebAuth(lore.config.auth0);
+
+            auth0.parseHash((err, authResult) => {
+              if (authResult && authResult.accessToken && authResult.idToken) {
+                auth.login(authResult.idToken);
+                router.push('/');
+              } else if (err) {
+                console.log(err);
+                alert('An error occured. See the console for more information.');
+              }
+            });
+          },
+
+          render: function() {
+            return (
+              <ShowLoadingScreen/>
+            );
+          }
+
+        });
         `}/>
         <CodeTab syntax="ES6" text={`
-          onAuthentication(authResult) {
-            auth.saveToken(authResult.idToken);
-            this.props.router.push('/');
+        import React from 'react';
+        import PropTypes from 'prop-types';
+        import Auth0 from 'auth0-js';
+        import ShowLoadingScreen from './ShowLoadingScreen';
+        import auth from '../utils/auth';
+
+        class AuthCallback extends React.Component {
+
+          componentDidMount() {
+            const { router } = this.props;
+            const auth0 = new Auth0.WebAuth(lore.config.auth0);
+
+            auth0.parseHash((err, authResult) => {
+              if (authResult && authResult.accessToken && authResult.idToken) {
+                auth.login(authResult.idToken);
+                router.push('/');
+              } else if (err) {
+                console.log(err);
+                alert('An error occured. See the console for more information.');
+              }
+            });
           }
+
+          render() {
+            return (
+              <ShowLoadingScreen/>
+            );
+          }
+
+        };
+
+        AuthCallback.propTypes = {
+          router: PropTypes.object.isRequired
+        };
+
+        export default AuthCallback;
         `}/>
         <CodeTab syntax="ESNext" text={`
-          onAuthentication(authResult) {
-            auth.saveToken(authResult.idToken);
-            this.props.router.push('/');
+        import React from 'react';
+        import PropTypes from 'prop-types';
+        import Auth0 from 'auth0-js';
+        import ShowLoadingScreen from './ShowLoadingScreen';
+        import auth from '../utils/auth';
+
+        export default class AuthCallback extends React.Component {
+
+          static propTypes = {
+            router: PropTypes.object.isRequired
+          };
+
+          componentDidMount() {
+            const { router } = this.props;
+            const auth0 = new Auth0.WebAuth(lore.config.auth0);
+
+            auth0.parseHash((err, authResult) => {
+              if (authResult && authResult.accessToken && authResult.idToken) {
+                auth.saveToken(authResult.idToken);
+                router.push('/');
+              } else if (err) {
+                console.log(err);
+                alert('An error occured. See the console for more information.');
+              }
+            });
           }
+
+          render() {
+            return (
+              <ShowLoadingScreen/>
+            );
+          }
+
+        };
         `}/>
       </CodeTabs>
 
       <p>
-        Finally, add a <code>componentWillUnmount</code> method to hide the lock when the <code>Login</code> component is unmounted:
+        When this component gets mounted, we're going to once again create the <code>Auth0.WebAuth</code> object
+        and provide it with our <code>auth0</code> config at <code>lore.config.auth0</code>. Then we're going
+        to call <code>auth0.parseHash</code>, which will extract the query parameters we need from the callback,
+        and provide them through an object called <code>authResult</code>.
       </p>
+      <p>
+        If all the query parameters we need exist, then we'll save the <code>idToken</code> to localStorage
+        using our <code>auth.saveToken</code> helper. After that, we'll redirect the user to the home route
+        at <code>/</code>.
+      </p>
+
+      <h3>
+        Create the /auth/callback route
+      </h3>
+      <p>
+        Now that the component exists, let's create the corresponding route to display it. Import
+        your <code>AuthCallback</code> component into <code>routes.js</code> and update the routes to look like this:
+      </p>
+
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-          componentWillUnmount: function() {
-            this.lock.hide();
-          },
+        ...
+        import AuthCallback from './src/components/AuthCallback';
+
+        export default (
+          <Route>
+            <Route path="/login" component={Login} />
+            <Route path="/auth/callback" component={AuthCallback} />
+
+            <Route component={UserIsAuthenticated(Master)}>
+              <Route path="/" component={Layout}>
+                <IndexRoute component={Feed} />
+              </Route>
+            </Route>
+          </Route>
+        );
         `}/>
         <CodeTab syntax="ES6" text={`
-          componentWillUnmount() {
-            this.lock.hide();
-          }
+        ...
+        import AuthCallback from './src/components/AuthCallback';
+
+        export default (
+          <Route>
+            <Route path="/login" component={Login} />
+            <Route path="/auth/callback" component={AuthCallback} />
+
+            <Route component={UserIsAuthenticated(Master)}>
+              <Route path="/" component={Layout}>
+                <IndexRoute component={Feed} />
+              </Route>
+            </Route>
+          </Route>
+        )
         `}/>
         <CodeTab syntax="ESNext" text={`
-          componentWillUnmount() {
-            this.lock.hide();
-          }
+        ...
+        import AuthCallback from './src/components/AuthCallback';
+
+        export default (
+          <Route>
+            <Route path="/login" component={Login} />
+            <Route path="/auth/callback" component={AuthCallback} />
+
+            <Route component={UserIsAuthenticated(Master)}>
+              <Route path="/" component={Layout}>
+                <IndexRoute component={Feed} />
+              </Route>
+            </Route>
+          </Route>
+        )
         `}/>
       </CodeTabs>
 
       <p>
-        With that change in place, refresh the browser and navigate to <code>/login</code>. Once you login in, the application will
-        redirect you to the <code>/</code> route and transition the login dialog off the page. Pretty neat!
+        With that change in place, refresh the browser and navigate to <code>/login</code>. Once you log in, Auth0
+        will redirect you to the <code>/auth/callback</code> route, which will store the token we need, and redirect
+        you back to the home route. Pretty neat!
       </p>
 
       <h3>

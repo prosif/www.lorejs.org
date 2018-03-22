@@ -10,11 +10,12 @@ export default (props) => {
   return (
     <Template>
       <h1>
-        Step 6: Set CurrentUser to Context
+        Step 6: Save CurrentUser in Context
       </h1>
 
       <p>
-        In this step we're going to save the current user to context, so any component in the application can access it.
+        In this step we're going to save the current user to context, so any component in the application can
+        access it.
       </p>
 
       <QuickstartBranch branch="authentication.6" />
@@ -23,8 +24,8 @@ export default (props) => {
         The Master Component
       </h3>
       <p>
-        You may have noticed a component called <code>Master</code> in your components folder. This component is intended to serve as a
-        non-visual wrapper around your application, and has two main functions:
+        You may have noticed a component called <code>Master</code> in your components folder. This component is
+        intended to serve as a non-visual wrapper around your application, and has two main functions:
       </p>
 
       <ol>
@@ -33,20 +34,21 @@ export default (props) => {
       </ol>
 
       <p>
-        In this step, we'll be focusing on the second function, and fetching the profile for the current user before we load
-        the rest of the application.
+        In this step, we'll be focusing on the second function, and fetching the profile for the current user
+        before we load the rest of the application.
       </p>
 
       <h3>
         Add /user route to mock API
       </h3>
       <p>
-        Currently we don't have an API we can use to exchange the token from Auth0 for a proper user object. So let's create
-        one (reminder: we'll be replacing the mock API with a real one later).
+        Currently we don't have an API we can use to exchange the token from Auth0 for a proper user object. So
+        let's create one (reminder: we'll be replacing the mock API with a real one later).
       </p>
 
       <p>
-        Open up <code>db.json</code> and add a new endpoint called <code>/user</code> by adding this JSON to the bottom of the file:
+        Open up <code>db.json</code> and add a new endpoint called <code>/user</code> by adding this JSON to the
+        bottom of the file:
       </p>
 
       <Markdown type="json" text={`
@@ -66,15 +68,17 @@ export default (props) => {
       `}/>
 
       <p>
-        With this change in place, if you navigate to <code>/user</code> the API will return an object telling us we are Ayla.
+        With this change in place, if you navigate to <code>/user</code> the API will return an object telling us
+        we are Ayla.
       </p>
 
       <h3>
         Set the endpoint for the currentUser model
       </h3>
       <p>
-        Next, we need to tell Lore where it can fetch the current user. Open up the <code>currentUser</code> model and find the property
-        for <code>endpoint</code>. Change it from <code>currentUser</code> to <code>user</code> like this:
+        Next, we need to tell Lore where it can fetch the current user. Open up the <code>currentUser</code> model
+        and find the property for <code>endpoint</code>. Change it from <code>currentUser</code> to <code>user</code> like
+        this:
       </p>
 
       <CodeTabs>
@@ -225,9 +229,10 @@ export default (props) => {
         Save the User in Context
       </h3>
       <p>
-        Next we're going to save the current user to the application's context, so any component that needs it can access
-        it. This is a good use of context because we're always going to have a user, and it could be used by any component in
-        the application. Update your <code>Master</code> component to include methods for saving the user to context:
+        Next we're going to save the current user to the application's context, so any component that needs it can
+        access it. This is a good use of context because we're always going to have a user, and it could be used by
+        any component in the application. Update your <code>Master</code> component to include methods for saving
+        the user to context:
       </p>
 
       <CodeTabs>
@@ -310,8 +315,8 @@ export default (props) => {
         Retrieve the user from context in Profile
       </h3>
       <p>
-        Finally, we're going to retrieve the user from context in the <code>Profile</code> component, instead of expecting it to come
-        from props:
+        Finally, we're going to retrieve the user from context in the <code>Profile</code> component, instead of
+        expecting it to come from props:
       </p>
 
       <CodeTabs>
@@ -802,8 +807,8 @@ export default (props) => {
       </h2>
 
       <p>
-        In the next section we'll be <Link to="../../authorization/overview/">hiding the edit and delete links</Link> to reflect the
-        application's user permissions.
+        In the next section we'll be <Link to="../../authorization/overview/">hiding the edit and delete
+        links</Link> to reflect the application's user permissions.
       </p>
     </Template>
   )

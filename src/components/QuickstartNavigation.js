@@ -53,9 +53,9 @@ export default (props) => {
       <NavLink title="1. Add Profile to Layout" url="/quickstart/authentication/step-1/" />
       <NavLink title="2. Add Login Page" url="/quickstart/authentication/step-2/" />
       <NavLink title="3. Redirect to Login" url="/quickstart/authentication/step-3/" />
-      <NavLink title="4. Save Token and Redirect" url="/quickstart/authentication/step-4/" />
+      <NavLink title="4. Add Callback Route" url="/quickstart/authentication/step-4/" />
       <NavLink title="5. Add Logout Route" url="/quickstart/authentication/step-5/" />
-      <NavLink title="6. Add User to Context" url="/quickstart/authentication/step-6/" />
+      <NavLink title="6. Save User to Context" url="/quickstart/authentication/step-6/" />
 
       <li className="doc-section">Authorization</li>
       <NavLink title="Overview" url="/quickstart/authorization/overview/" />

@@ -23,9 +23,10 @@ export default (props) => {
         Create the Logout Component
       </h3>
       <p>
-        While we don't have a "logout page" in a visual sense, we still have behavior that we want executed when the user logs
-        out, such as removing their user token and redirecting them the login page. We're going to store this behavior in
-        a component so that we can have it occur when the user navigates to the <code>/logout</code> route.
+        While we don't have a "logout page" in a visual sense, we still have behavior that we want executed when
+        the user logs out, such as removing their user token and redirecting them to the login page. We're going
+        to store this behavior in a component so that we can have it occur when the user navigates to
+        the <code>/logout</code> route.
       </p>
 
       <p>
@@ -46,6 +47,7 @@ export default (props) => {
         import createReactClass from 'create-react-class';
         import PropTypes from 'prop-types';
         import auth from '../utils/auth';
+        import ShowLoadingScreen from './ShowLoadingScreen';
 
         export default createReactClass({
           displayName: 'Logout',
@@ -55,15 +57,15 @@ export default (props) => {
           },
 
           componentDidMount: function(){
-            auth.deleteToken();
-            this.props.router.push('/');
+            const { router } = this.props;
+
+            auth.logout();
+            router.push('/');
           },
 
           render: function() {
             return (
-              <h1 className="loading-text">
-                Logging out...
-              </h1>
+              <ShowLoadingScreen/>
             );
           }
 
@@ -73,22 +75,24 @@ export default (props) => {
         import React from 'react';
         import PropTypes from 'prop-types';
         import auth from '../utils/auth';
+        import ShowLoadingScreen from './ShowLoadingScreen';
 
         class Logout extends React.Component {
 
           componentDidMount(){
-            auth.deleteToken();
-            this.props.router.push('/');
-          }
+            const { router } = this.props;
+
+            auth.logout();
+            router.push('/');
+          },
 
           render() {
             return (
-              <h1 className="loading-text">
-                Logging out...
-              </h1>
+              <ShowLoadingScreen/>
             );
           }
-        }
+
+        };
 
         Logout.propTypes = {
           router: PropTypes.object.isRequired
@@ -100,28 +104,28 @@ export default (props) => {
         import React from 'react';
         import PropTypes from 'prop-types';
         import auth from '../utils/auth';
+        import ShowLoadingScreen from './ShowLoadingScreen';
 
-        class Logout extends React.Component {
+        export default class Logout extends React.Component {
 
           static propTypes = {
             router: PropTypes.object.isRequired
           };
 
-          componentDidMount(){
-            auth.deleteToken();
-            this.props.router.push('/');
-          }
+          componentDidMount() {
+            const { router } = this.props;
+
+            auth.logout();
+            router.push('/');
+          },
 
           render() {
             return (
-              <h1 className="loading-text">
-                Logging out...
-              </h1>
+              <ShowLoadingScreen/>
             );
           }
-        }
 
-        export default Logout;
+        };
         `}/>
       </CodeTabs>
 
@@ -129,7 +133,8 @@ export default (props) => {
         Add the /logout route
       </h3>
       <p>
-        Next import your <code>Logout</code> component into <code>routes.js</code> and update the routes to look like this:
+        Next import your <code>Logout</code> component into <code>routes.js</code> and update the routes to
+        look like this:
       </p>
 
       <CodeTabs>
@@ -141,6 +146,7 @@ export default (props) => {
           <Route>
             <Route path="/login" component={Login} />
             <Route path="/logout" component={Logout} />
+            <Route path="/auth/callback" component={AuthCallback} />
 
             ...
           </Route>
@@ -154,6 +160,7 @@ export default (props) => {
           <Route>
             <Route path="/login" component={Login} />
             <Route path="/logout" component={Logout} />
+            <Route path="/auth/callback" component={AuthCallback} />
 
             ...
           </Route>
@@ -167,6 +174,7 @@ export default (props) => {
           <Route>
             <Route path="/login" component={Login} />
             <Route path="/logout" component={Logout} />
+            <Route path="/auth/callback" component={AuthCallback} />
 
             ...
           </Route>
@@ -178,8 +186,9 @@ export default (props) => {
         Convert Logout Button to Link
       </h3>
       <p>
-        Finally, we need to make it so that when the user clicks the <code>Logout</code> button in the <code>Profile</code> component they are
-        redirect to the <code>/logout</code> route, which will delete their user token and redirect them to the login page.
+        Finally, we need to make it so that when the user clicks the <code>Logout</code> button in
+        the <code>Profile</code> component they are redirected to the <code>/logout</code> route, which will
+        delete their user token and redirect them to the login page.
       </p>
 
       <p>
@@ -236,8 +245,8 @@ export default (props) => {
       </CodeTabs>
 
       <p>
-        With this change in place, clicking the Logout button will redirect you to <code>/login</code>, and once you log in, you'll be
-        redirected to the main application.
+        With this change in place, clicking the Logout button will redirect you to <code>/login</code>, and once
+        you log in, you'll be redirected to the main application.
       </p>
 
 
