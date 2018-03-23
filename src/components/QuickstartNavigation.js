@@ -90,6 +90,16 @@ export default (props) => {
       <NavLink title="Overview" url="/quickstart/normalization/overview/" />
       <NavLink title="1. Normalize Tweet Response" url="/quickstart/normalization/step-1/" />
 
+      <li className="doc-section">Optimistic Updates</li>
+      <NavLink title="Overview" url="/quickstart/optimistic/overview/" />
+      <NavLink title="1. Add Pagination Timestamp" url="/quickstart/optimistic/step-1/" />
+      <NavLink title="2. Display New Tweets" url="/quickstart/optimistic/step-2/" />
+      <NavLink title="3. Show Optimistic Visual Cues" url="/quickstart/optimistic/step-3/" />
+
+      <li className="doc-section">WebSockets</li>
+      <NavLink title="Overview" url="/quickstart/websockets/overview/" />
+      <NavLink title="1. Add WebSocket Support" url="/quickstart/websockets/step-1/" />
+
       <li className="doc-section">Publishing</li>
       <NavLink title="Overview" url="/quickstart/publishing/overview/" />
       <NavLink title="1. Create Production Build" url="/quickstart/publishing/step-1/" />

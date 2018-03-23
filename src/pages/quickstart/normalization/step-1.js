@@ -78,14 +78,15 @@ export default (props) => {
       </CodeTabs>
 
       <p>
-        If you refresh the page, you'll notice it no longer correctly. And if you look at the network requests, you'll see
-        two things worth calling out:
+        If you refresh the page, you'll notice it no longer correctly. And if you look at the network requests,
+        you'll see two things worth calling out:
       </p>
 
       <ol>
         <li>
-          First, the API call to fetch the first page of tweets now looks like <code>http://localhost:1337/tweets?page=1&populate=user</code>,
-          which is what we wanted (and you can confirm the user data is in fact nested in the response).
+          First, the API call to fetch the first page of tweets now looks
+          like <code>http://localhost:1337/tweets?page=1&populate=user</code>, which is what we wanted (and
+          you can confirm the user data is in fact nested in the response).
         </li>
         <li>
           The second thing you'll notice is that the first call to fetch the user for a tweet looks
@@ -95,8 +96,9 @@ export default (props) => {
       </ol>
 
       <p>
-        The reason for the strange looking API call is because <code>tweet.data.user</code> used to be a number like <code>1</code>, but now it's an
-        object. And since we haven't taught Lore how to process nested data, it just passes it along to the component.
+        The reason for the strange looking API call is because <code>tweet.data.user</code> used to be a
+        number like <code>1</code>, but now it's an object. And since we haven't taught Lore how to process
+        nested data, it just passes it along to the component.
       </p>
 
 
@@ -104,13 +106,15 @@ export default (props) => {
         Specify Nested Relationships
       </h3>
       <p>
-        To fix this issue we need to tell Lore that <code>tweet</code> resources may contain nested <code>user</code> data, and this data should be
-        broken out and converted to a <code>user</code> model.
+        To fix this issue we need to tell Lore that <code>tweet</code> resources may contain
+        nested <code>user</code> data, and this data should be broken out and converted to
+        a <code>user</code> model.
       </p>
 
       <p>
-        To do that open up <code>src/models/tweet.js</code> and add another attribute for the <code>user</code> field, specifying the <code>type</code> as a
-        <code>model</code> and the associated <code>model</code> to be a <code>user</code>:
+        To do that open up <code>src/models/tweet.js</code> and add another attribute for
+        the <code>user</code> field, specifying the <code>type</code> as a <code>model</code> and the
+        associated <code>model</code> to be a <code>user</code>:
       </p>
 
       <CodeTabs>
@@ -168,8 +172,8 @@ export default (props) => {
       </CodeTabs>
 
       <p>
-        With this change in place, refresh the browser you this time the application should load properly and you should see
-        only two network requests instead of 6:
+        With this change in place, refresh the browser you this time the application should load properly and
+        you should see only two network requests instead of 6:
       </p>
 
       <Markdown type="sh" text={`
@@ -481,7 +485,8 @@ export default (props) => {
       </h2>
 
       <p>
-        In the next section we'll learn how to <Link to="../../publishing/overview/">build and deploy the application for production</Link>.
+        In the next section we'll learn how to <Link to="../../optimistic/overview/">display new tweets at
+        the top of the Feed</Link>.
       </p>
     </Template>
   )
