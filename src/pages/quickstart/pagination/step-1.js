@@ -512,7 +512,7 @@ export default (props) => {
         import PayloadStates from '../constants/PayloadStates';
         import { Link } from 'react-router';
 
-        export default connect(function(getState, props){
+        export default connect(function(getState, props) {
           return {
             tweets: getState('tweet.find', {
               pagination: {
@@ -652,7 +652,7 @@ export default (props) => {
           tweets: PropTypes.object.isRequired
         };
 
-        export default connect(function(getState, props){
+        export default connect(function(getState, props) {
           return {
             tweets: getState('tweet.find', {
               pagination: {
@@ -670,7 +670,7 @@ export default (props) => {
         import PayloadStates from '../constants/PayloadStates';
         import { Link } from 'react-router';
 
-        @connect(function(getState, props){
+        @connect(function(getState, props) {
           return {
             tweets: getState('tweet.find', {
               pagination: {

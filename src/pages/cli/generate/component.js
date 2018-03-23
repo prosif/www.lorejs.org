@@ -51,7 +51,7 @@ export default (props) => {
 
           propTypes: {},
 
-          render: function () {
+          render: function() {
             return (
               <div></div>
             );
@@ -148,7 +148,7 @@ export default (props) => {
 
           propTypes: {},
 
-          render: function () {
+          render: function() {
             return (
               <div></div>
             );
@@ -287,7 +287,7 @@ export default (props) => {
               //models: React.PropTypes.object.isRequired
             },
 
-            render: function () {
+            render: function() {
               return (
                 <div></div>
               );

@@ -95,7 +95,7 @@ export default (props) => {
       </p>
 
       <Markdown text={`
-      module.exports = lore.connect(function(getState, props){
+      module.exports = lore.connect(function(getState, props) {
         return {
           tweets: getState('tweet.find')
         };
@@ -153,7 +153,7 @@ export default (props) => {
       </p>
 
       <Markdown text={`
-      module.exports = lore.connect(function(getState, props){
+      module.exports = lore.connect(function(getState, props) {
         return {
           tweets: getState('tweet.find')
         };

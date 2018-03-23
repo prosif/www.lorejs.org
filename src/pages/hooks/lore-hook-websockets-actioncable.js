@@ -55,7 +55,7 @@ export default (props) => {
         // serverUrl: 'http://localhost:1337/cable',
         // channel: 'PostsChannel',
 
-        connect: function () {
+        connect: function() {
           this.cable = ActionCable.createConsumer(this.serverUrl);
         },
 
@@ -63,15 +63,15 @@ export default (props) => {
           var that = this;
 
           this.cable.subscriptions.create(this.channel, {
-            connected: function () {
+            connected: function() {
               console.log('ActionCable:WebSocket - connected!')
             },
 
-            disconnected: function () {
+            disconnected: function() {
               console.log('ActionCable:WebSocket - disconnected!')
             },
 
-            received: function (data) {
+            received: function(data) {
               that.dispatch(data);
             }
           });

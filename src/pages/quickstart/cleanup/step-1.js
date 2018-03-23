@@ -91,7 +91,7 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        export default connect(function(getState, props){
+        export default connect(function(getState, props) {
           const { tweet } = props;
 
           return {
@@ -104,7 +104,7 @@ export default (props) => {
         );
         `}/>
         <CodeTab syntax="ES6" text={`
-        export default connect(function(getState, props){
+        export default connect(function(getState, props) {
           const tweet = props.tweet;
 
           return {
@@ -115,7 +115,7 @@ export default (props) => {
         })(Tweet);
         `}/>
         <CodeTab syntax="ESNext" text={`
-        @connect(function(getState, props){
+        @connect(function(getState, props) {
           const tweet = props.tweet;
 
           return {
@@ -275,7 +275,7 @@ export default (props) => {
         import EditLink from './EditLink';
         import DeleteLink from './DeleteLink';
 
-        export default connect(function(getState, props){
+        export default connect(function(getState, props) {
           const { tweet } = props;
 
           return {
@@ -377,7 +377,7 @@ export default (props) => {
           user: PropTypes.object.isRequired
         };
 
-        export default connect(function(getState, props){
+        export default connect(function(getState, props) {
           const tweet = props.tweet;
 
           return {
@@ -395,7 +395,7 @@ export default (props) => {
         import EditLink from './EditLink';
         import DeleteLink from './DeleteLink';
 
-        @connect(function(getState, props){
+        @connect(function(getState, props) {
           const tweet = props.tweet;
 
           return {

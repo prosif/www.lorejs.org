@@ -56,7 +56,7 @@ export default (props) => {
             router: PropTypes.object.isRequired
           },
 
-          componentDidMount: function(){
+          componentDidMount: function() {
             const { router } = this.props;
 
             auth.logout();
@@ -79,7 +79,7 @@ export default (props) => {
 
         class Logout extends React.Component {
 
-          componentDidMount(){
+          componentDidMount() {
             const { router } = this.props;
 
             auth.logout();
@@ -287,7 +287,7 @@ export default (props) => {
             router: PropTypes.object.isRequired
           },
 
-          componentDidMount: function(){
+          componentDidMount: function() {
             auth.deleteToken();
             this.props.router.push('/');
           },
@@ -309,7 +309,7 @@ export default (props) => {
 
         class Logout extends React.Component {
 
-          componentDidMount(){
+          componentDidMount() {
             auth.deleteToken();
             this.props.router.push('/');
           }
@@ -340,7 +340,7 @@ export default (props) => {
             router: PropTypes.object.isRequired
           };
 
-          componentDidMount(){
+          componentDidMount() {
             auth.deleteToken();
             this.props.router.push('/');
           }

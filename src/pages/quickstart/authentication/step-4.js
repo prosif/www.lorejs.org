@@ -289,7 +289,7 @@ export default (props) => {
             this.lock.hide();
           },
 
-          getLock: function(){
+          getLock: function() {
             const {
               clientId,
               domain
@@ -311,7 +311,7 @@ export default (props) => {
             this.props.router.push('/');
           },
 
-          showLogin: function(){
+          showLogin: function() {
             this.lock.on('authenticated', this.onAuthentication);
             this.lock.show();
           },
@@ -350,7 +350,7 @@ export default (props) => {
             this.lock.hide();
           }
 
-          getLock(){
+          getLock() {
             const {
               clientId,
               domain
@@ -372,7 +372,7 @@ export default (props) => {
             this.props.router.push('/');
           }
 
-          showLogin(){
+          showLogin() {
             this.lock.on('authenticated', this.onAuthentication);
             this.lock.show();
           }
@@ -421,7 +421,7 @@ export default (props) => {
             this.lock.hide();
           }
 
-          getLock(){
+          getLock() {
             const {
               clientId,
               domain
@@ -443,7 +443,7 @@ export default (props) => {
             this.props.router.push('/');
           }
 
-          showLogin(){
+          showLogin() {
             this.lock.on('authenticated', this.onAuthentication);
             this.lock.show();
           }

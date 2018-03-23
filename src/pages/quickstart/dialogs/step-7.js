@@ -444,7 +444,7 @@ export default (props) => {
         import EditLink from './EditLink';
         import DeleteLink from './DeleteLink';
 
-        export default connect(function(getState, props){
+        export default connect(function(getState, props) {
           const { tweet } = props;
 
           return {
@@ -558,7 +558,7 @@ export default (props) => {
           }
         };
 
-        export default connect(function(getState, props){
+        export default connect(function(getState, props) {
           const { tweet } = props;
 
           return {
@@ -576,7 +576,7 @@ export default (props) => {
         import EditLink from './EditLink';
         import DeleteLink from './DeleteLink';
 
-        @connect(function(getState, props){
+        @connect(function(getState, props) {
           const tweet = props.tweet;
 
           return {

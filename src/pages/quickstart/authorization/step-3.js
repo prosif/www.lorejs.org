@@ -56,7 +56,7 @@ export default (props) => {
           user: PropTypes.object.isRequired
         },
 
-        render: function () {
+        render: function() {
           const { tweet, children } = this.props;
           const { user } = this.context;
 

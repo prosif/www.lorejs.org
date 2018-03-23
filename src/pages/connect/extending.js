@@ -94,7 +94,7 @@ export default (props) => {
               // no op
             },
 
-            getPayload: function (reducerState, params) {
+            getPayload: function(reducerState, params) {
               var data = _
                 .chain(reducerState)
                 .transform(function(result, model) {

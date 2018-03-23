@@ -77,12 +77,12 @@ export default (props) => {
           //     }
           //   },
           //
-          //   getPayload: function (reducerState, params) {
+          //   getPayload: function(reducerState, params) {
           //     var key = params.where.id;
           //     return reducerState[key];
           //   },
           //
-          //   callAction: function (action, params) {
+          //   callAction: function(action, params) {
           //     var id = params.where.id;
           //     return action(id).payload;
           //   }

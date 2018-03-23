@@ -91,7 +91,7 @@ export default (props) => {
       </p>
 
       <Markdown text={`
-      export default connect(function(getState, props){
+      export default connect(function(getState, props) {
         return {
           tweets: getState('tweet.find', {
             include: function(model) {
@@ -146,7 +146,7 @@ export default (props) => {
       <Markdown text={`
       import moment from 'moment';
 
-      export default connect(function(getState, props){
+      export default connect(function(getState, props) {
         return {
           tweets: getState('tweet.find', {
             include: function(model) {
@@ -183,7 +183,7 @@ export default (props) => {
       <Markdown text={`
       import moment from 'moment';
 
-      export default connect(function(getState, props){
+      export default connect(function(getState, props) {
         return {
           tweets: getState('tweet.findAll', {
             sortBy: function(model) {

@@ -90,7 +90,7 @@ export default (props) => {
         component through <code>props</code>. In the example usage above, it's the function that looks like this:
       </p>
       <Markdown text={`
-      function select(getState, props, context){
+      function select(getState, props, context) {
         return {
           tweets: getState('tweet.find')
         }
@@ -210,7 +210,7 @@ export default (props) => {
         This is useful when you need to use those props to compose your <code>getState</code> call like this:
       </p>
       <Markdown text={`
-      connect(function(getState, props, context){
+      connect(function(getState, props, context) {
         const { user } = props;
         return {
           tweets: getState('tweet.find', {
@@ -232,7 +232,7 @@ export default (props) => {
         like this:
       </p>
       <Markdown text={`
-      connect(function(getState, props, context){
+      connect(function(getState, props, context) {
         const { user } = context;
         return {
           tweets: getState('tweet.find', {
@@ -256,7 +256,7 @@ export default (props) => {
         behavior of <code>connect</code>. Example usage looks like this:
       </p>
       <Markdown text={`
-      connect(function(getState, props, context){
+      connect(function(getState, props, context) {
         // ...
       }, {
         contextTypes: {
@@ -282,7 +282,7 @@ export default (props) => {
         as <code>user</code>. We could do that like this:
       </p>
       <Markdown text={`
-      connect(function(getState, props, context){
+      connect(function(getState, props, context) {
         const { user } = context;
         return {
           tweets: getState('tweet.find', {
@@ -317,7 +317,7 @@ export default (props) => {
         do so like this:
       </p>
       <Markdown text={`
-      connect(function(getState, props, context){
+      connect(function(getState, props, context) {
         // ...data...
       }, {
         subscribe: true

@@ -520,7 +520,7 @@ export default (props) => {
             lore.polling = {};
 
             // 5. Iterate over each action and create a pollable version attached to the polling object
-            _.mapKeys(flattenObject(actions), function (action, actionKey) {
+            _.mapKeys(flattenObject(actions), function(action, actionKey) {
               // 6. Get the model specific config
               var modelName = actionKey.split('.')[0];
               var modelConfig = modelConfigs[modelName];
@@ -611,7 +611,7 @@ export default (props) => {
             lore.polling = {};
 
             // 5. Iterate over each action and create a pollable version attached to the polling object
-            _.mapKeys(flattenObject(actions), function (action, actionKey) {
+            _.mapKeys(flattenObject(actions), function(action, actionKey) {
               // 6. Get the model specific config
               const modelName = actionKey.split('.')[0];
               const modelConfig = modelConfigs[modelName];
@@ -702,7 +702,7 @@ export default (props) => {
             lore.polling = {};
 
             // 5. Iterate over each action and create a pollable version attached to the polling object
-            _.mapKeys(flattenObject(actions), function (action, actionKey) {
+            _.mapKeys(flattenObject(actions), function(action, actionKey) {
               // 6. Get the model specific config
               const modelName = actionKey.split('.')[0];
               const modelConfig = modelConfigs[modelName];

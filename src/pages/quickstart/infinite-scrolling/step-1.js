@@ -631,7 +631,7 @@ export default (props) => {
         ...
         import InfiniteScrolling from '../decorators/InfiniteScrolling';
 
-        export default connect(function(getState, props){
+        export default connect(function(getState, props) {
           return {
             tweets: getState('tweet.find', {
               pagination: {
@@ -656,7 +656,7 @@ export default (props) => {
           ...
         }
 
-        export default connect(function(getState, props){
+        export default connect(function(getState, props) {
           return {
             tweets: getState('tweet.find', {
               pagination: {
@@ -674,7 +674,7 @@ export default (props) => {
         ...
         import InfiniteScrolling from '../decorators/InfiniteScrolling';
 
-        @connect(function(getState, props){
+        @connect(function(getState, props) {
           return {
             tweets: getState('tweet.find', {
               pagination: {
@@ -1540,7 +1540,7 @@ export default (props) => {
         import InfiniteScrolling from '../decorators/InfiniteScrolling';
         import LoadMoreButton from './LoadMoreButton';
 
-        export default connect(function(getState, props){
+        export default connect(function(getState, props) {
           return {
             tweets: getState('tweet.find', {
               pagination: {
@@ -1656,7 +1656,7 @@ export default (props) => {
           onLoadMore: PropTypes.func.isRequired
         };
 
-        export default connect(function(getState, props){
+        export default connect(function(getState, props) {
           return {
             tweets: getState('tweet.find', {
               pagination: {
@@ -1679,7 +1679,7 @@ export default (props) => {
         import InfiniteScrolling from '../decorators/InfiniteScrolling';
         import LoadMoreButton from './LoadMoreButton';
 
-        @connect(function(getState, props){
+        @connect(function(getState, props) {
           return {
             tweets: getState('tweet.find', {
               pagination: {

@@ -88,7 +88,7 @@ export default (props) => {
           // no op
         },
 
-        getPayload: function (reducerState, params) {
+        getPayload: function(reducerState, params) {
           const transformed = _.transform(reducerState, function(result, model) {
             result.push(model);
           }, []);

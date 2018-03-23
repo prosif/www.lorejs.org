@@ -367,7 +367,7 @@ export default (props) => {
             this.showLogin();
           },
 
-          getLock: function(){
+          getLock: function() {
             const {
               clientId,
               domain
@@ -388,7 +388,7 @@ export default (props) => {
             // save user token to localStorage
           },
 
-          showLogin: function(){
+          showLogin: function() {
             this.lock.on('authenticated', this.onAuthentication);
             this.lock.show();
           },
@@ -422,7 +422,7 @@ export default (props) => {
             this.showLogin();
           }
 
-          getLock(){
+          getLock() {
             const {
               clientId,
               domain
@@ -443,7 +443,7 @@ export default (props) => {
             // save user token to localStorage
           }
 
-          showLogin(){
+          showLogin() {
             this.lock.on('authenticated', this.onAuthentication);
             this.lock.show();
           }
@@ -481,7 +481,7 @@ export default (props) => {
             this.showLogin();
           }
 
-          getLock(){
+          getLock() {
             const {
               clientId,
               domain
@@ -502,7 +502,7 @@ export default (props) => {
             // save user token to localStorage
           }
 
-          showLogin(){
+          showLogin() {
             this.lock.on('authenticated', this.onAuthentication);
             this.lock.show();
           }

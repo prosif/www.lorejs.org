@@ -105,7 +105,7 @@ export default (props) => {
       \`\`\`js
       var React = require('react');
 
-      module.exports = lore.connect(function(getState, props){
+      module.exports = lore.connect(function(getState, props) {
           return {};
         }, {subscribe: true})(
         React.createClass({

@@ -91,7 +91,7 @@ export default (props) => {
         onError: {
           actionType: ActionTypes.REMOVE_POST,
           payloadState: PayloadStates.ERROR_CREATING,
-          beforeDispatch: function(response, args){
+          beforeDispatch: function(response, args) {
             console.log({
               message: "Post could not be created",
               response: response

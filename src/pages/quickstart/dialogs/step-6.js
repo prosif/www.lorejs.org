@@ -443,7 +443,7 @@ export default (props) => {
         import moment from 'moment';
         import EditLink from './EditLink';
 
-        export default connect(function(getState, props){
+        export default connect(function(getState, props) {
           const { tweet } = props;
 
           return {
@@ -554,7 +554,7 @@ export default (props) => {
           }
         };
 
-        export default connect(function(getState, props){
+        export default connect(function(getState, props) {
           const { tweet } = props;
 
           return {
@@ -571,7 +571,7 @@ export default (props) => {
         import moment from 'moment';
         import EditLink from './EditLink';
 
-        @connect(function(getState, props){
+        @connect(function(getState, props) {
           const tweet = props.tweet;
 
           return {

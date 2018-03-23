@@ -131,12 +131,12 @@ export default (props) => {
             }
           },
 
-          getPayload: function (reducerState, params) {
+          getPayload: function(reducerState, params) {
             const key = params.where.id;
             return reducerState[key];
           },
 
-          callAction: function (action, params) {
+          callAction: function(action, params) {
             const id = params.where.id;
             return action(id).payload;
           }

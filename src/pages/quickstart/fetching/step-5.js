@@ -47,7 +47,7 @@ export default (props) => {
         <CodeTab syntax="ES5" text={`
         import { connect } from 'lore-hook-connect';
 
-        export default connect(function(getState, props){
+        export default connect(function(getState, props) {
           const { tweet } = props;
 
           return {
@@ -70,7 +70,7 @@ export default (props) => {
           ...
         }
 
-        export default connect(function(getState, props){
+        export default connect(function(getState, props) {
           const tweet = props.tweet;
 
           return {
@@ -83,7 +83,7 @@ export default (props) => {
         <CodeTab syntax="ESNext" text={`
         import { connect } from 'lore-hook-connect';
 
-        @connect(function(getState, props){
+        @connect(function(getState, props) {
           const tweet = props.tweet;
 
           return {
@@ -160,7 +160,7 @@ export default (props) => {
         import moment from 'moment';
         import { connect } from 'lore-hook-connect';
 
-        export default connect(function(getState, props){
+        export default connect(function(getState, props) {
           const { tweet } = props;
 
           return {
@@ -265,7 +265,7 @@ export default (props) => {
           user: PropTypes.object.isRequired
         };
 
-        export default connect(function(getState, props){
+        export default connect(function(getState, props) {
           const tweet = props.tweet;
 
           return {
@@ -281,7 +281,7 @@ export default (props) => {
         import moment from 'moment';
         import { connect } from 'lore-hook-connect';
 
-        @connect(function(getState, props){
+        @connect(function(getState, props) {
           const tweet = props.tweet;
 
           return {

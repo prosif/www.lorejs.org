@@ -120,7 +120,7 @@ export default (props) => {
         onError: {
           actionType: ActionTypes.REMOVE_TWEET,
           payloadState: PayloadStates.ERROR_CREATING,
-          beforeDispatch: function(response, args){
+          beforeDispatch: function(response, args) {
             lore.log.error('Oh no! The create called failed. Deleting tweet.')
           }
         }

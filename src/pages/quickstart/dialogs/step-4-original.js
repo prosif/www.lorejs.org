@@ -450,7 +450,7 @@ export default (props) => {
         import Tweet from './Tweet';
         import PayloadStates from '../constants/PayloadStates';
 
-        export default connect(function(getState, props){
+        export default connect(function(getState, props) {
           return {
             tweets: getState('tweet.find')
           }
@@ -559,7 +559,7 @@ export default (props) => {
           }
         })();
 
-        export default connect(function(getState, props){
+        export default connect(function(getState, props) {
           return {
             tweets: getState('tweet.find')
           }
@@ -572,7 +572,7 @@ export default (props) => {
         import Tweet from './Tweet';
         import PayloadStates from '../constants/PayloadStates';
 
-        @connect(function(getState, props){
+        @connect(function(getState, props) {
           return {
             tweets: getState('tweet.find')
           }

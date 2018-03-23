@@ -51,7 +51,7 @@ export default (props) => {
         onError: {
           actionType: ActionTypes.REMOVE_COLOR,
           payloadState: PayloadStates.ERROR_CREATING,
-          beforeDispatch: function(response, args){
+          beforeDispatch: function(response, args) {
             // no op
           }
         }

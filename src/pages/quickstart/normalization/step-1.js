@@ -36,7 +36,7 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        export default connect(function(getState, props){
+        export default connect(function(getState, props) {
           return {
             tweets: getState('tweet.find', {
               pagination: {
@@ -50,7 +50,7 @@ export default (props) => {
         );
         `}/>
         <CodeTab syntax="ES6" text={`
-        export default connect(function(getState, props){
+        export default connect(function(getState, props) {
           return {
             tweets: getState('tweet.find', {
               pagination: {
@@ -64,7 +64,7 @@ export default (props) => {
         );
         `}/>
         <CodeTab syntax="ESNext" text={`
-        @connect(function(getState, props){
+        @connect(function(getState, props) {
           return {
             tweets: getState('tweet.find', {
               pagination: {
@@ -269,7 +269,7 @@ export default (props) => {
         import InfiniteScrolling from '../decorators/InfiniteScrolling';
         import LoadMoreButton from './LoadMoreButton';
 
-        export default connect(function(getState, props){
+        export default connect(function(getState, props) {
           return {
             tweets: getState('tweet.find', {
               pagination: {
@@ -388,7 +388,7 @@ export default (props) => {
           tweets: PropTypes.object.isRequired
         };
 
-        export default connect(function(getState, props){
+        export default connect(function(getState, props) {
           return {
             tweets: getState('tweet.find', {
               pagination: {
@@ -412,7 +412,7 @@ export default (props) => {
         import InfiniteScrolling from '../decorators/InfiniteScrolling';
         import LoadMoreButton from './LoadMoreButton';
 
-        @connect(function(getState, props){
+        @connect(function(getState, props) {
           return {
             tweets: getState('tweet.find', {
               pagination: {

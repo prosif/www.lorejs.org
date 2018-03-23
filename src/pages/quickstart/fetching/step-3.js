@@ -35,7 +35,7 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        connect(function(getState, props){
+        connect(function(getState, props) {
           return {
             tweets: getState('tweet.find')
           }
@@ -44,14 +44,14 @@ export default (props) => {
         <CodeTab syntax="ES6" text={`
         class MyComponent extends React.Component {...}
 
-        connect(function(getState, props){
+        connect(function(getState, props) {
           return {
             tweets: getState('tweet.find')
           }
         })(MyComponent);
         `}/>
         <CodeTab syntax="ESNext" text={`
-        @connect(function(getState, props){
+        @connect(function(getState, props) {
           return {
             tweets: getState('tweet.find')
           }
@@ -98,7 +98,7 @@ export default (props) => {
         ...
         import { connect } from 'lore-hook-connect';
 
-        export default connect(function(getState, props){
+        export default connect(function(getState, props) {
           return {
             tweets: getState('tweet.find')
           }
@@ -116,7 +116,7 @@ export default (props) => {
           ...
         };
 
-        export default connect(function(getState, props){
+        export default connect(function(getState, props) {
           return {
             tweets: getState('tweet.find')
           }
@@ -126,7 +126,7 @@ export default (props) => {
         ...
         import { connect } from 'lore-hook-connect';
 
-        @connect(function(getState, props){
+        @connect(function(getState, props) {
           return {
             tweets: getState('tweet.find')
           }
@@ -174,7 +174,7 @@ export default (props) => {
         import { connect } from 'lore-hook-connect';
         import Tweet from './Tweet';
 
-        export default connect(function(getState, props){
+        export default connect(function(getState, props) {
           return {
             tweets: getState('tweet.find')
           }
@@ -286,7 +286,7 @@ export default (props) => {
           }
         })();
 
-        export default connect(function(getState, props){
+        export default connect(function(getState, props) {
           return {
             tweets: getState('tweet.find')
           }
@@ -298,7 +298,7 @@ export default (props) => {
         import { connect } from 'lore-hook-connect';
         import Tweet from './Tweet';
 
-        @connect(function(getState, props){
+        @connect(function(getState, props) {
           return {
             tweets: getState('tweet.find')
           }

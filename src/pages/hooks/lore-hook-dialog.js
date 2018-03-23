@@ -65,7 +65,7 @@ export default (props) => {
         lore.actions.tweet.update(tweet, params);
       }
 
-      lore.dialog.show(function(){
+      lore.dialog.show(function() {
         return (
           <UpdateTweetDialog
             tweet={tweet}
