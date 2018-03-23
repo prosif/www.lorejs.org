@@ -72,21 +72,21 @@ export default (props) => {
             <NavLink title="1. Add Profile to Layout" url="/quickstart/authentication/step-1/" />
             <NavLink title="2. Add Login Page" url="/quickstart/authentication/step-2/" />
             <NavLink title="3. Redirect to Login" url="/quickstart/authentication/step-3/" />
-            <NavLink title="4. Save Token and Redirect" url="/quickstart/authentication/step-4/" />
+            <NavLink title="4. Add Callback Route" url="/quickstart/authentication/step-4/" />
             <NavLink title="5. Add Logout Route" url="/quickstart/authentication/step-5/" />
-            <NavLink title="6. Add User to Context" url="/quickstart/authentication/step-6/" />
+            <NavLink title="6. Save User to Context" url="/quickstart/authentication/step-6/" />
 
             <li className="doc-section">Authorization</li>
             <NavLink title="Overview" url="/quickstart/authorization/overview/" />
             <NavLink title="1. Hide Edit Link" url="/quickstart/authorization/step-1/" />
-            <NavLink title="2. Hide Delete Link" url="/quickstart/authorization/step-1/" />
+            <NavLink title="2. Hide Delete Link" url="/quickstart/authorization/step-2/" />
+            <NavLink title="3. Alternative Approach" url="/quickstart/authorization/step-3/" />
 
             <li className="doc-section">Server</li>
             <NavLink title="Overview" url="/quickstart/server/overview/" />
             <NavLink title="1. Clone the API Server" url="/quickstart/server/step-1/" />
             <NavLink title="2. Parse Server Response" url="/quickstart/server/step-2/" />
             <NavLink title="3. Add Authorization Header" url="/quickstart/server/step-3/" />
-            <NavLink title="4. Reset Store on Logout" url="/quickstart/server/step-4/" />
 
             <li className="doc-section">Pagination</li>
             <NavLink title="Overview" url="/quickstart/pagination/overview/" />
@@ -108,6 +108,16 @@ export default (props) => {
             <li className="doc-section">Normalization</li>
             <NavLink title="Overview" url="/quickstart/normalization/overview/" />
             <NavLink title="1. Normalize Tweet Response" url="/quickstart/normalization/step-1/" />
+
+            <li className="doc-section">Optimistic Updates</li>
+            <NavLink title="Overview" url="/quickstart/optimistic/overview/" />
+            <NavLink title="1. Add Pagination Timestamp" url="/quickstart/optimistic/step-1/" />
+            <NavLink title="2. Display New Tweets" url="/quickstart/optimistic/step-2/" />
+            <NavLink title="3. Show Optimistic Visual Cues" url="/quickstart/optimistic/step-3/" />
+
+            <li className="doc-section">WebSockets</li>
+            <NavLink title="Overview" url="/quickstart/websockets/overview/" />
+            <NavLink title="1. Add WebSocket Support" url="/quickstart/websockets/step-1/" />
 
             <li className="doc-section">Publishing</li>
             <NavLink title="Overview" url="/quickstart/publishing/overview/" />
