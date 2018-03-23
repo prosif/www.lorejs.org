@@ -132,7 +132,7 @@ export default (props) => {
       </h3>
       <p>
         Lastly, before we had a real API server, when we created a tweet we had to manually provide the <code>userId</code> of the user
-        that created it and the <code>createdAt</code> date of when the tweet was created. That let to us setting up a call to
+        that created it and the <code>createdAt</code> date of when the tweet was created. That led to us setting up a call to
         <code>lore.actions.tweet.create</code> that looked like this:
       </p>
 
