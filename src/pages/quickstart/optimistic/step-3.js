@@ -59,23 +59,26 @@ export default (props) => {
       `}/>
 
       <p>
-        When this method tries to render our optimistic tweet, there *is not user field* on the `tweet` we just created, so
-        we get this error because the `getState` call can't locate a tweet with an undefined id.
+        When this method tries to render our optimistic tweet, there <em>is not user field</em> on
+        the <code>tweet</code> we just created, so we get this error because the <code>getState</code> call
+        can't locate a tweet with an undefined id.
       </p>
 
       <h2>
         Set Optimistic Data for New Tweets
       </h2>
       <p>
-        To fix this, we *could* add logic to our component to behave differently when no `user` field exists (like showing
-        an unknown avatar photo or changing the timestamp message to something like 'saving...'), but in this
-        case we're going to do something much simpler, and simply provide the `user` and `createdAt` fields ourselves when we
-        create the tweet. We already know what those fields will be anyway, so in this case, we can simply set them ourselves
-        on the optimistic data to get the experience we want.
+        To fix this, we <em>could</em> add logic to our component to behave differently when
+        no <code>user</code> field exists (like showing an unknown avatar photo or changing the timestamp
+        message to something like 'saving...'), but in this case we're going to do something much simpler, and
+        simply provide the <code>user</code> and <code>createdAt</code> fields ourselves when we create the
+        tweet. We already know what those fields will be anyway, so in this case, we can simply set them
+        ourselves on the optimistic data to get the experience we want.
       </p>
 
       <p>
-        To fix this problem, update the `onClick` method of the `CreateButton` component to look like this:
+        To fix this problem, update the <code>onClick</code> method of the <code>CreateButton</code> component
+        to look like this:
       </p>
 
       <Markdown text={`
@@ -101,18 +104,20 @@ export default (props) => {
         Add Visual Cue for Optimistic Changes
       </h3>
       <p>
-        The change above solves our issue, but we're not providing the user with any feedback that a change is occuring,
-        and even worse, we're exposing functionality that doesn't exist yet when tweets are being created.
+        The change above solves our issue, but we're not providing the user with any feedback that a change
+        is occurring, and even worse, we're exposing functionality that doesn't exist yet when tweets are being
+        created.
       </p>
 
       <p>
-        To improve the experience, we're going to visually fade the tweet when it's being created, updated or deleted, and
-        we're not going to show the `edit` or `delete` button until we have confirmation that the tweet actually exists (since
-        we can't update or delete data that we don't know the id for).
+        To improve the experience, we're going to visually fade the tweet when it's being created, updated or
+        deleted, and we're not going to show the <code>edit</code> or <code>delete</code> button until we have
+        confirmation that the tweet actually exists (since we can't update or delete data that we don't know the
+        id for).
       </p>
 
       <p>
-        Update the `render` method of the `Tweet` component to look like this:
+        Update the <code>render</code> method of the <code>Tweet</code> component to look like this:
       </p>
 
       <Markdown text={`
@@ -127,7 +132,7 @@ export default (props) => {
         );
 
         return (
-          <li className={"list-group-item tweet" + (isOptimistic ? " optimistic" : "")}>
+          <li className={"list-group-item tweet" + (isOptimistic ? " transition" : "")}>
             <div className="image-container">
               <img
                 className="img-circle avatar"
@@ -154,8 +159,9 @@ export default (props) => {
       `}/>
 
       <p>
-        Now tweets will only show the `edit` and `delete` links once the server confirms they exist, and any modifications to
-        a tweet will show a visual cue to the user. That's a much better experience.
+        Now tweets will only show the <code>edit</code> and <code>delete</code> links once the server confirms
+        they exist, and any modifications to a tweet will show a visual cue to the user. That's a much better
+        experience.
       </p>
 
 

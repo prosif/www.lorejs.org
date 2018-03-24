@@ -82,28 +82,13 @@ export default (props) => {
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1">
           <title>Lore Quickstart</title>
-
-          <style>
-            .loading-text {
-              font-family: "Open Sans", Arial, sans-serif;
-              text-align: center;
-              line-height: 100vh;
-              font-size: 32px;
-              margin: 0;
-              font-weight: normal;
-              color: rgba(0,0,0,.54);
-              -webkit-font-smoothing: antialiased;
-              -moz-osx-font-smoothing: grayscale;
-            }
-          </style>
           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         </head>
         <body>
-          <div id="root">
-            <h1 class="loading-text">
-              Loading...
-            </h1>
+          <div id="loading-screen">
+            <div class="logo breathe"></div>
           </div>
+          <div id="root"></div>
           <div id="dialog"></div>
 
           <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>

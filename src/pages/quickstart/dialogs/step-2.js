@@ -44,6 +44,9 @@ export default (props) => {
 
       <Markdown type="html" text={`
       <body>
+        <div id="loading-screen">
+          ...
+        </div>
         <div id="root">
           ...
         </div>

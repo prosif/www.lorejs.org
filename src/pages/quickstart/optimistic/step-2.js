@@ -38,9 +38,11 @@ export default (props) => {
         Get New Tweets
       </h2>
       <p>
-        Update the `lore.connect` call in the `Feed` component to use the `tweet.all` mapping. This function has two optional
-        parameters. By default, it returns *all* tweets, but you can pass in an optional filter method using the  `where`
-        paramter, as well as an optional sorting criteria using the `sortBy` parameter.
+        Update the <code>connect</code> call in the <code>Feed</code> component to use
+        the <code>tweet.all</code> mapping. This function has two optional parameters. By default, it
+        returns <em>all</em> tweets, but you can pass in an optional filter method using
+        the <code>where</code> parameter, as well as an optional sorting criteria using
+        the <code>sortBy</code> parameter.
       </p>
 
       <Markdown text={`

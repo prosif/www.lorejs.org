@@ -24,15 +24,15 @@ export default (props) => {
         Add the WebSockets Hook
       </h2>
       <p>
-        First install the `lore-hook-websockets-sails` hook:
+        First install the <code>lore-hook-websockets-sails</code> hook:
       </p>
 
       <Markdown text={`
-      npm install lore-hook-websockets-sails --save
+      npm install lore-hook-websockets-sails sails.io.js@~0.13.8 socket.io-client@^1.4.8 --save
       `}/>
 
       <p>
-        Next register the hook in your `index.js` file:
+        Next register the hook in your <code>index.js</code> file:
       </p>
 
       <Markdown text={`
@@ -61,16 +61,17 @@ export default (props) => {
       `}/>
 
       <p>
-        While the hook exposes many more config options, the only one we need for this example is the location of the
-        socket.io server, which runs on the same port as the Sails API.
+        While the hook exposes many more config options, the only one we need for this example is the location
+        of the socket.io server, which runs on the same port as the Sails API.
       </p>
 
       <h2>
         Subscribe to Data
       </h2>
       <p>
-        Next, initialize the hook by subscribing to data for `tweets` in the `Master` component when the
-        application mounts, and unsubscribe to the data when the application unmounts:
+        Next, initialize the hook by subscribing to data for <code>tweets</code> in
+        the <code>Master</code> component when the application mounts, and unsubscribe to the data when
+        the application unmounts:
       </p>
 
       <Markdown text={`
@@ -85,8 +86,9 @@ export default (props) => {
       `}/>
 
       <p>
-        That's it! With that change in place, the application will start listening for new data when it mounts, and tweets
-        created by other users will immediately show up at the top of the feed, just like tweets you create yourself.
+        That's it! With that change in place, the application will start listening for new data when it mounts,
+        and tweets created by other users will immediately show up at the top of the feed, just like tweets you
+        create yourself.
       </p>
 
       <h3>

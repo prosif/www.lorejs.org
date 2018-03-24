@@ -201,6 +201,31 @@ export default (props) => {
         color: #999;
         font-size: 14px
       }
+
+      .tweet.transition {
+        opacity: 0.5;
+      }
+
+      .tweet.transition .link {
+        display: none;
+      }
+
+      /*
+       * Loading
+       */
+
+      .loading-text {
+        font-family: "Open Sans", Arial, sans-serif;
+        text-align: center;
+        line-height: 100vh;
+        /*line-height: 48px;*/
+        font-size: 32px;
+        margin: 0;
+        font-weight: normal;
+        color: rgba(0,0,0,.54);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
       `}/>
 
       <p>
@@ -379,6 +404,31 @@ export default (props) => {
         margin-left: 8px;
         color: #999;
         font-size: 14px
+      }
+
+      .tweet.transition {
+        opacity: 0.5;
+      }
+
+      .tweet.transition .link {
+        display: none;
+      }
+
+      /*
+       * Loading
+       */
+
+      .loading-text {
+        font-family: "Open Sans", Arial, sans-serif;
+        text-align: center;
+        line-height: 100vh;
+        /*line-height: 48px;*/
+        font-size: 32px;
+        margin: 0;
+        font-weight: normal;
+        color: rgba(0,0,0,.54);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
       `}/>
 

@@ -31,7 +31,7 @@ export default (props) => {
       </p>
 
       <p>
-        You'll also notice that if you *DO* create a tweet, and then you try to load the next page of tweets,
+        You'll also notice that if you <em>DO</em> create a tweet, and then you try to load the next page of tweets,
         the console fills with this error:
       </p>
 
@@ -40,9 +40,9 @@ export default (props) => {
       `}/>
 
       <p>
-        This error is caused by the fact that some of the tweets on the first page are *ALSO* on the second
-        page. To illustrate, let's say the server has 6 tweets, and you want to display those tweets in two
-        pages, with three tweets per page:
+        This error is caused by the fact that some of the tweets on the first page are <em>ALSO</em> on the
+        second page. To illustrate, let's say the server has 6 tweets, and you want to display those tweets in
+        two pages, with three tweets per page:
       </p>
 
       <Markdown text={`
