@@ -14,8 +14,9 @@ export default (props) => {
       </h1>
 
       <p>
-        In this step we'll use <code>react-router</code> to convert the title in the header to a clickable link that will always take the
-        user back to the homepage. We won't make use of the functionality in this quickstart, but it's a good practice to follow.
+        In this step we'll use <code>react-router</code> to convert the title in the header to a clickable link
+        that will always take the user back to the homepage. We won't make use of the functionality in this
+        Quickstart, but it's a good practice to follow.
       </p>
 
       <QuickstartBranch branch="routing.1" />
@@ -34,8 +35,9 @@ export default (props) => {
       `} />
 
       <p>
-        Next import <code>react-router</code>, and change the <code>div</code> tag to a React Router <code>Link</code> tag. Finally, add a <code>to</code> property and
-        provide the root url <code>/</code>.
+        Next, import the <code>Link</code> tag from <code>react-router</code> and use it to convert
+        the <code>div</code> tag into a clickable link. Set the <code>to</code> property to the root
+        URL (<code>/</code>).
       </p>
 
       <CodeTabs>

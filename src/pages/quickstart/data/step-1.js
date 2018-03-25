@@ -90,7 +90,7 @@ export default (props) => {
               state: 'RESOLVED',
               data: {
                 id: 1,
-                user: 1,
+                userId: 1,
                 text: 'Nothing can beat science!',
                 createdAt: '2016-10-04T05:10:49.382Z'
               }
@@ -120,7 +120,7 @@ export default (props) => {
             state: 'RESOLVED',
             data: {
               id: 1,
-              user: 1,
+              userId: 1,
               text: 'Nothing can beat science!',
               createdAt: '2016-10-04T05:10:49.382Z'
             }
@@ -144,7 +144,7 @@ export default (props) => {
               state: 'RESOLVED',
               data: {
                 id: 1,
-                user: 1,
+                userId: 1,
                 text: 'Nothing can beat science!',
                 createdAt: '2016-10-04T05:10:49.382Z'
               }
@@ -163,16 +163,17 @@ export default (props) => {
       </CodeTabs>
 
       <p>
-        In the function above, we're declaring a single tweet, with the text <em>"Nothing can beat science!"</em> and adding it to an
-        array of tweets. In both cases the state has been set to <code>RESOLVED</code> to signify that nothing is happening to the data.
+        In the function above, we're declaring a single tweet, with the text <em>"Nothing can beat science!"</em> and
+        adding it to an array of tweets. In both cases the state has been set to <code>RESOLVED</code> to indicate
+        that nothing is happening to the data.
       </p>
 
       <blockquote>
         <p>
-          When adding mock data to real applications, it's not necessary to include all these fields - only the ones the
-          component will actually need. For this example, the following data set is perfectly sufficient, and has been collapsed
-          into a single data structure:
-
+          When adding mock data to real applications, it's not necessary to include all these fields - only the
+          ones the component will actually need. For this example, the following data set is perfectly sufficient,
+          and has been collapsed into a single data structure:
+        </p>
       <Markdown text={`
       ...
         getDefaultProps: function() {
@@ -182,7 +183,7 @@ export default (props) => {
                 {
                   id: 1,
                   data: {
-                    user: 1,
+                    userId: 1,
                     text: 'Nothing can beat science!',
                     createdAt: '2016-10-04T05:10:49.382Z'
                   }
@@ -193,16 +194,15 @@ export default (props) => {
         },
       ...
       `}/>
-        </p>
       </blockquote>
 
       <h3>
         Render the Tweets
       </h3>
       <p>
-        With some mock data created, let's pull it into our render method and display it on screen. To do that, we're going to
-        create a method called <code>renderTweet</code> that will contain the code to render each tweet. Then we'll iterate through
-        our mock tweets and map them into HTML to display on screen.
+        With some mock data created, let's pull it into our render method and display it on screen. To do that,
+        we're going to create a method called <code>renderTweet</code> that will contain the code to render
+        each tweet. Then we'll iterate through our mock tweets and map them into HTML to display on screen.
       </p>
 
       <p>
@@ -291,18 +291,20 @@ export default (props) => {
       </CodeTabs>
 
       <p>
-        With this code in place, you should now see the text of your mock tweet displayed to the screen. Awesome!
+        With this code in place, you should now see the text of your mock tweet displayed to the screen.
       </p>
 
       <blockquote>
         <p>
-          As a reminder, anytime you render a list of items in React, you need to add a <code>key</code> property that contains a unique
-          id that no other item in that list will share. In this example, we're using the <code>id</code> of our tweet, which for many
-          situations is a perfect solution.
-
-          The only time you won't be able to use the <code>id</code> as the key is when you're dealing with optimistic updates, a use
-          case we'll address later in this tutorial. Optimistic updates involve displaying data to the user before it actually
-          exists on the server, which means it won't have an <code>id</code> assigned to it yet.
+          As a reminder, anytime you render a list of items in React, you need to add a <code>key</code> property
+          that contains a unique id that no other item in that list will share. In this example, we're using
+          the <code>id</code> of our tweet, which is a perfect solution for many situations.
+        </p>
+        <p>
+          The only time you won't be able to use the <code>id</code> as the key is when you're dealing with
+          optimistic updates, a use case we'll address later in this tutorial. Optimistic updates involve
+          displaying data to the user before it actually exists on the server, which means it won't have
+          an <code>id</code> assigned to it yet.
         </p>
       </blockquote>
 
@@ -348,7 +350,7 @@ export default (props) => {
               state: 'RESOLVED',
               data: {
                 id: 1,
-                user: 1,
+                userId: 1,
                 text: 'Nothing can beat science!',
                 createdAt: '2016-10-04T05:10:49.382Z'
               }
@@ -429,7 +431,7 @@ export default (props) => {
             state: 'RESOLVED',
             data: {
               id: 1,
-              user: 1,
+              userId: 1,
               text: 'Nothing can beat science!',
               createdAt: '2016-10-04T05:10:49.382Z'
             }
@@ -462,7 +464,7 @@ export default (props) => {
               state: 'RESOLVED',
               data: {
                 id: 1,
-                user: 1,
+                userId: 1,
                 text: 'Nothing can beat science!',
                 createdAt: '2016-10-04T05:10:49.382Z'
               }

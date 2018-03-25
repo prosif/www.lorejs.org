@@ -14,7 +14,7 @@ export default (props) => {
       </h1>
 
       <p>
-        In this step we're going to create our Tweet component, and make our tweets look pretty!
+        In this step we're going to create our <code>Tweet</code> component, and make our tweets look pretty!
       </p>
 
       <QuickstartBranch branch="data.2" />
@@ -23,7 +23,8 @@ export default (props) => {
         Create the Tweet Component
       </h3>
       <p>
-        First we need to create our Tweet component. Once again, we're going to use the CLI to generate that component for us:
+        First we need to create our <code>Tweet</code> component. Once again, we're going to use the CLI to
+        generate that component for us:
       </p>
 
       <Markdown type="sh" text={`
@@ -31,8 +32,8 @@ export default (props) => {
       `}/>
 
       <p>
-        Next declare a <code>propType</code> for the tweet and mark it as required. Then update your <code>render</code> method to include the code
-        below.
+        Next declare a <code>propType</code> for the tweet and mark it as required. Then update
+        your <code>render</code> method to include the code below.
       </p>
 
       <CodeTabs>
@@ -159,7 +160,8 @@ export default (props) => {
         Use Tweet in Feed
       </h3>
       <p>
-        With our Tweet component created, let's use it in our Feed component. Update the <code>renderTweet</code> method to look like this:
+        With our <code>Tweet</code> component created, let's use it in our <code>Feed</code> component. Update
+        the <code>renderTweet</code> method to look like this:
       </p>
 
       <CodeTabs>
@@ -205,9 +207,10 @@ export default (props) => {
         Update Tweet Component to use Tweet Data
       </h3>
       <p>
-        The Tweet component is now displaying in the Feed, but you might notice it doesn't contain our mock data. Instead it's
-        showing some hard-coded data. Let's change that by using our <code>tweet</code> to populate the Tweet. Update the <code>render</code> method
-        of the Tweet component to look like this:
+        The <code>Tweet</code> component is now displaying in the <code>Feed</code>, but you might notice it doesn't
+        contain our mock data. Instead it's showing some hard-coded data. Let's change that by using
+        our <code>tweet</code> to populate the Tweet. Update the <code>render</code> method of
+        the <code>Tweet</code> component to look like this:
       </p>
 
       <CodeTabs>
@@ -613,7 +616,7 @@ export default (props) => {
               state: 'RESOLVED',
               data: {
                 id: 1,
-                user: 1,
+                userId: 1,
                 text: 'Nothing can beat science!',
                 createdAt: '2016-10-04T05:10:49.382Z'
               }
@@ -691,7 +694,7 @@ export default (props) => {
             state: 'RESOLVED',
             data: {
               id: 1,
-              user: 1,
+              userId: 1,
               text: 'Nothing can beat science!',
               createdAt: '2016-10-04T05:10:49.382Z'
             }
@@ -725,7 +728,7 @@ export default (props) => {
               state: 'RESOLVED',
               data: {
                 id: 1,
-                user: 1,
+                userId: 1,
                 text: 'Nothing can beat science!',
                 createdAt: '2016-10-04T05:10:49.382Z'
               }

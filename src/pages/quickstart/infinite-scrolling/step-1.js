@@ -496,9 +496,7 @@ export default (props) => {
             if(lastPage.state === PayloadStates.FETCHING) {
               return (
                 <div className="footer">
-                  <button className="btn btn-default btn-lg disabled">
-                    Loading...
-                  </button>
+                  <div className="loader" />
                 </div>
               );
             }
@@ -536,9 +534,7 @@ export default (props) => {
             if(lastPage.state === PayloadStates.FETCHING) {
               return (
                 <div className="footer">
-                  <button className="btn btn-default btn-lg disabled">
-                    Loading...
-                  </button>
+                  <div className="loader" />
                 </div>
               );
             }
@@ -590,9 +586,7 @@ export default (props) => {
             if(lastPage.state === PayloadStates.FETCHING) {
               return (
                 <div className="footer">
-                  <button className="btn btn-default btn-lg disabled">
-                    Loading...
-                  </button>
+                  <div className="loader" />
                 </div>
               );
             }
@@ -749,9 +743,7 @@ export default (props) => {
 
             if (numberOfPages === 1 && lastPage.state === PayloadStates.FETCHING) {
               return (
-                <h1 className="loading-text">
-                  Loading...
-                </h1>
+                <div className="loader" />
               );
             }
 
@@ -793,9 +785,7 @@ export default (props) => {
 
             if (numberOfPages === 1 && lastPage.state === PayloadStates.FETCHING) {
               return (
-                <h1 className="loading-text">
-                  Loading...
-                </h1>
+                <div className="loader" />
               );
             }
 
@@ -848,9 +838,7 @@ export default (props) => {
 
             if (numberOfPages === 1 && lastPage.state === PayloadStates.FETCHING) {
               return (
-                <h1 className="loading-text">
-                  Loading...
-                </h1>
+                <div className="loader" />
               );
             }
 
@@ -1051,9 +1039,7 @@ export default (props) => {
             if(lastPage.state === PayloadStates.FETCHING) {
               return (
                 <div className="footer">
-                  <button className="btn btn-default btn-lg disabled">
-                    Loading...
-                  </button>
+                  <div className="loader" />
                 </div>
               );
             }
@@ -1091,9 +1077,7 @@ export default (props) => {
             if(lastPage.state === PayloadStates.FETCHING) {
               return (
                 <div className="footer">
-                  <button className="btn btn-default btn-lg disabled">
-                    Loading...
-                  </button>
+                  <div className="loader" />
                 </div>
               );
             }
@@ -1145,9 +1129,7 @@ export default (props) => {
             if(lastPage.state === PayloadStates.FETCHING) {
               return (
                 <div className="footer">
-                  <button className="btn btn-default btn-lg disabled">
-                    Loading...
-                  </button>
+                  <div className="loader" />
                 </div>
               );
             }
@@ -1572,9 +1554,7 @@ export default (props) => {
 
             if (numberOfPages === 1 && lastPage.state === PayloadStates.FETCHING) {
               return (
-                <h1 className="loading-text">
-                  Loading...
-                </h1>
+                <div className="loader" />
               );
             }
 
@@ -1627,9 +1607,7 @@ export default (props) => {
 
             if (numberOfPages === 1 && lastPage.state === PayloadStates.FETCHING) {
               return (
-                <h1 className="loading-text">
-                  Loading...
-                </h1>
+                <div className="loader" />
               );
             }
 
@@ -1710,9 +1688,7 @@ export default (props) => {
 
             if (numberOfPages === 1 && lastPage.state === PayloadStates.FETCHING) {
               return (
-                <h1 className="loading-text">
-                  Loading...
-                </h1>
+                <div className="loader" />
               );
             }
 

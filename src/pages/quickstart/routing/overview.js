@@ -13,8 +13,8 @@ export default (props) => {
         Routing: Overview
       </h1>
       <p>
-        In this section we'll learn about routing, and modify our application to change the content displayed as the URL
-        changes.
+        In this section we'll learn about routing, which is a way to control what gets rendered based on the URL
+        the user navigates to.
       </p>
 
       <p>
@@ -80,6 +80,19 @@ export default (props) => {
           Router's <a href="https://github.com/ReactTraining/react-router/tree/v3/docs">
           documentation</a> and <a href="https://github.com/ReactTraining/react-router/tree/v3/examples">
           examples</a> will be directly applicable to Lore.
+        </p>
+        <p>
+          It's also important to mention that <strong>new Lore projects include react-router v3</strong>,
+          and <strong>NOT</strong> v4. The links above go to the v3 documentation. By modifying some of
+          configuration files in your project, it's possible to replace v3 with v4, but there's no formal guide
+          explaining how to do it yet. Once there is, a link will be provided here.
+        </p>
+        <p>
+          In the future, Lore will <em>probably</em> switch to v4 as the default, but it needs to be explored
+          more.
+        </p>
+        <p>
+
         </p>
       </blockquote>
 

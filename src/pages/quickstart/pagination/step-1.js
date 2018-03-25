@@ -214,10 +214,8 @@ export default (props) => {
 
             if (tweets.state === PayloadStates.FETCHING) {
               return (
-                <h1 className="loading-text">
-                  Loading...
-                </h1>
-              )
+                <div className="loader" />
+              );
             }
 
             // calculate the number of pagination links from our metadata, then
@@ -272,10 +270,8 @@ export default (props) => {
 
             if (tweets.state === PayloadStates.FETCHING) {
               return (
-                <h1 className="loading-text">
-                  Loading...
-                </h1>
-              )
+                <div className="loader" />
+              );
             }
 
             // calculate the number of pagination links from our metadata, then
@@ -329,10 +325,8 @@ export default (props) => {
 
             if (tweets.state === PayloadStates.FETCHING) {
               return (
-                <h1 className="loading-text">
-                  Loading...
-                </h1>
-              )
+                <div className="loader" />
+              );
             }
 
             // calculate the number of pagination links from our metadata, then
@@ -551,10 +545,8 @@ export default (props) => {
 
             if (tweets.state === PayloadStates.FETCHING) {
               return (
-                <h1 className="loading-text">
-                  Loading...
-                </h1>
-              )
+                <div className="loader" />
+              );
             }
 
             // calculate the number of pagination links from our metadata, then
@@ -617,10 +609,8 @@ export default (props) => {
 
             if (tweets.state === PayloadStates.FETCHING) {
               return (
-                <h1 className="loading-text">
-                  Loading...
-                </h1>
-              )
+                <div className="loader" />
+              );
             }
 
             // calculate the number of pagination links from our metadata, then
@@ -708,10 +698,8 @@ export default (props) => {
 
             if (tweets.state === PayloadStates.FETCHING) {
               return (
-                <h1 className="loading-text">
-                  Loading...
-                </h1>
-              )
+                <div className="loader" />
+              );
             }
 
             // calculate the number of pagination links from our metadata, then

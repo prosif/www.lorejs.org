@@ -92,7 +92,7 @@ export default (props) => {
       `}/>
 
       <h3>
-        Try it Out (optional)
+        [Optional] Try it Out
       </h3>
       <p>
         This hook generates Bootstrap dialogs for every model in your application, and includes experiences for creating,

@@ -23,10 +23,23 @@ export default (props) => {
         Add a Mock User
       </h3>
       <p>
-        Our Tweet is looking pretty good, we're just missing some data for the user's nickname and avatar. If you look at the
-        data for our tweet, you'll notice it includes a property called <code>userId</code> that has a number for a value. This number
-        represents the id of the user the tweet belongs to. Taking a look at the API endpoint for <code>/users</code> we can see that a
-        user resource looks like this:
+        Our Tweet is looking pretty good, we're just missing some data for the user's nickname and avatar. If
+        you look at the data for our <code>tweet</code>, you'll notice it includes a property
+        called <code>userId</code> that has a number for a value:
+      </p>
+
+      <Markdown text={`
+      {
+        id: 1,
+        userId: 1,
+        text: 'Nothing can beat science!',
+        createdAt: '2016-10-04T05:10:49.382Z'
+      }
+      `}/>
+
+      <p>
+        This number represents the id of the user the tweet belongs to. Taking a look at the API endpoint
+        for <code>/users</code> we can see that a user resource looks like this:
       </p>
 
       <Markdown text={`

@@ -288,7 +288,7 @@ export default (props) => {
         on the client-side when we create the data.
       </p>
       <p>
-        Later in the quickstart, we'll switch to a real API and will be able to delete this modification.
+        Later in the Quickstart, we'll switch to a real API and will be able to delete this modification.
       </p>
 
 

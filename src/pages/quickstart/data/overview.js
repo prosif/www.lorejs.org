@@ -14,8 +14,9 @@ export default (props) => {
       </h1>
 
       <p>
-        In this section we'll learn about the data structure Lore uses and then create our Tweet component using mock data. At
-        the end of this section your application will look like this:
+        In this section we'll learn about the data structure Lore uses and then create
+        our <code>Tweet</code> component using mock data. At the end of this section your application will look
+        like this:
       </p>
 
       <img className="drop-shadow" src="/assets/images/quickstart/data/step-3.png" />
@@ -24,8 +25,9 @@ export default (props) => {
         Lore's Data Structure
       </h3>
       <p>
-        Lore has a particular structure it uses to represent data in your application. To illustrate, take a look at this
-        example <code>Tweet</code> component. It expects to receive a prop called <code>tweet</code> and then renders the <code>tweet</code> data:
+        Lore has a particular structure it uses to represent data in your application. To illustrate, take a
+        look at this example <code>Tweet</code> component. It expects to receive a prop
+        called <code>tweet</code> and then renders the <code>tweet</code> data:
       </p>
 
       <CodeTabs>
@@ -92,8 +94,8 @@ export default (props) => {
       </CodeTabs>
 
       <p>
-        But before we can render the tweet, we first need to know what the data structure looks like. In Lore, all resources
-        have a data structure that looks like this:
+        But before we can render the tweet, we first need to know what the data structure looks like. In Lore,
+        all resources have a data structure that looks like this:
       </p>
 
       <Markdown text={`
@@ -121,13 +123,13 @@ export default (props) => {
       <p>
         This might seem a tad verbose at first glance, but each property solves a specific problem, which you
         can <Link to="/features/data-structure/">read more about about in the docs</Link> if you'd
-        like. But what you need to know for the quickstart is that the data structure is designed to solve
+        like. But what you need to know for the Quickstart is that the data structure is designed to solve
         application concerns related to optimistic updates, visual communication, server errors, and detecting
         when resources have been created - all important elements of a good user experience.
       </p>
 
       <p>
-        For endpoints that return a list of resources, such as <code>/tweets</code>, Lore use's a similar
+        For endpoints that return a list of resources, such as <code>/tweets</code>, Lore uses a similar
         data structure:
       </p>
 

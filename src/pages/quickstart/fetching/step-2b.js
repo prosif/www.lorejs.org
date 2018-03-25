@@ -21,9 +21,11 @@ export default (props) => {
       </p>
 
       <p>
-        If you'd like to see some of this functionality demonstrated now, and are comfortable using the console provided in
-        the developer tools for your browser, you may follow along with the steps below. If not, feel free to
-        <Link to="../step-3/">skip this step</Link>. It is entirely optional.
+        If you'd like to see some of this functionality demonstrated now, and are comfortable using the console
+        provided in the developer tools for your browser, you may follow along with the steps below.
+      </p>
+      <p>
+        If not, feel free to <Link to="../step-3/">skip this step</Link>. <strong>It is entirely optional</strong>.
       </p>
 
       <h3>
@@ -38,17 +40,17 @@ export default (props) => {
       `}/>
 
       <p>
-        When you created the <code>tweet</code> model Lore assumed you wanted a set of actions that could find, create, update and
-        delete tweets. After creating these actions, it attached them to <code>lore.actions</code>. The command you just entered invoked
-        the <code>find</code> action to fetch tweets from the API. And if you examine the network tab, you can see that a network request
-        was indeed sent out to <code>http://localhost:1337/tweets</code>.
+        When you created the <code>tweet</code> model Lore assumed you wanted a set of actions that could find,
+        create, update and delete tweets. After creating these actions, it attached them to <code>lore.actions</code>.
+        The command you just entered invoked the <code>find</code> action to fetch tweets from the API. And if you
+        examine the network tab, you can see a GET request was sent to <code>http://localhost:1337/tweets</code>.
       </p>
 
       <blockquote>
         <p>
-          The URL was composed from a convention, which defaults to "pluralize the model name and append it to the apiRoot". You
-          can change this convention as needed by modifying the <code>model</code> settings for pluralization, casing style, or simply
-          providing an explicit endpoint.
+          The URL was composed from a convention, which defaults to "pluralize the model name and append it to the
+          apiRoot". You can change this convention as needed by modifying the <code>model</code> settings for
+          pluralization, casing style, or simply providing an explicit endpoint.
         </p>
       </blockquote>
 
@@ -66,8 +68,9 @@ export default (props) => {
         Console Demo: Reducers & Store State
       </h3>
       <p>
-        In addition to create a set of actions, Lore also produces a set of reducers that store the tweets returned by the API.
-        To see the list of tweets returned for example, enter this command into the developer console:
+        In addition to create a set of actions, Lore also produces a set of reducers that store the tweets returned
+        by the API. For example, to see a list of tweets that have been returned, enter this command into the
+        developer console:
       </p>
 
       <Markdown text={`

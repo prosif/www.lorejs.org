@@ -194,7 +194,7 @@ export default (props) => {
       </p>
 
       <p>
-        Later in the quickstart, we'll switch to a real API and will be able to delete this modification.
+        Later in the Quickstart, we'll switch to a real API and will be able to delete this modification.
       </p>
 
       <h3>
@@ -473,10 +473,8 @@ export default (props) => {
 
             if (tweets.state === PayloadStates.FETCHING) {
               return (
-                <h1 className="loading-text">
-                  Loading...
-                </h1>
-              )
+                <div className="loader" />
+              );
             }
 
             return (
@@ -514,10 +512,8 @@ export default (props) => {
 
             if (tweets.state === PayloadStates.FETCHING) {
               return (
-                <h1 className="loading-text">
-                  Loading...
-                </h1>
-              )
+                <div className="loader" />
+              );
             }
 
             return (
@@ -545,7 +541,7 @@ export default (props) => {
             state: 'RESOLVED',
             data: {
               id: 1,
-              user: 1,
+              userId: 1,
               text: 'Nothing can beat science!',
               createdAt: '2016-10-04T05:10:49.382Z'
             }
@@ -590,7 +586,7 @@ export default (props) => {
               state: 'RESOLVED',
               data: {
                 id: 1,
-                user: 1,
+                userId: 1,
                 text: 'Nothing can beat science!',
                 createdAt: '2016-10-04T05:10:49.382Z'
               }
@@ -615,10 +611,8 @@ export default (props) => {
 
             if (tweets.state === PayloadStates.FETCHING) {
               return (
-                <h1 className="loading-text">
-                  Loading...
-                </h1>
-              )
+                <div className="loader" />
+              );
             }
 
             return (

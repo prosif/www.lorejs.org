@@ -14,7 +14,8 @@ export default (props) => {
       </h1>
 
       <p>
-        In this step we're going to create a Feed component to display the tweets and add it to the routes.
+        In this step we're going to create a <code>Feed</code> component to display the tweets and add it to
+        the routes.
       </p>
 
       <QuickstartBranch branch="routing.2" />
@@ -53,7 +54,7 @@ export default (props) => {
                   {/* Tweets */}
                 </ul>
               </div>
-            )
+            );
           }
         });
         `}/>
@@ -103,9 +104,10 @@ export default (props) => {
         Add Feed to Routes.js
       </h3>
       <p>
-        Next open <code>routes.js</code> and import the Feed component. Then add an IndexRoute within the root route that renders the
-        Feed. This setup will give us the flexibility to change content displayed within the main page later, but defaults what
-        is displayed to the Feed.
+        Next open <code>routes.js</code> and import the <code>Feed</code> component. Then add
+        an <code>IndexRoute</code> inside the root route that renders the <code>Feed</code>. This setup will
+        give us the flexibility to change what content is displayed on the main page later in the Quickstart,
+        while also declaring that the default behavior should be to display the Feed.
       </p>
 
       <p>
@@ -155,8 +157,8 @@ export default (props) => {
         Render Route Children in Layout
       </h3>
       <p>
-        If you refresh the application right now, you'll notice the Feed component isn't being displayed. And that's because
-        we haven't told the Layout where to render it yet.
+        If you refresh the application right now, you'll notice the <code>Feed</code> component isn't being
+        displayed. And that's because we haven't told the <code>Layout</code> where to render it yet.
       </p>
 
       <p>
@@ -179,13 +181,11 @@ export default (props) => {
       </div>
       `} />
 
-      <blockquote>
-        <p>
-          When we added <code>Feed</code> to <code>routes.js</code> we listed it as a child of <code>Layout</code>. This code we just pasted says "clone my
-          children and render them here". With this change in place, refresh the application and you should now see "Feed"
-          displayed in the middle of the page.
-        </p>
-      </blockquote>
+      <p>
+        When we added <code>Feed</code> to <code>routes.js</code> we listed it as a child of <code>Layout</code>.
+        The code we just pasted says "clone my children and render them here". With this change in place, refresh
+        the application and you should now see "Feed" displayed in the middle of the page.
+      </p>
 
       <h3>
         Visual Check-in
@@ -227,7 +227,7 @@ export default (props) => {
                   {/* Tweets */}
                 </ul>
               </div>
-            )
+            );
           }
         });
         `}/>

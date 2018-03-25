@@ -23,7 +23,8 @@ export default (props) => {
         Create the User Model
       </h3>
       <p>
-        Before we can fetch users, we need to create a model to represent the resource. Run this command to create a user model:
+        Before we can fetch users, we need to create a model to represent the resource. Run this command to create
+        a user model:
       </p>
 
       <Markdown type="sh" text={`
@@ -31,16 +32,17 @@ export default (props) => {
       `}/>
 
       <p>
-        This will place a file called <code>user.js</code> in <code>src/models</code> and, similar to when you created the <code>tweet</code> model, you will
-        now have access to a set of actions and reducers for interacting with the <code>/users</code> endpoint.
+        This will place a file called <code>user.js</code> in <code>src/models</code> and, similar to when you
+        created the <code>tweet</code> model, you will now have access to a set of actions and reducers for
+        interacting with the <code>/users</code> endpoint.
       </p>
 
       <h3>
         Fetch the Tweeter
       </h3>
       <p>
-        Next we need to fetch the user who said the tweet. Open up the <code>Tweet</code> component and wrap it with <code>connect</code>. But this
-        time we're going to use a different string in <code>getState</code>:
+        Next we need to fetch the user who said the tweet. Open up the <code>Tweet</code> component and wrap it
+        with <code>connect</code>. But this time we're going to use a different string in <code>getState</code>:
       </p>
 
       <CodeTabs>
@@ -99,20 +101,21 @@ export default (props) => {
       </CodeTabs>
 
       <p>
-        The string we're passing to <code>getState</code> this time is <code>user.byId</code>. This reducer stores users by their id, and if that user
-        doesn't exist in the store, it will make a server call to retrieve them. Unlike when we invoked <code>tweet.find</code> however,
-        this reducer requires an argument; the <code>id</code> of the user you want to fetch.
+        The string we're passing to <code>getState</code> this time is <code>user.byId</code>. This reducer stores
+        users by their id, and if that user doesn't exist in the store, it will make a server call to retrieve
+        them. However, unlike when we invoked <code>tweet.find</code>, this reducer requires an argument;
+        the <code>id</code> of the user you want to fetch.
       </p>
 
       <p>
-        Which this change in place, refresh the browser and you see the tweets attributed to the proper user.
+        Which this change in place, refresh the browser and you should see each tweet attributed to the correct user.
       </p>
 
       <blockquote>
         <p>
-          At this point both our <code>Feed</code> and <code>Tweet</code> components are fetching real data, which means you can safely delete the
-          <code>getDefaultProps</code> method from both components if you'd like. Seeing as we are no longer using them to insert mock
-          data, they no longer serve a purpose.
+          At this point both our <code>Feed</code> and <code>Tweet</code> components are fetching real data, which
+          means you can safely delete the <code>getDefaultProps</code> method from both components if you'd like.
+          Seeing as we are no longer using them to insert mock data, they no longer serve a purpose.
         </p>
       </blockquote>
 

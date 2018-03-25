@@ -14,8 +14,8 @@ export default (props) => {
       </h1>
 
       <p>
-        In this step we're going to use the <code>state</code> property in the data structure in order to display a loading message
-        while the list of tweets are being fetching.
+        In this step we're going to use the <code>state</code> property in the data structure in order to display
+        a loading experience while the list of tweets are being fetching.
       </p>
 
       <QuickstartBranch branch="fetching.4" />
@@ -24,41 +24,48 @@ export default (props) => {
         The Problem
       </h3>
       <p>
-        While it may happen too quickly to notice, there is a period of time before the list of tweets is displayed when
-        the page simply says "Feed" with a blank experience underneath. This happens because the application doesn't fetch the
-        tweets until the first time the <code>Feed</code> component is rendered, and that component can't render data it doesn't have yet.
+        While it may happen too quickly to notice, there is a period of time before the list of tweets is displayed
+        when the page simply says "Feed" with a blank experience underneath. This happens because the application
+        doesn't fetch the tweets until the first time the <code>Feed</code> component is rendered, and that component
+        can't render data it doesn't have yet.
       </p>
 
       <p>
-        Showing a blank view is a bad user experience, so let's update our <code>Feed</code> component to display the text "Loading..."
-        while the tweets are being fetched.
+        Showing a blank view is a bad user experience, so let's update our <code>Feed</code> component to display a
+        "spinner" while the tweets are being fetched.
       </p>
 
       <h3>
         Add a Loading Experience
       </h3>
       <p>
-        When Lore interacts with data (such as fetching, creating, updating or deleting it) the action creators built into
-        the framework update the <code>state</code> property of the data to reflect the action being performed.
+        When Lore interacts with data (such as fetching, creating, updating or deleting it) the action creators
+        built into the framework update the <code>state</code> property of the data to reflect the action being
+        performed.
       </p>
 
       <p>
-        The first time our <code>Feed</code> component is rendered for example, it requests the data associated with <code>tweet.find</code>
-        using the <code>getState</code> method of the <code>connect</code> decorator. Since this data doesn't exist yet, the framework invokes
-        an action to go fetch it.
+        For example, the first time our <code>Feed</code> component is rendered, it requests the data associated
+        with <code>tweet.find</code> using the <code>getState</code> method of the <code>connect</code> decorator.
+        Since this data doesn't exist yet, the framework invokes an action to go fetch it.
       </p>
 
       <p>
-        This action will set the <code>state</code> property of the data to <code>FETCHING</code> in order to notify you that the data is being
-        fetched. Once the data returns, the action will update the <code>state</code> property to have a value of <code>RESOLVED</code> to signify
-        that the data has been fetched. If there is an error fetching the data, the state would be updated to <code>ERROR_FETCHING</code>.
-        Let's use this behavior to create our loading experience.
+        This action will set the <code>state</code> property of the data to <code>FETCHING</code> in order to notify
+        you that the data is being fetched. Once the data returns, the action will update the <code>state</code> property
+        to have a value of <code>RESOLVED</code> to signify that the data has been fetched. If there is an error
+        fetching the data, the state would be updated to <code>ERROR_FETCHING</code>. Let's use this behavior to
+        create our loading experience.
       </p>
 
       <p>
-        We're going to start by importing a file called <code>PayloadStates</code> that resides in <code>src/constants</code>. This file is the set of
-        string constants that the framework applies to data by default. Import that file into <code>Feed</code> and then update the render
-        method to display the text <em>"Loading..."</em> when the <code>state</code> of the <code>tweets</code> is <code>FETCHING</code>.
+        We're going to start by importing a file called <code>PayloadStates</code> that resides
+        in <code>src/constants</code>. This file is the set of string constants that the framework applies to data
+        by default.
+      </p>
+      <p>
+        Import that file into <code>Feed</code> and then update the render method to display a "spinner" component
+        when the <code>state</code> of the <code>tweets</code> is <code>FETCHING</code>.
       </p>
 
       <CodeTabs>
@@ -72,10 +79,8 @@ export default (props) => {
 
             if (tweets.state === PayloadStates.FETCHING) {
               return (
-                <h1 className="loading-text">
-                  Loading...
-                </h1>
-              )
+                <div className="loader"/>
+              );
             }
 
             return (
@@ -102,10 +107,8 @@ export default (props) => {
 
             if (tweets.state === PayloadStates.FETCHING) {
               return (
-                <h1 className="loading-text">
-                  Loading...
-                </h1>
-              )
+                <div className="loader"/>
+              );
             }
 
             return (
@@ -132,10 +135,8 @@ export default (props) => {
 
             if (tweets.state === PayloadStates.FETCHING) {
               return (
-                <h1 className="loading-text">
-                  Loading...
-                </h1>
-              )
+                <div className="loader"/>
+              );
             }
 
             return (
@@ -155,8 +156,18 @@ export default (props) => {
       </CodeTabs>
 
       <p>
-        Refresh the browser and you should see the text "Loading..." flash on the screen right before the tweets are rendered.
+        Refresh the browser and you <em>might</em> see an animated "spinner" flash on the screen right before the
+        tweets are rendered. But if you can't see it (and you probably can't) you can force it to appear by temporarily
+        changing your <code>if</code> statement to read <code>if (true || ...)</code> like this:
       </p>
+
+      <Markdown text={`
+      if (true || tweets.state === PayloadStates.FETCHING) {
+        return (
+          <div className="loader" />
+        );
+      }
+      `}/>
 
       <h3>
         Visual Check-in
@@ -207,7 +218,7 @@ export default (props) => {
               state: 'RESOLVED',
               data: {
                 id: 1,
-                user: 1,
+                userId: 1,
                 text: 'Nothing can beat science!',
                 createdAt: '2016-10-04T05:10:49.382Z'
               }
@@ -232,10 +243,8 @@ export default (props) => {
 
             if (tweets.state === PayloadStates.FETCHING) {
               return (
-                <h1 className="loading-text">
-                  Loading...
-                </h1>
-              )
+                <div className="loader"/>
+              );
             }
 
             return (
@@ -273,10 +282,8 @@ export default (props) => {
 
             if (tweets.state === PayloadStates.FETCHING) {
               return (
-                <h1 className="loading-text">
-                  Loading...
-                </h1>
-              )
+                <div className="loader"/>
+              );
             }
 
             return (
@@ -303,7 +310,7 @@ export default (props) => {
             state: 'RESOLVED',
             data: {
               id: 1,
-              user: 1,
+              userId: 1,
               text: 'Nothing can beat science!',
               createdAt: '2016-10-04T05:10:49.382Z'
             }
@@ -348,7 +355,7 @@ export default (props) => {
               state: 'RESOLVED',
               data: {
                 id: 1,
-                user: 1,
+                userId: 1,
                 text: 'Nothing can beat science!',
                 createdAt: '2016-10-04T05:10:49.382Z'
               }
@@ -373,10 +380,8 @@ export default (props) => {
 
             if (tweets.state === PayloadStates.FETCHING) {
               return (
-                <h1 className="loading-text">
-                  Loading...
-                </h1>
-              )
+                <div className="loader"/>
+              );
             }
 
             return (

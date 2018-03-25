@@ -271,7 +271,7 @@ export default (props) => {
 
       <blockquote>
         <p>
-          While outside the scope of this quickstart, the approach of overriding parse to resolve breaking API
+          While outside the scope of this Quickstart, the approach of overriding parse to resolve breaking API
           changes only works for read-only situations, i.e. when the applications needs to read the property but
           never modifies it and sends it back to the server. If you need to modify a response data sending it to
           the server you can use the <code>sync</code> method.

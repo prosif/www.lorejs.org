@@ -129,10 +129,8 @@ export default (props) => {
 
               if (user.state === PayloadStates.FETCHING) {
                 return (
-                  <h1 className="loading-text">
-                    Loading...
-                  </h1>
-                )
+                  <div className="loader" />
+                );
               }
 
               return (
@@ -158,10 +156,8 @@ export default (props) => {
 
             if (user.state === PayloadStates.FETCHING) {
               return (
-                <h1 className="loading-text">
-                  Loading...
-                </h1>
-              )
+                <div className="loader" />
+              );
             }
 
             return (
@@ -206,10 +202,8 @@ export default (props) => {
 
             if (user.state === PayloadStates.FETCHING) {
               return (
-                <h1 className="loading-text">
-                  Loading...
-                </h1>
-              )
+                <div className="loader" />
+              );
             }
 
             return (
@@ -552,10 +546,8 @@ export default (props) => {
 
               if (user.state === PayloadStates.FETCHING) {
                 return (
-                  <h1 className="loading-text">
-                    Loading...
-                  </h1>
-                )
+                  <div className="loader" />
+                );
               }
 
               return (
@@ -587,10 +579,8 @@ export default (props) => {
 
             if (user.state === PayloadStates.FETCHING) {
               return (
-                <h1 className="loading-text">
-                  Loading...
-                </h1>
-              )
+                <div className="loader" />
+              );
             }
 
             return (
@@ -649,10 +639,8 @@ export default (props) => {
 
             if (user.state === PayloadStates.FETCHING) {
               return (
-                <h1 className="loading-text">
-                  Loading...
-                </h1>
-              )
+                <div className="loader" />
+              );
             }
 
             return (

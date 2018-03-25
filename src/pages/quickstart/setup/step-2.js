@@ -61,7 +61,8 @@ export default (props) => {
       `}/>
 
       <p>
-        Depending on your network connection, it may take 2-4 minutes for this step to complete.
+        Depending on your network connection, it may take a few minutes for this step to complete. For
+        faster connections, it may take about 30 seconds.
       </p>
 
       <h2>

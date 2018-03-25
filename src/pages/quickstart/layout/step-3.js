@@ -79,7 +79,7 @@ export default (props) => {
           render() {
             return (
               <div></div>
-            )
+            );
           }
         }
 
@@ -278,7 +278,6 @@ export default (props) => {
         import React from 'react';
         import createReactClass from 'create-react-class';
         import PropTypes from 'prop-types';
-        import { connect } from 'lore-hook-connect';
 
         export default createReactClass({
           displayName: 'Header',
@@ -302,7 +301,6 @@ export default (props) => {
         <CodeTab syntax="ES6" text={`
         import React from 'react';
         import PropTypes from 'prop-types';
-        import { connect } from 'lore-hook-connect';
 
         class Header extends React.Component {
 

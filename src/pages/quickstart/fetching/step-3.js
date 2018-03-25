@@ -68,8 +68,8 @@ export default (props) => {
 
       <p>
         The first parameter <code>getState</code> is a function that will retrieve a piece of state from the local
-        store, or invoke the appropriate action to fetch that data if it doesn't already exist (i.e. it hasn't been
-        fetched from the server before).
+        store, or invoke the appropriate action to fetch that data if it doesn't already exist (i.e. if it hasn't
+        been fetched from the server before).
       </p>
 
       <p>
@@ -193,7 +193,7 @@ export default (props) => {
               state: 'RESOLVED',
               data: {
                 id: 1,
-                user: 1,
+                userId: 1,
                 text: 'Nothing can beat science!',
                 createdAt: '2016-10-04T05:10:49.382Z'
               }
@@ -272,7 +272,7 @@ export default (props) => {
             state: 'RESOLVED',
             data: {
               id: 1,
-              user: 1,
+              userId: 1,
               text: 'Nothing can beat science!',
               createdAt: '2016-10-04T05:10:49.382Z'
             }
@@ -316,7 +316,7 @@ export default (props) => {
               state: 'RESOLVED',
               data: {
                 id: 1,
-                user: 1,
+                userId: 1,
                 text: 'Nothing can beat science!',
                 createdAt: '2016-10-04T05:10:49.382Z'
               }
@@ -361,7 +361,7 @@ export default (props) => {
       </h2>
 
       <p>
-        Next we're going to <Link to="../step-4/">display a loading message while the tweets are being fetched</Link>.
+        Next we're going to <Link to="../step-4/">display a loading experience while the tweets are being fetched</Link>.
       </p>
     </Template>
   )

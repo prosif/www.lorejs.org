@@ -1,28 +1,13 @@
 import React from 'react';
+import languageUtil from '../utils/language';
 
 export default class LanguagePreference extends React.Component {
-  // constructor() {
-  //   super();
-  //   // try {
-  //   //   this.state = {
-  //   //     language: localStorage ? localStorage.getItem('language') : 'ES6'
-  //   //   }
-  //   // } catch {
-  //   //   this.state = {
-  //   //     language: 'ES6'
-  //   //   }
-  //   // }
-  //
-  //   this.state = {
-  //     language: 'ES6'
-  //   }
-  // }
 
   componentWillMount() {
     try {
       this.setState({
-        language: localStorage ? localStorage.getItem('language') : 'ES6'
-      })
+        language: languageUtil.getLanguage()
+      });
     } catch(error) {
       this.setState({
         language: 'ES6'
@@ -31,7 +16,7 @@ export default class LanguagePreference extends React.Component {
   }
 
   setLanguage(language) {
-    localStorage.setItem('language', language);
+    languageUtil.saveLanguage(language);
     this.setState({
       language: language
     });
@@ -47,12 +32,17 @@ export default class LanguagePreference extends React.Component {
             Language Preference
           </h3>
           <div style={{ paddingBottom: '16px' }}>
-            The code in this quickstart can be displayed in one of three versions of JavaScript. Which version would you like to see?
+            The code in this quickstart can be displayed in one of three versions of JavaScript. Which version
+            would you like to see?
           </div>
           <blockquote>
-            Note that all versions use <strong>import</strong> and <strong>export</strong> statements, as well as
-            syntax like <strong>const</strong>, <strong>let</strong>. The only difference between ES5 and ES6 is
-            how you prefer to construct your React components.
+            <p>
+              All versions use <strong>import</strong> and <strong>export</strong> statements, as well as
+              syntax like <strong>const</strong> and <strong>let</strong>.
+            </p>
+            <p>
+              The only difference between ES5 and ES6 is how you prefer to construct your React components.
+            </p>
           </blockquote>
           <div className="list-group" style={{ marginBottom: 0 }}>
             <button className={'list-group-item' + (language === 'ES5' ? ' active' : '')} style={{ outline: 'none' }} onClick={() => {

@@ -12,13 +12,14 @@ export default (props) => {
         Step 4: Setup the Mock API Server
       </h1>
       <p>
-        To emulate a real application, this quickstart will be using <a href="https://github.com/typicode/json-server">json-server</a>
-        to provide a mock API.
+        To emulate a real application, this Quickstart will be
+        using <a href="https://github.com/typicode/json-server">json-server</a> to provide a mock API.
       </p>
 
       <p>
-        New applications include <code>json-server</code> by default. This is due to the project's ease of use, excellent feature
-        support (including pagination, search, and relationship expansion) and overall ability to help bootstrap new projects.
+        New applications include <code>json-server</code> by default. This is due to the project's ease of
+        use, excellent feature support (including pagination, search, and relationship expansion) and overall
+        ability to help bootstrap new projects.
       </p>
 
       <blockquote>
@@ -33,9 +34,10 @@ export default (props) => {
         Add Mock Data
       </h3>
       <p>
-        For this quickstart we need two API endpoints; one to retrieve <code>tweets</code> and one to retrieve <code>users</code>. We can accomplish
-        this by adding data to the <code>db.json</code> file at the root of you project. This file is used by <code>json-server</code> as both a
-        database and a blueprint for what endpoints should exist.
+        For this Quickstart we need two API endpoints; one to retrieve <code>tweets</code> and one to
+        retrieve <code>users</code>. We can accomplish this by adding data to the <code>db.json</code> file
+        at the root of you project. This file is used by <code>json-server</code> as both a database and
+        a blueprint for what endpoints should exist.
       </p>
 
       <p>
@@ -164,7 +166,7 @@ export default (props) => {
       </p>
 
       <h3>
-        Optional: Changing the Port
+        [Optional] Changing the Port
       </h3>
       <p>
         If you want to change the port <code>json-server</code> runs on, you can do that by using an alternate syntax

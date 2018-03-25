@@ -140,7 +140,7 @@ export default (props) => {
               return (
                 tweet.data.user === Number(props.params.userId) &&
                 !tweet.id || moment(tweet.data.createdAt).diff(lore.timestamp) > 0
-              )
+              );
             },
             sortBy: function(tweet) {
               return -moment(tweet.data.createdAt).unix();

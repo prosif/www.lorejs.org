@@ -56,10 +56,8 @@ export default (props) => {
 
             if (user.state === PayloadStates.FETCHING) {
               return (
-                <h1 className="loading-text">
-                  Loading...
-                </h1>
-              )
+                <div className="loader" />
+              );
             }
 
             return (
@@ -81,10 +79,8 @@ export default (props) => {
 
             if (user.state === PayloadStates.FETCHING) {
               return (
-                <h1 className="loading-text">
-                  Loading...
-                </h1>
-              )
+                <div className="loader" />
+              );
             }
 
             return (
@@ -106,10 +102,8 @@ export default (props) => {
 
             if (user.state === PayloadStates.FETCHING) {
               return (
-                <h1 className="loading-text">
-                  Loading...
-                </h1>
-              )
+                <div className="loader" />
+              );
             }
 
             return (
@@ -159,10 +153,8 @@ export default (props) => {
 
             if (user.state === PayloadStates.FETCHING) {
               return (
-                <h1 className="loading-text">
-                  Loading...
-                </h1>
-              )
+                <div className="loader" />
+              );
             }
 
             if (user.state === PayloadStates.ERROR_FETCHING) {
@@ -170,7 +162,7 @@ export default (props) => {
                 <h1 className="loading-text">
                   Unauthorized
                 </h1>
-              )
+              );
             }
 
             return (
@@ -192,10 +184,8 @@ export default (props) => {
 
             if (user.state === PayloadStates.FETCHING) {
               return (
-                <h1 className="loading-text">
-                  Loading...
-                </h1>
-              )
+                <div className="loader" />
+              );
             }
 
             if (user.state === PayloadStates.ERROR_FETCHING) {
@@ -203,7 +193,7 @@ export default (props) => {
                 <h1 className="loading-text">
                   Unauthorized
                 </h1>
-              )
+              );
             }
 
             return (
@@ -225,10 +215,8 @@ export default (props) => {
 
             if (user.state === PayloadStates.FETCHING) {
               return (
-                <h1 className="loading-text">
-                  Loading...
-                </h1>
-              )
+                <div className="loader" />
+              );
             }
 
             if (user.state === PayloadStates.ERROR_FETCHING) {
@@ -236,7 +224,7 @@ export default (props) => {
                 <h1 className="loading-text">
                   Unauthorized
                 </h1>
-              )
+              );
             }
 
             return (
@@ -586,10 +574,8 @@ export default (props) => {
 
               if (user.state === PayloadStates.FETCHING) {
                 return (
-                  <h1 className="loading-text">
-                    Loading...
-                  </h1>
-                )
+                  <div className="loader" />
+                );
               }
 
               if (user.state === PayloadStates.ERROR_FETCHING) {
@@ -597,7 +583,7 @@ export default (props) => {
                   <h1 className="loading-text">
                     Unauthorized
                   </h1>
-                )
+                );
               }
 
               return (
@@ -629,10 +615,8 @@ export default (props) => {
 
             if (user.state === PayloadStates.FETCHING) {
               return (
-                <h1 className="loading-text">
-                  Loading...
-                </h1>
-              )
+                <div className="loader" />
+              );
             }
 
             if (user.state === PayloadStates.ERROR_FETCHING) {
@@ -640,7 +624,7 @@ export default (props) => {
                 <h1 className="loading-text">
                   Unauthorized
                 </h1>
-              )
+              );
             }
 
             return (
@@ -699,10 +683,8 @@ export default (props) => {
 
             if (user.state === PayloadStates.FETCHING) {
               return (
-                <h1 className="loading-text">
-                  Loading...
-                </h1>
-              )
+                <div className="loader" />
+              );
             }
 
             if (user.state === PayloadStates.ERROR_FETCHING) {
@@ -710,7 +692,7 @@ export default (props) => {
                 <h1 className="loading-text">
                   Unauthorized
                 </h1>
-              )
+              );
             }
 
             return (

@@ -306,9 +306,7 @@ export default (props) => {
 
             if (numberOfPages === 1 && lastPage.state === PayloadStates.FETCHING) {
               return (
-                <h1 className="loading-text">
-                  Loading...
-                </h1>
+                <div className="loader" />
               );
             }
 
@@ -360,9 +358,7 @@ export default (props) => {
 
             if (numberOfPages === 1 && lastPage.state === PayloadStates.FETCHING) {
               return (
-                <h1 className="loading-text">
-                  Loading...
-                </h1>
+                <div className="loader" />
               );
             }
 
@@ -448,9 +444,7 @@ export default (props) => {
 
             if (numberOfPages === 1 && lastPage.state === PayloadStates.FETCHING) {
               return (
-                <h1 className="loading-text">
-                  Loading...
-                </h1>
+                <div className="loader" />
               );
             }
 

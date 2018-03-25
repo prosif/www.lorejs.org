@@ -1,29 +1,14 @@
 import React from 'react';
+import languageUtil from '../utils/language';
 import Markdown from './Markdown';
 let count = 0;
 
 export default class CodeTabs extends React.Component {
-  // constructor() {
-  //   super();
-  //   // try {
-  //   //   this.state = {
-  //   //     language: localStorage ? localStorage.getItem('language') : 'ES6'
-  //   //   }
-  //   // } catch {
-  //   //   this.state = {
-  //   //     language: 'ES6'
-  //   //   }
-  //   // }
-  //
-  //   this.state = {
-  //     language: 'ES6'
-  //   }
-  // }
 
   componentWillMount() {
     try {
       this.setState({
-        language: localStorage ? localStorage.getItem('language') : 'ES6'
+        language: languageUtil.getLanguage()
       })
     } catch(error) {
       this.setState({
@@ -33,7 +18,7 @@ export default class CodeTabs extends React.Component {
   }
 
   setLanguage(language) {
-    localStorage.setItem('language', language);
+    languageUtil.saveLanguage(language);
     this.setState({
       language: language
     });

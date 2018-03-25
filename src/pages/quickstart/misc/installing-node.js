@@ -12,23 +12,22 @@ export default (props) => {
       <h1>
         Installing Node
       </h1>
-
       <p>
-        Before you can use Lore you will first need to install Node.  If you don't already have it installed, you can obtain
-        it from http://nodejs.org.
+        Before you can use Lore you will need to install Node.
       </p>
-
       <p>
-        As an alternative to downloading Node directly, you can also use one of the available Node Version Managers (NVMs). The
-        advantage of using these over installing Node directly is that they allow you to easily change which version of
-        Node you are using, which is especially helpful when you want to try see how code runs on a different version of Node,
-        or trying to discover if a bug you are seeing is related to a specific version of Node and/or NPM.
+        If you don't have Node installed, you can obtain it from <a href="http://nodejs.org">http://nodejs.org</a>.
       </p>
-
+      <p>
+        As an alternative to downloading Node directly, you can also use one of the available Node Version
+        Managers (NVMs). The advantage of using an NVM over installing Node directly is that they allow you
+        to easily change which version of Node you are using. This can be helpful for checking if an issue
+        you're seeing is related to a specific version of Node, or just to make sure that your code works
+        with older (or newer) versions that other people might use to run your code.
+      </p>
       <p>
         If you are on a Mac, you can use <a href="https://github.com/creationix/nvm">nvm</a>.
       </p>
-
       <p>
         If you are on a Windows machine, you can use <a href="https://github.com/coreybutler/nvm-windows">nvm-windows</a>.
       </p>

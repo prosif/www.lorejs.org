@@ -28,6 +28,10 @@ export default (props) => {
             <NavLink title="React-Router" url="/libraries/react-router/" />
             <NavLinkPlaceholder title="Axios (todo)" />
 
+            <li className="doc-section">Data Structure</li>
+            <NavLink title="Models" url="/features/data-structure/" />
+            <NavLink title="Collections" url="/features/data-structure/" />
+
             <li className="doc-section">UI Patterns</li>
             <NavLink title="Filtering" url="/features/filtering/" />
             <NavLink title="Pagination" url="/features/pagination/" />

@@ -11,8 +11,10 @@ export default (props) => {
       </h1>
 
       <p>
-        Before you can use Lore you will first need to install Node.  If you don't already have it installed,
-        please refer to <Link to="../../misc/installing-node/">these instructions</Link>.
+        Before you can use Lore you will need to install Node.
+      </p>
+      <p>
+        If you don't already have Node installed, see <Link to="../../misc/installing-node/">these instructions</Link>.
       </p>
 
       <h3>
@@ -54,7 +56,8 @@ export default (props) => {
         Next Steps
       </h2>
       <p>
-        Now that the <code>lore-cli</code> is installed, let's <Link to="/quickstart/setup/step-2/">create a new application</Link>.
+        Now that the <code>lore-cli</code> is installed, let's <Link to="/quickstart/setup/step-2/">create a new
+        application</Link>.
       </p>
 
     </Template>

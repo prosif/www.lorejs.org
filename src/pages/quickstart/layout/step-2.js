@@ -109,7 +109,7 @@ export default (props) => {
        */
 
       .filter {
-        marginTop: 20px;
+        margin-top: 20px;
       }
 
 
@@ -207,24 +207,89 @@ export default (props) => {
       }
 
       .tweet.transition .link {
-        display: none;
+        visibility: hidden;
       }
 
       /*
-       * Loading
+       * Unauthorized
        */
 
-      .loading-text {
+      .full-page-text {
         font-family: "Open Sans", Arial, sans-serif;
         text-align: center;
         line-height: 100vh;
-        /*line-height: 48px;*/
         font-size: 32px;
         margin: 0;
         font-weight: normal;
         color: rgba(0,0,0,.54);
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+      }
+
+      /*
+       * Loader
+       * https://projects.lukehaas.me/css-loaders/
+       */
+
+      .loader,
+      .loader:before,
+      .loader:after {
+        border-radius: 50%;
+        width: 2.5em;
+        height: 2.5em;
+        animation-fill-mode: both;
+        animation: load7 1.8s infinite ease-in-out;
+      }
+
+      .loader {
+        color: #a9a9a9;
+        font-size: 8px;
+        margin: 0 auto 40px;
+        position: relative;
+        text-indent: -9999em;
+        animation-delay: -0.16s;
+      }
+
+      .loader:before,
+      .loader:after {
+        content: '';
+        position: absolute;
+        top: 0;
+      }
+
+      .loader:before {
+        left: -3.5em;
+        animation-delay: -0.32s;
+      }
+
+      .loader:after {
+        left: 3.5em;
+      }
+
+      .loader.full-page {
+        margin-top: calc(50vh - 30px);
+      }
+
+      @-webkit-keyframes load7 {
+        0%,
+        80%,
+        100% {
+          box-shadow: 0 2.5em 0 -1.3em;
+        }
+        40% {
+          box-shadow: 0 2.5em 0 0;
+        }
+      }
+
+      @keyframes load7 {
+        0%,
+        80%,
+        100% {
+          box-shadow: 0 2.5em 0 -1.3em;
+        }
+        40% {
+          box-shadow: 0 2.5em 0 0;
+        }
       }
       `}/>
 
@@ -313,7 +378,7 @@ export default (props) => {
        */
 
       .filter {
-        marginTop: 20px;
+        margin-top: 20px;
       }
 
 
@@ -411,24 +476,89 @@ export default (props) => {
       }
 
       .tweet.transition .link {
-        display: none;
+        visibility: hidden;
       }
 
       /*
-       * Loading
+       * Unauthorized
        */
 
-      .loading-text {
+      .full-page-text {
         font-family: "Open Sans", Arial, sans-serif;
         text-align: center;
         line-height: 100vh;
-        /*line-height: 48px;*/
         font-size: 32px;
         margin: 0;
         font-weight: normal;
         color: rgba(0,0,0,.54);
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+      }
+
+      /*
+       * Loader
+       * https://projects.lukehaas.me/css-loaders/
+       */
+
+      .loader,
+      .loader:before,
+      .loader:after {
+        border-radius: 50%;
+        width: 2.5em;
+        height: 2.5em;
+        animation-fill-mode: both;
+        animation: load7 1.8s infinite ease-in-out;
+      }
+
+      .loader {
+        color: #a9a9a9;
+        font-size: 8px;
+        margin: 0 auto 40px;
+        position: relative;
+        text-indent: -9999em;
+        animation-delay: -0.16s;
+      }
+
+      .loader:before,
+      .loader:after {
+        content: '';
+        position: absolute;
+        top: 0;
+      }
+
+      .loader:before {
+        left: -3.5em;
+        animation-delay: -0.32s;
+      }
+
+      .loader:after {
+        left: 3.5em;
+      }
+
+      .loader.full-page {
+        margin-top: calc(50vh - 30px);
+      }
+
+      @-webkit-keyframes load7 {
+        0%,
+        80%,
+        100% {
+          box-shadow: 0 2.5em 0 -1.3em;
+        }
+        40% {
+          box-shadow: 0 2.5em 0 0;
+        }
+      }
+
+      @keyframes load7 {
+        0%,
+        80%,
+        100% {
+          box-shadow: 0 2.5em 0 -1.3em;
+        }
+        40% {
+          box-shadow: 0 2.5em 0 0;
+        }
       }
       `}/>
 

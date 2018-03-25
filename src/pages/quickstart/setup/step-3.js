@@ -24,7 +24,7 @@ export default (props) => {
       </p>
 
       <Markdown type="sh" text={`
-      webpack-dev-server --history-api-fallback --hot --env=development --port=3000
+      webpack-dev-server --hot --env.webpack=development --env.lore=development
 
       build [==                  ] 10%
       Project is running at http://localhost:3000/
@@ -32,19 +32,19 @@ export default (props) => {
       webpack output is served from /
       404s will fallback to /index.html
 
-      Build completed in 11.5s
+      Build completed in 6.709s
 
-      Hash: d4d5293a11f211db7080
-      Version: webpack 2.4.1
-      Time: 11504ms
+      Hash: 970b4aa06fedbcdae7a1
+      Version: webpack 2.7.0
+      Time: 6712ms
 
-      Asset   Size       Chunks                    Chunk Names
-      favicons/favicon.ico   33.3 kB            [emitted]
-      favicon-manifest.json   877 bytes          [emitted]
+                       Asset   Size       Chunks                    Chunk Names
+        favicons/favicon.ico   33.3 kB            [emitted]
+       favicon-manifest.json   613 bytes          [emitted]
       assets/images/logo.png   27.7 kB            [emitted]
-      bundle.main.js   4.9 MB          0  [emitted]  [big]  main
-      bundle.vendor.js   1.44 MB         1  [emitted]  [big]  vendor
-      index.html   4.88 kB            [emitted]
+              bundle.main.js   3.16 MB         0  [emitted]  [big]  main
+            bundle.vendor.js   1.27 MB         1  [emitted]  [big]  vendor
+                  index.html   4.41 kB            [emitted]
 
       ...
 
@@ -68,27 +68,29 @@ export default (props) => {
       <img className="drop-shadow" src="/assets/images/quickstart/setup/step-3.png" />
 
       <h3>
-        Changing the Port (optional)
+        [Optional] Changing the Port
       </h3>
 
       <p>
-        If you want to change the port the server runs on, you can do that by modifying the <code>start</code> script in the
-        <code>package.json</code> file. Just update the <code>--port=3000</code> argument to something like <code>--port=3001</code>.
+        If you want to change the port the server runs on, you can do that by providing
+        a <a href="https://docs.npmjs.com/cli/run-script">custom argument to the npm start script</a>. For example,
+        if you want to run the application on port 3001, use this command to start the project:
       </p>
 
       <Markdown type="json" text={`
-      "scripts": {
-      ...
-        "start": "webpack-dev-server --history-api-fallback --hot --env=development --port=3000",
-      ...
-      },
+      npm start -- --port=3001
       `} />
+
+      <p>
+        However, at least for this tutorial, this is <strong>not recommended</strong>, as the project will need to
+        be running on port 3000 in order to integrate with the authentication server we'll be using later.
+      </p>
 
       <h2>
         Next Steps
       </h2>
       <p>
-        Next we're going to <Link to="../step-4/">setup the mock API server</Link> we'll be using for this quickstart.
+        Next we're going to <Link to="../step-4/">setup the mock API server</Link> we'll be using for this Quickstart.
       </p>
     </Template>
   )

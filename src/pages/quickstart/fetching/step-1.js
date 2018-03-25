@@ -23,16 +23,13 @@ export default (props) => {
         The Config Folder
       </h3>
       <p>
-        At the root of your project you should see a folder called <code>config</code>. This folder exposes all of the controls you can
-        use to tailor Lore's behavior to your applications needs.
+        At the root of your project you should see a folder called <code>config</code>. This folder exposes all
+        of the controls you can use to tailor Lore's behavior to your applications needs.
       </p>
 
       <p>
-        Navigate into this folder and open a file called <code>connections.js</code>.
-      </p>
-
-      <p>
-        Toward the top of this file you will see a commented out line that looks like this:
+        Navigate into this folder and open a file called <code>connections.js</code>. Toward the top of this
+        file you will see a commented out line that looks like this:
       </p>
 
       <Markdown text={`
@@ -79,13 +76,16 @@ export default (props) => {
         <p>
           You may notice a <code>/env</code> folder in <code>/config</code> that contains files
           called <code>development.js</code> and <code>production.js</code>. These files allow you to customize the
-          config on a per-environment basis. For example, if your NODE_ENV is set to <code>production</code>, the
-          final configuration will be all of the files located in <code>/config</code>, overridden by any settings
-          you've specified in <code>/config/production.js</code>.
+          config on a per-environment basis.
         </p>
         <p>
-          The <code>/config/local.js</code> file ONLY applies to your local environment, and is included in the .gitignore by
-          default so that it will never be checked in.
+          For example, when deploying to <code>production</code>, the final configuration will be all of the
+          files located in <code>/config</code>, overridden by any settings you've specified
+          in <code>/config/production.js</code>.
+        </p>
+        <p>
+          The <code>/config/local.js</code> file <strong>ONLY</strong> applies to your local environment, and is
+          included in the <code>.gitignore</code> by default so that it will never be checked in.
         </p>
       </blockquote>
 

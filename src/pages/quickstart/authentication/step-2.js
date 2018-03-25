@@ -23,7 +23,7 @@ export default (props) => {
         Install Auth0 Package
       </h3>
       <p>
-        We're going to be using Auth0 as the authentication service for this quickstart. Run this command to install
+        We're going to be using Auth0 as the authentication service for this Quickstart. Run this command to install
         <code>auth0-js</code>, a library we'll be using to log in to the application:
       </p>
 
