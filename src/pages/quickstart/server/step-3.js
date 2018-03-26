@@ -28,7 +28,7 @@ export default (props) => {
       </p>
 
       <p>
-        This API is expected all network requests to protected endpoints to contain
+        This API is expecting all network requests to protected endpoints to contain
         an <code>Authorization</code> header with a value of <code>Bearer [token]</code>.
       </p>
 
@@ -159,9 +159,12 @@ export default (props) => {
 
             if (user.state === PayloadStates.ERROR_FETCHING) {
               return (
-                <h1 className="loading-text">
-                  Unauthorized
-                </h1>
+                <div>
+                  <RemoveLoadingScreen/>
+                  <h1 className="full-page-text">
+                    Unauthorized
+                  </h1>
+                </div>
               );
             }
 
@@ -190,9 +193,12 @@ export default (props) => {
 
             if (user.state === PayloadStates.ERROR_FETCHING) {
               return (
-                <h1 className="loading-text">
-                  Unauthorized
-                </h1>
+                <div>
+                  <RemoveLoadingScreen/>
+                  <h1 className="full-page-text">
+                    Unauthorized
+                  </h1>
+                </div>
               );
             }
 
@@ -221,9 +227,12 @@ export default (props) => {
 
             if (user.state === PayloadStates.ERROR_FETCHING) {
               return (
-                <h1 className="loading-text">
-                  Unauthorized
-                </h1>
+                <div>
+                  <RemoveLoadingScreen/>
+                  <h1 className="full-page-text">
+                    Unauthorized
+                  </h1>
+                </div>
               );
             }
 
@@ -580,9 +589,12 @@ export default (props) => {
 
               if (user.state === PayloadStates.ERROR_FETCHING) {
                 return (
-                  <h1 className="loading-text">
+                <div>
+                  <RemoveLoadingScreen/>
+                  <h1 className="full-page-text">
                     Unauthorized
                   </h1>
+                </div>
                 );
               }
 
@@ -621,9 +633,12 @@ export default (props) => {
 
             if (user.state === PayloadStates.ERROR_FETCHING) {
               return (
-                <h1 className="loading-text">
-                  Unauthorized
-                </h1>
+                <div>
+                  <RemoveLoadingScreen/>
+                  <h1 className="full-page-text">
+                    Unauthorized
+                  </h1>
+                </div>
               );
             }
 
@@ -689,9 +704,12 @@ export default (props) => {
 
             if (user.state === PayloadStates.ERROR_FETCHING) {
               return (
-                <h1 className="loading-text">
-                  Unauthorized
-                </h1>
+                <div>
+                  <RemoveLoadingScreen/>
+                  <h1 className="full-page-text">
+                    Unauthorized
+                  </h1>
+                </div>
               );
             }
 

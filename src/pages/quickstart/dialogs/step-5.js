@@ -31,7 +31,7 @@ export default (props) => {
       </p>
       <p>
         Most applications have (or at least strive for) a sense of visual consistency; there's a certain design
-        aesthetic that governs the way the application looks, and components tightly conform to it.
+        aesthetic that governs the way the application looks, and components conform to it.
       </p>
       <p>
         Applying that to dialogs, it means things like the header and footer will often look like same. Even the
@@ -65,7 +65,7 @@ export default (props) => {
         automatically generate dialogs is <strong>an example of what's possible</strong> using those patterns.
         While the dialogs created by the library are fairly flexible, and the library itself was created for
         (and is being used in) a production application, the visual appearance and behavior of an application
-        is the single most volatile aspect, and it would be unrealistic to expect this library to solve the
+        changes <em>constantly</em> as it evolves, and it would be unrealistic to expect this library to solve the
         unique visual needs of your application.
       </p>
       <p>
@@ -86,7 +86,7 @@ export default (props) => {
       `}/>
 
       <p>
-        Next open up <code>index.js</code> and replace add the hook like this:
+        Next open up <code>index.js</code> and add the hook like this:
       </p>
 
       <Markdown text={`
@@ -115,9 +115,14 @@ export default (props) => {
 
       <Markdown text={`
       onClick: function() {
+        function createTweet(data) {
+          lore.actions.tweet.create(data);
+        }
+
         lore.dialog.show(function() {
           return lore.dialogs.tweet.create({
-            blueprint: 'optimistic'
+            blueprint: 'optimistic',
+            onSubmit: createTweet
           });
         });
       },
@@ -130,7 +135,7 @@ export default (props) => {
       <p>
         We're also telling the hook what kind of <strong>behavior</strong> we want the dialog to have, which is what
         the <code>blueprint</code> represents. The <code>optimistic</code> blueprint will exactly mirror what we
-        created ourselves (the dialog will close as soon as the action is invoked).
+        created ourselves (the dialog will be dismissed as soon as the action is invoked).
       </p>
       <p>
         The other types of blueprints (which we won't cover in this Quickstart) are <code>overlay</code> and <code>wizard</code>,
@@ -196,20 +201,20 @@ export default (props) => {
 
       <p>
         In order for the dialog to display fields, it needs to know what those fields should be. One place it
-        looks for them is in <code>dialogs</code> attribute of the associated <code>model</code>. And here we're
+        looks for them is in the <code>dialogs</code> attribute of the associated <code>model</code>. And here we're
         telling the dialog three things:
       </p>
 
       <blockquote>
         You can also configure the dialog directly, by passing it a set of arguments, but since this Quickstart
         is about Lore, and not patterns for building forms, we'll reserve any further discussion about this
-        library for the documentation or a separate tutorial focused on forms themselves.
+        library for the documentation, or a separate (future) tutorial focused on forms themselves.
       </blockquote>
 
       <p>
         The <code>data</code> attribute describes the initial data for the dialog. In this case, our dialog
-        only has one field (<code>text</code>) and we want the initial value for that field set to an empty
-        string.
+        only has one field, which is <code>text</code>, and we want the initial value for that field set to an
+        empty string.
       </p>
       <p>
         The <code>validators</code> attribute provides a set of validators to say whether the data entered
@@ -220,7 +225,7 @@ export default (props) => {
         invalid, and the error is shown to the user.
       </p>
       <p>
-        Finally, the <code>fields</code> attribute is a object describing the fields we need displayed. In this
+        Finally, the <code>fields</code> attribute is an object describing the fields we need displayed. In this
         case, we have our single field (<code>text</code>) which is of type "text" (a multiline textarea),
         and it should have the label "Message" with the placeholder text of "What's happening?".
       </p>

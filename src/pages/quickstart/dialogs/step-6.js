@@ -58,8 +58,8 @@ export default (props) => {
             }
 
             lore.dialog.show(function() {
-              return lore.dialogs.tweet.update({
-                model: tweet,
+              return lore.dialogs.tweet.update(tweet, {
+                blueprint: 'optimistic',
                 onSubmit: updateTweet
               });
             });
@@ -94,8 +94,8 @@ export default (props) => {
             }
 
             lore.dialog.show(function() {
-              return lore.dialogs.tweet.update({
-                model: tweet,
+              return lore.dialogs.tweet.update(tweet, {
+                blueprint: 'optimistic',
                 onSubmit: updateTweet
               });
             });
@@ -140,8 +140,8 @@ export default (props) => {
             }
 
             lore.dialog.show(function() {
-              return lore.dialogs.tweet.update({
-                model: tweet,
+              return lore.dialogs.tweet.update(tweet, {
+                blueprint: 'optimistic',
                 onSubmit: updateTweet
               });
             });
@@ -327,8 +327,8 @@ export default (props) => {
             }
 
             lore.dialog.show(function() {
-              return lore.dialogs.tweet.update({
-                model: tweet,
+              return lore.dialogs.tweet.update(tweet, {
+                blueprint: 'optimistic',
                 onSubmit: updateTweet
               });
             });
@@ -363,8 +363,8 @@ export default (props) => {
             }
 
             lore.dialog.show(function() {
-              return lore.dialogs.tweet.update({
-                model: tweet,
+              return lore.dialogs.tweet.update(tweet, {
+                blueprint: 'optimistic',
                 onSubmit: updateTweet
               });
             });
@@ -409,8 +409,8 @@ export default (props) => {
             }
 
             lore.dialog.show(function() {
-              return lore.dialogs.tweet.update({
-                model: tweet,
+              return lore.dialogs.tweet.update(tweet, {
+                blueprint: 'optimistic',
                 onSubmit: updateTweet
               });
             });

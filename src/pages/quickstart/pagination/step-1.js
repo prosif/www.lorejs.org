@@ -32,7 +32,8 @@ export default (props) => {
       </ol>
 
       <p>
-        If we look at the API response from the server, we can see that information provided among the data in<code>meta.paginate</code>:
+        If we look at the API response from the server, we can see that information provided among the data
+        in <code>meta.paginate</code>:
       </p>
 
       <Markdown text={`
@@ -55,9 +56,9 @@ export default (props) => {
       `}/>
 
       <p>
-        What we want to do is make that information available to the application, so we can calculate the number of pages to
-        display. To do that open up <code>config/connections.js</code> and find the <code>parse</code> method for Collections. Update that method
-        to look like this:
+        What we want to do is make that information available to the application, so we can calculate the
+        number of pages to display. To do that open up <code>config/connections.js</code> and find
+        the <code>parse</code> method for Collections. Update that method to look like this:
       </p>
 
       <Markdown text={`
@@ -79,28 +80,29 @@ export default (props) => {
       `}/>
 
       <p>
-        Collections in Lore have a special property called <code>meta</code>. It defaults to an empty object, and anything you add to it
-        will show up in the <code>meta</code> property of the data structure for collections. By adding <code>totalCount</code> and <code>perPage</code> to meta,
-        we've now made that data available to any component receives a collection.
+        Collections in Lore have a special property called <code>meta</code>. It defaults to an empty object, and
+        anything you add to it will show up in the <code>meta</code> property of the data structure for collections.
+        By adding <code>totalCount</code> and <code>perPage</code> to meta, we've now made that data available to
+        any component that receives a collection.
       </p>
 
       <h3>
         Request Paginated Data in Feed
       </h3>
       <p>
-        To implement pagination we're going to be using a query parameter in our applications route to determine which page
-        of data to display. We're going to call that query parameter <code>page</code>.
+        To implement pagination we're going to be using a query parameter in our applications route to determine
+        which page of data to display. We're going to call that query parameter <code>page</code>.
       </p>
 
       <p>
-        For example, if you navigate to a URL like <code>http://localhost:1337/?page=1</code> we want to see the
-        first page of tweets, and the URL <code>http://localhost:1337/?page=2</code> would display the second page
-        of tweets.
+        For example, if you navigate to a URL like <code>http://localhost:1337/tweets?page=1</code> we want to see
+        the first page of tweets, and the URL <code>http://localhost:1337/tweets?page=2</code> would display the
+        second page of tweets.
       </p>
 
       <p>
-        Currently our <code>Feed</code> component provides no pagination information when requesting a set of tweets. The call looks
-        like this:
+        Currently our <code>Feed</code> component provides no pagination information when requesting a set of
+        tweets. The call looks like this:
       </p>
 
       <Markdown text={`
@@ -112,9 +114,9 @@ export default (props) => {
       `}/>
 
       <p>
-        Since we didn't provide any information aside from <code>tweet.find</code>, the API call created simply makes a
-        network request to <code>/tweets</code>. But if we're going to use paginated data, we need network calls
-        that look like <code>/tweets?page=1</code>. To do that, we need to provide a second argument to
+        Since we didn't provide any information aside from <code>tweet.find</code>, the API call created simply
+        makes a network request to <code>/tweets</code>. But if we're going to use paginated data, we need network
+        calls that look like <code>/tweets?page=1</code>. To do that, we need to provide a second argument to
         the <code>getState</code> call that describes what we want.
       </p>
 
@@ -128,6 +130,7 @@ export default (props) => {
           return {
             tweets: getState('tweet.find', {
               pagination: {
+                sort: 'createdAt DESC',
                 page: props.location.query.page || '1'
               }
             })
@@ -147,6 +150,7 @@ export default (props) => {
           return {
             tweets: getState('tweet.find', {
               pagination: {
+                sort: 'createdAt DESC',
                 page: props.location.query.page || '1'
               }
             })
@@ -158,6 +162,7 @@ export default (props) => {
           return {
             tweets: getState('tweet.find', {
               pagination: {
+                sort: 'createdAt DESC',
                 page: props.location.query.page || '1'
               }
             })
@@ -170,22 +175,25 @@ export default (props) => {
       </CodeTabs>
 
       <p>
-        The second argument we passed to <code>getState</code> contains a <code>pagination</code> key that you can use to list query parameters that
-        relate to pagination, such as page number, page size, ordering preferences, etc. To be clear there's no magic here;
-        Lore simply takes these parameters and converts them to query parameters in the request.
+        The second argument we passed to <code>getState</code> contains a <code>pagination</code> key that you can
+        use to list query parameters that relate to pagination, such as page number, page size, ordering preferences,
+        etc. To be clear there's no magic here; Lore simply takes these parameters and converts them to query
+        parameters in the request.
       </p>
 
       <p>
-        The second callout here is that we're going to be using React Router to trigger pagination, which is where the
-        <code>props.location.query.page</code> value comes from (location is passed to the component by React Router).
+        The second callout here is that we're going to be using React Router to trigger pagination, which is where
+        the <code>props.location.query.page</code> value comes from (<code>location</code> is passed to the component
+        by React Router).
       </p>
 
       <h3>
         Add Pagination Links
       </h3>
       <p>
-        Now that we're fetching data based on the route, we need to add a list of pagination links the user can click on to
-        navigate between pages of tweets. For that, update the render method of your <code>Feed</code> component to look like this:
+        Now that we're fetching data based on the route, we need to add a list of pagination links the user can click
+        on to navigate between pages of tweets. For that, update the render method of your <code>Feed</code> component
+        to look like this:
       </p>
 
       <CodeTabs>
@@ -214,7 +222,12 @@ export default (props) => {
 
             if (tweets.state === PayloadStates.FETCHING) {
               return (
-                <div className="loader" />
+                <div className="feed">
+                  <h2 className="title">
+                    Feed
+                  </h2>
+                  <div className="loader"/>
+                </div>
               );
             }
 
@@ -270,7 +283,12 @@ export default (props) => {
 
             if (tweets.state === PayloadStates.FETCHING) {
               return (
-                <div className="loader" />
+                <div className="feed">
+                  <h2 className="title">
+                    Feed
+                  </h2>
+                  <div className="loader"/>
+                </div>
               );
             }
 
@@ -325,7 +343,12 @@ export default (props) => {
 
             if (tweets.state === PayloadStates.FETCHING) {
               return (
-                <div className="loader" />
+                <div className="feed">
+                  <h2 className="title">
+                    Feed
+                  </h2>
+                  <div className="loader"/>
+                </div>
               );
             }
 
@@ -545,7 +568,12 @@ export default (props) => {
 
             if (tweets.state === PayloadStates.FETCHING) {
               return (
-                <div className="loader" />
+                <div className="feed">
+                  <h2 className="title">
+                    Feed
+                  </h2>
+                  <div className="loader"/>
+                </div>
               );
             }
 
@@ -609,7 +637,12 @@ export default (props) => {
 
             if (tweets.state === PayloadStates.FETCHING) {
               return (
-                <div className="loader" />
+                <div className="feed">
+                  <h2 className="title">
+                    Feed
+                  </h2>
+                  <div className="loader"/>
+                </div>
               );
             }
 
@@ -698,7 +731,12 @@ export default (props) => {
 
             if (tweets.state === PayloadStates.FETCHING) {
               return (
-                <div className="loader" />
+                <div className="feed">
+                  <h2 className="title">
+                    Feed
+                  </h2>
+                  <div className="loader"/>
+                </div>
               );
             }
 

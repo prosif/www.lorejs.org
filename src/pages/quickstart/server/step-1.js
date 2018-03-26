@@ -31,7 +31,7 @@ export default (props) => {
         <CodeTab title="SSH" syntax="ES5" text={`
         $ git clone git@github.com:lore/lore-tutorial-api.git
         `}/>
-        <CodeTab title="HTTPS" syntax="ES5" text={`
+        <CodeTab title="HTTPS" syntax="ES6" text={`
         $ git clone https://github.com/lore/lore-tutorial-api.git
         `}/>
       </CodeTabs>
@@ -52,8 +52,8 @@ export default (props) => {
         Stop the Mock API Server
       </h3>
       <p>
-        Once the dependencies are installed, <strong>stop the mock server</strong>. We'll need the port it's
-        currently running on.
+        Once the dependencies are installed, <strong>stop the mock server</strong> (Ctrl+C). We'll need the port it's
+        currently running on to be free, so the Sails server can bind to it.
       </p>
 
       <h3>
@@ -71,7 +71,7 @@ export default (props) => {
       info:                .-..-.
       info:
       info:    Sails              <|    .-..-.
-      info:    v0.12.6             |\\
+      info:    v0.12.14            |\\
       info:                       /|.\\
       info:                      / || \\
       info:                    ,'  |'  \\
@@ -85,7 +85,7 @@ export default (props) => {
       info: To shut down Sails, press CTRL + C at any time.
 
         debug: -------------------------------------------------------
-        debug: :: Sat Dec 31 2016 13:19:04 GMT-0700 (MST)
+        debug: :: Sun Mar 25 2018 21:21:26 GMT-0700 (MST)
 
         debug: Environment : development
         debug: Port        : 1337

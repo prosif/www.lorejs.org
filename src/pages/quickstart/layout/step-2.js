@@ -129,10 +129,16 @@ export default (props) => {
         text-align: center;
         margin-top: 32px;
         margin-bottom: 64px;
+        min-height: 60px;
       }
 
       .footer button:focus {
         outline: none !important;
+      }
+
+      .footer .btn {
+        margin-top: 7px;
+        margin-bottom: 7px;
       }
 
       /*
@@ -398,10 +404,16 @@ export default (props) => {
         text-align: center;
         margin-top: 32px;
         margin-bottom: 64px;
+        min-height: 60px;
       }
 
       .footer button:focus {
         outline: none !important;
+      }
+
+      .footer .btn {
+        margin-top: 7px;
+        margin-bottom: 7px;
       }
 
       /*

@@ -28,32 +28,33 @@ export default (props) => {
 
       <ol>
         <li>Instead of letting the user select a page, they can only load the next page</li>
-        <li>Instead of displaying one page at a time, the results are all appended to single running array</li>
+        <li>Instead of displaying one page at a time, the results are all appended to single growing array</li>
       </ol>
 
       <p>
-        It's important to point out that these are <em>view specific concerns</em>; meaning nothing about them requires changes to
-        infrastructure or to the API. They're all about how a user interacts with data, and have nothing to do with how data
-        is fetched or stored.
+        It's important to point out that these are <em>view specific concerns</em>; meaning nothing about them
+        requires changes to infrastructure or to the API. They're all about how a user interacts with data, and
+        have nothing to do with how data is fetched or stored.
       </p>
 
       <p>
-        To that end, this section will be focusing on how to implement infinite scrolling in a simple and reusable way.
+        To that end, this section will be focusing on how to implement infinite scrolling in a simple and
+        reusable way.
       </p>
 
       <h3>
         Add NextPage to Meta Property
       </h3>
       <p>
-        Unlike traditional pagination links, where we need to calculate the number of links early on, infinite scrolling only
-        cares about whether there is a "next" page. So we're going to provide that information by adding another property
-        to the <code>meta</code> field of the <code>tweets</code> collection.
+        Unlike traditional pagination links, where we need to calculate the number of links early on, infinite
+        scrolling only cares about whether there is a "next" page. So we're going to provide that information by
+        adding another property to the <code>meta</code> field of the <code>tweets</code> collection.
       </p>
 
       <p>
-        Open up <code>config/connections.js</code> and update the collection's <code>parse</code> method to add the <code>nextPage</code> property from the API
-        response to to the <code>meta</code> data. This field will either contain the number of the next page of data or be null if there
-        are no more pages to display.
+        Open up <code>config/connections.js</code> and update the collection's <code>parse</code> method to add
+        the <code>nextPage</code> property from the API response to to the <code>meta</code> data. This field will
+        either contain the number of the next page of data or be null if there are no more pages to display.
       </p>
 
       <Markdown text={`
@@ -70,10 +71,10 @@ export default (props) => {
       `}/>
 
       <h3>
-        Add InfiniteScrolling Decorator
+        Infinite Scrolling Setup
       </h3>
       <p>
-        InfiniteScrolling has _a lot_ of boilerplate associated with it. Components that implement it need to:
+        InfiniteScrolling has <em>a lot</em> of boilerplate associated with it. Components that implement it need to:
       </p>
 
       <ul>
@@ -84,391 +85,35 @@ export default (props) => {
       </ul>
 
       <p>
-        The logic for that can also be a little tricky, but luckily it's easy enough to encapsulate into a decorator that can
-        be applied to any component.
-      </p>
-
-      <p>
-        Create a new JavaScript file called <code>InfiniteScrolling</code> and place it in <code>src/decorators/InfiniteScrolling.js</code>. Then
-        update the contents of that file to look like this:
-      </p>
-
-      <CodeTabs>
-        <CodeTab syntax="ES5" text={`
-        import React from 'react';
-        import createReactClass from 'create-react-class';
-        import PropTypes from 'prop-types';
-        import _ from 'lodash';
-
-        function getDisplayName(Component) {
-          return Component.displayName || Component.name || 'Component';
-        }
-
-        export default function(options = {}) {
-          const {
-            propName,
-            modelName
-          } = options;
-
-          if (!propName) {
-            throw new Error('propName is required');
-          }
-
-          if (!modelName) {
-            throw new Error('modelName is required');
-          }
-
-          return function(DecoratedComponent) {
-            const displayName = 'InfiniteScrolling(' + getDisplayName(DecoratedComponent) + ')';
-
-            return createReactClass({
-              displayName: displayName,
-
-              contextTypes: {
-                store: PropTypes.object.isRequired
-              },
-
-              getInitialState: function() {
-                return {
-                  pages: [
-                    this.props[propName]
-                  ]
-                };
-              },
-
-              componentWillReceiveProps: function(nextProps) {
-                const storeState = this.context.store.getState();
-                const { pages } = this.state;
-
-                // Whenever the component re-renders, we need to rebuild our collection of pages
-                // by fetching them back out of the Store. If we don't do this, our state data
-                // will always be stale - we'll never know when data finishes being fetched, and
-                // in the cases where some of the data is being modified, such as being updated
-                // or deleted, we won't get a change to react to those changes and inform the user.
-                let nextPages = pages.map(function(page) {
-                  const query = JSON.stringify(page.query);
-                  return storeState[modelName].find[query];
-                });
-
-                const currentQuery = JSON.stringify(this.props[propName].query.where);
-                const nextQuery = JSON.stringify(nextProps[propName].query.where);
-
-                if (currentQuery !== nextQuery) {
-                  nextPages = [
-                    nextProps[propName]
-                  ];
-                }
-
-                this.setState({
-                  pages: nextPages
-                });
-              },
-
-              onLoadMore: function() {
-                const storeState = this.context.store.getState();
-                const { pages } = this.state;
-                const lastPage = pages[pages.length - 1];
-                const nextPageNumber = Number(lastPage.query.pagination.page) + 1;
-                const query = lastPage.query;
-
-                // Build the next page's query from the previous page. The only
-                // thing we're changing is the page of data we want to fetch
-                const nextQuery = {
-                  where: query.where,
-                  pagination: _.defaults({
-                    page: nextPageNumber
-                  }, query.pagination)
-                };
-
-                // See if the next page has already been fetched, and used the cached page
-                // if available
-                let nextPage = storeState[modelName].find[JSON.stringify(nextQuery)];
-
-                if (!nextPage) {
-                  // The 'find' action has a slightly different interface than the 'getState' call
-                  // in 'connect'. When calling the 'find' action directly, you need to pass
-                  // in the 'where' clause and the 'pagination' information as different arguments,
-                  // like 'lore.actions.tweet.find(where, pagination)'
-                  nextPage = lore.actions[modelName].find(nextQuery.where, nextQuery.pagination).payload;
-                }
-
-                pages.push(nextPage);
-
-                this.setState({
-                  pages: pages
-                });
-              },
-
-              render: function() {
-                return React.createElement(
-                  DecoratedComponent,
-                  _.assign({ref: 'decoratedComponent'}, this.state, this.props, { onLoadMore: this.onLoadMore })
-                );
-              }
-            });
-          }
-        };
-        `}/>
-        <CodeTab syntax="ES6" text={`
-        import React from 'react';
-        import createReactClass from 'create-react-class';
-        import PropTypes from 'prop-types';
-        import _ from 'lodash';
-
-        function getDisplayName(Component) {
-          return Component.displayName || Component.name || 'Component';
-        }
-
-        export default function(options = {}) {
-          const {
-            propName,
-            modelName
-          } = options;
-
-          if (!propName) {
-            throw new Error('propName is required');
-          }
-
-          if (!modelName) {
-            throw new Error('modelName is required');
-          }
-
-          return function(DecoratedComponent) {
-            const displayName = 'InfiniteScrolling(' + getDisplayName(DecoratedComponent) + ')';
-
-            return createReactClass({
-              displayName: displayName,
-
-              contextTypes: {
-                store: PropTypes.object.isRequired
-              },
-
-              getInitialState: function() {
-                return {
-                  pages: [
-                    this.props[propName]
-                  ]
-                };
-              },
-
-              componentWillReceiveProps: function(nextProps) {
-                const storeState = this.context.store.getState();
-                const { pages } = this.state;
-
-                // Whenever the component re-renders, we need to rebuild our collection of pages
-                // by fetching them back out of the Store. If we don't do this, our state data
-                // will always be stale - we'll never know when data finishes being fetched, and
-                // in the cases where some of the data is being modified, such as being updated
-                // or deleted, we won't get a change to react to those changes and inform the user.
-                let nextPages = pages.map(function(page) {
-                  const query = JSON.stringify(page.query);
-                  return storeState[modelName].find[query];
-                });
-
-                const currentQuery = JSON.stringify(this.props[propName].query.where);
-                const nextQuery = JSON.stringify(nextProps[propName].query.where);
-
-                if (currentQuery !== nextQuery) {
-                  nextPages = [
-                    nextProps[propName]
-                  ];
-                }
-
-                this.setState({
-                  pages: nextPages
-                });
-              },
-
-              onLoadMore: function() {
-                const storeState = this.context.store.getState();
-                const { pages } = this.state;
-                const lastPage = pages[pages.length - 1];
-                const nextPageNumber = Number(lastPage.query.pagination.page) + 1;
-                const query = lastPage.query;
-
-                // Build the next page's query from the previous page. The only
-                // thing we're changing is the page of data we want to fetch
-                const nextQuery = {
-                  where: query.where,
-                  pagination: _.defaults({
-                    page: nextPageNumber
-                  }, query.pagination)
-                };
-
-                // See if the next page has already been fetched, and used the cached page
-                // if available
-                let nextPage = storeState[modelName].find[JSON.stringify(nextQuery)];
-
-                if (!nextPage) {
-                  // The 'find' action has a slightly different interface than the 'getState' call
-                  // in 'connect'. When calling the 'find' action directly, you need to pass
-                  // in the 'where' clause and the 'pagination' information as different arguments,
-                  // like 'lore.actions.tweet.find(where, pagination)'
-                  nextPage = lore.actions[modelName].find(nextQuery.where, nextQuery.pagination).payload;
-                }
-
-                pages.push(nextPage);
-
-                this.setState({
-                  pages: pages
-                });
-              },
-
-              render: function() {
-                return React.createElement(
-                  DecoratedComponent,
-                  _.assign({ref: 'decoratedComponent'}, this.state, this.props, { onLoadMore: this.onLoadMore })
-                );
-              }
-            });
-          }
-        };
-        `}/>
-        <CodeTab syntax="ESNext" text={`
-        import React from 'react';
-        import createReactClass from 'create-react-class';
-        import PropTypes from 'prop-types';
-        import _ from 'lodash';
-
-        function getDisplayName(Component) {
-          return Component.displayName || Component.name || 'Component';
-        }
-
-        export default function(options = {}) {
-          const {
-            propName,
-            modelName
-          } = options;
-
-          if (!propName) {
-            throw new Error('propName is required');
-          }
-
-          if (!modelName) {
-            throw new Error('modelName is required');
-          }
-
-          return function(DecoratedComponent) {
-            const displayName = 'InfiniteScrolling(' + getDisplayName(DecoratedComponent) + ')';
-
-            return createReactClass({
-              displayName: displayName,
-
-              contextTypes: {
-                store: PropTypes.object.isRequired
-              },
-
-              getInitialState: function() {
-                return {
-                  pages: [
-                    this.props[propName]
-                  ]
-                };
-              },
-
-              componentWillReceiveProps: function(nextProps) {
-                const storeState = this.context.store.getState();
-                const { pages } = this.state;
-
-                // Whenever the component re-renders, we need to rebuild our collection of pages
-                // by fetching them back out of the Store. If we don't do this, our state data
-                // will always be stale - we'll never know when data finishes being fetched, and
-                // in the cases where some of the data is being modified, such as being updated
-                // or deleted, we won't get a change to react to those changes and inform the user.
-                let nextPages = pages.map(function(page) {
-                  const query = JSON.stringify(page.query);
-                  return storeState[modelName].find[query];
-                });
-
-                const currentQuery = JSON.stringify(this.props[propName].query.where);
-                const nextQuery = JSON.stringify(nextProps[propName].query.where);
-
-                if (currentQuery !== nextQuery) {
-                  nextPages = [
-                    nextProps[propName]
-                  ];
-                }
-
-                this.setState({
-                  pages: nextPages
-                });
-              },
-
-              onLoadMore: function() {
-                const storeState = this.context.store.getState();
-                const { pages } = this.state;
-                const lastPage = pages[pages.length - 1];
-                const nextPageNumber = Number(lastPage.query.pagination.page) + 1;
-                const query = lastPage.query;
-
-                // Build the next page's query from the previous page. The only
-                // thing we're changing is the page of data we want to fetch
-                const nextQuery = {
-                  where: query.where,
-                  pagination: _.defaults({
-                    page: nextPageNumber
-                  }, query.pagination)
-                };
-
-                // See if the next page has already been fetched, and used the cached page
-                // if available
-                let nextPage = storeState[modelName].find[JSON.stringify(nextQuery)];
-
-                if (!nextPage) {
-                  // The 'find' action has a slightly different interface than the 'getState' call
-                  // in 'connect'. When calling the 'find' action directly, you need to pass
-                  // in the 'where' clause and the 'pagination' information as different arguments,
-                  // like 'lore.actions.tweet.find(where, pagination)'
-                  nextPage = lore.actions[modelName].find(nextQuery.where, nextQuery.pagination).payload;
-                }
-
-                pages.push(nextPage);
-
-                this.setState({
-                  pages: pages
-                });
-              },
-
-              render: function() {
-                return React.createElement(
-                  DecoratedComponent,
-                  _.assign({ref: 'decoratedComponent'}, this.state, this.props, { onLoadMore: this.onLoadMore })
-                );
-              }
-            });
-          }
-        };
-        `}/>
-      </CodeTabs>
-
-      <p>
-        We won't spend anytime explaining the code above, but it reflects the boilerplate described previously.
+        The logic for that can also be a little tricky, but luckily it's easy enough to encapsulate into a couple
+        reusable components.
       </p>
 
       <h3>
-        Create Button to Load More Tweets
+        Component #1: LoadMoreButton
       </h3>
+
       <p>
-        Next we're going to create a button for the user to click to load more tweets. This button will will have three
-        responsibilities:
+        The first component we're going to create is going to be the <code>LoadMoreButton</code>, and it will be
+        a button that the user to click to load more tweets. This button will will have three responsibilities:
       </p>
 
       <ol>
         <li>Display the text "Load More" if there are more tweets to load</li>
-        <li>Display the next "Loading..." if more tweets are being fetched</li>
+        <li>Display a loading experience if more tweets are being fetched</li>
         <li>Disappear from view if there are no more tweets to fetch.</li>
       </ol>
 
       <p>
-        Run this command to create the <code>LoadMoreButton</code> component:
+        Create the button component by running the following command:
       </p>
 
-      <Markdown type="sh" text={`
+      <Markdown text={`
       lore generate component LoadMoreButton
       `}/>
 
       <p>
-        Then paste the following code into that file:
+        Then replace the contents of the file with this:
       </p>
 
       <CodeTabs>
@@ -490,26 +135,27 @@ export default (props) => {
           render: function() {
             const {
               lastPage,
+              onLoadMore,
               nextPageMetaField
             } = this.props;
 
             if(lastPage.state === PayloadStates.FETCHING) {
               return (
                 <div className="footer">
-                  <div className="loader" />
+                  <div className="loader"/>
                 </div>
               );
             }
 
             if (!lastPage.meta[nextPageMetaField]) {
               return (
-                <div className="footer"></div>
+                <div className="footer"/>
               );
             }
 
             return (
               <div className="footer">
-                <button className="btn btn-default btn-lg" onClick={this.props.onLoadMore}>
+                <button className="btn btn-default btn-lg" onClick={onLoadMore}>
                   Load More
                 </button>
               </div>
@@ -519,370 +165,340 @@ export default (props) => {
         });
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React from 'react';
-        import PropTypes from 'prop-types';
-        import PayloadStates from '../constants/PayloadStates';
-
-        class LoadMoreButton extends React.Component {
-
-          render() {
-            const {
-              lastPage,
-              nextPageMetaField
-            } = this.props;
-
-            if(lastPage.state === PayloadStates.FETCHING) {
-              return (
-                <div className="footer">
-                  <div className="loader" />
-                </div>
-              );
-            }
-
-            if (!lastPage.meta[nextPageMetaField]) {
-              return (
-                <div className="footer"></div>
-              );
-            }
-
-            return (
-              <div className="footer">
-                <button className="btn btn-default btn-lg" onClick={this.props.onLoadMore}>
-                  Load More
-                </button>
-              </div>
-            );
-          }
-
-        }
-
-        LoadMoreButton.propTypes = {
-          lastPage: PropTypes.object.isRequired,
-          onLoadMore: PropTypes.func.isRequired,
-          nextPageMetaField: PropTypes.string.isRequired
-        };
-
-        export default LoadMoreButton;
+        TODO
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React from 'react';
-        import PropTypes from 'prop-types';
-        import PayloadStates from '../constants/PayloadStates';
-
-        class LoadMoreButton extends React.Component {
-
-          static propTypes = {
-            lastPage: PropTypes.object.isRequired,
-            onLoadMore: PropTypes.func.isRequired,
-            nextPageMetaField: PropTypes.string.isRequired
-          };
-
-          render() {
-            const {
-              lastPage,
-              nextPageMetaField
-            } = this.props;
-
-            if(lastPage.state === PayloadStates.FETCHING) {
-              return (
-                <div className="footer">
-                  <div className="loader" />
-                </div>
-              );
-            }
-
-            if (!lastPage.meta[nextPageMetaField]) {
-              return (
-                <div className="footer"></div>
-              );
-            }
-
-            return (
-              <div className="footer">
-                <button className="btn btn-default btn-lg" onClick={this.props.onLoadMore}>
-                  Load More
-                </button>
-              </div>
-            );
-          }
-
-        }
-
-        export default LoadMoreButton;
+        TODO
         `}/>
       </CodeTabs>
 
       <h3>
-        Decorate the Feed Component
+        Component #2: InfiniteScrollingLIst
       </h3>
+
       <p>
-        With these pieces in place we now update our <code>Feed</code> component to support Infinite Scrolling. We're going to start
-        by importing our InfiniteScrolling decorator and using it to wrap our Feed component like this:
+        The second component we're going to create is going to be called <code>InfiniteScrollingList</code>,
+        and it will be responsible for displaying our list of tweets, as well as fetching the next page, and
+        merging all the data into a single array.
+      </p>
+
+      <p>
+        Create the list component by running the following command:
+      </p>
+
+      <Markdown text={`
+      lore generate component InfiniteScrollingList
+      `}/>
+
+      <p>
+        Then replace the contents of the file with this:
       </p>
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        ...
-        import InfiniteScrolling from '../decorators/InfiniteScrolling';
-
-        export default connect(function(getState, props) {
-          return {
-            tweets: getState('tweet.find', {
-              pagination: {
-                page: '1'
-              }
-            })
-          }
-        })(
-          InfiniteScrolling({ propName: 'tweets', modelName: 'tweet' })(
-            createReactClass({
-              displayName: 'Feed',
-              ...
-            })
-          )
-        );
-        `}/>
-        <CodeTab syntax="ES6" text={`
-        ...
-        import InfiniteScrolling from '../decorators/InfiniteScrolling';
-
-        class Feed extends React.Component {
-          ...
-        }
-
-        export default connect(function(getState, props) {
-          return {
-            tweets: getState('tweet.find', {
-              pagination: {
-                page: '1'
-              }
-            })
-          }
-        })(
-          InfiniteScrolling({ propName: 'tweets', modelName: 'tweet' })(
-            Feed
-          )
-        );
-        `}/>
-        <CodeTab syntax="ESNext" text={`
-        ...
-        import InfiniteScrolling from '../decorators/InfiniteScrolling';
-
-        @connect(function(getState, props) {
-          return {
-            tweets: getState('tweet.find', {
-              pagination: {
-                page: '1'
-              }
-            })
-          }
-        })
-        @InfiniteScrolling({ propName: 'tweets', modelName: 'tweet' })
-        class Feed extends React.Component {
-          ...
-        }
-        `}/>
-      </CodeTabs>
-
-      <blockquote>
-        <p>
-          While decorators can be very powerful, they can be visually difficult to understand, especially when using ES5 and
-          ES6 syntax. In layman's terms, they're just functions that wrap other functions, and get a chance to modify or
-          react to the input before invoking the child function.
-        </p>
-        <p>
-          In the code above, <code>connect</code> wraps <code>InfiniteScrolling</code> which in turn
-          wraps <code>Feed</code>. You can also think of them as components (since they are), which would then
-          mean <code>connect</code> renders <code>InfiniteScrolling</code> which in turn renders <code>Feed</code>.
-        </p>
-      </blockquote>
-
-      <p>
-        The ESNext implementation is the easiest to visually understand. First, we're using <code>connect</code> to declare (and
-        fetch) the first page of tweets. The resulting <code>tweets</code> property is passed to the <code>InfiniteScrolling</code> decorator. This
-        decorator requires two properties, <code>propName</code> and <code>modelName</code>. The first, <code>propName</code>, is the name of the property
-        being passed in that we want to implement infinite scrolling for. The second property, <code>modelName</code>, is the name
-        of the model associated with the data. The <code>InfiniteScrolling</code> decorator needs this in order to know which action
-        to invoke to fetch more data. Finally, the Feed component is rendered, and our list of Tweets displays to the page.
-      </p>
-
-      <p>
-        If you refresh the browser, you'll notice the application still works, though we don't have infinite scrolling yet. All
-        this decorator did was provide support for it - we still have to tap into that support to use it.
-      </p>
-
-      <h3>
-        Implement Infinite Scrolling
-      </h3>
-      <p>
-        To finish integrating support for infinite scrolling, import the <code>LoadMoreButton</code> and modify your <code>propTypes</code> and
-        <code>render</code> method to look like this:
-      </p>
-
-      <CodeTabs>
-        <CodeTab syntax="ES5" text={`
-        ...
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
+        import _ from 'lodash';
+        import { getState } from 'lore-hook-connect';
+        import PayloadStates from '../constants/PayloadStates';
         import LoadMoreButton from './LoadMoreButton';
 
-        ...
-        createReactClass({
-          displayName: 'Feed',
+        export default createReactClass({
+          displayName: 'InfiniteScrollingList',
 
           propTypes: {
-            pages: PropTypes.array.isRequired,
-            onLoadMore: PropTypes.func.isRequired
+            row: PropTypes.func.isRequired,
+            select: PropTypes.func.isRequired,
+            selectNextPage: PropTypes.func.isRequired,
+            refresh: PropTypes.func.isRequired,
+            selectOther: PropTypes.func.isRequired,
+            exclude: PropTypes.func
           },
 
-          ...
+          getDefaultProps() {
+            return {
+              exclude: function(model) {
+                return false;
+              }
+            }
+          },
+
+          getInitialState: function() {
+            return {
+              other: null,
+              pages: []
+            };
+          },
+
+          // fetch first page
+          componentWillMount() {
+            const { select, selectOther } = this.props;
+            const nextState = this.state;
+
+            nextState.pages.push(select(getState));
+
+            if (selectOther) {
+              nextState.other = selectOther(getState);
+            }
+
+            this.setState(nextState);
+          },
+
+          // refresh data in all pages
+          componentWillReceiveProps(nextProps) {
+            const { refresh, selectOther } = this.props;
+            const { pages } = this.state;
+            const nextState = {};
+
+            nextState.pages = pages.map(function(page) {
+              return refresh(page, getState);
+            });
+
+            if (selectOther) {
+              nextState.other = selectOther(getState);
+            }
+
+            this.setState(nextState);
+          },
+
+          onLoadMore() {
+            const { selectNextPage } = this.props;
+            const { pages } = this.state;
+            const lastPage = pages[pages.length - 1];
+
+            pages.push(selectNextPage(lastPage, getState));
+
+            this.setState({
+              pages: pages
+            });
+          },
 
           render: function() {
-            const { pages } = this.props;
+            const { row, exclude } = this.props;
+            const { pages, other } = this.state;
             const numberOfPages = pages.length;
             const firstPage = pages[0];
             const lastPage = pages[pages.length - 1];
 
+            // if we only have one page, and it's fetching, then it's the initial
+            // page load so let the user know we're loading the data
             if (numberOfPages === 1 && lastPage.state === PayloadStates.FETCHING) {
               return (
                 <div className="loader" />
               );
             }
 
-            const tweetListItems = _.flatten(pages.map(function(tweets) {
-              return tweets.data.map(this.renderTweet);
-            }.bind(this)));
-
             return (
-              <div className="feed">
-                <h2 className="title">
-                  Feed
-                </h2>
+              <div>
                 <ul className="media-list tweets">
-                  {tweetListItems}
+                  {other ? other.data.map(row) : null}
+                  {_.flatten(pages.map((models) => {
+                    return _.filter(models.data, (model) => {
+                      return !exclude(model);
+                    }).map(row);
+                  }))}
                 </ul>
                 <LoadMoreButton
                   lastPage={lastPage}
-                  onLoadMore={this.props.onLoadMore}
-                  nextPageMetaField="nextPage" />
+                  onLoadMore={this.onLoadMore}
+                  nextPageMetaField="nextPage"
+                />
               </div>
             );
           }
 
-        })
-        ...
+        });
         `}/>
         <CodeTab syntax="ES6" text={`
-        ...
-        import LoadMoreButton from './LoadMoreButton';
-        ...
-        class Feed extends React.Component {
-          ...
-
-          render() {
-            const { pages } = this.props;
-            const numberOfPages = pages.length;
-            const firstPage = pages[0];
-            const lastPage = pages[pages.length - 1];
-
-            if (numberOfPages === 1 && lastPage.state === PayloadStates.FETCHING) {
-              return (
-                <div className="loader" />
-              );
-            }
-
-            const tweetListItems = _.flatten(pages.map(function(tweets) {
-              return tweets.data.map(this.renderTweet);
-            }.bind(this)));
-
-            return (
-              <div className="feed">
-                <h2 className="title">
-                  Feed
-                </h2>
-                <ul className="media-list tweets">
-                  {tweetListItems}
-                </ul>
-                <LoadMoreButton
-                  lastPage={lastPage}
-                  onLoadMore={this.props.onLoadMore}
-                  nextPageMetaField="nextPage" />
-              </div>
-            );
-          }
-        }
-
-        Feed.propTypes = {
-          pages: PropTypes.array.isRequired,
-          onLoadMore: PropTypes.func.isRequired
-        };
-
-        ...
+        TODO
         `}/>
         <CodeTab syntax="ESNext" text={`
-        ...
-        import LoadMoreButton from './LoadMoreButton';
-        ...
-        class Feed extends React.Component {
-
-          static propTypes = {
-            pages: PropTypes.array.isRequired,
-            onLoadMore: PropTypes.func.isRequired
-          };
-
-          ...
-
-          render() {
-            const { pages } = this.props;
-            const numberOfPages = pages.length;
-            const firstPage = pages[0];
-            const lastPage = pages[pages.length - 1];
-
-            if (numberOfPages === 1 && lastPage.state === PayloadStates.FETCHING) {
-              return (
-                <div className="loader" />
-              );
-            }
-
-            const tweetListItems = _.flatten(pages.map(function(tweets) {
-              return tweets.data.map(this.renderTweet);
-            }.bind(this)));
-
-            return (
-              <div className="feed">
-                <h2 className="title">
-                  Feed
-                </h2>
-                <ul className="media-list tweets">
-                  {tweetListItems}
-                </ul>
-                <LoadMoreButton
-                  lastPage={lastPage}
-                  onLoadMore={this.props.onLoadMore}
-                  nextPageMetaField="nextPage" />
-              </div>
-            );
-          }
-        }
+        TODO
         `}/>
       </CodeTabs>
 
       <p>
-        The key difference between this code and the code for pagination links is that instead of receiving <code>tweets</code> as a
-        prop, we receive a prop called <code>pages</code>. This property comes from the <code>InfiniteScrolling</code> decorator, and is an array
-        or pages of tweets. So we need to interate through each page in the array, convert them to a array <code>Tweet</code> list items,
-        and then flatten the results array-of-arrays into a single array of list items to render.
+        We won't spend any time explaining the code above, but it reflects the boilerplate described previously.
       </p>
 
+      <h3>
+        Update the Feed Component
+      </h3>
       <p>
-        Finally, the <code>LoadMoreButton</code> requires the last page of the array, which it will inspect to see if there's a next page
-        of data to load. The <code>nextPageMetaField</code> is the name of the property on the <code>meta</code> data that determines whether there
-        is a next page. And the <code>onLoadMore</code> function is the function that should be invoked to load more tweets. This function
-        is provided by the <code>InfiniteScrolling</code> decorator.
+        With these components created we can now update our <code>Feed</code> component to support Infinite
+        Scrolling. Replace the contents of <code>Feed</code> with this:
       </p>
 
+      <CodeTabs>
+        <CodeTab syntax="ES5" text={`
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
+        import InfiniteScrollingList from './InfiniteScrollingList';
+        import Tweet from './Tweet';
+
+        export default createReactClass({
+          displayName: 'Feed',
+
+          render: function() {
+            return (
+              <div className="feed">
+                <h2 className="title">
+                  Feed
+                </h2>
+                <InfiniteScrollingList
+                  select={(getState) => {
+                    return getState('tweet.find', {
+                      pagination: {
+                        sort: 'createdAt DESC',
+                        page: 1
+                      }
+                    });
+                  }}
+                  row={(tweet) => {
+                    return (
+                      <Tweet key={tweet.id} tweet={tweet} />
+                    );
+                  }}
+                />
+              </div>
+            );
+          }
+        });
+        `}/>
+        <CodeTab syntax="ES6" text={`
+        TODO
+        `}/>
+        <CodeTab syntax="ESNext" text={`
+        TODO
+        `}/>
+      </CodeTabs>
+
       <p>
-        Refresh the browser, and you should now have a button says "LoadMore" at the bottom of the tweets. Clicking this button
-        will cause the next page to load. It you continue to click it until there are no more pages of data, the button will
-        disappear.
+        There's a lot of things that need to coodinate to get Infinite Scrolling to behave correctly, so we're going
+        to be building our view up slowly, and explaining a bit along the way.
+      </p>
+      <p>
+        The first thing the <code>InfiniteScrollingList</code> component needs to know is <strong>what data to
+        render</strong>. We do that through the <code>select</code> prop, which similar to the interface used by
+        the <code>connect</code> decorator. The only difference is that instead of returning an object of
+        data you want passed to the child component, you only return <strong>one data collection</strong>.
+      </p>
+      <p>
+        In this example, we want the <code>InfiniteScrollingList</code> component to render the first page of tweets,
+        sorted in descending order by their <code>createdAt</code> date.
+      </p>
+      <p>
+        The second thing we need to provide is <strong>what should be rendered</strong>. We do this through
+        the <code>row</code> prop, which is a function that will be called for each tweet in the collection,
+        and whatever that function returns will be rendered for that tweet.
+      </p>
+      <p>
+        If you refresh the browser, you'll see the application renders, but it's stuck at a loading screen.
+      </p>
+
+      <h3>
+        Refresh the Data
+      </h3>
+      <p>
+        The reason the application is stuck is because it never gets updated data from the store.
+        The <code>connect</code> decorator doesn't have this problem, because it's (in a sense) part of the natural
+        render cycle. Meaning that everytime data changes, the application re-renders, and the connect decorator (as
+        part of the lifecycle callbacks in that process) will request it's data from the store, and get the most
+        up-to-date version.
+      </p>
+      <p>
+        In this case, that's not happening. The <code>select</code> prop is NOT called every time the component
+        updates, only once, when the component is about to be mounted. This is intentional, because
+        unlike <code>connect</code>, this component needs to manage <strong>many pages of data</strong>. So
+        let's teach it how to refresh a page of data.
+      </p>
+      <p>
+        To do that, add a new prop to your <code>InfiniteScrollingList</code> component called <code>refresh</code>,
+        that looks like this:
+      </p>
+
+      <Markdown text={`
+      <InfiniteScrollingList
+        select={(getState) => {
+          return getState('tweet.find', {
+            pagination: {
+              sort: 'createdAt DESC',
+              page: 1
+            }
+          });
+        }}
+        refresh={(page, getState) => {
+          return getState('tweet.find', page.query);
+        }}
+        row={(tweet) => {
+          return (
+            <Tweet key={tweet.id} tweet={tweet} />
+          );
+        }}
+      />
+      `}/>
+
+      <p>
+        With that change in place, our application is now rendering the first page of tweets. Also note that because
+        the <code>query</code> for a collection is attached to the data, we can simply reuse it to fetch the
+        data it's populated with.
+      </p>
+
+      <h3>
+        Load More Pages
+      </h3>
+      <p>
+        To load more pages of tweets, we need to provide another prop called <code>selectNextPage</code> that
+        will know how to fetch the next page of tweets. Updating your <code>InfiniteScrollingList</code> component
+        to look like this, and make sure to import <code>lodash</code>:
+      </p>
+
+      <Markdown text={`
+      import _ from 'lodash';
+      ...
+      <InfiniteScrollingList
+        select={(getState) => {
+          return getState('tweet.find', {
+            pagination: {
+              sort: 'createdAt DESC',
+              page: 1
+            }
+          });
+        }}
+        selectNextPage={(lastPage, getState) => {
+          const lastPageNumber = lastPage.query.pagination.page;
+
+          return getState('tweet.find', _.defaultsDeep({
+            pagination: {
+              page: lastPageNumber + 1
+            }
+          }, lastPage.query));
+        }}
+        refresh={(page, getState) => {
+          return getState('tweet.find', page.query);
+        }}
+        row={(tweet) => {
+          return (
+            <Tweet key={tweet.id} tweet={tweet} />
+          );
+        }}
+      />
+      `}/>
+
+      <p>
+        The <code>selectNextPage</code> prop is a function that provides the last page of data, as well as
+        the <code>getState</code> method so we can fetch more data. The <code>lastPage</code> is provided
+        because we need to inspect it for the current page number, and then iterate to get the next page.
+      </p>
+      <p>
+        Also note that once again, we're reusing the <code>query</code> from the first page.
+      </p>
+      <p>
+        Refresh the browser, and you should now have a button says "LoadMore" at the bottom of the tweets. Clicking
+        this button will cause the next page to load. It you continue to click it until there are no more pages of
+        data, the button will disappear.
       </p>
 
       <h3>
@@ -1554,7 +1170,12 @@ export default (props) => {
 
             if (numberOfPages === 1 && lastPage.state === PayloadStates.FETCHING) {
               return (
-                <div className="loader" />
+                <div className="feed">
+                  <h2 className="title">
+                    Feed
+                  </h2>
+                  <div className="loader"/>
+                </div>
               );
             }
 

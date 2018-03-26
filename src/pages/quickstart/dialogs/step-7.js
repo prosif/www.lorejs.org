@@ -56,8 +56,8 @@ export default (props) => {
             }
 
             lore.dialog.show(function() {
-              return lore.dialogs.tweet.destroy({
-                model: tweet,
+              return lore.dialogs.tweet.destroy(tweet, {
+                blueprint: 'optimistic',
                 onSubmit: destroyTweet
               });
             });
@@ -92,8 +92,8 @@ export default (props) => {
             }
 
             lore.dialog.show(function() {
-              return lore.dialogs.tweet.destroy({
-                model: tweet,
+              return lore.dialogs.tweet.destroy(tweet, {
+                blueprint: 'optimistic',
                 onSubmit: destroyTweet
               });
             });
@@ -138,8 +138,8 @@ export default (props) => {
             }
 
             lore.dialog.show(function() {
-              return lore.dialogs.tweet.destroy({
-                model: tweet,
+              return lore.dialogs.tweet.destroy(tweet, {
+                blueprint: 'optimistic',
                 onSubmit: destroyTweet
               });
             });
@@ -327,8 +327,8 @@ export default (props) => {
             }
 
             lore.dialog.show(function() {
-              return lore.dialogs.tweet.destroy({
-                model: tweet,
+              return lore.dialogs.tweet.destroy(tweet, {
+                blueprint: 'optimistic',
                 onSubmit: destroyTweet
               });
             });
@@ -363,8 +363,8 @@ export default (props) => {
             }
 
             lore.dialog.show(function() {
-              return lore.dialogs.tweet.destroy({
-                model: tweet,
+              return lore.dialogs.tweet.destroy(tweet, {
+                blueprint: 'optimistic',
                 onSubmit: destroyTweet
               });
             });
@@ -409,8 +409,8 @@ export default (props) => {
             }
 
             lore.dialog.show(function() {
-              return lore.dialogs.tweet.destroy({
-                model: tweet,
+              return lore.dialogs.tweet.destroy(tweet, {
+                blueprint: 'optimistic',
                 onSubmit: destroyTweet
               });
             });

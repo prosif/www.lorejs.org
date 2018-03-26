@@ -48,7 +48,7 @@ export default (props) => {
         Install Surge & Login
       </h3>
       <p>
-        Before you can publish to Surge, you'll first need to downloading the surge client. Run this command from the
+        Before you can publish to Surge, you'll first need to install the surge client. Run this command from the
         command line:
       </p>
 

@@ -37,7 +37,15 @@ export default (props) => {
       </h3>
 
       <p>
-        Create a new component called <code>IsOwner</code>, and replace the content with this:
+        Create a new component called <code>IsOwner</code>:
+      </p>
+
+      <Markdown text={`
+      lore generate component IsOwner
+      `}/>
+
+      <p>
+        Next, replace the content with this:
       </p>
 
       <Markdown text={`
@@ -71,9 +79,9 @@ export default (props) => {
       `}/>
 
       <p>
-        This component expects to receive a tweet as a prop, and then compares to <code>id</code> of the current
-        user to the user who created the tweet. If they match, it renders whatever children was passed to it. If
-        they don't match, it renders nothing.
+        This component expects to receive a <code>tweet</code> as a prop, and then compares to <code>id</code> of
+        the current user to the <code>user</code> who created the <code>tweet</code>. If they match, it renders
+        whatever children (other components) were passed to it. If the user doesn't match, it renders nothing.
       </p>
 
       <h3>
@@ -92,12 +100,12 @@ export default (props) => {
         ...
           render:() {
             ...
-                  <div>
-                    <IsOwner tweet={tweet}>
+                  <IsOwner tweet={tweet}>
+                    <div>
                       <EditLink tweet={tweet} />
                       <DeleteLink tweet={tweet} />
-                    </IsOwner>
-                  </div>
+                    </div>
+                  </IsOwner>
             ...
           }
         ...
@@ -108,12 +116,12 @@ export default (props) => {
         ...
           render:() {
             ...
-                  <div>
-                    <IsOwner tweet={tweet}>
+                  <IsOwner tweet={tweet}>
+                    <div>
                       <EditLink tweet={tweet} />
                       <DeleteLink tweet={tweet} />
-                    </IsOwner>
-                  </div>
+                    </div>
+                  </IsOwner>
             ...
           }
         ...
@@ -124,12 +132,12 @@ export default (props) => {
         ...
           render:() {
             ...
-                  <div>
-                    <IsOwner tweet={tweet}>
+                  <IsOwner tweet={tweet}>
+                    <div>
                       <EditLink tweet={tweet} />
                       <DeleteLink tweet={tweet} />
-                    </IsOwner>
-                  </div>
+                    </div>
+                  </IsOwner>
             ...
           }
         ...

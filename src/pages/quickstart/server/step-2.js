@@ -78,7 +78,7 @@ export default (props) => {
       </p>
 
       <p>
-        Inside this section you'll see a commented out function called parse that looks like this:
+        Inside this section you'll see a commented out function called <code>parse</code> that looks like this:
       </p>
 
       <Markdown text={`
@@ -186,7 +186,7 @@ export default (props) => {
 
       <p>
         While <code>config/collections.js</code> <em>does</em> contain a parse method for <code>models</code>,
-        that method will affect <em>all</em> models in the application, which isn't what we want as this issue
+        that method will affect <em>all</em> models in the application, which isn't what we want, as this issue
         only affects the <code>tweet</code> models.
       </p>
 
@@ -273,7 +273,7 @@ export default (props) => {
         <p>
           While outside the scope of this Quickstart, the approach of overriding parse to resolve breaking API
           changes only works for read-only situations, i.e. when the applications needs to read the property but
-          never modifies it and sends it back to the server. If you need to modify a response data sending it to
+          never modifies it and sends it back to the server. If you need to modify data before sending it to
           the server you can use the <code>sync</code> method.
         </p>
       </blockquote>

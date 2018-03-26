@@ -79,7 +79,12 @@ export default (props) => {
 
             if (tweets.state === PayloadStates.FETCHING) {
               return (
-                <div className="loader"/>
+                <div className="feed">
+                  <h2 className="title">
+                    Feed
+                  </h2>
+                  <div className="loader"/>
+                </div>
               );
             }
 
@@ -107,7 +112,12 @@ export default (props) => {
 
             if (tweets.state === PayloadStates.FETCHING) {
               return (
-                <div className="loader"/>
+                <div className="feed">
+                  <h2 className="title">
+                    Feed
+                  </h2>
+                  <div className="loader"/>
+                </div>
               );
             }
 
@@ -135,7 +145,12 @@ export default (props) => {
 
             if (tweets.state === PayloadStates.FETCHING) {
               return (
-                <div className="loader"/>
+                <div className="feed">
+                  <h2 className="title">
+                    Feed
+                  </h2>
+                  <div className="loader"/>
+                </div>
               );
             }
 
@@ -164,7 +179,12 @@ export default (props) => {
       <Markdown text={`
       if (true || tweets.state === PayloadStates.FETCHING) {
         return (
-          <div className="loader" />
+          <div className="feed">
+            <h2 className="title">
+              Feed
+            </h2>
+            <div className="loader"/>
+          </div>
         );
       }
       `}/>
@@ -243,7 +263,12 @@ export default (props) => {
 
             if (tweets.state === PayloadStates.FETCHING) {
               return (
-                <div className="loader"/>
+                <div className="feed">
+                  <h2 className="title">
+                    Feed
+                  </h2>
+                  <div className="loader"/>
+                </div>
               );
             }
 
@@ -282,7 +307,12 @@ export default (props) => {
 
             if (tweets.state === PayloadStates.FETCHING) {
               return (
-                <div className="loader"/>
+                <div className="feed">
+                  <h2 className="title">
+                    Feed
+                  </h2>
+                  <div className="loader"/>
+                </div>
               );
             }
 
@@ -380,7 +410,12 @@ export default (props) => {
 
             if (tweets.state === PayloadStates.FETCHING) {
               return (
-                <div className="loader"/>
+                <div className="feed">
+                  <h2 className="title">
+                    Feed
+                  </h2>
+                  <div className="loader"/>
+                </div>
               );
             }
 

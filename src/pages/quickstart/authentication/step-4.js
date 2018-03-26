@@ -25,7 +25,7 @@ export default (props) => {
       </h3>
       <p>
         After you login, Auth0 redirects you to the URL <code>https://localhost:300/auth/callback</code>, but
-        more importantly, if includes a number of important query parameters that look like this:
+        more importantly, it includes a number of important query parameters that look like this:
       </p>
       <Markdown text={`
         access_token=...&expires_in=...&token_type=...&state=...&id_token=...
@@ -73,7 +73,7 @@ export default (props) => {
 
             auth0.parseHash((err, authResult) => {
               if (authResult && authResult.accessToken && authResult.idToken) {
-                auth.login(authResult.idToken);
+                auth.saveToken(authResult.idToken);
                 router.push('/');
               } else if (err) {
                 console.log(err);
@@ -105,7 +105,7 @@ export default (props) => {
 
             auth0.parseHash((err, authResult) => {
               if (authResult && authResult.accessToken && authResult.idToken) {
-                auth.login(authResult.idToken);
+                auth.saveToken(authResult.idToken);
                 router.push('/');
               } else if (err) {
                 console.log(err);

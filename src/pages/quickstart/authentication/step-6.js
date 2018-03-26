@@ -68,8 +68,8 @@ export default (props) => {
       `}/>
 
       <p>
-        With this change in place, if you navigate to <code>/user</code> the API will return an object telling us
-        we are Ayla.
+        With this change in place, if you navigate to <code>http://localhost:1337/user</code> the API will return
+        an object telling us we are Ayla.
       </p>
 
       <h3>
@@ -105,7 +105,8 @@ export default (props) => {
       <p>
         Now let's fetch the current user when the application loads. Update the <code>Master</code> component to look
         like this. We're going to request the <code>currentUser</code> in the <code>connect</code> wrapper, and
-        we're doing to check the state in render and display a loading experience until the current user is returned.
+        we're doing to check the <code>state</code> in render, and display a loading experience until the current
+        user has returned.
       </p>
 
       <CodeTabs>
@@ -309,8 +310,9 @@ export default (props) => {
         Retrieve the user from context in Profile
       </h3>
       <p>
-        Finally, we're going to retrieve the user from context in the <code>Profile</code> component, instead of
-        expecting it to come from props:
+        Finally, update your <code>Profile</code> component so that instead of retrieving the current user from props,
+        we retrieve it from <code>context</code>. Once you do, feel free to delete the <code>getDefaultProps</code> method,
+        as we no longer need it.
       </p>
 
       <CodeTabs>

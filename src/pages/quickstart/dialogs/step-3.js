@@ -72,10 +72,7 @@ export default (props) => {
 
         onSubmit: function() {
           const { data } = this.state;
-          lore.actions.tweet.create({
-            userId: 1,
-            text: data.text
-          });
+          console.log(data);
           this.dismiss();
         },
 
@@ -182,7 +179,7 @@ export default (props) => {
         text:
       </p>
 
-      <Markdown type="sh" text={`
+      <Markdown text={`
       ...
       import CreateTweetDialog from './CreateTweetDialog';
 

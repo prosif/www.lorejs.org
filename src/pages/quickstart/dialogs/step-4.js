@@ -136,10 +136,10 @@ export default (props) => {
 
         onSubmit: function() {
           const { data } = this.state;
-          lore.actions.tweet.create({
+          lore.actions.tweet.create(_.defaults(data, {
             userId: 1,
-            text: data.text
-          });
+            createdAt: new Date().toISOString()
+          }));
           this.dismiss();
         },
 

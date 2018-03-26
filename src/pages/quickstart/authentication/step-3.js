@@ -14,7 +14,7 @@ export default (props) => {
       </h1>
 
       <p>
-        In this step we're going to redirect the user to the /login route if they aren't authenticated.
+        In this step we're going to redirect the user to the <code>/login</code> route if they aren't authenticated.
       </p>
 
       <QuickstartBranch branch="authentication.3" />
@@ -23,48 +23,54 @@ export default (props) => {
         Local Storage & User Tokens
       </h3>
       <p>
-        While our API does not currently require the user be authenticated, we will be replacing it with a real API later that
-        will. This API is going to require users to be authenticated before they can create, update or delete tweets. In order
-        to authenticate the user, we will need to send an authentication token in the header of every API request. The token we
-        will be using will be supplied to us by Auth0 when the user logs in.
+        While our API does not currently require the user be authenticated, we will be replacing it with a real API
+        later that will. That API is going to require users to be authenticated before they can create, update or
+        delete tweets.
       </p>
-
       <p>
-        To prevent requiring the user to login every time they refresh the page, we are going to store this token in the
-        browser's localStorage, and only redirect the user to the login page if they have no token (or the token has expired).
+        In order to authenticate the user, we will need to send an authentication token in the header of every
+        API request. The token that we will be sending will be provided to us by Auth0 when the user logs in.
+      </p>
+      <p>
+        Additionally, in order to prevent requiring the user from needing to login every time they refresh the
+        page (or navigate away from the site), we are also going to store this token in the browser's localStorage,
+        and only redirect the user to the login page if they have no token.
       </p>
 
       <h3>
         Auth Utility
       </h3>
       <p>
-        If you look inside <code>src/utils</code> you'll find a file called <code>auth.js</code> that contains some helpers methods for saving and
-        retrieving a user token from localStorage. When the application loads, we're going to check if a <code>userToken</code> exists in
-        localStorage by calling <code>auth.hasToken()</code>. If not token exists, we're going to redirect the user to the <code>/login</code> page,
-        and once we have a token we're going to call <code>auth.saveToken(token)</code> in order to save it to localStorage.
+        If you look inside <code>src/utils</code> you'll find a file called <code>auth.js</code> that contains some
+        helpers methods for saving and retrieving a user token from localStorage. When the application loads, we're
+        going to check if a <code>userToken</code> exists in localStorage by calling <code>auth.hasToken()</code>.
+        If no token exists, we're going to redirect the user to the <code>/login</code> page, and once we have a
+        token we will call <code>auth.saveToken(token)</code> to save it to localStorage.
       </p>
 
       <h3>
         Redirecting the User
       </h3>
       <p>
-        Open up <code>routes.js</code> and find the route that renders the <code>Master</code> component. It should look like this:
+        Open up <code>routes.js</code> and find the route that renders the <code>Master</code> component. It should
+        look like this:
       </p>
 
       <Markdown text={`
-      <Route component={UserIsAuthenticated(Master)}>
-        ...
-      </Route>
-      `}/>
+        <Route component={UserIsAuthenticated(Master)}>
+          ...
+        </Route>
+        `}/>
 
       <p>
-        The <code>UserIsAuthenticated</code> things that wraps <code>Master</code> is a higher order component that can block access to the
-        application if the user isn't authenticated. Currently this component isn't doing anything because the blocking
-        behavior is turned off. Let's turn it on.
+        The <code>UserIsAuthenticated</code> function that wraps <code>Master</code> is a higher order component that
+        can block access to the application if the user isn't authenticated. Currently this component isn't doing
+        anything because the blocking behavior is turned off. Let's turn it on.
       </p>
 
       <p>
-        Open up <code>src/decorators/UserIsAuthenticated.js</code> and take a look at the <code>isAuthenticated</code> method:
+        Open up <code>src/decorators/UserIsAuthenticated.js</code> and take a look at
+        the <code>isAuthenticated</code> method:
       </p>
 
       <CodeTabs>
@@ -119,13 +125,14 @@ export default (props) => {
       </CodeTabs>
 
       <p>
-        This function gets called when the route is rendered, and is responsible for determining whether or not the user is
-        logged in. Since this function currently returns <code>true</code>, the application never redirects the user to <code>/login</code>.
+        This <code>isAuthenticated</code> method gets called when the route is rendered, and is responsible for
+        determining whether or not the user is logged in. Since this function currently returns <code>true</code>,
+        the application never redirects the user to <code>/login</code> (the default <code>redirectUrl</code>).
       </p>
 
       <p>
-        To get the behavior we want, import <code>src/utils/auth.js</code> into this decorator and update the <code>isAuthenticated</code> method
-        to look like this:
+        To get the behavior we want, import <code>src/utils/auth.js</code> into this decorator and update
+        the <code>isAuthenticated</code> method to look like this:
       </p>
 
 
@@ -157,8 +164,8 @@ export default (props) => {
       </CodeTabs>
 
       <p>
-        With that change in place, if you now try to navigate to root route (such as <code>https://localhost:3000</code>) the application
-        will automatically redirect you to <code>/login</code>.
+        With that change in place, if you now try to navigate to root route (such
+        as <code>https://localhost:3000</code>) the application will automatically redirect you to <code>/login</code>.
       </p>
 
 
@@ -244,8 +251,8 @@ export default (props) => {
       </h2>
 
       <p>
-        Next we're going to <Link to="../step-4/">save the token and redirect the user to the homepage after login</Link>.
+        Next we're going to <Link to="../step-4/">add a callback route and save the token</Link>.
       </p>
     </Template>
-  )
+  );
 };

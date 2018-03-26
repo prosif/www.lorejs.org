@@ -31,8 +31,8 @@ export default (props) => {
       `}/>
 
       <p>
-        Update the component to look like this. Note that we're also adding a mock user in <code>getDefaultProps</code>. We'll replace
-        this with real user information soon.
+        Update the component to look like this. Note that we're also adding a mock user
+        in <code>getDefaultProps</code>. We'll replace this with real user information soon.
       </p>
 
       <CodeTabs>
@@ -198,9 +198,10 @@ export default (props) => {
         Add Profile to Layout
       </h3>
       <p>
-        Now that we've created out Profile component, let's modify the Layout to display it. Open your <code>Layout</code> component,
-        import the <code>Profile</code> component we just created, and update the render method to look like this (note that we have
-        adjusted the <code>col-md-*</code> classes to make room for the Profile):
+        Now that we've created out Profile component, let's modify the Layout to display it. Open
+        your <code>Layout</code> component, import the <code>Profile</code> component we just created, and update
+        the render method to look like this (note that we have adjusted the <code>col-md-*</code> classes to make
+        room for the Profile):
       </p>
 
       <CodeTabs>

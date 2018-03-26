@@ -306,7 +306,12 @@ export default (props) => {
 
             if (numberOfPages === 1 && lastPage.state === PayloadStates.FETCHING) {
               return (
-                <div className="loader" />
+                <div className="feed">
+                  <h2 className="title">
+                    Feed
+                  </h2>
+                  <div className="loader"/>
+                </div>
               );
             }
 

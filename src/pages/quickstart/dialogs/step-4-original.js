@@ -55,12 +55,13 @@ export default (props) => {
         <CodeTab syntax="ES5" text={`
         ...
           onClick: function() {
-            function createTweet(params) {
-              console.log(params);
+            function createTweet(data) {
+              console.log(data);
             }
 
             lore.dialog.show(function() {
               return lore.dialogs.tweet.create({
+                blueprint: 'optimistic',
                 onSubmit: createTweet
               });
             });
@@ -70,12 +71,13 @@ export default (props) => {
         <CodeTab syntax="ES6" text={`
         ...
           onClick() {
-            function createTweet(params) {
-              console.log(params);
+            function createTweet(data) {
+              console.log(data);
             }
 
             lore.dialog.show(function() {
               return lore.dialogs.tweet.create({
+                blueprint: 'optimistic',
                 onSubmit: createTweet
               });
             });
@@ -85,12 +87,13 @@ export default (props) => {
         <CodeTab syntax="ESNext" text={`
         ...
           onClick() {
-            function createTweet(params) {
-              console.log(params);
+            function createTweet(data) {
+              console.log(data);
             }
 
             lore.dialog.show(function() {
               return lore.dialogs.tweet.create({
+                blueprint: 'optimistic',
                 onSubmit: createTweet
               });
             });
@@ -337,8 +340,8 @@ export default (props) => {
           displayName: 'CreateButton',
 
           onClick: function() {
-            function createTweet(params) {
-              lore.actions.tweet.create(_.extend(params, {
+            function createTweet(data) {
+              lore.actions.tweet.create(_.extend(data, {
                 userId: 1,
                 createdAt: new Date().toISOString()
               }));
@@ -346,6 +349,7 @@ export default (props) => {
 
             lore.dialog.show(function() {
               return lore.dialogs.tweet.create({
+                blueprint: 'optimistic',
                 onSubmit: createTweet
               });
             });
@@ -371,8 +375,8 @@ export default (props) => {
         class CreateButton extends React.Component {
 
           onClick() {
-            function createTweet(params) {
-              lore.actions.tweet.create(_.extend(params, {
+            function createTweet(data) {
+              lore.actions.tweet.create(_.extend(data, {
                 userId: 1,
                 createdAt: new Date().toISOString()
               }));
@@ -380,6 +384,7 @@ export default (props) => {
 
             lore.dialog.show(function() {
               return lore.dialogs.tweet.create({
+                blueprint: 'optimistic',
                 onSubmit: createTweet
               });
             });
@@ -406,8 +411,8 @@ export default (props) => {
         class CreateButton extends React.Component {
 
           onClick() {
-            function createTweet(params) {
-              lore.actions.tweet.create(_.extend(params, {
+            function createTweet(data) {
+              lore.actions.tweet.create(_.extend(data, {
                 userId: 1,
                 createdAt: new Date().toISOString()
               }));
@@ -415,6 +420,7 @@ export default (props) => {
 
             lore.dialog.show(function() {
               return lore.dialogs.tweet.create({
+                blueprint: 'optimistic',
                 onSubmit: createTweet
               });
             });
@@ -473,7 +479,12 @@ export default (props) => {
 
             if (tweets.state === PayloadStates.FETCHING) {
               return (
-                <div className="loader" />
+                <div className="feed">
+                  <h2 className="title">
+                    Feed
+                  </h2>
+                  <div className="loader"/>
+                </div>
               );
             }
 
@@ -512,7 +523,12 @@ export default (props) => {
 
             if (tweets.state === PayloadStates.FETCHING) {
               return (
-                <div className="loader" />
+                <div className="feed">
+                  <h2 className="title">
+                    Feed
+                  </h2>
+                  <div className="loader"/>
+                </div>
               );
             }
 
@@ -611,7 +627,12 @@ export default (props) => {
 
             if (tweets.state === PayloadStates.FETCHING) {
               return (
-                <div className="loader" />
+                <div className="feed">
+                  <h2 className="title">
+                    Feed
+                  </h2>
+                  <div className="loader"/>
+                </div>
               );
             }
 

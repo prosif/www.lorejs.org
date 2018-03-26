@@ -33,6 +33,7 @@ export default class CodeTabs extends React.Component {
 
     React.Children.map(children, function(child) {
       const {
+        title,
         syntax,
         type,
         text
@@ -41,7 +42,7 @@ export default class CodeTabs extends React.Component {
       tabs.push(
         <li key={count} role="presentation" className={language === syntax ? 'active' : ''}>
           <a href={`#tab-${count}`} role="tab" data-toggle="tab" aria-expanded="false">
-            {syntax}
+            {title || syntax}
           </a>
         </li>
       );
@@ -63,35 +64,6 @@ export default class CodeTabs extends React.Component {
         </ul>
         <div className="tab-content">
           {content}
-        </div>
-      </div>
-    );
-
-    return (
-      <div>
-        <ul className="nav nav-tabs" role="tablist">
-          <li role="presentation" className="">
-            <a href="#tab-101" role="tab" data-toggle="tab" aria-expanded="false">ES5</a>
-          </li>
-
-          <li role="presentation" className="">
-            <a href="#tab-102" role="tab" data-toggle="tab">ES6</a>
-          </li>
-
-          <li role="presentation" className="active">
-            <a href="#tab-103" role="tab" data-toggle="tab" aria-expanded="true">ESNext</a>
-          </li>
-        </ul>
-        <div className="tab-content">
-          <div role="tabpanel" className="tab-pane" id="tab-101">
-            Test 101
-          </div>
-          <div role="tabpanel" className="tab-pane" id="tab-102">
-            Test 102
-          </div>
-          <div role="tabpanel" className="tab-pane active" id="tab-103">
-            Test 103
-          </div>
         </div>
       </div>
     );

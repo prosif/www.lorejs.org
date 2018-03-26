@@ -59,7 +59,7 @@ export default (props) => {
           componentDidMount: function() {
             const { router } = this.props;
 
-            auth.logout();
+            auth.deleteToken();
             router.push('/');
           },
 
@@ -82,7 +82,7 @@ export default (props) => {
           componentDidMount() {
             const { router } = this.props;
 
-            auth.logout();
+            auth.deleteToken();
             router.push('/');
           },
 
@@ -115,7 +115,7 @@ export default (props) => {
           componentDidMount() {
             const { router } = this.props;
 
-            auth.logout();
+            auth.deleteToken();
             router.push('/');
           },
 

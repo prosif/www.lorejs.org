@@ -23,8 +23,9 @@ export default (props) => {
         Install Auth0 Package
       </h3>
       <p>
-        We're going to be using Auth0 as the authentication service for this Quickstart. Run this command to install
-        <code>auth0-js</code>, a library we'll be using to log in to the application:
+        We're going to be using <a href="https://auth0.com/">Auth0</a> as the authentication service for this
+        Quickstart. Run this command to install <code>auth0-js</code>, a library we'll be using to log in to the
+        application:
       </p>
 
       <Markdown type="sh" text={`
@@ -35,7 +36,7 @@ export default (props) => {
         Add Auth0 Config
       </h3>
       <p>
-        In order to use Auth0 as the authentication server, our application needs to know a few values:
+        In order to use Auth0 as the authentication server, our application needs to know a few things first:
       </p>
 
       <ol>
@@ -51,9 +52,9 @@ export default (props) => {
 
       <blockquote>
         <p>
-          The /config folder in Lore is actually compiled into a single object, which you can access
-          from <code>lore.config</code>. This means you can add your own files to the /config folder and access
-          their values from <code>lore.config</code>. It also means you can change those values on a
+          The <code>/config</code> folder in Lore is actually compiled into a single object, which you can access
+          from <code>lore.config</code>. This means you can add your own files to the <code>/config</code> folder
+          and access their values from <code>lore.config</code>. It also means you can change those values on a
           per-environment basis by redefining them in the <code>/env</code> directory.
         </p>
       </blockquote>
@@ -115,17 +116,8 @@ export default (props) => {
       `}/>
 
       <p>
-        This component will be responsible for redirecting the user to the Auth0 website to login:
-      </p>
-
-      <ol>
-        <li>Show the Auth0 login dialog when the component is mounted to the page</li>
-        <li>After successful login, save the user token (that Auth0 will provide) to localStorage</li>
-        <li>Redirect the user to the homepage at the root route (/)</li>
-      </ol>
-
-      <p>
-        For now, we're only going to focus on the first goal. Update your <code>Login</code> component to look like this:
+        This component will be responsible for redirecting the user to the Auth0 website to login. Update
+        your <code>Login</code> component to look like this:
       </p>
 
       <CodeTabs>
@@ -203,8 +195,8 @@ export default (props) => {
         Create the /login route
       </h3>
       <p>
-        Now that the component exists, let's create the corresponding route to display it. Import
-        your <code>Login</code> component into <code>routes.js</code> and update the routes to look like this:
+        Now that the component exists, let's create the corresponding route to display it. Open <code>routes.js</code>,
+        import your <code>Login</code> component, and update the routes to look like this:
       </p>
 
 
@@ -263,9 +255,9 @@ export default (props) => {
         Login as one of the Characters
       </h3>
       <p>
-        With the routing done, let's test out our Login component. Navigate to <code>/login</code> and you should see
-        a login dialog displayed on screen. While you can't create a new account, you <em>can</em> login as any of
-        the characters below:
+        With the routing done, let's test out our <code>Login</code> component. Navigate to <code>/login</code> and
+        you should see a login dialog displayed on screen. While you can't create a new account, you <em>can</em> login
+        as any of the characters below:
       </p>
 
       <ul>
@@ -285,12 +277,28 @@ export default (props) => {
       </p>
 
       <h3>
+        Authorize App Screen
+      </h3>
+      <p>
+        If you see a screen like the one below, that asks you to authorize the application, click the green
+        checkbox to proceed.
+      </p>
+
+      <img className="drop-shadow" src="/assets/images/quickstart/authentication/step-2b.png" />
+
+      <p>
+        In a real production application, you wouldn't see this screen, but Auth0 does not allow the consent
+        dialog to be skipped <a href="https://auth0.com/docs/api-auth/user-consent#skipping-consent-for-first-party-clients">when
+        an application is redirecting to localhost</a>.
+      </p>
+
+      <h3>
         Redirect Error after Login
       </h3>
 
       <p>
         After you login, you'll be taken back to the application, where you'll see the loading screen, but
-        it won't ever go away. If you look at the developer console, you'll see an error that looks like this:
+        it will never go away. If you look at the developer console, you'll see an error that looks like this:
       </p>
 
       <Markdown text={`
@@ -330,21 +338,33 @@ export default (props) => {
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
         export default {
-          clientId: 'jiY0oBzEEpJuEX738eNl050YAJbPZjbh',
-          domain: 'lorejs.auth0.com'
+          domain: 'lorejs.auth0.com',
+          clientID: 'XFcYHKv1NXCVrbtSaf0JZPRLtYj5UZ7E',
+          redirectUri: 'http://localhost:3000/auth/callback',
+          audience: 'https://lorejs.auth0.com/userinfo',
+          responseType: 'token id_token',
+          scope: 'openid'
         };
         `}/>
         <CodeTab syntax="ES6" text={`
         export default {
-          clientId: 'jiY0oBzEEpJuEX738eNl050YAJbPZjbh',
-          domain: 'lorejs.auth0.com'
-        }
+          domain: 'lorejs.auth0.com',
+          clientID: 'XFcYHKv1NXCVrbtSaf0JZPRLtYj5UZ7E',
+          redirectUri: 'http://localhost:3000/auth/callback',
+          audience: 'https://lorejs.auth0.com/userinfo',
+          responseType: 'token id_token',
+          scope: 'openid'
+        };
         `}/>
         <CodeTab syntax="ESNext" text={`
         export default {
-          clientId: 'jiY0oBzEEpJuEX738eNl050YAJbPZjbh',
-          domain: 'lorejs.auth0.com'
-        }
+          domain: 'lorejs.auth0.com',
+          clientID: 'XFcYHKv1NXCVrbtSaf0JZPRLtYj5UZ7E',
+          redirectUri: 'http://localhost:3000/auth/callback',
+          audience: 'https://lorejs.auth0.com/userinfo',
+          responseType: 'token id_token',
+          scope: 'openid'
+        };
         `}/>
       </CodeTabs>
 
@@ -357,45 +377,20 @@ export default (props) => {
         <CodeTab syntax="ES5" text={`
         import React from 'react';
         import createReactClass from 'create-react-class';
-        import { Auth0Lock } from 'auth0-lock';
+        import Auth0 from 'auth0-js';
+        import ShowLoadingScreen from './ShowLoadingScreen';
 
         export default createReactClass({
           displayName: 'Login',
 
           componentDidMount: function() {
-            this.lock = this.getLock();
-            this.showLogin();
-          },
-
-          getLock: function() {
-            const {
-              clientId,
-              domain
-            } = lore.config.auth0;
-
-            return new Auth0Lock(clientId, domain, {
-              auth: {
-                redirect: false,
-                sso: false
-              },
-              languageDictionary: {
-                title: "Lore Quickstart"
-              }
-            });
-          },
-
-          onAuthentication: function(authResult) {
-            // save user token to localStorage
-          },
-
-          showLogin: function() {
-            this.lock.on('authenticated', this.onAuthentication);
-            this.lock.show();
+            const auth0 = new Auth0.WebAuth(lore.config.auth0);
+            auth0.authorize();
           },
 
           render: function() {
             return (
-              <div/>
+              <ShowLoadingScreen/>
             );
           }
 
@@ -403,113 +398,41 @@ export default (props) => {
         `}/>
         <CodeTab syntax="ES6" text={`
         import React from 'react';
-        import PropTypes from 'prop-types';
-        import Auth0Lock from 'auth0-lock';
+        import Auth0 from 'auth0-js';
+        import ShowLoadingScreen from './ShowLoadingScreen';
 
         class Login extends React.Component {
 
-          constructor(props) {
-            super(props);
-
-            // Bind your custom methods so you can access the expected 'this'
-            this.getLock = this.getLock.bind(this);
-            this.onAuthentication = this.onAuthentication.bind(this);
-            this.showLogin = this.showLogin.bind(this);
-          }
-
           componentDidMount() {
-            this.lock = this.getLock();
-            this.showLogin();
-          }
-
-          getLock() {
-            const {
-              clientId,
-              domain
-            } = lore.config.auth0;
-
-            return new Auth0Lock(clientId, domain, {
-              auth: {
-                redirect: false,
-                sso: false
-              },
-              languageDictionary: {
-                title: "Lore Quickstart"
-              }
-            });
-          }
-
-          onAuthentication(authResult) {
-            // save user token to localStorage
-          }
-
-          showLogin() {
-            this.lock.on('authenticated', this.onAuthentication);
-            this.lock.show();
+            const auth0 = new Auth0.WebAuth(lore.config.auth0);
+            auth0.authorize();
           }
 
           render() {
             return (
-              <div/>
+              <ShowLoadingScreen/>
             );
           }
 
         }
 
-        Login.propTypes = {};
-
         export default Login;
         `}/>
         <CodeTab syntax="ESNext" text={`
         import React from 'react';
-        import PropTypes from 'prop-types';
-        import Auth0Lock from 'auth0-lock';
+        import Auth0 from 'auth0-js';
+        import ShowLoadingScreen from './ShowLoadingScreen';
 
         class Login extends React.Component {
 
-          constructor(props) {
-            super(props);
-
-            // Bind your custom methods so you can access the expected 'this'
-            this.getLock = this.getLock.bind(this);
-            this.onAuthentication = this.onAuthentication.bind(this);
-            this.showLogin = this.showLogin.bind(this);
-          }
-
           componentDidMount() {
-            this.lock = this.getLock();
-            this.showLogin();
-          }
-
-          getLock() {
-            const {
-              clientId,
-              domain
-            } = lore.config.auth0;
-
-            return new Auth0Lock(clientId, domain, {
-              auth: {
-                redirect: false,
-                sso: false
-              },
-              languageDictionary: {
-                title: "Lore Quickstart"
-              }
-            });
-          }
-
-          onAuthentication(authResult) {
-            // save user token to localStorage
-          }
-
-          showLogin() {
-            this.lock.on('authenticated', this.onAuthentication);
-            this.lock.show();
+            const auth0 = new Auth0.WebAuth(lore.config.auth0);
+            auth0.authorize();
           }
 
           render() {
             return (
-              <div/>
+              <ShowLoadingScreen/>
             );
           }
 
