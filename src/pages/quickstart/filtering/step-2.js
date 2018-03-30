@@ -26,71 +26,174 @@ export default (props) => {
       <p>
         First we need a component to display the user's tweets. The behavior of this component is identical to the
         Feed, with one exception; we only want to display tweets the <em>current user created</em>. So start off
-        by copying the <code>Feed</code> component and renaming it <code>UserTweets</code>. Then update
-        the <em>connect</em> call to look like this:
+        by copying the <code>Feed</code> component and renaming it <code>UserTweets</code>.
       </p>
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        export default connect(function(getState, props) {
-          return {
-            tweets: getState('tweet.find', {
-              where: {
-                user: props.params.userId
-              },
-              pagination: {
-                page: '1'
-              }
-            })
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
+        import _ from 'lodash';
+        import InfiniteScrollingList from './InfiniteScrollingList';
+        import Tweet from './Tweet';
+
+        export default createReactClass({
+          displayName: 'UserTweets',
+
+          render: function() {
+            const { params } = this.props;
+
+            return (
+              <div className="feed">
+                <h2 className="title">
+                  Feed
+                </h2>
+                <InfiniteScrollingList
+                  select={(getState) => {
+                    return getState('tweet.find', {
+                      pagination: {
+                        sort: 'createdAt DESC',
+                        page: 1
+                      }
+                    });
+                  }}
+                  selectNextPage={(lastPage, getState) => {
+                    const lastPageNumber = lastPage.query.pagination.page;
+
+                    return getState('tweet.find', _.defaultsDeep({
+                      pagination: {
+                        page: lastPageNumber + 1
+                      }
+                    }, lastPage.query));
+                  }}
+                  refresh={(page, getState) => {
+                    return getState('tweet.find', page.query);
+                  }}
+                  row={(tweet) => {
+                    return (
+                      <Tweet key={tweet.id} tweet={tweet} />
+                    );
+                  }}
+                />
+              </div>
+            );
           }
-        })
+        });
         `}/>
         <CodeTab syntax="ES6" text={`
-        export default connect(function(getState, props) {
-          return {
-            tweets: getState('tweet.find', {
-              where: {
-                user: props.params.userId
-              },
-              pagination: {
-                page: '1'
-              }
-            })
-          }
-        })(UserTweets);
+        TODO
         `}/>
         <CodeTab syntax="ESNext" text={`
-        @connect(function(getState, props) {
-          return {
-            tweets: getState('tweet.find', {
-              where: {
-                user: props.params.userId
-              },
-              pagination: {
-                page: '1'
-              }
-            })
-          }
-        })
+        TODO
         `}/>
       </CodeTabs>
 
       <p>
-        The second argument of the <code>getState</code> call actually supports two properties: the <code>pagination</code> property we used
-        previously, and a <code>where</code> property that describes filtering criteria. Since we only want to view tweets by a specific
+        Then update the <code>render</code> method to include the changes below:
+      </p>
+
+      <CodeTabs>
+        <CodeTab syntax="ES5" text={`
+        render: function() {
+          const { params } = this.props;
+
+          return (
+            <div className="feed">
+              // ...
+              <InfiniteScrollingList
+                select={(getState) => {
+                  return getState('tweet.find', {
+                    where: {
+                      user: params.userId
+                    }
+                    pagination: {
+                      sort: 'createdAt DESC',
+                      page: 1
+                    }
+                  });
+                }}
+                // ...
+              />
+            </div>
+          );
+        }
+        `}/>
+        <CodeTab syntax="ES6" text={`
+        render() {
+          const { params } = this.props;
+
+          return (
+            <div className="feed">
+              // ...
+              <InfiniteScrollingList
+                select={(getState) => {
+                  return getState('tweet.find', {
+                    where: {
+                      user: params.userId
+                    }
+                    pagination: {
+                      sort: 'createdAt DESC',
+                      page: 1
+                    }
+                  });
+                }}
+                // ...
+              />
+            </div>
+          );
+        }
+        `}/>
+        <CodeTab syntax="ESNext" text={`
+        render() {
+          const { params } = this.props;
+
+          return (
+            <div className="feed">
+              // ...
+              <InfiniteScrollingList
+                select={(getState) => {
+                  return getState('tweet.find', {
+                    where: {
+                      user: params.userId
+                    }
+                    pagination: {
+                      sort: 'createdAt DESC',
+                      page: 1
+                    }
+                  });
+                }}
+                // ...
+              />
+            </div>
+          );
+        }
+        `}/>
+      </CodeTabs>
+
+      <p>
+        Here we've extracted <code>params</code> from <code>props</code>, which is automatically provided
+        by <code>react-router</code>, and modified our <code>getState</code> call.
+      </p>
+
+      <p>
+        The second argument of the <code>getState</code> call actually supports multiple properties. We introduced
+        the <code>pagination</code> property previously, and now we're introducing the <code>where</code> property,
+        which is intended to be used to describe filtering criteria. Since we only want to view tweets by a specific
         user, we've passed in a <code>where</code> clause that provides an id for the user we are interested in.
       </p>
 
       <p>
-        The id for this user is going to come from a query parameter called <code>userId</code> which will be provided by React Router.
+        That user id is going to come from a query parameter called <code>userId</code>, which React Router provides
+        through the <code>params</code> prop.
       </p>
 
       <h3>
         Update Routes
       </h3>
       <p>
-        Next, open <code>routes.js</code> and import the <code>UserTweets</code> component. Then register a new route for <code>/users/:userId</code> that will
-        display that component.
+        Next, open <code>routes.js</code> and import the <code>UserTweets</code> component. Then register a new
+        route for <code>/users/:userId</code> that will display that component.
       </p>
 
       <CodeTabs>
@@ -151,8 +254,8 @@ export default (props) => {
       </CodeTabs>
 
       <p>
-        With that change in place, refresh the browser and you'll now be able to view all the tweets or just the tweets
-        created by the current user.
+        With that change in place, refresh the browser and you'll now be able to view all the tweets or just the
+        tweets created by the current user.
       </p>
 
       <h3>
