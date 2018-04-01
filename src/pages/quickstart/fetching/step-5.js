@@ -114,7 +114,7 @@ export default (props) => {
       <blockquote>
         <p>
           At this point both our <code>Feed</code> and <code>Tweet</code> components are fetching real data, which
-          means you can safely delete the <code>getDefaultProps</code> method from both components if you'd like.
+          means you can safely delete the <code>getDefaultProps()</code> method from both components if you'd like.
           Seeing as we are no longer using them to insert mock data, they no longer serve a purpose.
         </p>
       </blockquote>
@@ -340,7 +340,8 @@ export default (props) => {
       </h2>
 
       <p>
-        Next we're going to add dialogs to our application <Link to="../../dialogs/overview/">so we can create, update and delete tweets</Link>.
+        Next we're going to <Link to="../../authentication/overview/">learn how to implement an authentication flow</Link>.
+        {/*Next we're going to add dialogs to our application <Link to="../../dialogs/overview/">so we can create, update and delete tweets</Link>.*/}
       </p>
 
     </Template>

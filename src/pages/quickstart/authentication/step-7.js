@@ -4,47 +4,114 @@ import Template from '../../../components/templates/Quickstart';
 import Markdown from '../../../components/Markdown';
 import CodeTabs from '../../../components/CodeTabs';
 import CodeTab from '../../../components/CodeTab';
+import QuickstartBranch from '../../../components/QuickstartBranch';
 
 export default (props) => {
   return (
     <Template>
       <h1>
-        Step 4: Setup the Mock API Server
+        Step 7: Add User Endpoint
       </h1>
-      <p>
-        To emulate a real application, this Quickstart will be
-        using <a href="https://github.com/typicode/json-server">json-server</a> to provide a mock API.
-      </p>
 
       <p>
-        New applications include <code>json-server</code> by default. This is due to the project's ease of
-        use, excellent feature support (including pagination, search, and relationship expansion) and overall
-        ability to help bootstrap new projects.
+        In this step we're going to add an endpoint to the API that we can use to retrieve the current user.
       </p>
 
-      <blockquote>
-        <p>
-          You can view the finished code for this step by checking out branch <code>setup.4</code> of
-          the <Link to="/quickstart/misc/completed-project/">completed project</Link>.
-        </p>
-      </blockquote>
-
+      <QuickstartBranch branch="authentication.7" />
 
       <h3>
-        Add Mock Data
+        Add /user route to mock API
       </h3>
       <p>
-        For this Quickstart we need two API endpoints; one to retrieve <code>tweets</code> and one to
-        retrieve <code>users</code>. We can accomplish this by adding data to the <code>db.json</code> file
-        at the root of you project. This file is used by <code>json-server</code> as both a database and
-        a blueprint for what endpoints should exist.
+        Currently we don't have an API we can use to exchange the token from Auth0 for a proper user object. So
+        let's create one (reminder: we'll be replacing the mock API with a real one later).
       </p>
 
       <p>
-        Paste this data into <code>db.json</code>:
+        Open up <code>db.json</code> and add a new endpoint called <code>/user</code> by adding this JSON to the
+        bottom of the file:
       </p>
 
-      <Markdown text={`
+      <Markdown type="json" text={`
+      {
+        "users": [
+          ...
+        ],
+        "tweets": [
+          ...
+        ],
+        "user": {
+          "id": 1,
+          "nickname": "ayla",
+          "avatar": "https://cloud.githubusercontent.com/assets/2637399/19027069/a356e82a-88e1-11e6-87d8-e3e74f55c069.png"
+        }
+      }
+      `}/>
+
+      <p>
+        With this change in place, if you navigate to <code>http://localhost:1337/user</code> the API will return
+        an object telling us we are Ayla:
+      </p>
+
+      <Markdown type="jsx" text={`
+      {
+        "id": 1,
+        "nickname": "ayla",
+        "avatar": "https://cloud.githubusercontent.com/assets/2637399/19027069/a356e82a-88e1-11e6-87d8-e3e74f55c069.png"
+      }
+      `}/>
+
+      <h3>
+        Set the endpoint for the currentUser model
+      </h3>
+      <p>
+        Next, we need to tell Lore where it can fetch the current user. Open up the <code>currentUser</code> model
+        and find the property for <code>endpoint</code>. Change it from <code>currentUser</code> to <code>user</code> like
+        this:
+      </p>
+
+      <CodeTabs>
+        <CodeTab syntax="ES5" text={`
+        export default {
+          endpoint: 'user'
+        }
+        `}/>
+        <CodeTab syntax="ES6" text={`
+        export default {
+          endpoint: 'user'
+        }
+        `}/>
+        <CodeTab syntax="ESNext" text={`
+        export default {
+          endpoint: 'user'
+        }
+        `}/>
+      </CodeTabs>
+
+      <h3>
+        Visual Check-in
+      </h3>
+
+      <p>
+        If everything went well, your application should now look like this. Exactly the same :)
+      </p>
+
+      <img className="drop-shadow" src="/assets/images/quickstart/authentication/step-6.png" />
+
+
+      <h2>
+        Code Changes
+      </h2>
+
+      <p>
+        Below is a list of files modified during this step.
+      </p>
+
+      <h3>
+        db.json
+      </h3>
+
+      <Markdown type="jsx" text={`
       {
         "users": [
           {
@@ -126,63 +193,43 @@ export default (props) => {
             "text": "Something is written in archaic script. I will translate... R...o...i...h...c...l...e...m? Roihclem? System error! I reversed it! It says \\"Melchior!\\".",
             "createdAt": "2016-11-26T04:03:25.546Z"
           }
-        ]
+        ],
+        "user": {
+          "id": 1,
+          "nickname": "ayla",
+          "avatar": "https://cloud.githubusercontent.com/assets/2637399/19027069/a356e82a-88e1-11e6-87d8-e3e74f55c069.png"
+        }
       }
       `} />
 
       <h3>
-        Start the Mock Server
+        src/models/currentUser.js
       </h3>
-      <p>
-        Next run the mock server with this command:
-      </p>
 
-      <Markdown type="sh" text={`
-      $ npm run server
-      `}/>
-
-      <p>
-        You should then see output that looks like this:
-      </p>
-
-      <Markdown type="sh" text={`
-      \{^_^}/ hi!
-
-      Loading db.json
-      Done
-
-      Resources
-      http://localhost:1337/users
-      http://localhost:1337/tweets
-
-      Home
-      http://localhost:1337
-
-      `} />
-
-      <p>
-        This tells us the API server is available at <code>http://localhost:1337</code> and we can obtain the list
-        of <strong>users</strong> from <code>/users</code> and the list
-        of <strong>tweets</strong> from <code>/tweets</code>.
-      </p>
-
-      <h3>
-        [Optional] Changing the Port
-      </h3>
-      <p>
-        If you want to change the port that <code>json-server</code> runs on, you can do that by using an alternate
-        syntax to start the server.
-      </p>
-
-      <Markdown type="sh" text={`
-      ./node_modules/json-server/bin/index.js --watch db.json --port=1337
-      `} />
+      <CodeTabs>
+        <CodeTab syntax="ES5" text={`
+        export default {
+          endpoint: 'user'
+        }
+        `}/>
+        <CodeTab syntax="ES6" text={`
+        export default {
+          endpoint: 'user'
+        }
+        `}/>
+        <CodeTab syntax="ESNext" text={`
+        export default {
+          endpoint: 'user'
+        }
+        `}/>
+      </CodeTabs>
 
       <h2>
         Next Steps
       </h2>
+
       <p>
-        Next we're going to <Link to="../../layout/overview/">lay out the application</Link>.
+        Next we're going to <Link to="../step-8/">fetch the current user and save it to the application's context</Link>.
       </p>
     </Template>
   )

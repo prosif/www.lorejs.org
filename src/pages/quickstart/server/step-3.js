@@ -41,7 +41,7 @@ export default (props) => {
       </h3>
       <p>
         The fact that our application is rendering a broken experience isn't ideal. The reason this is
-        happening is because the <code>render</code> method of the <code>Master</code> component currently
+        happening is because the <code>render()</code> method of the <code>Master</code> component currently
         looks like this:
       </p>
 
@@ -248,8 +248,8 @@ export default (props) => {
       </CodeTabs>
 
       <p>
-        With that change in place, the application now display <strong>"Unauthorized"</strong> when there's an error
-        fetching the current user.
+        With that change in place, the application will now display <strong>"Unauthorized"</strong> when there's
+        an error fetching the current user.
       </p>
 
       <blockquote>
@@ -273,7 +273,7 @@ export default (props) => {
       <p>
         Remember the <code>auth</code> utility in <code>utils/auth.js</code> that we used to save the user's
         token to localStorage? We're going to be using that once again to retrieve the user's token and add it
-        to the header.
+        to the header of all API requests.
       </p>
 
       <p>

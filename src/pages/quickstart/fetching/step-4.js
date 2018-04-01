@@ -32,7 +32,7 @@ export default (props) => {
 
       <p>
         Showing a blank view is a bad user experience, so let's update our <code>Feed</code> component to display a
-        "spinner" while the tweets are being fetched.
+        "loader" while the tweets are being fetched.
       </p>
 
       <h3>
@@ -46,14 +46,14 @@ export default (props) => {
 
       <p>
         For example, the first time our <code>Feed</code> component is rendered, it requests the data associated
-        with <code>tweet.find</code> using the <code>getState</code> method of the <code>connect</code> decorator.
+        with <code>tweet.find</code> using the <code>getState()</code> method of the <code>connect</code> decorator.
         Since this data doesn't exist yet, the framework invokes an action to go fetch it.
       </p>
 
       <p>
         This action will set the <code>state</code> property of the data to <code>FETCHING</code> in order to notify
         you that the data is being fetched. Once the data returns, the action will update the <code>state</code> property
-        to have a value of <code>RESOLVED</code> to signify that the data has been fetched. If there is an error
+        to have a value of <code>RESOLVED</code> to signify that the data has been fetched. If an error occurs while
         fetching the data, the state would be updated to <code>ERROR_FETCHING</code>. Let's use this behavior to
         create our loading experience.
       </p>
@@ -64,7 +64,7 @@ export default (props) => {
         by default.
       </p>
       <p>
-        Import that file into <code>Feed</code> and then update the render method to display a "spinner" component
+        Import that file into <code>Feed</code> and then update the render method to display a "loader" component
         when the <code>state</code> of the <code>tweets</code> is <code>FETCHING</code>.
       </p>
 
@@ -171,7 +171,7 @@ export default (props) => {
       </CodeTabs>
 
       <p>
-        Refresh the browser and you <em>might</em> see an animated "spinner" flash on the screen right before the
+        Refresh the browser and you <em>might</em> see an animated "loader" flash on the screen right before the
         tweets are rendered. But if you can't see it (and you probably can't) you can force it to appear by temporarily
         changing your <code>if</code> statement to read <code>if (true || ...)</code> like this:
       </p>

@@ -115,17 +115,17 @@ export default (props) => {
       `}/>
 
       <p>
-        When Lore retrieves data from an API endpoint (such as <code>/tweets/1</code>), it embeds the resource
-        attributes from the response in the <code>data</code> property and then wraps those attributes in a
-        structure that provides some metadata about the resource.
+        When Lore retrieves data from an API endpoint, such as <code>/tweets/1</code>, it embeds the attributes
+        from the API response in the <code>data</code> property, and then wraps those attributes in a
+        structure that provides some metadata about that resource.
       </p>
 
       <p>
-        This might seem a tad verbose at first glance, but each property solves a specific problem, which you
+        This might seem a little verbose at first glance, but each property solves a specific problem, which you
         can <Link to="/features/data-structure/">read more about about in the docs</Link> if you'd
         like. But what you need to know for the Quickstart is that the data structure is designed to solve
         application concerns related to optimistic updates, visual communication, server errors, and detecting
-        when resources have been created - all important elements of a good user experience.
+        when resources have been created - all important elements for providing a good user experience.
       </p>
 
       <p>

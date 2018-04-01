@@ -58,7 +58,7 @@ export default (props) => {
       <p>
         What we want to do is make that information available to the application, so we can calculate the
         number of pages to display. To do that open up <code>config/connections.js</code> and find
-        the <code>parse</code> method for Collections. Update that method to look like this:
+        the <code>parse()</code> method for Collections. Update that method to look like this:
       </p>
 
       <Markdown text={`
@@ -90,7 +90,7 @@ export default (props) => {
         Request Paginated Data in Feed
       </h3>
       <p>
-        To implement pagination we're going to be using a query parameter in our applications route to determine
+        To implement pagination we're going to be using a query parameter in the URL in order to determine
         which page of data to display. We're going to call that query parameter <code>page</code>.
       </p>
 
@@ -114,10 +114,10 @@ export default (props) => {
       `}/>
 
       <p>
-        Since we didn't provide any information aside from <code>tweet.find</code>, the API call created simply
-        makes a network request to <code>/tweets</code>. But if we're going to use paginated data, we need network
-        calls that look like <code>/tweets?page=1</code>. To do that, we need to provide a second argument to
-        the <code>getState</code> call that describes what we want.
+        Since we didn't provide any information to the <code>getState()</code> call beyond <code>tweet.find</code>,
+        the API call that's produced is simply a network request to <code>/tweets</code>. But if we're going to use
+        paginated data, we need network calls that look like <code>/tweets?page=1</code>. To do that, we need to
+        provide a second argument to the <code>getState()</code> call that describes what we want.
       </p>
 
       <p>
@@ -127,11 +127,13 @@ export default (props) => {
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
         export default connect(function(getState, props) {
+          const { location } = props;
+
           return {
             tweets: getState('tweet.find', {
               pagination: {
                 sort: 'createdAt DESC',
-                page: props.location.query.page || '1'
+                page: location.query.page || '1'
               }
             })
           }
@@ -147,11 +149,13 @@ export default (props) => {
         }
 
         export default connect(function(getState, props) {
+          const { location } = props;
+
           return {
             tweets: getState('tweet.find', {
               pagination: {
                 sort: 'createdAt DESC',
-                page: props.location.query.page || '1'
+                page: location.query.page || '1'
               }
             })
           }
@@ -159,11 +163,13 @@ export default (props) => {
         `}/>
         <CodeTab syntax="ESNext" text={`
         @connect(function(getState, props) {
+          const { location } = props;
+
           return {
             tweets: getState('tweet.find', {
               pagination: {
                 sort: 'createdAt DESC',
-                page: props.location.query.page || '1'
+                page: location.query.page || '1'
               }
             })
           }
@@ -175,16 +181,24 @@ export default (props) => {
       </CodeTabs>
 
       <p>
-        The second argument we passed to <code>getState</code> contains a <code>pagination</code> key that you can
-        use to list query parameters that relate to pagination, such as page number, page size, ordering preferences,
-        etc. To be clear there's no magic here; Lore simply takes these parameters and converts them to query
-        parameters in the request.
+        Here we're extracting <code>location</code> from <code>props</code>, which is provided by React Router and
+        contains information about the current URL and any query parameters.
       </p>
 
       <p>
-        The second callout here is that we're going to be using React Router to trigger pagination, which is where
-        the <code>props.location.query.page</code> value comes from (<code>location</code> is passed to the component
-        by React Router).
+        Then we're providing a second argument <code>getState()</code>, which is an object that you can use to
+        get more specific about the data you're looking for. The <code>pagination</code> property is used to list
+        query parameters that relate to pagination, such as page number, page size, ordering preferences, etc. To be
+        clear there's no magic here; Lore simply takes these parameters and converts them to query parameters in
+        the resulting API request.
+      </p>
+
+      <p>
+        Within the <code>pagination</code> property we're providing a <code>page</code> property, which is set
+        to the value of the <code>page</code> query parameter if one exists in the URL, otherwise it defaults to the
+        first page. And finally, we're providing a <code>sort</code> property, which asks the API to return data in
+        descending order, based on the <code>createdAt</code> value of the tweet. This will make it so that the
+        newest tweets are returned first.
       </p>
 
       <h3>
@@ -389,6 +403,14 @@ export default (props) => {
           If you look at the network requests, you'll notice requests only go out for pages you haven't clicked on. If
           you navigate back to a page you'll already viewed, the data loads immediately, without issuing a network request.
           Lore's default behavior is to cache data for any API call it's already made.
+        </p>
+      </blockquote>
+
+      <blockquote>
+        <p>
+          Admittedly, this is not a great user experience, since the entire list resets each time you navigate. If
+          you'd like to see an example of a better user experience, see
+          the <a href="https://github.com/lore/lore/tree/master/examples/pagination">pagination example</a>.
         </p>
       </blockquote>
 
@@ -774,7 +796,7 @@ export default (props) => {
       </h2>
 
       <p>
-        In the next section we're going to <Link to="../../infinite-scrolling/overview/">replace our pagination links with infinite scrolling behavior</Link>.
+        Next step we're going to <Link to="../step-2/">improve the user experience for pagination</Link>.
       </p>
     </Template>
   )

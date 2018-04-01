@@ -43,17 +43,19 @@ export default (props) => {
       ...
       `}/>
 
+      <p>
+        You'll see commented out sections like this in all of the config files, and they represent the built-in
+        defaults that Lore uses. In this case, Lore assumes your API is located
+        at <code>https://api.example.com</code>, which is obviously not true.
+      </p>
+
       <blockquote>
         <p>
-          Lore is designed to interact with multiple API endpoints. The config settings for each API is called a <code>connection</code>.
-          New projects begin configured for a single API, and this connection is named <code>default</code>.
+          Lore is designed to interact with multiple API endpoints. The config settings for each API is called
+          a <code>connection</code>. New projects begin configured for a single API, and this connection is
+          named <code>default</code>.
         </p>
       </blockquote>
-
-      <p>
-        You'll see commented out sections like this in all of the config files, and they represent the built-in defaults that
-        Lore uses. In this case, Lore assumes your API is located at <code>https://api.example.com</code>, which is obviously not true.
-      </p>
 
       <p>
         Tell Lore where the API is located by uncommenting that line and change it to the following:

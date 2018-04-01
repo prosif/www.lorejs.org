@@ -10,162 +10,219 @@ export default (props) => {
   return (
     <Template>
       <h1>
-        Step 3: Redirect to Login
+        Step 3: Add Login Page
       </h1>
 
       <p>
-        In this step we're going to redirect the user to the <code>/login</code> route if they aren't authenticated.
+        In this step we're going to display a login experience.
       </p>
 
       <QuickstartBranch branch="authentication.3" />
 
       <h3>
-        Local Storage & User Tokens
+        Create the Login Page
       </h3>
       <p>
-        While our API does not currently require the user be authenticated, we will be replacing it with a real API
-        later that will. That API is going to require users to be authenticated before they can create, update or
-        delete tweets.
+        First, create a <code>Login</code> component that we can use to initiate the login experience:
       </p>
+
+      <Markdown type="sh" text={`
+      lore generate component Login
+      `}/>
+
       <p>
-        In order to authenticate the user, we will need to send an authentication token in the header of every
-        API request. The token that we will be sending will be provided to us by Auth0 when the user logs in.
+        This component will be responsible for redirecting the user to the Auth0 website to login. Update
+        your <code>Login</code> component to look like this:
       </p>
+
+      <CodeTabs>
+        <CodeTab syntax="ES5" text={`
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import Auth0 from 'auth0-js';
+        import ShowLoadingScreen from './ShowLoadingScreen';
+
+        export default createReactClass({
+          displayName: 'Login',
+
+          componentDidMount: function() {
+            const auth0 = new Auth0.WebAuth(lore.config.auth0);
+            auth0.authorize();
+          },
+
+          render: function() {
+            return (
+              <ShowLoadingScreen/>
+            );
+          }
+
+        });
+        `}/>
+        <CodeTab syntax="ES6" text={`
+        import React from 'react';
+        import Auth0 from 'auth0-js';
+        import ShowLoadingScreen from './ShowLoadingScreen';
+
+        export default class Login extends React.Component {
+
+          componentDidMount() {
+            const auth0 = new Auth0.WebAuth(lore.config.auth0);
+            auth0.authorize();
+          }
+
+          render() {
+            return (
+              <ShowLoadingScreen/>
+            );
+          }
+
+        };
+        `}/>
+        <CodeTab syntax="ESNext" text={`
+        import React from 'react';
+        import Auth0 from 'auth0-js';
+        import ShowLoadingScreen from './ShowLoadingScreen';
+
+        export default class Login extends React.Component {
+
+          componentDidMount() {
+            const auth0 = new Auth0.WebAuth(lore.config.auth0);
+            auth0.authorize();
+          }
+
+          render() {
+            return (
+              <ShowLoadingScreen/>
+            );
+          }
+
+        };
+        `}/>
+      </CodeTabs>
+
       <p>
-        Additionally, in order to prevent requiring the user from needing to login every time they refresh the
-        page (or navigate away from the site), we are also going to store this token in the browser's localStorage,
-        and only redirect the user to the login page if they have no token.
+        When this component is mounted, we extract the <code>auth0</code> config object
+        from <code>lore.config.auth0</code> and pass it to the <code>Auth0.WebAuth</code> function, which will
+        automatically redirect the user to Auth0 when we call <code>auth0.authorize()</code>.
       </p>
 
       <h3>
-        Auth Utility
+        Create the /login route
       </h3>
       <p>
-        If you look inside <code>src/utils</code> you'll find a file called <code>auth.js</code> that contains some
-        helpers methods for saving and retrieving a user token from localStorage. When the application loads, we're
-        going to check if a <code>userToken</code> exists in localStorage by calling <code>auth.hasToken()</code>.
-        If no token exists, we're going to redirect the user to the <code>/login</code> page, and once we have a
-        token we will call <code>auth.saveToken(token)</code> to save it to localStorage.
+        Now that the component exists, let's create the corresponding route to display it. Open <code>routes.js</code>,
+        import your <code>Login</code> component, and update the routes to look like this:
+      </p>
+
+
+      <CodeTabs>
+        <CodeTab syntax="ES5" text={`
+        ...
+        import Login from './src/components/Login';
+
+        export default (
+          <Route>
+            <Route path="/login" component={Login} />
+
+            <Route component={UserIsAuthenticated(Master)}>
+              <Route path="/" component={Layout}>
+                <IndexRoute component={Feed} />
+              </Route>
+            </Route>
+          </Route>
+        );
+        `}/>
+        <CodeTab syntax="ES6" text={`
+        ...
+        import Login from './src/components/Login';
+
+        export default (
+          <Route>
+            <Route path="/login" component={Login} />
+
+            <Route component={UserIsAuthenticated(Master)}>
+              <Route path="/" component={Layout}>
+                <IndexRoute component={Feed} />
+              </Route>
+            </Route>
+          </Route>
+        )
+        `}/>
+        <CodeTab syntax="ESNext" text={`
+        ...
+        import Login from './src/components/Login';
+
+        export default (
+          <Route>
+            <Route path="/login" component={Login} />
+
+            <Route component={UserIsAuthenticated(Master)}>
+              <Route path="/" component={Layout}>
+                <IndexRoute component={Feed} />
+              </Route>
+            </Route>
+          </Route>
+        )
+        `}/>
+      </CodeTabs>
+
+      <h3>
+        Login as one of the Characters
+      </h3>
+      <p>
+        With the routing done, let's test out our <code>Login</code> component. Navigate to <code>/login</code> and
+        you should see a login dialog displayed on screen. While you can't create a new account, you <em>can</em> login
+        as any of the characters below:
+      </p>
+
+      <ul>
+        <li>ayla</li>
+        <li>crono</li>
+        <li>frog</li>
+        <li>lucca</li>
+        <li>magus</li>
+        <li>marle</li>
+        <li>robo</li>
+      </ul>
+
+      <p>
+        The email format is <code>{"{name}@example.com"}</code>, and the password for all of them
+        is <code>password</code>. So if you wanted to login as <code>marle</code>, you would
+        enter <code>marle@example.com</code> for the email and <code>password</code> for the password.
       </p>
 
       <h3>
-        Redirecting the User
+        Authorize App Screen
       </h3>
       <p>
-        Open up <code>routes.js</code> and find the route that renders the <code>Master</code> component. It should
-        look like this:
+        If you see a screen like the one below, that asks you to authorize the application, click the green
+        checkbox to proceed.
+      </p>
+      <p>
+        In a real production application, you wouldn't see this screen, but Auth0 does not allow the consent
+        dialog to be skipped <a href="https://auth0.com/docs/api-auth/user-consent#skipping-consent-for-first-party-clients">when
+        an application is redirecting to localhost</a>.
+      </p>
+      <img className="drop-shadow" src="/assets/images/quickstart/authentication/step-2b.png" />
+
+      <h3>
+        Redirect Error after Login
+      </h3>
+
+      <p>
+        After you login, you'll be taken back to the application, where you'll see the loading screen, but
+        it will never go away. If you look at the developer console, you'll see an error that looks like this:
       </p>
 
       <Markdown text={`
-        <Route component={UserIsAuthenticated(Master)}>
-          ...
-        </Route>
-        `}/>
+      Warning: [react-router]
+      Location "/auth/callback ... did not match any routes
+      `}/>
 
       <p>
-        The <code>UserIsAuthenticated</code> function that wraps <code>Master</code> is a higher order component that
-        can block access to the application if the user isn't authenticated. Currently this component isn't doing
-        anything because the blocking behavior is turned off. Let's turn it on.
-      </p>
-
-      <p>
-        Open up <code>src/decorators/UserIsAuthenticated.js</code> and take a look at
-        the <code>isAuthenticated</code> method:
-      </p>
-
-      <CodeTabs>
-        <CodeTab syntax="ES5" text={`
-        import React from 'react';
-        import { AuthenticationGenerator } from 'lore-auth';
-
-        export default AuthenticationGenerator({
-          wrapperDisplayName: 'UserIsAuthenticated',
-
-          // redirectUrl: '/login',
-
-          // redirectQueryParamName: 'redirect',
-
-          isAuthenticated () {
-            return true;
-          }
-        })
-        `}/>
-        <CodeTab syntax="ES6" text={`
-        import React from 'react';
-        import { AuthenticationGenerator } from 'lore-auth';
-
-        export default AuthenticationGenerator({
-          wrapperDisplayName: 'UserIsAuthenticated',
-
-          // redirectUrl: '/login',
-
-          // redirectQueryParamName: 'redirect',
-
-          isAuthenticated () {
-            return true;
-          }
-        })
-        `}/>
-        <CodeTab syntax="ESNext" text={`
-        import React from 'react';
-        import { AuthenticationGenerator } from 'lore-auth';
-
-        export default AuthenticationGenerator({
-          wrapperDisplayName: 'UserIsAuthenticated',
-
-          // redirectUrl: '/login',
-
-          // redirectQueryParamName: 'redirect',
-
-          isAuthenticated () {
-            return true;
-          }
-        })
-        `}/>
-      </CodeTabs>
-
-      <p>
-        This <code>isAuthenticated</code> method gets called when the route is rendered, and is responsible for
-        determining whether or not the user is logged in. Since this function currently returns <code>true</code>,
-        the application never redirects the user to <code>/login</code> (the default <code>redirectUrl</code>).
-      </p>
-
-      <p>
-        To get the behavior we want, import <code>src/utils/auth.js</code> into this decorator and update
-        the <code>isAuthenticated</code> method to look like this:
-      </p>
-
-
-      <CodeTabs>
-        <CodeTab syntax="ES5" text={`
-        import auth from '../utils/auth';
-        ...
-          isAuthenticated: function() {
-            return auth.hasToken();
-          }
-        ...
-        `}/>
-        <CodeTab syntax="ES6" text={`
-        import auth from '../utils/auth';
-        ...
-          isAuthenticated () {
-            return auth.hasToken();
-          }
-        ...
-        `}/>
-        <CodeTab syntax="ESNext" text={`
-        import auth from '../utils/auth';
-        ...
-          isAuthenticated () {
-            return auth.hasToken();
-          }
-        ...
-        `}/>
-      </CodeTabs>
-
-      <p>
-        With that change in place, if you now try to navigate to root route (such
-        as <code>https://localhost:3000</code>) the application will automatically redirect you to <code>/login</code>.
+        This occurs because Auth0 tried to redirect us back to <code>http://localhost:3000/auth/callback</code>,
+        but that route doesn't exist yet. We'll create it soon, but for now, navigate back to the homepage
+        at <code>http://localhost:3000</code>.
       </p>
 
 
@@ -179,7 +236,6 @@ export default (props) => {
 
       <img className="drop-shadow" src="/assets/images/quickstart/authentication/step-2.png" />
 
-
       <h2>
         Code Changes
       </h2>
@@ -189,70 +245,169 @@ export default (props) => {
       </p>
 
       <h3>
-        src/decorators/UserIsAuthenticated.js
+        src/components/Login.js
+      </h3>
+
+
+      <CodeTabs>
+        <CodeTab syntax="ES5" text={`
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import Auth0 from 'auth0-js';
+        import ShowLoadingScreen from './ShowLoadingScreen';
+
+        export default createReactClass({
+          displayName: 'Login',
+
+          componentDidMount: function() {
+            const auth0 = new Auth0.WebAuth(lore.config.auth0);
+            auth0.authorize();
+          },
+
+          render: function() {
+            return (
+              <ShowLoadingScreen/>
+            );
+          }
+
+        });
+        `}/>
+        <CodeTab syntax="ES6" text={`
+        import React from 'react';
+        import Auth0 from 'auth0-js';
+        import ShowLoadingScreen from './ShowLoadingScreen';
+
+        class Login extends React.Component {
+
+          componentDidMount() {
+            const auth0 = new Auth0.WebAuth(lore.config.auth0);
+            auth0.authorize();
+          }
+
+          render() {
+            return (
+              <ShowLoadingScreen/>
+            );
+          }
+
+        }
+
+        export default Login;
+        `}/>
+        <CodeTab syntax="ESNext" text={`
+        import React from 'react';
+        import Auth0 from 'auth0-js';
+        import ShowLoadingScreen from './ShowLoadingScreen';
+
+        class Login extends React.Component {
+
+          componentDidMount() {
+            const auth0 = new Auth0.WebAuth(lore.config.auth0);
+            auth0.authorize();
+          }
+
+          render() {
+            return (
+              <ShowLoadingScreen/>
+            );
+          }
+
+        }
+
+        export default Login;
+        `}/>
+      </CodeTabs>
+
+      <h3>
+        routes.js
       </h3>
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
         import React from 'react';
-        import { AuthenticationGenerator } from 'lore-auth';
-        import auth from '../utils/auth';
+        import { Route, IndexRoute, Redirect } from 'react-router';
+        import UserIsAuthenticated from './src/decorators/UserIsAuthenticated';
 
-        export default AuthenticationGenerator({
-          wrapperDisplayName: 'UserIsAuthenticated',
+        /**
+         * Routes
+         */
+        import Master from './src/components/Master';
+        import Layout from './src/components/Layout';
+        import Feed from './src/components/Feed';
+        import Login from './src/components/Login';
 
-          // redirectUrl: '/login',
+        export default (
+          <Route>
+            <Route path="/login" component={Login} />
 
-          // redirectQueryParamName: 'redirect',
-
-          isAuthenticated: function() {
-            return auth.hasToken();
-          }
-        });
+            <Route component={UserIsAuthenticated(Master)}>
+              <Route path="/" component={Layout}>
+                <IndexRoute component={Feed} />
+              </Route>
+            </Route>
+          </Route>
+        );
         `}/>
         <CodeTab syntax="ES6" text={`
         import React from 'react';
-        import { AuthenticationGenerator } from 'lore-auth';
-        import auth from '../utils/auth';
+        import { Route, IndexRoute, Redirect } from 'react-router';
+        import UserIsAuthenticated from './src/decorators/UserIsAuthenticated';
 
-        export default AuthenticationGenerator({
-          wrapperDisplayName: 'UserIsAuthenticated',
+        /**
+         * Routes
+         */
+        import Master from './src/components/Master';
+        import Layout from './src/components/Layout';
+        import Feed from './src/components/Feed';
+        import Login from './src/components/Login';
 
-          // redirectUrl: '/login',
+        export default (
+          <Route>
+            <Route path="/login" component={Login} />
 
-          // redirectQueryParamName: 'redirect',
-
-          isAuthenticated () {
-            return auth.hasToken();
-          }
-        })
+            <Route component={UserIsAuthenticated(Master)}>
+              <Route path="/" component={Layout}>
+                <IndexRoute component={Feed} />
+              </Route>
+            </Route>
+          </Route>
+        );
         `}/>
         <CodeTab syntax="ESNext" text={`
         import React from 'react';
-        import { AuthenticationGenerator } from 'lore-auth';
-        import auth from '../utils/auth';
+        import { Route, IndexRoute, Redirect } from 'react-router';
+        import UserIsAuthenticated from './src/decorators/UserIsAuthenticated';
 
-        export default AuthenticationGenerator({
-          wrapperDisplayName: 'UserIsAuthenticated',
+        /**
+         * Routes
+         */
+        import Master from './src/components/Master';
+        import Layout from './src/components/Layout';
+        import Feed from './src/components/Feed';
+        import Login from './src/components/Login';
 
-          // redirectUrl: '/login',
+        export default (
+          <Route>
+            <Route path="/login" component={Login} />
 
-          // redirectQueryParamName: 'redirect',
-
-          isAuthenticated () {
-            return auth.hasToken();
-          }
-        })
+            <Route component={UserIsAuthenticated(Master)}>
+              <Route path="/" component={Layout}>
+                <IndexRoute component={Feed} />
+              </Route>
+            </Route>
+          </Route>
+        );
         `}/>
       </CodeTabs>
 
-      <h2>
+      <h3>
         Next Steps
-      </h2>
+      </h3>
 
       <p>
-        Next we're going to <Link to="../step-4/">add a callback route and save the token</Link>.
+        Next we're going to <Link to="../step-4/">redirect the user to login page</Link> if they aren't logged in.
       </p>
+
     </Template>
-  );
+  )
 };

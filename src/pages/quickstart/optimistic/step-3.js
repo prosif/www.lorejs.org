@@ -77,7 +77,7 @@ export default (props) => {
       </p>
 
       <p>
-        To fix this problem, update the <code>onClick</code> method of the <code>CreateButton</code> component
+        To fix this problem, update the <code>onClick()</code> method of the <code>CreateButton</code> component
         to look like this:
       </p>
 
@@ -117,7 +117,7 @@ export default (props) => {
       </p>
 
       <p>
-        Update the <code>render</code> method of the <code>Tweet</code> component to look like this:
+        Update the <code>render()</code> method of the <code>Tweet</code> component to look like this:
       </p>
 
       <Markdown text={`

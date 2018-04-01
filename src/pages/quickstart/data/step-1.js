@@ -17,8 +17,6 @@ export default (props) => {
         In this step we'll be adding some mock data to our feed.
       </p>
 
-      <QuickstartBranch branch="data.1" />
-
       <blockquote>
         <p>
           The practice of using fake data to populate components while you're building out your application can be quite
@@ -27,6 +25,7 @@ export default (props) => {
         </p>
       </blockquote>
 
+      <QuickstartBranch branch="data.1" />
 
       <h3>
         Declare Tweets as a Prop
@@ -70,13 +69,15 @@ export default (props) => {
         Create Mock Tweets
       </h3>
       <p>
-        Next insert some mock data using <code>getDefaultProps</code>. This is a great method to use for mock data, as it will only
-        populate the <code>tweets</code> prop if no data is passed in. So if you use this method for your mock data, it will automatically
-        be overwritten once real data starts being passed in. Pretty handy!
+        Next insert some mock data using <code>getDefaultProps()</code>. This is a great method to use for mock data,
+        as it will only populate the <code>tweets</code> prop if no data is passed in. So if you use this method for
+        your mock data, it will automatically be overwritten once real data starts being passed in, which is pretty
+        convenient.
       </p>
 
       <p>
-        Add a <code>getDefaultProps</code> method to your <code>Feed</code> component and use it to populate <code>tweets</code> with mock data:
+        Add a <code>getDefaultProps()</code> method to your <code>Feed</code> component and use it to
+        populate <code>tweets</code> with mock data:
       </p>
 
       <CodeTabs>
@@ -200,9 +201,9 @@ export default (props) => {
         Render the Tweets
       </h3>
       <p>
-        With some mock data created, let's pull it into our render method and display it on screen. To do that,
-        we're going to create a method called <code>renderTweet</code> that will contain the code to render
-        each tweet. Then we'll iterate through our mock tweets and map them into HTML to display on screen.
+        Now that we have some mock data created, let's pull it into our render method and display it on screen.
+        To do that, we're going to create a method called <code>renderTweet()</code> that will contain the code to
+        render each tweet. Then we'll iterate through our mock tweets and map them into HTML to display on screen.
       </p>
 
       <p>
@@ -302,7 +303,7 @@ export default (props) => {
         </p>
         <p>
           The only time you won't be able to use the <code>id</code> as the key is when you're dealing with
-          optimistic updates, a use case we'll address later in this tutorial. Optimistic updates involve
+          optimistic updates, a use case that we'll address later in this tutorial. Optimistic updates involve
           displaying data to the user before it actually exists on the server, which means it won't have
           an <code>id</code> assigned to it yet.
         </p>

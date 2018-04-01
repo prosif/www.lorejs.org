@@ -24,7 +24,7 @@ export default (props) => {
         Remove Custom Parse Method for Tweet Model
       </h3>
       <p>
-        When we first integrated the API server, we added a custom <code>parse</code> method to our <code>tweet</code> model that looks like this:
+        When we first integrated the API server, we added a custom <code>parse()</code> method to our <code>tweet</code> model that looks like this:
       </p>
 
       <Markdown text={`
@@ -84,7 +84,7 @@ export default (props) => {
         Update Tweet Component
       </h3>
       <p>
-        By resetting the <code>parse</code> method, we no longer have a <code>userId</code> attribute
+        By resetting the <code>parse()</code> method, we no longer have a <code>userId</code> attribute
         on <code>tweet</code> resources. So update the <code>connect</code> call in the <code>Tweet</code> to
         use <code>tweet.data.user</code> instead of <code>tweet.data.userId</code>:
       </p>
@@ -145,7 +145,7 @@ export default (props) => {
 
       <p>
         But now those values are automatically set by the API server, so we can remove them. Open your <code>CreateButton</code>
-        component and modify the <code>onClick</code> method to look like this:
+        component and modify the <code>onClick()</code> method to look like this:
       </p>
 
       <CodeTabs>

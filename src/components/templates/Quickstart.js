@@ -46,12 +46,38 @@ export default (props) => {
 
             <li className="doc-section">Fetching Data</li>
             <NavLink title="Overview" url="/quickstart/fetching/overview/" />
-            <NavLink title="1. Install the CLI" url="/quickstart/fetching/step-1/" />
-            <NavLink title="2. Point App to API" url="/quickstart/fetching/step-2/" />
+            <NavLink title="1. Set API Location" url="/quickstart/fetching/step-1/" />
+            <NavLink title="2. Create Tweet Model" url="/quickstart/fetching/step-2/" />
             <NavLink title="Convention over Configuration" url="/quickstart/fetching/step-2b/" />
             <NavLink title="3. Connect Feed Component" url="/quickstart/fetching/step-3/" />
             <NavLink title="4. Display Loading Message" url="/quickstart/fetching/step-4/" />
             <NavLink title="5. Fetch User for Tweet" url="/quickstart/fetching/step-5/" />
+
+            <li className="doc-section">Authentication</li>
+            <NavLink title="Overview" url="/quickstart/authentication/overview/" />
+            <NavLink title="1. Add Profile to Layout" url="/quickstart/authentication/step-1/" />
+            <NavLink title="2. Add Auth0 Config" url="/quickstart/authentication/step-2/" />
+            <NavLink title="3. Add Login Page" url="/quickstart/authentication/step-3/" />
+            <NavLink title="4. Redirect to Login" url="/quickstart/authentication/step-4/" />
+            <NavLink title="5. Add Callback Route" url="/quickstart/authentication/step-5/" />
+            <NavLink title="6. Add Logout Page" url="/quickstart/authentication/step-6/" />
+            <NavLink title="7. Add User Endpoint" url="/quickstart/authentication/step-7/" />
+            <NavLink title="8. Save User to Context" url="/quickstart/authentication/step-8/" />
+
+            <li className="doc-section">Server</li>
+            <NavLink title="Overview" url="/quickstart/server/overview/" />
+            <NavLink title="1. Clone the API Server" url="/quickstart/server/step-1/" />
+            <NavLink title="2. Parse Server Response" url="/quickstart/server/step-2/" />
+            <NavLink title="3. Add Authorization Header" url="/quickstart/server/step-3/" />
+
+            <li className="doc-section">Pagination</li>
+            <NavLink title="Overview" url="/quickstart/pagination/overview/" />
+            <NavLink title="1. Add Pagination" url="/quickstart/pagination/step-1/" />
+            <NavLink title="2. Improve User Experience" url="/quickstart/pagination/step-2/" />
+
+            <li className="doc-section">Infinite Scrolling</li>
+            <NavLink title="Overview" url="/quickstart/infinite-scrolling/overview/" />
+            <NavLink title="1. Add Infinite Scrolling" url="/quickstart/infinite-scrolling/step-1/" />
 
             <li className="doc-section">Dialogs</li>
             <NavLink title="Overview" url="/quickstart/dialogs/overview/" />
@@ -63,57 +89,34 @@ export default (props) => {
             <NavLink title="6. Add Edit Dialog" url="/quickstart/dialogs/step-6/" />
             <NavLink title="7. Add Delete Dialog" url="/quickstart/dialogs/step-7/" />
 
-            <li className="doc-section">Behavior</li>
-            <NavLink title="Overview" url="/quickstart/behavior/overview/" />
-            <NavLink title="1. Display Tweets Immediately" url="/quickstart/behavior/step-1/" />
-
-            <li className="doc-section">Authentication</li>
-            <NavLink title="Overview" url="/quickstart/authentication/overview/" />
-            <NavLink title="1. Add Profile to Layout" url="/quickstart/authentication/step-1/" />
-            <NavLink title="2. Add Login Page" url="/quickstart/authentication/step-2/" />
-            <NavLink title="3. Redirect to Login" url="/quickstart/authentication/step-3/" />
-            <NavLink title="4. Add Callback Route" url="/quickstart/authentication/step-4/" />
-            <NavLink title="5. Add Logout Route" url="/quickstart/authentication/step-5/" />
-            <NavLink title="6. Save User to Context" url="/quickstart/authentication/step-6/" />
-
             <li className="doc-section">Authorization</li>
             <NavLink title="Overview" url="/quickstart/authorization/overview/" />
             <NavLink title="1. Hide Edit Link" url="/quickstart/authorization/step-1/" />
             <NavLink title="2. Hide Delete Link" url="/quickstart/authorization/step-2/" />
             <NavLink title="3. Alternative Approach" url="/quickstart/authorization/step-3/" />
 
-            <li className="doc-section">Server</li>
-            <NavLink title="Overview" url="/quickstart/server/overview/" />
-            <NavLink title="1. Clone the API Server" url="/quickstart/server/step-1/" />
-            <NavLink title="2. Parse Server Response" url="/quickstart/server/step-2/" />
-            <NavLink title="3. Add Authorization Header" url="/quickstart/server/step-3/" />
-
-            <li className="doc-section">Pagination</li>
-            <NavLink title="Overview" url="/quickstart/pagination/overview/" />
-            <NavLink title="1. Add Pagination" url="/quickstart/pagination/step-1/" />
-
-            <li className="doc-section">Infinite Scrolling</li>
-            <NavLink title="Overview" url="/quickstart/infinite-scrolling/overview/" />
-            <NavLink title="1. Add Infinite Scrolling" url="/quickstart/infinite-scrolling/step-1/" />
-
-            <li className="doc-section">Filtering</li>
-            <NavLink title="Overview" url="/quickstart/filtering/overview/" />
-            <NavLink title="1. Add Filter" url="/quickstart/filtering/step-1/" />
-            <NavLink title="2. Display User Tweets" url="/quickstart/filtering/step-2/" />
+            <li className="doc-section">Behavior</li>
+            <NavLink title="Overview" url="/quickstart/behavior/overview/" />
+            <NavLink title="1. Display Tweets Immediately" url="/quickstart/behavior/step-1/" />
 
             <li className="doc-section">Cleanup</li>
             <NavLink title="Overview" url="/quickstart/cleanup/overview/" />
             <NavLink title="1. Remove Unnecessary Code" url="/quickstart/cleanup/step-1/" />
-
-            <li className="doc-section">Normalization</li>
-            <NavLink title="Overview" url="/quickstart/normalization/overview/" />
-            <NavLink title="1. Normalize Tweet Response" url="/quickstart/normalization/step-1/" />
 
             <li className="doc-section">Optimistic Updates</li>
             <NavLink title="Overview" url="/quickstart/optimistic/overview/" />
             <NavLink title="1. Add Pagination Timestamp" url="/quickstart/optimistic/step-1/" />
             <NavLink title="2. Display New Tweets" url="/quickstart/optimistic/step-2/" />
             <NavLink title="3. Show Optimistic Visual Cues" url="/quickstart/optimistic/step-3/" />
+
+            <li className="doc-section">Normalization</li>
+            <NavLink title="Overview" url="/quickstart/normalization/overview/" />
+            <NavLink title="1. Normalize Tweet Response" url="/quickstart/normalization/step-1/" />
+
+            <li className="doc-section">Filtering</li>
+            <NavLink title="Overview" url="/quickstart/filtering/overview/" />
+            <NavLink title="1. Add Filter" url="/quickstart/filtering/step-1/" />
+            <NavLink title="2. Display User Tweets" url="/quickstart/filtering/step-2/" />
 
             <li className="doc-section">WebSockets</li>
             <NavLink title="Overview" url="/quickstart/websockets/overview/" />

@@ -53,7 +53,7 @@ export default (props) => {
       </h3>
       <p>
         Once the dependencies are installed, <strong>stop the mock server</strong> (Ctrl+C). We'll need the port it's
-        currently running on to be free, so the Sails server can bind to it.
+        currently running on (1337) to be free so that the Sails server can bind to it.
       </p>
 
       <h3>

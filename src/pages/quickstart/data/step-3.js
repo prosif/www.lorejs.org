@@ -38,7 +38,7 @@ export default (props) => {
       `}/>
 
       <p>
-        This number represents the id of the user the tweet belongs to. Taking a look at the API endpoint
+        This number represents the id of the user who created the tweet. Taking a look at the API endpoint
         for <code>/users</code> we can see that a user resource looks like this:
       </p>
 
@@ -53,8 +53,9 @@ export default (props) => {
       `}/>
 
       <p>
-        So just like we did with the mock tweet, we're going to create a mock user. Open the <code>Tweet</code> component and add a
-        propType for <code>user</code>. Then add a <code>getDefaultProps</code> method and populate it with some mock user data like this:
+        So just like we did with the mock tweet, we're going to create a mock user. Open
+        the <code>Tweet</code> component and add a propType for <code>user</code>. Then add
+        a <code>getDefaultProps()</code> method and populate it with some mock user data like this:
       </p>
 
       <CodeTabs>
@@ -125,17 +126,15 @@ export default (props) => {
       </CodeTabs>
 
       <p>
-        Next, use that <code>user</code> prop to populate the nickname and avatar properties in the <code>render</code> method:
+        Next, use that <code>user</code> prop to populate the nickname and avatar properties in
+        the <code>render()</code> method:
       </p>
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
         ...
           render: function() {
-            const {
-              tweet,
-              user
-            } = this.props;
+            const { tweet, user } = this.props;
             const timestamp = moment(tweet.data.createdAt).fromNow().split(' ago')[0];
 
             return (
@@ -164,10 +163,7 @@ export default (props) => {
         <CodeTab syntax="ES6" text={`
         ...
           render() {
-            const {
-              tweet,
-              user
-            } = this.props;
+            const { tweet, user } = this.props;
             const timestamp = moment(tweet.data.createdAt).fromNow().split(' ago')[0];
 
             return (
@@ -196,10 +192,7 @@ export default (props) => {
         <CodeTab syntax="ESNext" text={`
         ...
           render() {
-            const {
-              tweet,
-              user
-            } = this.props;
+            const { tweet, user } = this.props;
             const timestamp = moment(tweet.data.createdAt).fromNow().split(' ago')[0];
 
             return (
@@ -278,10 +271,7 @@ export default (props) => {
           },
 
           render: function() {
-            const {
-              tweet,
-              user
-            } = this.props;
+            const { tweet, user } = this.props;
             const timestamp = moment(tweet.data.createdAt).fromNow().split(' ago')[0];
 
             return (
@@ -316,10 +306,7 @@ export default (props) => {
         class Tweet extends React.Component {
 
           render() {
-            const {
-              tweet,
-              user
-            } = this.props;
+            const { tweet, user } = this.props;
             const timestamp = moment(tweet.data.createdAt).fromNow().split(' ago')[0];
 
             return (
@@ -388,10 +375,7 @@ export default (props) => {
           };
 
           render() {
-            const {
-              tweet,
-              user
-            } = this.props;
+            const { tweet, user } = this.props;
             const timestamp = moment(tweet.data.createdAt).fromNow().split(' ago')[0];
 
             return (

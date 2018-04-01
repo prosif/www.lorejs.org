@@ -83,7 +83,7 @@ export default (props) => {
         </p>
         <p>
           It's also important to mention that <strong>new Lore projects include react-router v3</strong>,
-          and <strong>NOT</strong> v4. The links above go to the v3 documentation. By modifying some of
+          and <strong>NOT v4</strong>. The links above go to the v3 documentation. By modifying some of
           configuration files in your project, it's possible to replace v3 with v4, but there's no formal guide
           explaining how to do it yet. Once there is, a link will be provided here.
         </p>

@@ -32,7 +32,7 @@ export default (props) => {
       `}/>
 
       <p>
-        Next modify the <code>render</code> method to look like this:
+        Next modify the <code>render()</code> method to look like this:
       </p>
 
       <CodeTabs>
@@ -182,9 +182,9 @@ export default (props) => {
       `} />
 
       <p>
-        When we added <code>Feed</code> to <code>routes.js</code> we listed it as a child of <code>Layout</code>.
-        The code we just pasted says "clone my children and render them here". With this change in place, refresh
-        the application and you should now see "Feed" displayed in the middle of the page.
+        When we added the <code>Feed</code> component to <code>routes.js</code>, we listed it as a child
+        of the <code>Layout</code>. The code we just pasted says "clone my children and render them here". With this
+        change in place, refresh the application and you should now see "Feed" displayed in the middle of the page.
       </p>
 
       <h3>

@@ -32,9 +32,9 @@ export default (props) => {
       </ol>
 
       <p>
-        It's important to point out that these are <em>view specific concerns</em>; meaning nothing about them
-        requires changes to infrastructure or to the API. They're all about how a user interacts with data, and
-        have nothing to do with how data is fetched or stored.
+        It's important to point out that these are <strong>view specific concerns</strong>, meaning nothing about
+        creating that experience requires changes to infrastructure or to the API. These needs are all related to how
+        a interacts with data, and have nothing to do with how data is fetched or stored.
       </p>
 
       <p>
@@ -52,7 +52,7 @@ export default (props) => {
       </p>
 
       <p>
-        Open up <code>config/connections.js</code> and update the collection's <code>parse</code> method to add
+        Open up <code>config/connections.js</code> and update the collection's <code>parse()</code> method to add
         the <code>nextPage</code> property from the API response to to the <code>meta</code> data. This field will
         either contain the number of the next page of data or be null if there are no more pages to display.
       </p>
@@ -489,7 +489,7 @@ export default (props) => {
 
       <p>
         The <code>selectNextPage</code> prop is a function that provides the last page of data, as well as
-        the <code>getState</code> method so we can fetch more data. The <code>lastPage</code> is provided
+        the <code>getState()</code> method so we can fetch more data. The <code>lastPage</code> is provided
         because we need to inspect it for the current page number, and then iterate to get the next page.
       </p>
       <p>

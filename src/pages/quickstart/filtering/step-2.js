@@ -90,7 +90,7 @@ export default (props) => {
       </CodeTabs>
 
       <p>
-        Then update the <code>render</code> method to include the changes below:
+        Then update the <code>render()</code> method to include the changes below:
       </p>
 
       <CodeTabs>

@@ -14,8 +14,9 @@ export default (props) => {
       </h1>
 
       <p>
-        In this section we'll replace our mock API server with a real one built on <a href="http://sailsjs.com/">Sails.js</a>. Doing this
-        will introduce some breaking API changes, so we'll also learn how to elegantly resolve those issues.
+        In this section we'll replace our mock API server with a real one built
+        on <a href="http://sailsjs.com/">Sails.js</a>. Doing this will introduce some breaking API changes, so
+        we'll also learn how to easily resolve those issues.
       </p>
 
       <p>

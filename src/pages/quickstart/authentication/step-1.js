@@ -198,10 +198,10 @@ export default (props) => {
         Add Profile to Layout
       </h3>
       <p>
-        Now that we've created out Profile component, let's modify the Layout to display it. Open
-        your <code>Layout</code> component, import the <code>Profile</code> component we just created, and update
-        the render method to look like this (note that we have adjusted the <code>col-md-*</code> classes to make
-        room for the Profile):
+        Now that we've created our <code>Profile</code> component, let's modify the <code>Layout</code> to display
+        it. Open your <code>Layout</code> component, import the <code>Profile</code> component we just created, and
+        update the render method to look like this (note that we have adjusted the <code>col-md-*</code> classes to
+        make room for the <code>Profile</code>):
       </p>
 
       <CodeTabs>
@@ -577,7 +577,7 @@ export default (props) => {
       </h2>
 
       <p>
-        Next we're going to <Link to="../step-2/">add a login experience</Link>.
+        Next we're going to <Link to="../step-2/">configure Auth0 as our authentication service</Link>.
       </p>
     </Template>
   )

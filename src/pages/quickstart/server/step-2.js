@@ -58,8 +58,9 @@ export default (props) => {
       `}/>
 
       <p>
-        The reason for the change is a positive one, as we now have clear metadata we can use for pagination. And
-        Lore is also designed to easily adapt to these kinds of breaking API changes.
+        While the reason for the change is a positive one, as we now have clear metadata we can use for pagination,
+        it's still a change that breaks our application. But not to worry; Lore is designed to easily adapt to these
+        kinds of breaking API changes.
       </p>
 
       <h3>
@@ -72,13 +73,13 @@ export default (props) => {
 
       <p>
         To fix our app, open up <code>config/connections.js</code>. At the bottom of the file, below
-        the <code>apiRoot</code> you set earlier, you will see a section labeled <code>collections</code>.
+        the <code>apiRoot</code> you set earlier, you will see a property named <code>collections</code>.
         Collections in Lore are the abstraction tier responsible for communicating with API endpoints that
         return an array of resources, such as our <code>/tweets</code> endpoint.
       </p>
 
       <p>
-        Inside this section you'll see a commented out function called <code>parse</code> that looks like this:
+        Inside this section you'll see a commented out function called <code>parse()</code> that looks like this:
       </p>
 
       <Markdown text={`
@@ -109,14 +110,14 @@ export default (props) => {
       </p>
 
       <p>
-        The default behavior is to return whatever the function was provided. And this worked just fine for our
-        mock API, because the original API response <em>was</em> an array of tweets. But now the array we want is
-        embedded inside the <code>data</code> attribute, so we need to override this function to have it return the
-        array of tweets.
+        The default behavior is to return whatever was provided. And when we were using our mock API this worked
+        just fine, because the original API response <em>was</em> an array of tweets. But now the array we want
+        is embedded inside the <code>data</code> property of the server response, so we need to override this function
+        to have it return the array of tweets.
       </p>
 
       <p>
-        Modify the <code>parse</code> function to look like this:
+        Modify the <code>parse()</code> function to look like this:
       </p>
 
       <Markdown text={`
@@ -179,20 +180,22 @@ export default (props) => {
       </p>
 
       <p>
-        Models and Collections in Lore both have a <code>parse</code> method. The <code>parse</code> method on
+        Models and Collections in Lore both have a <code>parse()</code> method. The <code>parse()</code> method on
         Models is responsible for parsing a single resource and producing the final set of attributes that will
         be used by the components in your application.
       </p>
 
-      <p>
-        While <code>config/collections.js</code> <em>does</em> contain a parse method for <code>models</code>,
-        that method will affect <em>all</em> models in the application, which isn't what we want, as this issue
-        only affects the <code>tweet</code> models.
-      </p>
+      <blockquote>
+        <p>
+          While <code>config/collections.js</code> <em>does</em> contain a parse method for <code>models</code>,
+          that method will affect <em>all</em> models in the application, which isn't what we want, as this issue
+          only affects the <code>tweet</code> models.
+        </p>
+      </blockquote>
 
       <p>
-        To do this open up <code>src/models/tweet.js</code>. Look for the commented out <code>parse</code> method
-        which will look like this:
+        To fix this open up <code>src/models/tweet.js</code>, and look for the commented
+        out <code>parse()</code> method which will look like this:
       </p>
 
       <Markdown text={`
@@ -274,7 +277,7 @@ export default (props) => {
           While outside the scope of this Quickstart, the approach of overriding parse to resolve breaking API
           changes only works for read-only situations, i.e. when the applications needs to read the property but
           never modifies it and sends it back to the server. If you need to modify data before sending it to
-          the server you can use the <code>sync</code> method.
+          the server you can use the <code>sync()</code> method.
         </p>
       </blockquote>
 

@@ -112,7 +112,7 @@ export default (props) => {
       <p>
         When your application runs in the browser, Lore mounts it to the <code>root</code> element.
         The <code>dialog</code> element is the default target for mounting dialogs, and
-        the <code>lore.dialog.show(...)</code> method is a helper that renders a React component to that element.
+        the <code>lore.dialog.show()</code> method is a helper that renders a React component to that element.
       </p>
 
       <blockquote>

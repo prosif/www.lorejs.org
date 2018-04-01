@@ -32,9 +32,9 @@ export default (props) => {
       `}/>
 
       <p>
-        Update the code to look like this. We're going to add two links; one to display all tweets (the Feed) and one to
-        display only the tweets belonging to a specific user. In this case, we're going to call that link "My Tweets" and use
-        it to display the current user's tweets.
+        Update the code to look like this. We're going to add two links; one to display all tweets (the Feed) and
+        one to display only the tweets belonging to a specific user. In this case, we're going to call that link
+        "My Tweets" and use it to display the current user's tweets.
       </p>
 
       <CodeTabs>

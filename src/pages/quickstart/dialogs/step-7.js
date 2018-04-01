@@ -638,6 +638,10 @@ export default (props) => {
       <p>
         Next we're going to <Link to="../../behavior/overview/">learn how to implement an authentication flow</Link>.
       </p>
+      <p>
+        In the next section we'll be <Link to="../../authorization/overview/">hiding the edit and delete
+        links</Link> to reflect the application's user permissions.
+      </p>
 
     </Template>
   )

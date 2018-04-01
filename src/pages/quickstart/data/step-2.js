@@ -33,7 +33,7 @@ export default (props) => {
 
       <p>
         Next declare a <code>propType</code> for the tweet and mark it as required. Then update
-        your <code>render</code> method to include the code below.
+        your <code>render()</code> method to include the code below.
       </p>
 
       <CodeTabs>
@@ -161,7 +161,7 @@ export default (props) => {
       </h3>
       <p>
         With our <code>Tweet</code> component created, let's use it in our <code>Feed</code> component. Update
-        the <code>renderTweet</code> method to look like this:
+        the <code>renderTweet()</code> method to look like this:
       </p>
 
       <CodeTabs>
@@ -207,9 +207,9 @@ export default (props) => {
         Update Tweet Component to use Tweet Data
       </h3>
       <p>
-        The <code>Tweet</code> component is now displaying in the <code>Feed</code>, but you might notice it doesn't
-        contain our mock data. Instead it's showing some hard-coded data. Let's change that by using
-        our <code>tweet</code> to populate the Tweet. Update the <code>render</code> method of
+        The <code>Tweet</code> component is now displaying in the <code>Feed</code>, but you might notice it
+        doesn't contain our mock data. Instead it's showing some hard-coded data. Let's change that by using
+        our <code>tweet</code> data to populate the Tweet. Update the <code>render()</code> method of
         the <code>Tweet</code> component to look like this:
       </p>
 
@@ -317,7 +317,7 @@ export default (props) => {
       </p>
 
       <p>
-        Install moment with this command:
+        Install <code>moment</code> with this command:
       </p>
 
       <Markdown type="sh" text={`
@@ -326,21 +326,23 @@ export default (props) => {
 
       <blockquote>
         <p>
-          After installing <code>moment</code> you may need to stop and restart the webpack development server in order for Webpack to
-          see the new package.
+          After installing <code>moment</code> you may need to stop and restart the webpack development server in
+          order for Webpack to see the new package.
         </p>
       </blockquote>
 
       <p>
-        To use <code>moment</code> you simply need to import it into your <code>Tweet</code> component and call <code>moment(tweet.data.createdAt).fromNow()</code>
-        to convert the <code>createdAt</code> date into a moment object. Calling <code>fromNow()</code> will convert the timestamp from the format
-        <code>2016-10-04T05:10:49.382Z</code> into a simple statement like <code>3 days ago</code>.
+        To use <code>moment</code> you simply need to import it into your <code>Tweet</code> component, and then
+        call <code>moment(tweet.data.createdAt)</code> to convert the <code>createdAt</code> date into
+        a <code>moment</code> object. Appending <code>fromNow()</code> to the end of that statement (such
+        as <code>moment(tweet.data.createdAt).fromNow()</code>) will convert the timestamp from the
+        format <code>2016-10-04T05:10:49.382Z</code> into a human-readable string like <code>3 days ago</code>.
       </p>
 
       <p>
-        We could leave it at that, but the word <em>"ago"</em> in the phrase <em>"3 days ago"</em> is understood from the context. So we're
-        also going to remove it from the final timestamp by splitting the string at the <em>" ago"</em> part and only taking the first
-        piece.
+        And while we could leave it at that, the word <em>"ago"</em> in the phrase <em>"3 days ago"</em> is understood
+        from the context. So we're also going to remove it from the final timestamp by splitting the string at
+        the <em>" ago"</em> part and only taking the first piece (converting "3 days ago" to simply "3 days").
       </p>
 
       <p>

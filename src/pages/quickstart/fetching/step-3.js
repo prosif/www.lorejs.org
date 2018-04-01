@@ -67,16 +67,16 @@ export default (props) => {
       </blockquote>
 
       <p>
-        The first parameter <code>getState</code> is a function that will retrieve a piece of state from the local
-        store, or invoke the appropriate action to fetch that data if it doesn't already exist (i.e. if it hasn't
-        been fetched from the server before).
+        The first parameter, called <code>getState</code>, is a function that will retrieve a piece of state from
+        the local store, or invoke the appropriate action to fetch that data if it doesn't already exist (such as
+        when it hasn't been fetched from the server yet).
       </p>
 
       <p>
         In this example, we're requesting <code>tweet.find</code>. The <code>find</code> reducer is responsible for
         storing the results of all query and pagination requests made to the server. Since we aren't passing in any
         query parameters or pagination information, this request translates to <em>"make a call to the /tweets
-        endpoint on the API and give me whatever comes back"</em>.
+        endpoint of the API and give me whatever comes back"</em>.
       </p>
 
       <p>
