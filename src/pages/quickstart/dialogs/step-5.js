@@ -27,7 +27,7 @@ export default (props) => {
         While the dialog we created is now a little simpler, as it no longer needs to include the code to show
         and dismiss itself, we can still do a lot better. As mentioned previously, in a real application, you
         may have dozens of dialogs for creating, updating and deleting content. And these dialogs are often
-        all <strong>incredibly similar</strong>. They are an explosion of boilerplate.
+        all <strong>incredibly similar</strong>, which creates a huge amount of boilerplate.
       </p>
       <p>
         Most applications have (or at least strive for) a sense of visual consistency; there's a certain design
@@ -115,14 +115,14 @@ export default (props) => {
 
       <Markdown text={`
       onClick: function() {
-        function createTweet(data) {
-          lore.actions.tweet.create(data);
-        }
+        // function createTweet(data) {
+        //   lore.actions.tweet.create(data);
+        // }
 
         lore.dialog.show(function() {
           return lore.dialogs.tweet.create({
             blueprint: 'optimistic',
-            onSubmit: createTweet
+            // onSubmit: createTweet
           });
         });
       },
@@ -254,7 +254,39 @@ export default (props) => {
       </p>
 
       <h3>
-        src/components/EditLink.js
+        index.js
+      </h3>
+
+      <CodeTabs>
+        <CodeTab syntax="ES5" text={`
+        TODO
+        `}/>
+        <CodeTab syntax="ES6" text={`
+        TODO
+        `}/>
+        <CodeTab syntax="ESNext" text={`
+        TODO
+        `}/>
+      </CodeTabs>
+
+      <h3>
+        src/components/CreateButton.js
+      </h3>
+
+      <CodeTabs>
+        <CodeTab syntax="ES5" text={`
+        TODO
+        `}/>
+        <CodeTab syntax="ES6" text={`
+        TODO
+        `}/>
+        <CodeTab syntax="ESNext" text={`
+        TODO
+        `}/>
+      </CodeTabs>
+
+      <h3>
+        src/models/tweet.js
       </h3>
 
       <CodeTabs>
@@ -274,7 +306,7 @@ export default (props) => {
       </h2>
 
       <p>
-        Next we're going to <Link to="../step-6/">create a way to delete tweets</Link>.
+        Next we're going to <Link to="../step-6/">create a way to edit tweets</Link>.
       </p>
 
     </Template>

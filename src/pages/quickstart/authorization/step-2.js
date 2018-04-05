@@ -49,7 +49,7 @@ export default (props) => {
             const { tweet } = this.props;
             const { user } = this.context;
 
-            return tweet.data.userId === user.id;
+            return tweet.data.user === user.id;
           }
 
         });
@@ -74,7 +74,7 @@ export default (props) => {
             const { tweet } = this.props;
             const { user } = this.context;
 
-            return tweet.data.userId === user.id;
+            return tweet.data.user === user.id;
           }
         })
         `}/>
@@ -98,7 +98,7 @@ export default (props) => {
             const { tweet } = this.props;
             const { user } = this.context;
 
-            return tweet.data.userId === user.id;
+            return tweet.data.user === user.id;
           }
         })
         `}/>
@@ -188,7 +188,7 @@ export default (props) => {
             const { tweet } = this.props;
             const { user } = this.context;
 
-            return tweet.data.userId === user.id;
+            return tweet.data.user === user.id;
           }
         });
         `}/>
@@ -212,7 +212,7 @@ export default (props) => {
             const { tweet } = this.props;
             const { user } = this.context;
 
-            return tweet.data.userId === user.id;
+            return tweet.data.user === user.id;
           }
         })
         `}/>
@@ -236,7 +236,7 @@ export default (props) => {
             const { tweet } = this.props;
             const { user } = this.context;
 
-            return tweet.data.userId === user.id;
+            return tweet.data.user === user.id;
           }
         })
         `}/>

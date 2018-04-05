@@ -40,11 +40,13 @@ export default (props) => {
 
       <blockquote>
         <p>
-          When you create an application using the --es6 or --esnext flags, your language preference is recorded
-          to the <code>language</code> property in the <code>.lorerc</code> file at the root of the project. The
-          CLI examines this property before executing commands, which means this is the only time you'll need to
-          declare the JavaScript version. Any files you generate from this point forward will be created using
-          your preference automatically.
+          When you create an application, your language preference is recorded in the <code>.lorerc</code> file
+          at the root of the project, and the CLI will inspect this file before executing commands. That means this
+          is the only time you'll need to declare the JavaScript version, as any files you generate from this point
+          forward will be created using your preference automatically.
+        </p>
+        <p>
+          You can learn more about the <code>.lorerc</code> file <Link to="/anatomy/lorerc/">here</Link>.
         </p>
       </blockquote>
 
@@ -61,8 +63,7 @@ export default (props) => {
       `}/>
 
       <p>
-        Depending on your network connection, it may take a few minutes for this step to complete. For
-        faster connections, it may take about 30 seconds.
+        Depending on your network connection, it may take a few minutes for this step to complete.
       </p>
 
       <h2>

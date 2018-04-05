@@ -14,7 +14,7 @@ export default (props) => {
       </h1>
 
       <p>
-        In this step we're going to layout the application and add a Header at the top of the page.
+        In this step we're going to lay out the application and add a Header at the top of the page.
       </p>
 
       <QuickstartBranch branch="layout.3" />
@@ -37,9 +37,9 @@ export default (props) => {
       `}/>
 
       <p>
-        This will generate a component called <code>Header</code> and place it at <code>src/components/Header.js</code>. The syntax of this file
-        will match whichever version of JavaScript you specified when you created the project (ES5, ES6 or ESNext) and will look
-        like this:
+        This will generate a component called <code>Header</code> and place it
+        at <code>src/components/Header.js</code>. The syntax of this file will match whichever version of JavaScript
+        you specified when you created the project (ES5, ES6 or ESNext) and will look like this:
       </p>
 
       <CodeTabs>
@@ -108,7 +108,7 @@ export default (props) => {
 
       <blockquote>
         <p>
-          If you're interested in learning more about the <code>generate</code> command see <Link to="/cli/generate/component/">the docs for the CLI</Link>.
+          You can learn more about the <code>generate</code> command <Link to="/cli/generate/component/">here</Link>.
         </p>
       </blockquote>
 

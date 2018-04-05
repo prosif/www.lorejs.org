@@ -68,9 +68,10 @@ export default (props) => {
       </CodeTabs>
 
       <p>
-        This decorator is designed to wrap a component, and will only render that component if the <code>isAuthorized</code> function
-        returns true. The <code>isAuthorized</code> function receives a copy of the current store state as a convenience, in case you need
-        to inspect it for the current user, the user's permissions, or anything else necessary to determine authorization.
+        This decorator is designed to wrap a component, and will only render that component if
+        the <code>isAuthorized()</code> function returns true. The <code>isAuthorized()</code> function receives a
+        copy of the current store state as a convenience, in case you need to inspect it for the current user, the
+        user's permissions, or anything else necessary to determine authorization.
       </p>
 
       <p>
@@ -107,7 +108,7 @@ export default (props) => {
             const { tweet } = this.props;
             const { user } = this.context;
 
-            return tweet.data.userId === user.id;
+            return tweet.data.user === user.id;
           }
 
         });
@@ -132,7 +133,7 @@ export default (props) => {
             const { tweet } = this.props;
             const { user } = this.context;
 
-            return tweet.data.userId === user.id;
+            return tweet.data.user === user.id;
           }
         })
         `}/>
@@ -156,7 +157,7 @@ export default (props) => {
             const { tweet } = this.props;
             const { user } = this.context;
 
-            return tweet.data.userId === user.id;
+            return tweet.data.user === user.id;
           }
         })
         `}/>
@@ -165,7 +166,7 @@ export default (props) => {
       <p>
         In the code above we're declaring that the decorator expects to receive a tweet. And since we've stored the current
         user in the context, we're going to retrieve it from there instead of from the store's state directly. In the
-        <code>isAuthorized</code> function we are then going to check whether the current user was the author of the tweet.
+        <code>isAuthorized()</code> function we are then going to check whether the current user was the author of the tweet.
       </p>
 
 
@@ -253,7 +254,7 @@ export default (props) => {
             const { tweet } = this.props;
             const { user } = this.context;
 
-            return tweet.data.userId === user.id;
+            return tweet.data.user === user.id;
           }
         });
         `}/>
@@ -277,7 +278,7 @@ export default (props) => {
             const { tweet } = this.props;
             const { user } = this.context;
 
-            return tweet.data.userId === user.id;
+            return tweet.data.user === user.id;
           }
         })
         `}/>
@@ -301,7 +302,7 @@ export default (props) => {
             const { tweet } = this.props;
             const { user } = this.context;
 
-            return tweet.data.userId === user.id;
+            return tweet.data.user === user.id;
           }
         })
         `}/>

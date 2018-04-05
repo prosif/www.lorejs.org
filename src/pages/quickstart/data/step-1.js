@@ -19,9 +19,9 @@ export default (props) => {
 
       <blockquote>
         <p>
-          The practice of using fake data to populate components while you're building out your application can be quite
-          helpful for supporting rapid development. Sometimes it will also be necessary, as the API to support your
-          application may not exist when you start building it.
+          The practice of using fake data to populate components while you're building out your application can
+          be quite helpful for supporting rapid development. Sometimes it will also be necessary, as the API to
+          support your application may not exist when you start building it.
         </p>
       </blockquote>
 
@@ -31,7 +31,8 @@ export default (props) => {
         Declare Tweets as a Prop
       </h3>
       <p>
-        First, open your <code>Feed</code> component and declare that it is going to require <code>tweets</code> as a <code>prop</code>:
+        First, open your <code>Feed</code> component and declare that it is going to require <code>tweets</code> as
+        a <code>prop</code>:
       </p>
 
       <CodeTabs>
@@ -69,16 +70,16 @@ export default (props) => {
         Create Mock Tweets
       </h3>
       <p>
-        Next insert some mock data using <code>getDefaultProps()</code>. This is a great method to use for mock data,
-        as it will only populate the <code>tweets</code> prop if no data is passed in. So if you use this method for
-        your mock data, it will automatically be overwritten once real data starts being passed in, which is pretty
-        convenient.
-      </p>
-
-      <p>
-        Add a <code>getDefaultProps()</code> method to your <code>Feed</code> component and use it to
+        Next, add a <code>getDefaultProps()</code> method to your <code>Feed</code> component and use it to
         populate <code>tweets</code> with mock data:
       </p>
+      <blockquote>
+        <p>
+          This is a great method to use for mock data, as it will only populate the <code>tweets</code> prop if
+          no data is passed in. So if you use this method for your mock data, it will automatically be overwritten
+          once real data starts being passed in, which is pretty convenient.
+        </p>
+      </blockquote>
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
@@ -201,95 +202,47 @@ export default (props) => {
         Render the Tweets
       </h3>
       <p>
-        Now that we have some mock data created, let's pull it into our render method and display it on screen.
-        To do that, we're going to create a method called <code>renderTweet()</code> that will contain the code to
-        render each tweet. Then we'll iterate through our mock tweets and map them into HTML to display on screen.
+        Now that we have some mock data created, let's display it on screen. First, add
+        a <code>renderTweet()</code> method to your <code>Feed</code> that looks like this:
       </p>
+
+      <Markdown type="jsx" text={`
+      // src/components/Feed.js
+      ...
+        renderTweet: function(tweet) {
+          return (
+            <li key={tweet.id}>
+              {tweet.data.text}
+            </li>
+          );
+        },
+      ...
+      `}/>
 
       <p>
-        Add the following code to your <code>Feed</code> component.
+        Then update the <code>render()</code> method so that it iterates through each of the <code>tweets</code> and
+        renders them using the <code>renderTweet()</code> method:
       </p>
 
-      <CodeTabs>
-        <CodeTab syntax="ES5" text={`
-        ...
-          renderTweet: function(tweet) {
-            return (
-              <li key={tweet.id}>
-                {tweet.data.text}
-              </li>
-            );
-          },
+      <Markdown type="jsx" text={`
+      // src/components/Feed.js
+      ...
+        render() {
+          const { tweets } = this.props;
 
-          render: function() {
-            const { tweets } = this.props;
-
-            return (
-              <div className="feed">
-                <h2 className="title">
-                  Feed
-                </h2>
-                <ul className="media-list tweets">
-                  {tweets.data.map(this.renderTweet)}
-                </ul>
-              </div>
-            );
-          }
-        ...
-        `}/>
-        <CodeTab syntax="ES6" text={`
-        ...
-          renderTweet(tweet) {
-            return (
-              <li key={tweet.id}>
-                {tweet.data.text}
-              </li>
-            );
-          }
-
-          render() {
-            const { tweets } = this.props;
-
-            return (
-              <div className="feed">
-                <h2 className="title">
-                  Feed
-                </h2>
-                <ul className="media-list tweets">
-                  {tweets.data.map(this.renderTweet)}
-                </ul>
-              </div>
-            );
-          }
-        ...
-        `}/>
-        <CodeTab syntax="ESNext" text={`
-        ...
-          renderTweet(tweet) {
-            return (
-              <li key={tweet.id}>
-                {tweet.data.text}
-              </li>
-            );
-          }
-
-          render() {
-            const { tweets } = this.props;
-
-            return (
-              <div className="feed">
-                <h2 className="title">
-                  Feed
-                </h2>
-                <ul className="media-list tweets">
-                  {tweets.data.map(this.renderTweet)}
-                </ul>
-              </div>
-            );
-          }
-        ...
-        `}/>
-      </CodeTabs>
+          return (
+            <div className="feed">
+              <h2 className="title">
+                Feed
+              </h2>
+              <ul className="media-list tweets">
+                {tweets.data.map(this.renderTweet)}
+              </ul>
+            </div>
+          );
+        }
+      ...
+      `}/>
 
       <p>
         With this code in place, you should now see the text of your mock tweet displayed to the screen.
@@ -302,10 +255,9 @@ export default (props) => {
           the <code>id</code> of our tweet, which is a perfect solution for many situations.
         </p>
         <p>
-          The only time you won't be able to use the <code>id</code> as the key is when you're dealing with
-          optimistic updates, a use case that we'll address later in this tutorial. Optimistic updates involve
-          displaying data to the user before it actually exists on the server, which means it won't have
-          an <code>id</code> assigned to it yet.
+          The only time you won't be able to use the <code>id</code> as the <code>key</code> is when you're
+          rendering data optimistically, before it's been assigned an <code>id</code> by the server. We'll cover
+          that scenario later in the Quickstart.
         </p>
       </blockquote>
 

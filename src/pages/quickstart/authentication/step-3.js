@@ -102,7 +102,7 @@ export default (props) => {
 
       <p>
         When this component is mounted, we extract the <code>auth0</code> config object
-        from <code>lore.config.auth0</code> and pass it to the <code>Auth0.WebAuth</code> function, which will
+        from <code>lore.config.auth0</code> and pass it to the <code>Auth0.WebAuth()</code> function, which will
         automatically redirect the user to Auth0 when we call <code>auth0.authorize()</code>.
       </p>
 

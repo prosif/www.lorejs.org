@@ -29,8 +29,9 @@ export default (props) => {
             <NavLinkPlaceholder title="Axios (todo)" />
 
             <li className="doc-section">Data Structure</li>
-            <NavLink title="Models" url="/features/data-structure/" />
-            <NavLink title="Collections" url="/features/data-structure/" />
+            <NavLink title="Overview" url="/features/data-structure/" />
+            <NavLink title="Models" url="/features/data-structure/models/" />
+            <NavLink title="Collections" url="/features/data-structure/collections/" />
 
             <li className="doc-section">UI Patterns</li>
             <NavLink title="Filtering" url="/features/filtering/" />

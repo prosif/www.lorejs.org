@@ -100,6 +100,33 @@ export default (props) => {
         }
       }
       `}/>
+
+      <h3>
+        Changing the Port for the Webpack Dev Server
+      </h3>
+      <p>
+        By default, running <code>npm start</code> will start the webpack dev server on port 3000. If you want to
+        change the port the server runs on, you can do that by providing
+        a <a href="https://docs.npmjs.com/cli/run-script">custom argument to the npm start script</a>.
+      </p>
+      <p>
+        For example, if you want to run the application on port 3001, use this command to start the project:
+      </p>
+      <Markdown type="json" text={`
+      npm start -- --port=3001
+      `} />
+
+      <h3>
+        Changing the Port for JSON Server
+      </h3>
+      <p>
+        By default, running <code>npm run server</code> will start json-server on port 1337. If you want to
+        change the port the server runs on, you can do that by either editing the <code>sever</code> script in
+        this file directly, or by using an alternate syntax to start the server.
+      </p>
+      <Markdown type="sh" text={`
+      ./node_modules/json-server/bin/index.js --watch db.json --port=1337
+      `} />
     </Template>
   );
 };

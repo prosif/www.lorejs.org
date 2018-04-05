@@ -17,7 +17,7 @@ export default (props) => {
         In this step we're going to add an "edit" link to tweets that will launch a dialog to edit the text.
       </p>
 
-      <QuickstartBranch branch="dialogs.5" />
+      <QuickstartBranch branch="dialogs.6" />
 
       <h3>
         Create Edit Link
@@ -272,9 +272,9 @@ export default (props) => {
       </CodeTabs>
 
       <p>
-        With this change in place, refresh the browser and you should see an <em>"edit"</em> link on each of the tweets. Click this
-        link to edit the text. Once you submit it, if you look at the network requests, you'll see a PUT request is sent to
-        the API to update the tweet.
+        With this change in place, refresh the browser and you should see an <em>"edit"</em> link on each of the
+        tweets. Click this link to edit the text. Once you submit it, if you look at the network requests, you'll
+        see a PUT request is sent to the API to update the tweet.
       </p>
 
       <blockquote>
@@ -283,6 +283,55 @@ export default (props) => {
           statement to detect when data was being changed and modify our UI to communicate that to the user.
         </p>
       </blockquote>
+
+      <h3>
+        Describe Update Fields
+      </h3>
+      <p>
+        If you click the "edit" link, you'll notice the dialog that opens says "No fields have been provided".
+        Similar to the create dialog, we need to describe the fields that should be displayed. To fix this, open
+        up the <code>tweet</code> model once again, and refactor the code to look like this:
+      </p>
+
+      <Markdown text={`
+      const fields = {
+        data: {
+          text: ''
+        },
+        validators: {
+          text: [function(value) {
+            if (!value) {
+              return 'This field is required';
+            }
+          }]
+        },
+        fields: {
+          text: {
+            type: 'text',
+            props: {
+              label: 'Message',
+              placeholder: "What's happening?"
+            }
+          }
+        }
+      };
+
+      export default {
+        dialogs: {
+          create: fields,
+          update: fields
+        },
+
+        properties: {
+          // ...
+        }
+      }
+      `}/>
+
+      <p>
+        Here we're extracting the "create" fields into a variable called <code>fields</code> that can be reuse, and
+        then using it to describe the "update" fields as well.
+      </p>
 
       <h3>
         Visual Check-in
@@ -308,125 +357,13 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        import React from 'react';
-        import createReactClass from 'create-react-class';
-        import PropTypes from 'prop-types';
-
-        export default createReactClass({
-          displayName: 'EditLink',
-
-          propTypes: {
-            tweet: PropTypes.object.isRequired
-          },
-
-          onEdit: function() {
-            const { tweet } = this.props;
-
-            function updateTweet(params) {
-              lore.actions.tweet.update(tweet, params);
-            }
-
-            lore.dialog.show(function() {
-              return lore.dialogs.tweet.update(tweet, {
-                blueprint: 'optimistic',
-                onSubmit: updateTweet
-              });
-            });
-          },
-
-          render: function() {
-            return (
-              <a className="link" onClick={this.onEdit}>
-                edit
-              </a>
-            );
-          }
-
-        });
+        TODO
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React from 'react';
-        import PropTypes from 'prop-types';
-
-        class EditLink extends React.Component {
-
-          constructor(props) {
-            super(props);
-            this.onEdit = this.onEdit.bind(this);
-          }
-
-          onEdit() {
-            const { tweet } = this.props;
-
-            function updateTweet(params) {
-              lore.actions.tweet.update(tweet, params);
-            }
-
-            lore.dialog.show(function() {
-              return lore.dialogs.tweet.update(tweet, {
-                blueprint: 'optimistic',
-                onSubmit: updateTweet
-              });
-            });
-          }
-
-          render() {
-            return (
-              <a className="link" onClick={this.onEdit}>
-                edit
-              </a>
-            );
-          }
-
-        }
-
-        EditLink.propTypes = {
-          tweet: PropTypes.object.isRequired
-        };
-
-        export default EditLink;
+        TODO
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React from 'react';
-        import PropTypes from 'prop-types';
-
-        class EditLink extends React.Component {
-
-          constructor(props) {
-            super(props);
-            this.onEdit = this.onEdit.bind(this);
-          }
-
-          static propTypes = {
-            tweet: PropTypes.object.isRequired
-          };
-
-          onEdit() {
-            const { tweet } = this.props;
-
-            function updateTweet(params) {
-              lore.actions.tweet.update(tweet, params);
-            }
-
-            lore.dialog.show(function() {
-              return lore.dialogs.tweet.update(tweet, {
-                blueprint: 'optimistic',
-                onSubmit: updateTweet
-              });
-            });
-          }
-
-          render() {
-            return (
-              <a className="link" onClick={this.onEdit}>
-                edit
-              </a>
-            );
-          }
-
-        }
-
-        export default EditLink;
+        TODO
         `}/>
       </CodeTabs>
 
@@ -436,192 +373,29 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        import React from 'react';
-        import createReactClass from 'create-react-class';
-        import PropTypes from 'prop-types';
-        import { connect } from 'lore-hook-connect';
-        import moment from 'moment';
-        import EditLink from './EditLink';
-
-        export default connect(function(getState, props) {
-          const { tweet } = props;
-
-          return {
-            user: getState('user.byId', {
-              id: tweet.data.userId
-            })
-          };
-        })(
-        createReactClass({
-          displayName: 'Tweet',
-
-          propTypes: {
-            tweet: PropTypes.object.isRequired,
-            user: PropTypes.object.isRequired
-          },
-
-          render: function() {
-            const {
-              tweet,
-              user
-            } = this.props;
-            const timestamp = moment(tweet.data.createdAt).fromNow().split(' ago')[0];
-
-            return (
-              <li className="list-group-item tweet">
-                <div className="image-container">
-                  <img
-                    className="img-circle avatar"
-                    src={user.data.avatar} />
-                </div>
-                <div className="content-container">
-                  <h4 className="list-group-item-heading title">
-                    {user.data.nickname}
-                  </h4>
-                  <h4 className="list-group-item-heading timestamp">
-                    {'- ' + timestamp}
-                  </h4>
-                  <p className="list-group-item-text text">
-                    {tweet.data.text}
-                  </p>
-                  <div>
-                    <EditLink tweet={tweet} />
-                  </div>
-                </div>
-              </li>
-            );
-          }
-
-        })
-        );
+        TODO
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React from 'react';
-        import PropTypes from 'prop-types';
-        import { connect } from 'lore-hook-connect';
-        import moment from 'moment';
-        import EditLink from './EditLink';
-
-        class Tweet extends React.Component {
-
-          render() {
-            const {
-              tweet,
-              user
-            } = this.props;
-            const timestamp = moment(tweet.data.createdAt).fromNow().split(' ago')[0];
-
-            return (
-              <li className="list-group-item tweet">
-                <div className="image-container">
-                  <img
-                    className="img-circle avatar"
-                    src={user.data.avatar} />
-                </div>
-                <div className="content-container">
-                  <h4 className="list-group-item-heading title">
-                    {user.data.nickname}
-                  </h4>
-                  <h4 className="list-group-item-heading timestamp">
-                    {'- ' + timestamp}
-                  </h4>
-                  <p className="list-group-item-text text">
-                    {tweet.data.text}
-                  </p>
-                  <div>
-                    <EditLink tweet={tweet} />
-                  </div>
-                </div>
-              </li>
-            );
-          }
-
-        }
-
-        Tweet.propTypes = {
-          tweet: PropTypes.object.isRequired,
-          user: PropTypes.object.isRequired
-        };
-
-        Tweet.defaultProps = {
-          user: {
-            id: 1,
-            data: {
-              id: 1,
-              nickname: "lucca",
-              avatar: "https://cloud.githubusercontent.com/assets/2637399/19027072/a36f0c7a-88e1-11e6-931e-7f67fe01367b.png"
-            }
-          }
-        };
-
-        export default connect(function(getState, props) {
-          const { tweet } = props;
-
-          return {
-            user: getState('user.byId', {
-              id: tweet.data.userId
-            })
-          };
-        })(Tweet);
+        TODO
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React from 'react';
-        import PropTypes from 'prop-types';
-        import { connect } from 'lore-hook-connect';
-        import moment from 'moment';
-        import EditLink from './EditLink';
+        TODO
+        `}/>
+      </CodeTabs>
 
-        @connect(function(getState, props) {
-          const tweet = props.tweet;
+      <h3>
+        src/models/tweet.js
+      </h3>
 
-          return {
-            user: getState('user.byId', {
-              id: tweet.data.userId
-            })
-          };
-        })
-        class Tweet extends React.Component {
-
-          static propTypes = {
-            tweet: PropTypes.object.isRequired,
-            user: PropTypes.object.isRequired
-          };
-
-          render() {
-            const {
-              tweet,
-              user
-            } = this.props;
-            const timestamp = moment(tweet.data.createdAt).fromNow().split(' ago')[0];
-
-            return (
-              <li className="list-group-item tweet">
-                <div className="image-container">
-                  <img
-                    className="img-circle avatar"
-                    src={user.data.avatar} />
-                </div>
-                <div className="content-container">
-                  <h4 className="list-group-item-heading title">
-                    {user.data.nickname}
-                  </h4>
-                  <h4 className="list-group-item-heading timestamp">
-                    {'- ' + timestamp}
-                  </h4>
-                  <p className="list-group-item-text text">
-                    {tweet.data.text}
-                  </p>
-                  <div>
-                    <EditLink tweet={tweet} />
-                  </div>
-                </div>
-              </li>
-            );
-          }
-
-        }
-
-        export default Tweet;
+      <CodeTabs>
+        <CodeTab syntax="ES5" text={`
+        TODO
+        `}/>
+        <CodeTab syntax="ES6" text={`
+        TODO
+        `}/>
+        <CodeTab syntax="ESNext" text={`
+        TODO
         `}/>
       </CodeTabs>
 

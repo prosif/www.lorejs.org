@@ -25,9 +25,8 @@ export default (props) => {
         Lore's Data Structure
       </h3>
       <p>
-        Lore has a particular structure it uses to represent data in your application. To illustrate, take a
-        look at this example <code>Tweet</code> component. It expects to receive a prop
-        called <code>tweet</code> and then renders the <code>tweet</code> data:
+        Lore has a particular structure it uses to represent data in your application. To illustrate that, take
+        a look at this example <code>Tweet</code> component.
       </p>
 
       <CodeTabs>
@@ -94,8 +93,11 @@ export default (props) => {
       </CodeTabs>
 
       <p>
-        But before we can render the tweet, we first need to know what the data structure looks like. In Lore,
-        all resources have a data structure that looks like this:
+        This component receives a prop called <code>tweet</code> and then renders that <code>tweet</code>. But before
+        we can do that, we first need to know what the data structure of the <code>tweet</code> looks like.
+      </p>
+      <p>
+        In Lore, all resources have a data structure that looks like this:
       </p>
 
       <Markdown text={`
@@ -120,17 +122,21 @@ export default (props) => {
         structure that provides some metadata about that resource.
       </p>
 
-      <p>
-        This might seem a little verbose at first glance, but each property solves a specific problem, which you
-        can <Link to="/features/data-structure/">read more about about in the docs</Link> if you'd
-        like. But what you need to know for the Quickstart is that the data structure is designed to solve
-        application concerns related to optimistic updates, visual communication, server errors, and detecting
-        when resources have been created - all important elements for providing a good user experience.
-      </p>
+      <blockquote>
+        <p>
+          At first glance, this might seem a little verbose, but each property exists to solve a specific problem, which
+          you can <Link to="/features/data-structure/">read more about here</Link> if you'd like.
+        </p>
+        <p>
+          For this Quickstart, all you need to know is that the data structure is designed to solve application
+          concerns related to optimistic updates, visual communication, server errors, and detecting when resources
+          have been created - all important elements for providing a good user experience.
+        </p>
+      </blockquote>
 
       <p>
-        For endpoints that return a list of resources, such as <code>/tweets</code>, Lore uses a similar
-        data structure:
+        For endpoints that return a list of resources, such as <code>/tweets</code>, Lore uses a similar data
+        structure:
       </p>
 
       <Markdown text={`
@@ -146,10 +152,10 @@ export default (props) => {
       `}/>
 
       <p>
-        Here <code>data</code> is an array that contains the individual resources in the server response (each
-        wrapped in the structure above) and then provides metadata about the list such as what query was made
-        to the API and what the state of that query is (typically whether the data is still being fetched or the
-        query has been resolved).
+        In this structure, <code>data</code> is an array that contains a list of individual resources, each using
+        the data structure we described previously. Additionally, this structure also provides metadata about the
+        list such as what query was made to the API, and what the state of that query is (such as whether the data
+        is still being fetched or the query has been resolved).
       </p>
 
 

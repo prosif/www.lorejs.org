@@ -12,21 +12,26 @@ export default (props) => {
       <p>
         Lore includes <a href="https://github.com/typicode/json-server">json-server</a> in all new projects, which
         provides an easy way to mock out a REST API. This file is what <code>json-server</code> uses to represent
-        the database that backs.
+        the database that backs it.
       </p>
+      <blockquote>
+        <p>
+          Sometimes, you find yourself in a position where you get to develop a shiny new front-end against an
+          existing REST API, and in that situation, this file isn't very useful. But when you're creating a new
+          project from scratch, it can be a lot more useful.
+        </p>
+      </blockquote>
 
       <h3>
         Why include json-server?
       </h3>
       <p>
-        Sometimes, you find yourself in a position where you get to develop a shiny new front-end against an
-        existing REST API, and in that situation, this file isn't very useful. But for all the other times when
-        that isn't true, it certainly can be.
+        JSON Server is included by default due to the project's ease of use, excellent feature support (including
+        pagination, search, and relationship expansion) and overall ability to help bootstrap new projects.
       </p>
       <p>
         For example:
       </p>
-
       <ul>
         <li>
           Developing an API is a non-trivial endeavor, and sometimes, you just want to mess around on the

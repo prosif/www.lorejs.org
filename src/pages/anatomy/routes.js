@@ -14,17 +14,25 @@ export default (props) => {
         based on the URL in the web browser.
       </p>
       <p>
-        These routes are passed directly to <code>react-router</code>, which is the routing library used by Lore.
-      </p>
-      <p>
-        To learn more about routes, see the <a href="https://github.com/ReactTraining/react-router/blob/v3.2.1/docs/API.md">react-router documentation</a>.
+        Lore uses <a href="https://github.com/ReactTraining/react-router">react-router</a> as the routing library,
+        and makes no modifications to these routes or to the behavior of <code>react-router</code>. So if you have
+        any questions about the syntax, or specific routing-related needs, all of React
+        Router's <a href="https://github.com/ReactTraining/react-router/tree/v3/docs">
+        documentation</a> and <a href="https://github.com/ReactTraining/react-router/tree/v3/examples">
+        examples</a> will be directly applicable to Lore.
       </p>
       <blockquote>
-        Note that the link above goes to the documentation for v3 of <code>react-router</code>, which is the version
-        included with new projects by default. The documentation for v4 can be
-        found <a href="https://reacttraining.com/react-router/web/guides/philosophy">on the React Router
-        website</a>, though it won't apply to your project by default install v4 and override the configuration
-        for <code>lore-hook-router</code> in <code>config/router.js</code>.
+        <p>
+          It's important to mention that <strong>new Lore projects include react-router v3</strong>,
+          and <strong>NOT v4</strong>. The links above go to the v3 documentation. By modifying some of
+          configuration files in your project, it's possible to replace v3 with v4 (or use a different routing
+          library altogether), but there's no formal guide explaining how to do it yet. Once there is, a link will
+          be provided here.
+        </p>
+        <p>
+          In the future, Lore will <em>probably</em> switch to v4 as the default, but it needs to be explored
+          more.
+        </p>
       </blockquote>
 
       <h3>

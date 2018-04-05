@@ -55,6 +55,11 @@ export default (props) => {
         This step invokes <a href="https://webpack.github.io/">Webpack</a> to build the application and starts a
         development server so you can view it in the browser.
       </p>
+      <blockquote>
+        <p>
+          You can learn more about Lore's webpack config <Link to="/anatomy/webpack-config/">here</Link>.
+        </p>
+      </blockquote>
 
       <h3>
         View the Application
@@ -81,10 +86,17 @@ export default (props) => {
       npm start -- --port=3001
       `} />
 
-      <p>
-        However, at least for this tutorial, this is <strong>not recommended</strong>, as the project will need to
-        be running on port 3000 in order to integrate with the authentication server we'll be using later.
-      </p>
+      <blockquote>
+        <p>
+          If you want to change the port the webpack dev server runs on, you can learn how to do
+          that <Link to="/anatomy/package/">here</Link>.
+        </p>
+        <p>
+          However, if you plan on following along with this Quickstart, it is strongly recommended that
+          you <strong>do not change the port</strong>. We'll be integrating with a real authentication server,
+          and the application will need to be running on port 3000 to do so.
+        </p>
+      </blockquote>
 
       <h2>
         Next Steps

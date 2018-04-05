@@ -32,7 +32,7 @@ export default (props) => {
         some additional hooks during this section in order to simplify the process of generating and mounting dialogs.
       </p>
       <p>
-        The first hook we're going to be installing is called <code>lore-hook-dialog</code>, and provides a utility
+        The first hook we're going to install is called <code>lore-hook-dialog</code>, and provides a utility
         for mounting dialogs. Install it by running this command:
       </p>
       <Markdown type="sh" text={`
@@ -43,7 +43,7 @@ export default (props) => {
         Next open up <code>index.js</code> and locate the call for <code>lore.summon(...)</code>. Here you can see
         a list of all the hooks the framework includes by default. You've already seen some of these in action;
         the <code>actions</code> hook converts your models into actions, the <code>reducers</code> hook creates
-        reducers for each of your models, and the <code>connect</code> hook adds the <code>connect</code> decorator
+        reducers for each of your models, and the <code>connect</code> hook provides the <code>connect</code> decorator
         that invokes actions to fetch data if it doesn't exist in the store.
       </p>
 
@@ -92,7 +92,7 @@ export default (props) => {
       </h3>
       <p>
         The hook we just installed adds a utility for mounting dialogs found through the
-        method <code>lore.dialog.show(...)</code>. To explain what this method does, open
+        method <code>lore.dialog.show()</code>. To explain what this method does, open
         up <code>index.html</code> and find the element in the body with the id of <code>dialog</code>:
       </p>
 

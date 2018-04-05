@@ -14,11 +14,11 @@ export default (props) => {
       </h1>
 
       <p>
-        In this step we're going to intro a version of <code>lore-hook-dialog</code> that is tailored for mounting,
-        showing, and dismissing Bootstrap dialogs.
+        In this step we're going to introduce a version of <code>lore-hook-dialog</code> that is tailored for
+        mounting, showing, and dismissing Bootstrap dialogs.
       </p>
 
-      <QuickstartBranch branch="dialogs.3" />
+      <QuickstartBranch branch="dialogs.4" />
 
       <h3>
         Add Bootstrap-specific Hook for Dialog Mounting
@@ -136,10 +136,11 @@ export default (props) => {
 
         onSubmit: function() {
           const { data } = this.state;
-          lore.actions.tweet.create(_.defaults(data, {
-            userId: 1,
-            createdAt: new Date().toISOString()
-          }));
+          // lore.actions.tweet.create(_.defaults(data, {
+          //   userId: 1,
+          //   createdAt: new Date().toISOString()
+          // }));
+          lore.actions.tweet.create(data);
           this.dismiss();
         },
 

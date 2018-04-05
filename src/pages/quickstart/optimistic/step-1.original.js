@@ -21,7 +21,7 @@ export default (props) => {
       <QuickstartBranch branch="optimistic.1" />
 
       <h2>
-        Error when paginating after creating a tweet
+        Problem: Error when paginating after creating a tweet
       </h2>
       <p>
         Ever since we introduced pagination, new tweets stopped showing up in the Feed when you create them.
@@ -88,27 +88,64 @@ export default (props) => {
         is displayed on which page.
       </p>
 
-      <h3>
-        Add Timestamp to Feed
-      </h3>
+      <h2>
+        Create Initializer to Generate Timestamp
+      </h2>
       <p>
-        Open your <code>Feed</code> component and add a <code>getInitialState()</code> method that will generate
-        a timestamp of when that component was mounted.
+        To do that, we're going to create something called an <code>initializer</code>. These are functions that
+        Lore will invoke <em>once</em>, right before the hooks are loaded, and can be a useful place to register
+        3rd party code like a chat messenger (e.g. <a href="https://www.intercom.com">Intercom</a>), logging,
+        analytics, etc.
       </p>
 
-      <Markdown type="jsx" text={`
-      ...
-      getInitialState() {
-        return {
-          timestamp: new Date().toISOString()
+      <p>
+        In this case, we're going to create an initializer that records the timestamp for when the application
+        is built, and use that to "freeze" our pagination data.
+      </p>
+
+      <p>
+        Create a new file in <code>initializers</code> called <code>timestamp.js</code> and paste the following
+        code into that file:
+      </p>
+
+      <CodeTabs>
+        <CodeTab syntax="ES5" text={`
+        import moment from 'moment';
+
+        export default function() {
+          lore.timestamp = moment().format();
         };
-      },
-      ...
+        `}/>
+        <CodeTab syntax="ES6" text={`
+        import moment from 'moment';
+
+        export default function() {
+          lore.timestamp = moment().format();
+        };
+        `}/>
+        <CodeTab syntax="ESNext" text={`
+        import moment from 'moment';
+
+        export default function() {
+          lore.timestamp = moment().format();
+        };
+        `}/>
+      </CodeTabs>
+
+      <p>
+        Now when the application loads, it will record the timestamp and attach it to the <code>lore</code> object.
+        If you refresh the page, and open the developer tools, you can see this by
+        entering <code>lore.timestamp</code> into the console. You should see it print the timestamp to the
+        console like this:
+      </p>
+
+      <Markdown text={`
+      "2017-05-14T15:28:05-07:00"
       `}/>
 
-      <h3>
+      <h2>
         Freeze the Pagination Data
-      </h3>
+      </h2>
       <p>
         Now that we have the timestamp, we need to update our network requests to say "only give me tweets
         created BEFORE this timestamp". To do that, the Sails API accepts a `where` object as a query parameter,
@@ -119,7 +156,7 @@ export default (props) => {
       <Markdown text={`
       where: {
         createdAt: {
-          '<=': timestamp
+          '<=': lore.timestamp
         }
       }
       `}/>
@@ -133,44 +170,56 @@ export default (props) => {
       `}/>
 
       <p>
-        To accomplish this, open up your <code>Feed</code> component and modify the <code>render()</code> function
+        To accomplish this, open up your <code>Feed</code> component and modify the <code>connect</code> call
         to look like this:
       </p>
 
-      <Markdown type="jsx" text={`
-      render: function() {
-        const { timestamp } = this.state;
-
-        return (
-          <div className="feed">
-            ...
-            <InfiniteScrollingList
-              select={(getState) => {
-                return getState('tweet.find', {
-                  where: {
-                    where: {
-                      createdAt: {
-                        '<=': timestamp
-                      }
-                    }
-                  },
-                  pagination: {
-                    sort: 'createdAt DESC',
-                    page: 1
-                  }
-                });
-              }}
-              ...
-            />
-          </div>
-        );
-      }
+      <Markdown text={`
+      export default connect(function(getState, props) {
+        return {
+          tweets: getState('tweet.find', {
+            where: {
+              where: {
+                createdAt: {
+                  '<=': lore.timestamp
+                }
+              }
+            },
+            pagination: {
+              sort: 'createdAt DESC',
+              page: props.location.query.page || '1',
+              populate: 'user'
+            }
+          })
+        }
+      })
       `}/>
+
       <p>
-        Here we're getting the <code>timestamp</code> from <code>this.state</code>, and add a <code>where</code> property
-        to the <code>getState()</code> call of the <code>select()</code> method, that reflects the object we need to
-        send the API server.
+        Next, do the same for the <code>UserTweets</code> component:
       </p>
+
+      <Markdown text={`
+      export default connect(function(getState, props) {
+        return {
+          tweets: getState('tweet.find', {
+            where: {
+              where: {
+                user: props.params.userId,
+                createdAt: {
+                  '<=': lore.timestamp
+                }
+              }
+            },
+            pagination: {
+              sort: 'createdAt DESC',
+              page: '1',
+              populate: 'user'
+            }
+          })
+        }
+      })
+      `}/>
 
       <h3>
         Visual Check-in
@@ -193,7 +242,7 @@ export default (props) => {
       </p>
 
       <h3>
-        src/components/Feed.js
+        initializers/timestamp.js
       </h3>
 
       <CodeTabs>

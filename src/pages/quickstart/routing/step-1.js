@@ -36,7 +36,7 @@ export default (props) => {
 
       <p>
         Next, import the <code>Link</code> tag from <code>react-router</code> and use it to convert
-        the <code>div</code> tag into a clickable link. Set the <code>to</code> property to the root
+        the <code>div</code> tag into a clickable link. Then set the <code>to</code> property to the root
         URL (<code>/</code>).
       </p>
 

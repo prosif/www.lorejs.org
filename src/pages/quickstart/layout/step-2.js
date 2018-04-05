@@ -40,13 +40,12 @@ export default (props) => {
 
       <blockquote>
         <p>
-          In a real project, you can simply delete the folders of the styles you don't want to use, or use inline styles or
-          your favorite JSS library (JavaScript Style Sheets). Lore has no opinions about how you style your application, it
-          simply includes Webpack loaders for LESS and SASS by default.
+          In a real project, you can simply delete the folders of the styles you don't want to use, or use inline
+          styles or your favorite JSS library (JavaScript Style Sheets). Lore has no opinions about how you style
+          your application, it simply includes Webpack loaders for LESS and SASS by default.
         </p>
         <p>
-          That being said, one advantage of using CSS, LESS, or SASS for your project is that Webpack can hot-reload changes
-          without the need to refresh your application, which adds a convenience to that aspect of development.
+          You can learn more about the <code>/assets</code> folder <Link to="/anatomy/assets/">here</Link>.
         </p>
       </blockquote>
 
@@ -102,6 +101,10 @@ export default (props) => {
 
       .feed nav {
         text-align: center;
+      }
+
+      .feed .transition {
+        opacity: 0.5;
       }
 
       /*
@@ -300,14 +303,18 @@ export default (props) => {
       `}/>
 
       <p>
-        Once you replace the styles, the application will rebuild and the browser will automatically update to reflect the changes.
+        Once you replace the styles, the application will rebuild and the browser will automatically update to
+        reflect the styling changes.
       </p>
 
       <blockquote>
         <p>
-          You may have noticed that this file is not included in <code>index.html</code>, but still controls the styling of the application.
-          This is because it's required by the <code>Master</code> component that lives at <code>src/components/Master.js</code> and serves as the
-          root of the application. You will interact with this component more later on.
+          You may have noticed that this file is not explicitly included in <code>index.html</code>, but still
+          controls the styling of the application. This is because it's imported by the <code>Master</code> component
+          located at <code>src/components/Master.js</code>, which is included as the root component of the application.
+        </p>
+        <p>
+          You will interact with this component more later on.
         </p>
       </blockquote>
 
@@ -377,6 +384,10 @@ export default (props) => {
 
       .feed nav {
         text-align: center;
+      }
+
+      .feed .transition {
+        opacity: 0.5;
       }
 
       /*

@@ -32,8 +32,7 @@ export default (props) => {
       `}/>
 
       <p>
-        Next declare a <code>propType</code> for the tweet and mark it as required. Then update
-        your <code>render()</code> method to include the code below.
+        Then update the code for that component to look like this:
       </p>
 
       <CodeTabs>
@@ -156,46 +155,29 @@ export default (props) => {
         `}/>
       </CodeTabs>
 
+      <p>
+        Here we've added a <code>propType</code> declaring this component expects to receive a <code>tweet</code>,
+        and then added code to the <code>render()</code> to render it.
+      </p>
+
       <h3>
         Use Tweet in Feed
       </h3>
       <p>
-        With our <code>Tweet</code> component created, let's use it in our <code>Feed</code> component. Update
-        the <code>renderTweet()</code> method to look like this:
+        With our <code>Tweet</code> component created, let’s use it in our Feed. Open the <code>Feed</code> component
+        and update the <code>renderTweet()</code> method to look like this:
       </p>
 
-      <CodeTabs>
-        <CodeTab syntax="ES5" text={`
-        import Tweet from './Tweet';
-        ...
-          renderTweet: function(tweet) {
-            return (
-              <Tweet key={tweet.id} tweet={tweet} />
-            );
-          },
-        ...
-        `}/>
-        <CodeTab syntax="ES6" text={`
-        import Tweet from './Tweet';
-        ...
-          renderTweet(tweet) {
-            return (
-              <Tweet key={tweet.id} tweet={tweet} />
-            );
-          }
-        ...
-        `}/>
-        <CodeTab syntax="ESNext" text={`
-        import Tweet from './Tweet';
-        ...
-          renderTweet(tweet) {
-            return (
-              <Tweet key={tweet.id} tweet={tweet} />
-            );
-          }
-        ...
-        `}/>
-      </CodeTabs>
+      <Markdown type="jsx" text={`
+      import Tweet from './Tweet';
+      ...
+        renderTweet(tweet) {
+          return (
+            <Tweet key={tweet.id} tweet={tweet} />
+          );
+        },
+      ...
+      `}/>
 
       <p>
         Refresh the browser and your app should now look like this:
@@ -208,9 +190,10 @@ export default (props) => {
       </h3>
       <p>
         The <code>Tweet</code> component is now displaying in the <code>Feed</code>, but you might notice it
-        doesn't contain our mock data. Instead it's showing some hard-coded data. Let's change that by using
-        our <code>tweet</code> data to populate the Tweet. Update the <code>render()</code> method of
-        the <code>Tweet</code> component to look like this:
+        doesn't contain our mock data. Instead it's showing some hard-coded data. Let's change that.
+      </p>
+      <p>
+        Update the <code>render()</code> method of the <code>Tweet</code> component to look like this:
       </p>
 
       <CodeTabs>
@@ -312,9 +295,14 @@ export default (props) => {
       <p>
         That's a little better, but what's up with that ugly timestamp of <code>2016-10-04T05:10:49.382Z</code>? That's not what we want;
         we want a clear statement like <code>3 days</code> to show how old the Tweet is. Luckily we can easily fix that using a library
-        called <a href="http://momentjs.com/">moment</a>. Moment is a date/time library for Javascript, and it's a great
-        tool for converting timestamps to a more human-friendly format.
+        called <a href="http://momentjs.com/">moment</a>.
       </p>
+      <blockquote>
+        <p>
+          Moment is a date/time library for Javascript, and it's a great tool for converting timestamps to a
+          more human-friendly format.
+        </p>
+      </blockquote>
 
       <p>
         Install <code>moment</code> with this command:
@@ -324,30 +312,17 @@ export default (props) => {
       npm install moment --save
       `}/>
 
+      <p>
+        Once <code>moment</code> is installed, import it into your <code>Tweet</code> component and update
+        the <code>render()</code> method to look like this:
+      </p>
+
       <blockquote>
         <p>
           After installing <code>moment</code> you may need to stop and restart the webpack development server in
           order for Webpack to see the new package.
         </p>
       </blockquote>
-
-      <p>
-        To use <code>moment</code> you simply need to import it into your <code>Tweet</code> component, and then
-        call <code>moment(tweet.data.createdAt)</code> to convert the <code>createdAt</code> date into
-        a <code>moment</code> object. Appending <code>fromNow()</code> to the end of that statement (such
-        as <code>moment(tweet.data.createdAt).fromNow()</code>) will convert the timestamp from the
-        format <code>2016-10-04T05:10:49.382Z</code> into a human-readable string like <code>3 days ago</code>.
-      </p>
-
-      <p>
-        And while we could leave it at that, the word <em>"ago"</em> in the phrase <em>"3 days ago"</em> is understood
-        from the context. So we're also going to remove it from the final timestamp by splitting the string at
-        the <em>" ago"</em> part and only taking the first piece (converting "3 days ago" to simply "3 days").
-      </p>
-
-      <p>
-        To complete those changes, add these lines to your Tweet component:
-      </p>
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
@@ -444,6 +419,24 @@ export default (props) => {
         ...
         `}/>
       </CodeTabs>
+
+      <p>
+        Let's break down the statement <code>moment(tweet.data.createdAt).fromNow().split(' ago')[0]</code> to explain
+        what's happening.
+      </p>
+      <p>
+        First, we're calling <code>moment(tweet.data.createdAt)</code> to convert the <code>createdAt</code> date into
+        a <code>moment</code> object, which gives us access to utility methods.
+      </p>
+      <p>
+        Then we're appending <code>fromNow()</code> to the end of that statement to convert the timestamp from the
+        format <code>2016-10-04T05:10:49.382Z</code> into a human-readable string like <code>3 days ago</code>.
+      </p>
+      <p>
+        And finally, while we could leave it at that, the word <em>"ago"</em> in the phrase <em>"3 days ago"</em> is
+        understood from the context. So we're also going to remove it from the final timestamp by splitting the string
+        at the <em>" ago"</em> part and only taking the first piece (converting "3 days ago" to simply "3 days").
+      </p>
 
       <h3>
         Visual Check-in

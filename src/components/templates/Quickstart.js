@@ -77,7 +77,9 @@ export default (props) => {
 
             <li className="doc-section">Infinite Scrolling</li>
             <NavLink title="Overview" url="/quickstart/infinite-scrolling/overview/" />
-            <NavLink title="1. Add Infinite Scrolling" url="/quickstart/infinite-scrolling/step-1/" />
+            <NavLink title="1. Add NextPage to Meta" url="/quickstart/infinite-scrolling/step-1/" />
+            <NavLink title="2. Setup Infinite Scrolling" url="/quickstart/infinite-scrolling/step-2/" />
+            <NavLink title="3. Convert the Feed" url="/quickstart/infinite-scrolling/step-3/" />
 
             <li className="doc-section">Dialogs</li>
             <NavLink title="Overview" url="/quickstart/dialogs/overview/" />

@@ -341,7 +341,6 @@ export default (props) => {
 
       <p>
         Next we're going to <Link to="../../authentication/overview/">learn how to implement an authentication flow</Link>.
-        {/*Next we're going to add dialogs to our application <Link to="../../dialogs/overview/">so we can create, update and delete tweets</Link>.*/}
       </p>
 
     </Template>

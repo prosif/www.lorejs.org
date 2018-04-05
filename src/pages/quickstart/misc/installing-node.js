@@ -13,10 +13,8 @@ export default (props) => {
         Installing Node
       </h1>
       <p>
-        Before you can use Lore you will need to install Node.
-      </p>
-      <p>
-        If you don't have Node installed, you can obtain it from <a href="http://nodejs.org">http://nodejs.org</a>.
+        Before you can use Lore, you will need to install Node, which you can download
+        from <a href="http://nodejs.org">http://nodejs.org</a>.
       </p>
       <p>
         As an alternative to downloading Node directly, you can also use one of the available Node Version

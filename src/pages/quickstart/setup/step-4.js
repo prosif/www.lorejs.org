@@ -16,12 +16,6 @@ export default (props) => {
         using <a href="https://github.com/typicode/json-server">json-server</a> to provide a mock API.
       </p>
 
-      <p>
-        New applications include <code>json-server</code> by default. This is due to the project's ease of
-        use, excellent feature support (including pagination, search, and relationship expansion) and overall
-        ability to help bootstrap new projects.
-      </p>
-
       <blockquote>
         <p>
           You can view the finished code for this step by checking out branch <code>setup.4</code> of
@@ -29,6 +23,12 @@ export default (props) => {
         </p>
       </blockquote>
 
+      <blockquote>
+        <p>
+          New applications include <code>json-server</code> by default. You can learn more about the reasons
+          why <Link to="/anatomy/db/">here</Link>.
+        </p>
+      </blockquote>
 
       <h3>
         Add Mock Data
@@ -161,22 +161,22 @@ export default (props) => {
       `} />
 
       <p>
-        This tells us the API server is available at <code>http://localhost:1337</code> and we can obtain the list
+        This tells us the API server is available
+        at <a href="http://localhost:1337" target="_blank">http://localhost:1337</a> and we can obtain the list
         of <strong>users</strong> from <code>/users</code> and the list
         of <strong>tweets</strong> from <code>/tweets</code>.
       </p>
 
-      <h3>
-        [Optional] Changing the Port
-      </h3>
-      <p>
-        If you want to change the port that <code>json-server</code> runs on, you can do that by using an alternate
-        syntax to start the server.
-      </p>
-
-      <Markdown type="sh" text={`
-      ./node_modules/json-server/bin/index.js --watch db.json --port=1337
-      `} />
+      <blockquote>
+        <p>
+          If you want to change the port <code>json-server</code> runs on, you can learn how to do
+          that <Link to="/anatomy/package/">here</Link>.
+        </p>
+        <p>
+          However, if you plan on following along with this Quickstart, it is strongly recommended that
+          you <strong>do not change the port</strong>, as later steps will assume it's running on port 1337.
+        </p>
+      </blockquote>
 
       <h2>
         Next Steps

@@ -63,7 +63,7 @@ export default (props) => {
         `}/>
 
       <p>
-        The <code>UserIsAuthenticated</code> function that wraps <code>Master</code> is a higher order component that
+        The <code>UserIsAuthenticated()</code> function that wraps <code>Master</code> is a higher order component that
         can block access to the application if the user isn't authenticated. Currently this component isn't doing
         anything because the blocking behavior is turned off. Let's turn it on.
       </p>

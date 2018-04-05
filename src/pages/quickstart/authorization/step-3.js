@@ -68,7 +68,7 @@ export default (props) => {
           const { tweet, children } = this.props;
           const { user } = this.context;
 
-          if (tweet.data.userId === user.id) {
+          if (tweet.data.user === user.id) {
             return children;
           }
 
@@ -172,7 +172,39 @@ export default (props) => {
       </p>
 
       <h3>
-        src/decorators/UserCanDeleteTweet.js
+        src/components/IsOwner.js
+      </h3>
+
+      <CodeTabs>
+        <CodeTab syntax="ES5" text={`
+        TODO
+        `}/>
+        <CodeTab syntax="ES6" text={`
+        TODO
+        `}/>
+        <CodeTab syntax="ESNext" text={`
+        TODO
+        `}/>
+      </CodeTabs>
+
+      <h3>
+        src/components/EditLink.js
+      </h3>
+
+      <CodeTabs>
+        <CodeTab syntax="ES5" text={`
+        TODO
+        `}/>
+        <CodeTab syntax="ES6" text={`
+        TODO
+        `}/>
+        <CodeTab syntax="ESNext" text={`
+        TODO
+        `}/>
+      </CodeTabs>
+
+      <h3>
+        src/components/DeleteLink.js
       </h3>
 
       <CodeTabs>
@@ -190,9 +222,9 @@ export default (props) => {
       <h2>
         Next Steps
       </h2>
-
       <p>
-        In the next section we're going to <Link to="../../server/overview/">replace the mock server with a real server</Link>.
+        In the next section we'll learn how to <Link to="../../optimistic/overview/">display new tweets at the
+        top of the Feed</Link>.
       </p>
     </Template>
   )

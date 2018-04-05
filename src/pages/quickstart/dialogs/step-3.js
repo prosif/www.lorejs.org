@@ -158,9 +158,7 @@ export default (props) => {
         </p>
       </blockquote>
       <p>
-        The important part to call out here is the <code>onSubmit</code> handler. Once the user submits the dialog,
-        this function will be invoked. For now, we're simply going to log the data to the console, and then dismiss
-        the dialog.
+        The important part to call out here is the <code>onSubmit</code> handler, shown below:
       </p>
 
       <Markdown text={`
@@ -170,6 +168,11 @@ export default (props) => {
         this.dismiss();
       },
       `}/>
+
+      <p>
+        Once the user submits the dialog, this function will be invoked. For now, we're simply going to log the
+        data to the console, and then dismiss the dialog.
+      </p>
 
       <h3>
         Show the Dialog
@@ -221,10 +224,11 @@ export default (props) => {
         ...
           onSubmit() {
             const { data } = this.state;
-            lore.actions.tweet.create(_.defaults(data, {
-              userId: 1,
-              createdAt: new Date().toISOString()
-            }));
+            // lore.actions.tweet.create(_.defaults(data, {
+            //   userId: 1,
+            //   createdAt: new Date().toISOString()
+            // }));
+            lore.actions.tweet.create(data);
             this.dismiss();
           },
         ...
@@ -267,7 +271,7 @@ export default (props) => {
       </p>
 
       <h3>
-        What's up with the _.defaults call?
+        [DELETE] What's up with the _.defaults call?
       </h3>
 
       <p>

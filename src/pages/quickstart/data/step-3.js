@@ -23,8 +23,8 @@ export default (props) => {
         Add a Mock User
       </h3>
       <p>
-        Our Tweet is looking pretty good, we're just missing some data for the user's nickname and avatar. If
-        you look at the data for our <code>tweet</code>, you'll notice it includes a property
+        Our Tweet is looking pretty good, but we're still missing some data for the user's nickname and avatar.
+        If you look at the data for our <code>tweet</code>, you'll notice it includes a property
         called <code>userId</code> that has a number for a value:
       </p>
 
@@ -38,8 +38,9 @@ export default (props) => {
       `}/>
 
       <p>
-        This number represents the id of the user who created the tweet. Taking a look at the API endpoint
-        for <code>/users</code> we can see that a user resource looks like this:
+        This number represents the id of the user who created the tweet. If we take a look at the API endpoint
+        for <code>/users</code> (located at <a href="http://localhost:1337/users" target="_blank">http://localhost:1337/users</a>) we
+        can see that a user resource looks like this:
       </p>
 
       <Markdown text={`
@@ -53,13 +54,16 @@ export default (props) => {
       `}/>
 
       <p>
-        So just like we did with the mock tweet, we're going to create a mock user. Open
-        the <code>Tweet</code> component and add a propType for <code>user</code>. Then add
+        So just like we did with the mock tweet, we're going to create a mock user, using the data structure above.
+      </p>
+      <p>
+        Open the <code>Tweet</code> component and add a propType for <code>user</code>. Then add
         a <code>getDefaultProps()</code> method and populate it with some mock user data like this:
       </p>
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
+        // src/components/Tweet.js
         ...
           propTypes: {
             tweet: PropTypes.object.isRequired,
@@ -81,6 +85,7 @@ export default (props) => {
         ...
         `}/>
         <CodeTab syntax="ES6" text={`
+        // src/components/Tweet.js
         class Tweet extends React.Component {
           ...
         }
@@ -102,6 +107,7 @@ export default (props) => {
         };
         `}/>
         <CodeTab syntax="ESNext" text={`
+        // src/components/Tweet.js
         export default class Tweet extends React.Component {
 
           static propTypes = {
@@ -126,12 +132,13 @@ export default (props) => {
       </CodeTabs>
 
       <p>
-        Next, use that <code>user</code> prop to populate the nickname and avatar properties in
-        the <code>render()</code> method:
+        Next, locate the <code>render()</code> method, and use our new <code>user</code> prop to populate the
+        nickname and avatar properties:
       </p>
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
+        // src/components/Tweet.js
         ...
           render: function() {
             const { tweet, user } = this.props;
@@ -161,6 +168,7 @@ export default (props) => {
         ...
         `}/>
         <CodeTab syntax="ES6" text={`
+        // src/components/Tweet.js
         ...
           render() {
             const { tweet, user } = this.props;
@@ -190,6 +198,7 @@ export default (props) => {
         ...
         `}/>
         <CodeTab syntax="ESNext" text={`
+        // src/components/Tweet.js
         ...
           render() {
             const { tweet, user } = this.props;

@@ -15,7 +15,7 @@ export default (props) => {
 
       <p>
         In this step we're going to create a <code>Feed</code> component to display the tweets and add it to
-        the routes.
+        our routes.
       </p>
 
       <QuickstartBranch branch="routing.2" />
@@ -101,13 +101,44 @@ export default (props) => {
       </CodeTabs>
 
       <h3>
+        Routes.js
+      </h3>
+      <p>
+        Next open the <code>routes.js</code> file at the foot of your project. It should look like this:
+      </p>
+      <Markdown type="jsx" text={`
+      import Master from './src/components/Master';
+      import Layout from './src/components/Layout';
+      import UserIsAuthenticated from './src/decorators/UserIsAuthenticated';
+
+      export default (
+        <Route component={UserIsAuthenticated(Master)}>
+          <Route path="/" component={Layout} />
+        </Route>
+      );
+      `}/>
+      <p>
+        This file declares the route hierarchy for your application, which is a set of instructions that determine
+        what gets rendered based on the URL in the browser. If you've used <code>react-router</code> before,
+        this file should look familiar. Lore makes no modifications to these routes or to the behavior
+        of <code>react-router</code>, so all of React Router's documentaion and examples will be directly applicable
+        to your project.
+      </p>
+
+      <blockquote>
+        <p>
+          You can learn more about this file <Link to="/anatomy/routes/">here</Link>.
+        </p>
+      </blockquote>
+
+      <h3>
         Add Feed to Routes.js
       </h3>
       <p>
-        Next open <code>routes.js</code> and import the <code>Feed</code> component. Then add
+        Import the <code>Feed</code> component into your <code>routes</code>. Then add
         an <code>IndexRoute</code> inside the root route that renders the <code>Feed</code>. This setup will
-        give us the flexibility to change what content is displayed on the main page later in the Quickstart,
-        while also declaring that the default behavior should be to display the Feed.
+        give us the flexibility to change what content is displayed on the main page, while also declaring
+        that the default behavior should be to display the Feed.
       </p>
 
       <p>

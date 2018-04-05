@@ -25,8 +25,9 @@ export default (props) => {
       </h3>
 
       <p>
-        To use Bootstrap, you first need to add the necessary CSS and JavaScript files. Open up the <code>index.html</code> file at the
-        root of your project and add the following stylesheet at the bottom of the {`<head>`} element.
+        To use Bootstrap, you first need to add the necessary CSS and JavaScript files. Open up
+        the <code>index.html</code> file at the root of your project and add the following stylesheet at the bottom
+        of the <code>{`<head>`}</code> element.
       </p>
 
       <Markdown type="html" text={`
@@ -34,7 +35,7 @@ export default (props) => {
       `}/>
 
       <p>
-        Now add the following scripts at the bottom of the {`<body>`} tag, immediately above the <code>bundle.js</code> script.
+        Now add the following scripts at the bottom of the <code>{`<body>`}</code> tag.
       </p>
 
       <Markdown type="html" text={`
@@ -47,8 +48,9 @@ export default (props) => {
       </h3>
 
       <p>
-        Next, change the title of the application from <code>New Lore App</code> to <code>Lore Quickstart</code>, so
-        that we have a more meaningful title displayed in the browser tab.
+        Next, locate the <code>{`<title>`}</code> tag in the <code>{`<head >`}</code> and change it from <code>New Lore
+        App</code> to <code>Lore Quickstart</code>, so that we have a more meaningful title displayed in the
+        browser tab.
       </p>
 
       <Markdown type="html" text={`

@@ -17,7 +17,7 @@ export default (props) => {
         In this step we're going to add a "delete" link to tweets that will launch a dialog to delete the tweet.
       </p>
 
-      <QuickstartBranch branch="dialogs.6" />
+      <QuickstartBranch branch="dialogs.7" />
 
       <h3>
         Create Edit Link
@@ -308,125 +308,13 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        import React from 'react';
-        import createReactClass from 'create-react-class';
-        import PropTypes from 'prop-types';
-
-        export default createReactClass({
-          displayName: 'DeleteLink',
-
-          propTypes: {
-            tweet: PropTypes.object.isRequired
-          },
-
-          onDestroy: function() {
-            const { tweet } = this.props;
-
-            function destroyTweet() {
-              lore.actions.tweet.destroy(tweet);
-            }
-
-            lore.dialog.show(function() {
-              return lore.dialogs.tweet.destroy(tweet, {
-                blueprint: 'optimistic',
-                onSubmit: destroyTweet
-              });
-            });
-          },
-
-          render: function() {
-            return (
-              <a className="link" onClick={this.onDestroy}>
-                delete
-              </a>
-            );
-          }
-
-        });
+        TODO
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React from 'react';
-        import PropTypes from 'prop-types';
-
-        class DeleteLink extends React.Component {
-
-          constructor(props) {
-            super(props);
-            this.onDestroy = this.onDestroy.bind(this);
-          }
-
-          onDestroy() {
-            const { tweet } = this.props;
-
-            function destroyTweet() {
-              lore.actions.tweet.destroy(tweet);
-            }
-
-            lore.dialog.show(function() {
-              return lore.dialogs.tweet.destroy(tweet, {
-                blueprint: 'optimistic',
-                onSubmit: destroyTweet
-              });
-            });
-          }
-
-          render() {
-            return (
-              <a className="link" onClick={this.onDestroy}>
-                delete
-              </a>
-            );
-          }
-
-        }
-
-        DeleteLink.propTypes = {
-          tweet: PropTypes.object.isRequired
-        };
-
-        export default DeleteLink;
+        TODO
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React from 'react';
-        import PropTypes from 'prop-types';
-
-        class DeleteLink extends React.Component {
-
-          constructor(props) {
-            super(props);
-            this.onDestroy = this.onDestroy.bind(this);
-          }
-
-          static propTypes = {
-            tweet: PropTypes.object.isRequired
-          };
-
-          onDestroy() {
-            const { tweet } = this.props;
-
-            function destroyTweet() {
-              lore.actions.tweet.destroy(tweet);
-            }
-
-            lore.dialog.show(function() {
-              return lore.dialogs.tweet.destroy(tweet, {
-                blueprint: 'optimistic',
-                onSubmit: destroyTweet
-              });
-            });
-          }
-
-          render() {
-            return (
-              <a className="link" onClick={this.onDestroy}>
-                delete
-              </a>
-            );
-          }
-
-        }
-
-        export default DeleteLink;
+        TODO
         `}/>
       </CodeTabs>
 
@@ -436,213 +324,23 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        import React from 'react';
-        import createReactClass from 'create-react-class';
-        import PropTypes from 'prop-types';
-        import { connect } from 'lore-hook-connect';
-        import moment from 'moment';
-        import EditLink from './EditLink';
-        import DeleteLink from './DeleteLink';
-
-        export default connect(function(getState, props) {
-          const { tweet } = props;
-
-          return {
-            user: getState('user.byId', {
-              id: tweet.data.userId
-            })
-          };
-        })(
-        createReactClass({
-          displayName: 'Tweet',
-
-          propTypes: {
-            tweet: PropTypes.object.isRequired,
-            user: PropTypes.object.isRequired
-          },
-
-          render: function() {
-            const {
-              tweet,
-              user
-            } = this.props;
-            const timestamp = moment(tweet.data.createdAt).fromNow().split(' ago')[0];
-
-            return (
-              <li className="list-group-item tweet">
-                <div className="image-container">
-                  <img
-                    className="img-circle avatar"
-                    src={user.data.avatar} />
-                </div>
-                <div className="content-container">
-                  <h4 className="list-group-item-heading title">
-                    {user.data.nickname}
-                  </h4>
-                  <h4 className="list-group-item-heading timestamp">
-                    {'- ' + timestamp}
-                  </h4>
-                  <p className="list-group-item-text text">
-                    {tweet.data.text}
-                  </p>
-                  <div>
-                    <EditLink tweet={tweet} />
-                    <DeleteLink tweet={tweet} />
-                  </div>
-                </div>
-              </li>
-            );
-          }
-
-        })
-        );
+        TODO
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React from 'react';
-        import PropTypes from 'prop-types';
-        import { connect } from 'lore-hook-connect';
-        import moment from 'moment';
-        import EditLink from './EditLink';
-        import DeleteLink from './DeleteLink';
-
-        class Tweet extends React.Component {
-
-          render() {
-            const {
-              tweet,
-              user
-            } = this.props;
-            const timestamp = moment(tweet.data.createdAt).fromNow().split(' ago')[0];
-
-            return (
-              <li className="list-group-item tweet">
-                <div className="image-container">
-                  <img
-                    className="img-circle avatar"
-                    src={user.data.avatar} />
-                </div>
-                <div className="content-container">
-                  <h4 className="list-group-item-heading title">
-                    {user.data.nickname}
-                  </h4>
-                  <h4 className="list-group-item-heading timestamp">
-                    {'- ' + timestamp}
-                  </h4>
-                  <p className="list-group-item-text text">
-                    {tweet.data.text}
-                  </p>
-                  <div>
-                    <EditLink tweet={tweet} />
-                    <DeleteLink tweet={tweet} />
-                  </div>
-                </div>
-              </li>
-            );
-          }
-
-        }
-
-        Tweet.propTypes = {
-          tweet: PropTypes.object.isRequired,
-          user: PropTypes.object.isRequired
-        };
-
-        Tweet.defaultProps = {
-          user: {
-            id: 1,
-            data: {
-              id: 1,
-              nickname: "lucca",
-              avatar: "https://cloud.githubusercontent.com/assets/2637399/19027072/a36f0c7a-88e1-11e6-931e-7f67fe01367b.png"
-            }
-          }
-        };
-
-        export default connect(function(getState, props) {
-          const { tweet } = props;
-
-          return {
-            user: getState('user.byId', {
-              id: tweet.data.userId
-            })
-          };
-        })(Tweet);
+        TODO
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React from 'react';
-        import PropTypes from 'prop-types';
-        import { connect } from 'lore-hook-connect';
-        import moment from 'moment';
-        import EditLink from './EditLink';
-        import DeleteLink from './DeleteLink';
-
-        @connect(function(getState, props) {
-          const tweet = props.tweet;
-
-          return {
-            user: getState('user.byId', {
-              id: tweet.data.userId
-            })
-          };
-        })
-        class Tweet extends React.Component {
-
-          static propTypes = {
-            tweet: PropTypes.object.isRequired,
-            user: PropTypes.object.isRequired
-          };
-
-          render() {
-            const {
-              tweet,
-              user
-            } = this.props;
-            const timestamp = moment(tweet.data.createdAt).fromNow().split(' ago')[0];
-
-            return (
-              <li className="list-group-item tweet">
-                <div className="image-container">
-                  <img
-                    className="img-circle avatar"
-                    src={user.data.avatar} />
-                </div>
-                <div className="content-container">
-                  <h4 className="list-group-item-heading title">
-                    {user.data.nickname}
-                  </h4>
-                  <h4 className="list-group-item-heading timestamp">
-                    {'- ' + timestamp}
-                  </h4>
-                  <p className="list-group-item-text text">
-                    {tweet.data.text}
-                  </p>
-                  <div>
-                    <EditLink tweet={tweet} />
-                    <DeleteLink tweet={tweet} />
-                  </div>
-                </div>
-              </li>
-            );
-          }
-
-        }
-
-        export default Tweet;
+        TODO
         `}/>
       </CodeTabs>
 
       <h2>
         Next Steps
       </h2>
-
-      <p>
-        Next we're going to <Link to="../../behavior/overview/">learn how to implement an authentication flow</Link>.
-      </p>
       <p>
         In the next section we'll be <Link to="../../authorization/overview/">hiding the edit and delete
         links</Link> to reflect the application's user permissions.
       </p>
-
     </Template>
   )
 };

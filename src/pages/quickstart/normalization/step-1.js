@@ -482,10 +482,9 @@ export default (props) => {
       <h2>
         Next Steps
       </h2>
-
       <p>
-        In the next section we'll learn how to <Link to="../../optimistic/overview/">display new tweets at
-        the top of the Feed</Link>.
+        In the next section we'll add the ability to <Link to="../../filtering/overview/">view all tweets or just
+        the ones you created</Link>.
       </p>
     </Template>
   )
