@@ -72,20 +72,6 @@ export default (props) => {
 
       <img className="drop-shadow" src="/assets/images/quickstart/setup/step-3.png" />
 
-      <h3>
-        [Optional] Changing the Port
-      </h3>
-
-      <p>
-        If you want to change the port the server runs on, you can do that by providing
-        a <a href="https://docs.npmjs.com/cli/run-script">custom argument to the npm start script</a>. For example,
-        if you want to run the application on port 3001, use this command to start the project:
-      </p>
-
-      <Markdown type="json" text={`
-      npm start -- --port=3001
-      `} />
-
       <blockquote>
         <p>
           If you want to change the port the webpack dev server runs on, you can learn how to do

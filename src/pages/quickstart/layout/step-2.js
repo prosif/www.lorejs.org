@@ -13,13 +13,13 @@ export default (props) => {
         Step 2: Add Custom Styles
       </h1>
       <p>
-        In this step we're going to add some custom styles we'll need for the rest of the Quickstart.
+        In this step we're going to add some custom styles that we'll need for the Quickstart.
       </p>
 
       <QuickstartBranch branch="layout.2" />
 
       <h3>
-        Styling Support in Lore
+        Assets Folder
       </h3>
 
       <p>
@@ -311,7 +311,7 @@ export default (props) => {
         <p>
           You may have noticed that this file is not explicitly included in <code>index.html</code>, but still
           controls the styling of the application. This is because it's imported by the <code>Master</code> component
-          located at <code>src/components/Master.js</code>, which is included as the root component of the application.
+          located at <code>src/components/Master.js</code>, which is rendered as the root component of the application.
         </p>
         <p>
           You will interact with this component more later on.

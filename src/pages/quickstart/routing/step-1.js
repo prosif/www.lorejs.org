@@ -37,7 +37,7 @@ export default (props) => {
       <p>
         Next, import the <code>Link</code> tag from <code>react-router</code> and use it to convert
         the <code>div</code> tag into a clickable link. Then set the <code>to</code> property to the root
-        URL (<code>/</code>).
+        URL (<code>/</code>), so that whenever the user clicks it, they'll be taken back to the homepage.
       </p>
 
       <CodeTabs>

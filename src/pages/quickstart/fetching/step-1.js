@@ -23,13 +23,25 @@ export default (props) => {
         The Config Folder
       </h3>
       <p>
-        At the root of your project you should see a folder called <code>config</code>. This folder exposes all
-        of the controls you can use to tailor Lore's behavior to your applications needs.
+        At the root of your project you will see a folder called <code>/config</code>. This folder contains
+        files that expose all the configuration settings for Lore, so that you can tailor the framework's behavior
+        to meet the specific needs of your application.
       </p>
-
       <p>
-        Navigate into this folder and open a file called <code>connections.js</code>. Toward the top of this
-        file you will see a commented out line that looks like this:
+        Navigate into this folder and open a file called <code>connections.js</code>.
+      </p>
+      <blockquote>
+        <p>
+          Lore is designed to interact with multiple API endpoints. The config settings for each API is called
+          a <code>connection</code>. New projects begin configured for a single API, and this connection is
+          named <code>default</code>.
+        </p>
+        <p>
+          You can learn more about the <code>connections</code> file <Link to="/anatomy/config/connections/">here</Link>.
+        </p>
+      </blockquote>
+      <p>
+        Toward the top of the <code>connections</code> file you'll see a commented out line that looks like this:
       </p>
 
       <Markdown text={`
@@ -44,21 +56,12 @@ export default (props) => {
       `}/>
 
       <p>
-        You'll see commented out sections like this in all of the config files, and they represent the built-in
-        defaults that Lore uses. In this case, Lore assumes your API is located
-        at <code>https://api.example.com</code>, which is obviously not true.
+        You'll see commented out sections like this throughout all of the config files, and they represent the
+        built-in defaults that Lore uses. In this case, Lore assumes your API is located
+        at <code>https://api.example.com</code>, which is obviously not true. Let's fix that.
       </p>
-
-      <blockquote>
-        <p>
-          Lore is designed to interact with multiple API endpoints. The config settings for each API is called
-          a <code>connection</code>. New projects begin configured for a single API, and this connection is
-          named <code>default</code>.
-        </p>
-      </blockquote>
-
       <p>
-        Tell Lore where the API is located by uncommenting that line and change it to the following:
+        Tell Lore where the API is located by uncommenting that line and changing it to <code>http://localhost:1337</code>:
       </p>
 
       <Markdown text={`

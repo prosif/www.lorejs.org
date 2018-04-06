@@ -20,9 +20,9 @@ export default (props) => {
         solution (which will be added as another section at a later date).
       </p>
 
-      <h2>
+      <h3>
         Problem: New Tweets do not show up at top of Feed
-      </h2>
+      </h3>
 
       <p>
         Ever since we introduced pagination, new tweets stopped showing up in the Feed when you create them.
@@ -158,9 +158,9 @@ export default (props) => {
         at the top of the page.
       </p>
 
-      <h2>
+      <h3>
         What about real-time, e.g. WebSockets?
-      </h2>
+      </h3>
       <p>
         WebSockets is absolutely a focus area for Lore, and beta support is already integrated, which you can see in the
         <a href="https://github.com/lore/lore/tree/master/examples/websockets">websockets example</a> if you're curious. In time the

@@ -19,17 +19,23 @@ export default (props) => {
 
       <QuickstartBranch branch="layout.3" />
 
-      <h1>
-        Generate the Header Component
-      </h1>
+      <h3>
+        Generate the Header
+      </h3>
 
       <p>
         The Lore CLI includes a number of commands to create various types of project files. One of those commands is
         <code>generate</code>, and we'll be using it to generate the <code>Header</code> component.
       </p>
 
+      <blockquote>
+        <p>
+          You can learn more about the <code>generate</code> command <Link to="/cli/generate/component/">here</Link>.
+        </p>
+      </blockquote>
+
       <p>
-        Run the following command from the CLI:
+        Run this command from the CLI:
       </p>
 
       <Markdown type="sh" text={`
@@ -37,7 +43,7 @@ export default (props) => {
       `}/>
 
       <p>
-        This will generate a component called <code>Header</code> and place it
+        This command will generate a component called <code>Header</code> and place it
         at <code>src/components/Header.js</code>. The syntax of this file will match whichever version of JavaScript
         you specified when you created the project (ES5, ES6 or ESNext) and will look like this:
       </p>
@@ -106,85 +112,41 @@ export default (props) => {
         `}/>
       </CodeTabs>
 
-      <blockquote>
-        <p>
-          You can learn more about the <code>generate</code> command <Link to="/cli/generate/component/">here</Link>.
-        </p>
-      </blockquote>
-
       <h3>
-        Modify the Header Component
+        Modify the Header
       </h3>
 
       <p>
-        Now that we've created the skeleton for the Header component, modify the render function to look like this:
+        Next, modify the <code>render()</code> function to look like this:
       </p>
 
-      <CodeTabs>
-        <CodeTab syntax="ES5" text={`
-        // src/components/Header.js
-        ...
-          render: function() {
-            return (
-              <nav className="navbar navbar-default navbar-static-top header">
-                <div className="container">
-                  <div className="navbar-header">
-                    <div className="navbar-brand">
-                      Lore Quickstart
-                    </div>
+      <Markdown type="jsx" text={`
+      // src/components/Header.js
+      ...
+        render() {
+          return (
+            <nav className="navbar navbar-default navbar-static-top header">
+              <div className="container">
+                <div className="navbar-header">
+                  <div className="navbar-brand">
+                    Lore Quickstart
                   </div>
                 </div>
-              </nav>
-            );
-          }
-        ...
-        `}/>
-        <CodeTab syntax="ES6" text={`
-        // src/components/Header.js
-        ...
-          render() {
-            return (
-              <nav className="navbar navbar-default navbar-static-top header">
-                <div className="container">
-                  <div className="navbar-header">
-                    <div className="navbar-brand">
-                      Lore Quickstart
-                    </div>
-                  </div>
-                </div>
-              </nav>
-            );
-          }
-        ...
-        `}/>
-        <CodeTab syntax="ESNext" text={`
-        // src/components/Header.js
-        ...
-          render() {
-            return (
-              <nav className="navbar navbar-default navbar-static-top header">
-                <div className="container">
-                  <div className="navbar-header">
-                    <div className="navbar-brand">
-                      Lore Quickstart
-                    </div>
-                  </div>
-                </div>
-              </nav>
-            );
-          }
-        ...
-        `}/>
-      </CodeTabs>
+              </div>
+            </nav>
+          );
+        }
+      ...
+      `}/>
 
 
       <h3>
-        Add the Header to the Layout
+        Add Header to Layout
       </h3>
 
       <p>
-        Finally we need to modify the output of the <code>Layout</code> component so the Header gets rendered to the browser. Import the
-        <code>Header</code> component into <code>Layout</code> and update the render function for <code>Layout</code> to look like this:
+        Finally, let's render the <code>Header</code> in the browser. Open the <code>Layout</code> component, and
+        import the <code>Header</code>. Then update the <code>render()</code> method to look like this:
       </p>
 
       <CodeTabs>

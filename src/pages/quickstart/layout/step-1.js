@@ -14,8 +14,8 @@ export default (props) => {
       </h1>
 
       <p>
-        In this step we're going to add <a href="https://getbootstrap.com/docs/3.3/">Bootstrap 3</a> for some
-        quick styling support.
+        In this step we're going to add <a href="https://getbootstrap.com/docs/3.3/">Bootstrap 3</a>, which we'll
+        be using to style the application.
       </p>
 
       <QuickstartBranch branch="layout.1" />
@@ -25,9 +25,11 @@ export default (props) => {
       </h3>
 
       <p>
-        To use Bootstrap, you first need to add the necessary CSS and JavaScript files. Open up
-        the <code>index.html</code> file at the root of your project and add the following stylesheet at the bottom
-        of the <code>{`<head>`}</code> element.
+        To use Bootstrap, we first need to add the necessary CSS and JavaScript files.
+      </p>
+      <p>
+        Open up the <code>index.html</code> file at the root of your project and add the following stylesheet at
+        the bottom of the <code>{`<head>`}</code> element.
       </p>
 
       <Markdown type="html" text={`
@@ -35,7 +37,7 @@ export default (props) => {
       `}/>
 
       <p>
-        Now add the following scripts at the bottom of the <code>{`<body>`}</code> tag.
+        Next add the following scripts at the bottom of the <code>{`<body>`}</code> tag.
       </p>
 
       <Markdown type="html" text={`
@@ -48,7 +50,7 @@ export default (props) => {
       </h3>
 
       <p>
-        Next, locate the <code>{`<title>`}</code> tag in the <code>{`<head >`}</code> and change it from <code>New Lore
+        Next, locate the <code>{`<title>`}</code> tag in the <code>{`<head>`}</code> and change it from <code>New Lore
         App</code> to <code>Lore Quickstart</code>, so that we have a more meaningful title displayed in the
         browser tab.
       </p>

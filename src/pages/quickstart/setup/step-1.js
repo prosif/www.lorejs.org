@@ -19,8 +19,7 @@ export default (props) => {
         Install Lore
       </h3>
       <p>
-        To get started with Lore you first need to install the CLI (Command Line Interface). With Node installed,
-        run this command from the command line:
+        To get started with Lore, first install the CLI (Command Line Interface) from <code>npm</code>:
       </p>
 
       <Markdown type="sh" text={`
@@ -28,7 +27,7 @@ export default (props) => {
       `} />
 
       <p>
-        Once the CLI is installed you will have access to <code>lore</code> from the command line.
+        Once the CLI is installed, you will have access to <code>lore</code> from the command line.
         Run <code>lore</code> to see a list of available commands:
       </p>
 

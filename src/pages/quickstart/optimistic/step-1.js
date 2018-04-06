@@ -20,9 +20,9 @@ export default (props) => {
 
       <QuickstartBranch branch="optimistic.1" />
 
-      <h2>
+      <h3>
         Error when paginating after creating a tweet
-      </h2>
+      </h3>
       <p>
         Ever since we introduced pagination, new tweets stopped showing up in the Feed when you create them.
         This certainly doesn't match the expected user experience. The reason for this is that the application

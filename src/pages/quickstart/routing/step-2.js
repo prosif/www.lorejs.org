@@ -14,8 +14,8 @@ export default (props) => {
       </h1>
 
       <p>
-        In this step we're going to create a <code>Feed</code> component to display the tweets and add it to
-        our routes.
+        In this step we're going to create a <code>Feed</code> component to display the tweets, and add it to the
+        routes for our application.
       </p>
 
       <QuickstartBranch branch="routing.2" />
@@ -32,7 +32,7 @@ export default (props) => {
       `}/>
 
       <p>
-        Next modify the <code>render()</code> method to look like this:
+        Next update the <code>render()</code> method to look like this:
       </p>
 
       <CodeTabs>
@@ -104,7 +104,7 @@ export default (props) => {
         Routes.js
       </h3>
       <p>
-        Next open the <code>routes.js</code> file at the foot of your project. It should look like this:
+        Next open the <code>routes.js</code> file at the root of your project. It should look like this:
       </p>
       <Markdown type="jsx" text={`
       import Master from './src/components/Master';
@@ -120,9 +120,11 @@ export default (props) => {
       <p>
         This file declares the route hierarchy for your application, which is a set of instructions that determine
         what gets rendered based on the URL in the browser. If you've used <code>react-router</code> before,
-        this file should look familiar. Lore makes no modifications to these routes or to the behavior
-        of <code>react-router</code>, so all of React Router's documentaion and examples will be directly applicable
-        to your project.
+        this file should look familiar.
+      </p>
+      <p>
+        Lore makes no modifications to these routes or to the behavior of <code>react-router</code>, so all of
+        React Router's documentaion and examples will be directly applicable to your project.
       </p>
 
       <blockquote>
@@ -145,55 +147,35 @@ export default (props) => {
         Here are the changes you need to make to <code>routes.js</code>:
       </p>
 
-      <CodeTabs>
-        <CodeTab syntax="ES5" text={`
-        ...
-        import Feed from './src/components/Feed';
+      <Markdown type="jsx" text={`
+      ...
+      import Feed from './src/components/Feed';
 
-        export default (
-          <Route component={UserIsAuthenticated(Master)}>
-            <Route path="/" component={Layout}>
-              <IndexRoute component={Feed} />
-            </Route>
+      export default (
+        <Route component={UserIsAuthenticated(Master)}>
+          <Route path="/" component={Layout}>
+            <IndexRoute component={Feed} />
           </Route>
-        )
-        `}/>
-        <CodeTab syntax="ES6" text={`
-        ...
-        import Feed from './src/components/Feed';
-
-        export default (
-          <Route component={UserIsAuthenticated(Master)}>
-            <Route path="/" component={Layout}>
-              <IndexRoute component={Feed} />
-            </Route>
-          </Route>
-        )
-        `}/>
-        <CodeTab syntax="ESNext" text={`
-        ...
-        import Feed from './src/components/Feed';
-
-        export default (
-          <Route component={UserIsAuthenticated(Master)}>
-            <Route path="/" component={Layout}>
-              <IndexRoute component={Feed} />
-            </Route>
-          </Route>
-        )
-        `}/>
-      </CodeTabs>
+        </Route>
+      )
+      `}/>
+      <p>
+        Here we've added an <code>IndexRoute</code> inside the root route that will render the <code>Feed</code>.
+        This configuration gives us the flexibility to change what should be displayed on the homepage, while also
+        declaring that the default view should be the Feed.
+      </p>
 
       <h3>
         Render Route Children in Layout
       </h3>
       <p>
         If you refresh the application right now, you'll notice the <code>Feed</code> component isn't being
-        displayed. And that's because we haven't told the <code>Layout</code> where to render it yet.
+        displayed yet, and that's because we haven't told the <code>Layout</code> where to render it yet.
       </p>
 
       <p>
-        To fix this, open <code>Layout</code> and look in the render method for the code that looks like this:
+        To fix this, open the <code>Layout</code> component and find the code in the <code>render()</code> method
+        that looks like this:
       </p>
 
       <Markdown text={`
@@ -213,9 +195,13 @@ export default (props) => {
       `} />
 
       <p>
-        When we added the <code>Feed</code> component to <code>routes.js</code>, we listed it as a child
-        of the <code>Layout</code>. The code we just pasted says "clone my children and render them here". With this
-        change in place, refresh the application and you should now see "Feed" displayed in the middle of the page.
+        When we added the <code>Feed</code> component to <code>routes.js</code>, we listed it as
+        a <strong>child</strong> of the <code>Layout</code>. The code we just pasted says <em>"clone my children and
+        render them here"</em>, which means the <code>Layout</code> will be inserted into that <code>div</code> tag.
+      </p>
+      <p>
+        With this change in place, refresh the application and you should now see <strong>"Feed"</strong> displayed
+        in the middle of the page.
       </p>
 
       <h3>

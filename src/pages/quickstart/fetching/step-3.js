@@ -62,7 +62,7 @@ export default (props) => {
 
       <blockquote>
         <p>
-          You can learn more about <code>connect</code> in the <Link to="/connect/">documentation</Link>.
+          You can learn more about <code>connect</code> <Link to="/connect/">here</Link>.
         </p>
       </blockquote>
 
@@ -73,19 +73,21 @@ export default (props) => {
       </p>
 
       <p>
-        In this example, we're requesting <code>tweet.find</code>. The <code>find</code> reducer is responsible for
-        storing the results of all query and pagination requests made to the server. Since we aren't passing in any
+        In this example, we're requesting <code>tweet.find</code>, and since we aren't passing in any
         query parameters or pagination information, this request translates to <em>"make a call to the /tweets
         endpoint of the API and give me whatever comes back"</em>.
       </p>
 
       <p>
-        That data will then be passed to our Feed component as <code>tweets</code> since that is what we named
-        the key.
+        That data will then be passed to our <code>Feed</code> component through the <code>tweets</code> prop, since
+        that's what we named the key.
       </p>
 
       <h3>
-        Wrap Feed with Connect
+        Wrap the Feed Component with Connect
+      </h3>
+      <h3>
+        Connect the Feed Component
       </h3>
       <p>
         To use <code>connect</code>, we first need to import it from the <code>lore-hook-connect</code> package,

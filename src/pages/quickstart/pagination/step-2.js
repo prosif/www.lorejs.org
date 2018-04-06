@@ -88,7 +88,7 @@ export default (props) => {
             <h2 className="title">
               Feed
             </h2>
-            <ul className={\`media-list tweets ${isFetchingNextTweets ? 'transition' : ''}\`}>
+            <ul className={\`media-list tweets \${isFetchingNextTweets ? 'transition' : ''}\`}>
               {tweets.data.map(this.renderTweet)}
             </ul>
             <nav>
@@ -232,7 +232,7 @@ export default (props) => {
                 <h2 className="title">
                   Feed
                 </h2>
-                <ul className={\`media-list tweets ${isFetchingNextTweets ? 'transition' : ''}\`}>
+                <ul className={\`media-list tweets \${isFetchingNextTweets ? 'transition' : ''}\`}>
                   {tweets.data.map(this.renderTweet)}
                 </ul>
                 <nav>

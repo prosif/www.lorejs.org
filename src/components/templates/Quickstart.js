@@ -31,7 +31,7 @@ export default (props) => {
             <NavLink title="Overview" url="/quickstart/layout/overview/" />
             <NavLink title="1. Install Bootstrap" url="/quickstart/layout/step-1/" />
             <NavLink title="2. Add Custom Styles" url="/quickstart/layout/step-2/" />
-            <NavLink title="3. Add Header to Layout" url="/quickstart/layout/step-3/" />
+            <NavLink title="3. Add the Header" url="/quickstart/layout/step-3/" />
 
             <li className="doc-section">Routing</li>
             <NavLink title="Overview" url="/quickstart/routing/overview/" />

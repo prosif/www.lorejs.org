@@ -38,6 +38,7 @@ export default (props) => {
       </p>
 
       <Markdown text={`
+      // src/models/tweet.js
       export default {
 
       };

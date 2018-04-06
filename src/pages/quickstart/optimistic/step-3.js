@@ -19,9 +19,9 @@ export default (props) => {
 
       <QuickstartBranch branch="optimistic.3" />
 
-      <h2>
+      <h3>
         Problem: Error When Creating Tweets
-      </h2>
+      </h3>
       <p>
         If you try to create a tweet, if may look like the application behaves correctly, but if you look in the console
         you'll see the following error:
@@ -64,9 +64,9 @@ export default (props) => {
         can't locate a tweet with an undefined id.
       </p>
 
-      <h2>
+      <h3>
         Set Optimistic Data for New Tweets
-      </h2>
+      </h3>
       <p>
         To fix this, we <em>could</em> add logic to our component to behave differently when
         no <code>user</code> field exists (like showing an unknown avatar photo or changing the timestamp

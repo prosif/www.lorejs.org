@@ -13,7 +13,8 @@ export default (props) => {
       </h1>
       <p>
         To emulate a real application, this Quickstart will be
-        using <a href="https://github.com/typicode/json-server">json-server</a> to provide a mock API.
+        using <a href="https://github.com/typicode/json-server">json-server</a> to provide a mock API, which is
+        included in all new projects. You can learn more about the reasons why <Link to="/anatomy/db/">here</Link>.
       </p>
 
       <blockquote>
@@ -23,21 +24,16 @@ export default (props) => {
         </p>
       </blockquote>
 
-      <blockquote>
-        <p>
-          New applications include <code>json-server</code> by default. You can learn more about the reasons
-          why <Link to="/anatomy/db/">here</Link>.
-        </p>
-      </blockquote>
-
       <h3>
         Add Mock Data
       </h3>
       <p>
         For this Quickstart we need two API endpoints; one to retrieve <code>tweets</code> and one to
-        retrieve <code>users</code>. We can accomplish this by adding data to the <code>db.json</code> file
-        at the root of you project. This file is used by <code>json-server</code> as both a database and
-        a blueprint for what endpoints should exist.
+        retrieve <code>users</code>.
+      </p>
+      <p>
+        We can accomplish this by adding data to the <code>db.json</code> file at the root of you project. This
+        file is used by <code>json-server</code> as both a database and a blueprint for what endpoints should exist.
       </p>
 
       <p>
@@ -134,7 +130,7 @@ export default (props) => {
         Start the Mock Server
       </h3>
       <p>
-        Next run the mock server with this command:
+        Next start the mock server with this command:
       </p>
 
       <Markdown type="sh" text={`
@@ -142,7 +138,7 @@ export default (props) => {
       `}/>
 
       <p>
-        You should then see output that looks like this:
+        Once it boots up, you should see output that looks like this:
       </p>
 
       <Markdown type="sh" text={`
@@ -161,8 +157,8 @@ export default (props) => {
       `} />
 
       <p>
-        This tells us the API server is available
-        at <a href="http://localhost:1337" target="_blank">http://localhost:1337</a> and we can obtain the list
+        The output above tells us that the API server is available
+        at <a href="http://localhost:1337" target="_blank">http://localhost:1337</a> and that we can obtain the list
         of <strong>users</strong> from <code>/users</code> and the list
         of <strong>tweets</strong> from <code>/tweets</code>.
       </p>
