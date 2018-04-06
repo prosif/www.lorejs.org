@@ -14,7 +14,8 @@ export default (props) => {
       </h1>
 
       <p>
-        In this step we're going to create a model for our tweet, and learn about the implicit functionality provided by Lore.
+        In this step we're going to create a model for our tweet, and in the process, we'll learn about some of the
+        functionality automatically provided by Lore as a result.
       </p>
 
       <QuickstartBranch branch="fetching.2" />
@@ -23,8 +24,11 @@ export default (props) => {
         Create a Tweet Model
       </h3>
       <p>
-        Before you can fetch data in Lore, you first need to create a model that represents the resource you want to fetch.
-        Since we want to fetch tweets, we are going to create a <code>tweet</code> model by running this command:
+        Before you can fetch data in Lore, you first need to create a model that represents the resource you want
+        to fetch. Since we want to fetch <strong>tweets</strong>, we're going to create a <code>tweet</code> model.
+      </p>
+      <p>
+        Run this command to generate that model:
       </p>
 
       <Markdown type="sh" text={`
@@ -32,9 +36,12 @@ export default (props) => {
       `}/>
 
       <p>
-        This will create a <code>tweet</code> model and place the file at <code>src/models/tweet.js</code>. Open this file and you will see comments
-        showing you some of the properties you can override along with their default values. But if you ignore all the
-        comments this file is essentially empty:
+        This will create a model called <code>tweet</code>, and place the file at <code>src/models/tweet.js</code>.
+      </p>
+      <p>
+        Similar to the files in the <code>/config</code> folder, this file contains a lot of comments, which document
+        the properties you can change, along with their default values. But if you ignore all the comments, this file
+        is essentially empty:
       </p>
 
       <Markdown text={`
@@ -43,6 +50,11 @@ export default (props) => {
 
       };
       `}/>
+
+      <p>
+        While it may not look like it, we now have all the code required to fetch tweets from the API, and we'll
+        explore some of that functionality in the next step.
+      </p>
 
       <h3>
         Visual Check-in
@@ -89,7 +101,8 @@ export default (props) => {
       </h2>
 
       <p>
-        It may not look like it, but we now have all the code required to <Link to="../step-2b/">fetch tweets from the API</Link>.
+        Next we're going to talk about a design paradigm called convention over configuration,
+        and <Link to="../step-2b/">introduce some of the functionality we just unlocked</Link>.
       </p>
     </Template>
   )

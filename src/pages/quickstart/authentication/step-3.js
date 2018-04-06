@@ -107,67 +107,33 @@ export default (props) => {
       </p>
 
       <h3>
-        Create the /login route
+        Create the Login Route
       </h3>
       <p>
-        Now that the component exists, let's create the corresponding route to display it. Open <code>routes.js</code>,
-        import your <code>Login</code> component, and update the routes to look like this:
+        Now that our <code>Login</code> component exists, let's create the corresponding route to display it.
+        Open <code>routes.js</code>, import your <code>Login</code> component, and update the routes to look like
+        this:
       </p>
 
+      <Markdown type="jsx" text={`
+      ...
+      import Login from './src/components/Login';
 
-      <CodeTabs>
-        <CodeTab syntax="ES5" text={`
-        ...
-        import Login from './src/components/Login';
+      export default (
+        <Route>
+          <Route path="/login" component={Login} />
 
-        export default (
-          <Route>
-            <Route path="/login" component={Login} />
-
-            <Route component={UserIsAuthenticated(Master)}>
-              <Route path="/" component={Layout}>
-                <IndexRoute component={Feed} />
-              </Route>
+          <Route component={UserIsAuthenticated(Master)}>
+            <Route path="/" component={Layout}>
+              <IndexRoute component={Feed} />
             </Route>
           </Route>
-        );
-        `}/>
-        <CodeTab syntax="ES6" text={`
-        ...
-        import Login from './src/components/Login';
-
-        export default (
-          <Route>
-            <Route path="/login" component={Login} />
-
-            <Route component={UserIsAuthenticated(Master)}>
-              <Route path="/" component={Layout}>
-                <IndexRoute component={Feed} />
-              </Route>
-            </Route>
-          </Route>
-        )
-        `}/>
-        <CodeTab syntax="ESNext" text={`
-        ...
-        import Login from './src/components/Login';
-
-        export default (
-          <Route>
-            <Route path="/login" component={Login} />
-
-            <Route component={UserIsAuthenticated(Master)}>
-              <Route path="/" component={Layout}>
-                <IndexRoute component={Feed} />
-              </Route>
-            </Route>
-          </Route>
-        )
-        `}/>
-      </CodeTabs>
+        </Route>
+      );
+      `}/>
 
       <h3>
-        Login as one of the Characters
+        Log in as one of the Characters
       </h3>
       <p>
         With the routing done, let's test out our <code>Login</code> component. Navigate to <code>/login</code> and

@@ -23,25 +23,13 @@ export default (props) => {
         The Config Folder
       </h3>
       <p>
-        At the root of your project you will see a folder called <code>/config</code>. This folder contains
+        At the root of your project is a folder called <code>/config</code>. This folder contains
         files that expose all the configuration settings for Lore, so that you can tailor the framework's behavior
         to meet the specific needs of your application.
       </p>
       <p>
-        Navigate into this folder and open a file called <code>connections.js</code>.
-      </p>
-      <blockquote>
-        <p>
-          Lore is designed to interact with multiple API endpoints. The config settings for each API is called
-          a <code>connection</code>. New projects begin configured for a single API, and this connection is
-          named <code>default</code>.
-        </p>
-        <p>
-          You can learn more about the <code>connections</code> file <Link to="/anatomy/config/connections/">here</Link>.
-        </p>
-      </blockquote>
-      <p>
-        Toward the top of the <code>connections</code> file you'll see a commented out line that looks like this:
+        Navigate into this folder and open a file called <code>connections.js</code>. Toward the top of
+        the <code>connections</code> file you'll see a commented out line that looks like this:
       </p>
 
       <Markdown text={`
@@ -56,12 +44,25 @@ export default (props) => {
       `}/>
 
       <p>
-        You'll see commented out sections like this throughout all of the config files, and they represent the
-        built-in defaults that Lore uses. In this case, Lore assumes your API is located
-        at <code>https://api.example.com</code>, which is obviously not true. Let's fix that.
+        Commented out lines like this exist across all of the config files, and they reflect the built-in defaults
+        that Lore uses. In this case, this comment tells us that Lore assumes the API is located
+        at <code>https://api.example.com</code>.
       </p>
+
+      <blockquote>
+        <p>
+          Lore is designed to interact with multiple API endpoints. The config settings for each API is called
+          a <code>connection</code>. New projects begin configured for a single API, and this connection is
+          named <code>default</code>.
+        </p>
+        <p>
+          You can learn more about the <code>connections</code> file <Link to="/anatomy/config/connections/">here</Link>.
+        </p>
+      </blockquote>
+
       <p>
-        Tell Lore where the API is located by uncommenting that line and changing it to <code>http://localhost:1337</code>:
+        Since this is not where our API is located, uncomment that line and change it
+        to <code>http://localhost:1337</code>, so that Lore knows where the API can be found:
       </p>
 
       <Markdown text={`
@@ -73,26 +74,6 @@ export default (props) => {
       <p>
         With this change in place, we're almost ready to fetch data.
       </p>
-
-      <blockquote>
-        <p>
-          <strong>Environment-specific Configurations</strong>
-        </p>
-        <p>
-          You may notice a <code>/env</code> folder in <code>/config</code> that contains files
-          called <code>development.js</code> and <code>production.js</code>. These files allow you to customize the
-          config on a per-environment basis.
-        </p>
-        <p>
-          For example, when deploying to <code>production</code>, the final configuration will be all of the
-          files located in <code>/config</code>, overridden by any settings you've specified
-          in <code>/config/production.js</code>.
-        </p>
-        <p>
-          The <code>/config/local.js</code> file <strong>ONLY</strong> applies to your local environment, and is
-          included in the <code>.gitignore</code> by default so that it will never be checked in.
-        </p>
-      </blockquote>
 
       <h3>
         Visual Check-in

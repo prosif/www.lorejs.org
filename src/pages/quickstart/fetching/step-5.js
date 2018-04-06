@@ -14,7 +14,8 @@ export default (props) => {
       </h1>
 
       <p>
-        In this step we're going to fetch the user for each tweet so we can display the proper nickname and avatar.
+        In this step we're going to fetch the user for each tweet, so that we can display the proper nickname and
+        avatar.
       </p>
 
       <QuickstartBranch branch="fetching" />
@@ -32,17 +33,18 @@ export default (props) => {
       `}/>
 
       <p>
-        This will place a file called <code>user.js</code> in <code>src/models</code> and, similar to when you
+        This will place a file called <code>user.js</code> in <code>src/models</code> and, just like when you
         created the <code>tweet</code> model, you will now have access to a set of actions and reducers for
         interacting with the <code>/users</code> endpoint.
       </p>
 
       <h3>
-        Fetch the Tweeter
+        Fetch the Tweet's User
       </h3>
       <p>
-        Next we need to fetch the user who said the tweet. Open up the <code>Tweet</code> component and wrap it
-        with <code>connect</code>. But this time we're going to use a different string in <code>getState</code>:
+        Next we need to fetch the user who created the tweet. Open up the <code>Tweet</code> component and wrap
+        it with <code>connect</code>, but this time we're going to use a different string in
+        the <code>getState()</code> method:
       </p>
 
       <CodeTabs>
@@ -101,15 +103,16 @@ export default (props) => {
       </CodeTabs>
 
       <p>
-        The string we're passing to <code>getState</code> this time is <code>user.byId</code>. This reducer stores
-        users by their id, and if that user doesn't exist in the store, it will make a server call to retrieve
-        them. However, unlike when we invoked <code>tweet.find</code>, this reducer requires an argument;
-        the <code>id</code> of the user you want to fetch.
+        The string we're passing to the <code>getState()</code> method this time is <code>user.byId</code>. But
+        unlike the <code>tweet.find</code> call, this time we need to provide an argument; the <code>id</code> of
+        the user you want to retrieve. If the user exists in the store, it will be returned immediately. If not,
+        an action will be invoked to fetch that user from the API.
       </p>
-
       <p>
         Which this change in place, refresh the browser and you should see each tweet attributed to the correct user.
       </p>
+
+      <img className="drop-shadow" src="/assets/images/quickstart/fetching/step-5.png" />
 
       <blockquote>
         <p>
@@ -118,8 +121,6 @@ export default (props) => {
           Seeing as we are no longer using them to insert mock data, they no longer serve a purpose.
         </p>
       </blockquote>
-
-      <img className="drop-shadow" src="/assets/images/quickstart/fetching/step-5.png" />
 
       <h2>
         Code Changes

@@ -157,7 +157,7 @@ export default (props) => {
 
       <p>
         Here we've added a <code>propType</code> declaring this component expects to receive a <code>tweet</code>,
-        and then added code to the <code>render()</code> to render it.
+        and then updated the <code>render()</code> method to display it.
       </p>
 
       <h3>
@@ -186,47 +186,18 @@ export default (props) => {
       <img className="drop-shadow" src="/assets/images/quickstart/data/step-2a.png" />
 
       <h3>
-        Update Tweet Component to use Tweet Data
+        Update Tweet to Use Mock Data
       </h3>
       <p>
-        The <code>Tweet</code> component is now displaying in the <code>Feed</code>, but you might notice it
-        doesn't contain our mock data. Instead it's showing some hard-coded data. Let's change that.
+        While the <code>Tweet</code> component is now showing up in the <code>Feed</code>, it's currently showing
+        some hard-coded data instead of the mock data we created previously. Let's change that.
       </p>
       <p>
         Update the <code>render()</code> method of the <code>Tweet</code> component to look like this:
       </p>
 
-      <CodeTabs>
-        <CodeTab syntax="ES5" text={`
-        ...
-          render: function() {
-            const { tweet } = this.props;
-
-            return (
-              <li className="list-group-item tweet">
-                <div className="image-container">
-                  <img
-                    className="img-circle avatar"
-                    src={'http://ssl.gstatic.com/images/icons/material/product/1x/avatar_circle_blue_120dp.png'} />
-                </div>
-                <div className="content-container">
-                  <h4 className="list-group-item-heading title">
-                    Nickname
-                  </h4>
-                  <h4 className="list-group-item-heading timestamp">
-                    {'- ' + tweet.data.createdAt}
-                  </h4>
-                  <p className="list-group-item-text text">
-                    {tweet.data.text}
-                  </p>
-                </div>
-              </li>
-            );
-          }
-        ...
-        `}/>
-        <CodeTab syntax="ES6" text={`
-        ...
+      <Markdown type="jsx" text={`
+      ...
           render() {
             const { tweet } = this.props;
 
@@ -252,39 +223,10 @@ export default (props) => {
             );
           }
         ...
-        `}/>
-        <CodeTab syntax="ESNext" text={`
-        ...
-          render() {
-            const { tweet } = this.props;
-
-            return (
-              <li className="list-group-item tweet">
-                <div className="image-container">
-                  <img
-                    className="img-circle avatar"
-                    src={'http://ssl.gstatic.com/images/icons/material/product/1x/avatar_circle_blue_120dp.png'} />
-                </div>
-                <div className="content-container">
-                  <h4 className="list-group-item-heading title">
-                    Nickname
-                  </h4>
-                  <h4 className="list-group-item-heading timestamp">
-                    {'- ' + tweet.data.createdAt}
-                  </h4>
-                  <p className="list-group-item-text text">
-                    {tweet.data.text}
-                  </p>
-                </div>
-              </li>
-            );
-          }
-        ...
-        `}/>
-      </CodeTabs>
+      `}/>
 
       <p>
-        Refresh the browser and you should see the mock data being displayed in the Tweet:
+        Refresh the browser and you should now see the mock data being displayed in the Tweet:
       </p>
 
       <img className="drop-shadow" src="/assets/images/quickstart/data/step-2b.png" />
@@ -312,11 +254,6 @@ export default (props) => {
       npm install moment --save
       `}/>
 
-      <p>
-        Once <code>moment</code> is installed, import it into your <code>Tweet</code> component and update
-        the <code>render()</code> method to look like this:
-      </p>
-
       <blockquote>
         <p>
           After installing <code>moment</code> you may need to stop and restart the webpack development server in
@@ -324,101 +261,42 @@ export default (props) => {
         </p>
       </blockquote>
 
-      <CodeTabs>
-        <CodeTab syntax="ES5" text={`
-        import moment from 'moment';
+      <p>
+        Once <code>moment</code> is installed, import it into your <code>Tweet</code> component and update
+        the <code>render()</code> method to look like this:
+      </p>
 
-        ...
-          render: function() {
-            const { tweet } = this.props;
-            const timestamp = moment(tweet.data.createdAt).fromNow().split(' ago')[0];
+      <Markdown type="jsx" text={`
+      import moment from 'moment';
 
-            return (
-              <li className="list-group-item tweet">
-                <div className="image-container">
-                  <img
-                    className="img-circle avatar"
-                    src={'http://ssl.gstatic.com/images/icons/material/product/1x/avatar_circle_blue_120dp.png'} />
-                </div>
-                <div className="content-container">
-                  <h4 className="list-group-item-heading title">
-                    Nickname
-                  </h4>
-                  <h4 className="list-group-item-heading timestamp">
-                    {'- ' + timestamp}
-                  </h4>
-                  <p className="list-group-item-text text">
-                    {tweet.data.text}
-                  </p>
-                </div>
-              </li>
-            );
-          }
-        ...
-        `}/>
-        <CodeTab syntax="ES6" text={`
-        import moment from 'moment';
+      ...
+        render() {
+          const { tweet } = this.props;
+          const timestamp = moment(tweet.data.createdAt).fromNow().split(' ago')[0];
 
-        ...
-          render() {
-            const { tweet } = this.props;
-            const timestamp = moment(tweet.data.createdAt).fromNow().split(' ago')[0];
-
-            return (
-              <li className="list-group-item tweet">
-                <div className="image-container">
-                  <img
-                    className="img-circle avatar"
-                    src={'http://ssl.gstatic.com/images/icons/material/product/1x/avatar_circle_blue_120dp.png'} />
-                </div>
-                <div className="content-container">
-                  <h4 className="list-group-item-heading title">
-                    Nickname
-                  </h4>
-                  <h4 className="list-group-item-heading timestamp">
-                    {'- ' + timestamp}
-                  </h4>
-                  <p className="list-group-item-text text">
-                    {tweet.data.text}
-                  </p>
-                </div>
-              </li>
-            );
-          }
-        ...
-        `}/>
-        <CodeTab syntax="ESNext" text={`
-        import moment from 'moment';
-
-        ...
-          render() {
-            const { tweet } = this.props;
-            const timestamp = moment(tweet.data.createdAt).fromNow().split(' ago')[0];
-
-            return (
-              <li className="list-group-item tweet">
-                <div className="image-container">
-                  <img
-                    className="img-circle avatar"
-                    src={'http://ssl.gstatic.com/images/icons/material/product/1x/avatar_circle_blue_120dp.png'} />
-                </div>
-                <div className="content-container">
-                  <h4 className="list-group-item-heading title">
-                    Nickname
-                  </h4>
-                  <h4 className="list-group-item-heading timestamp">
-                    {'- ' + timestamp}
-                  </h4>
-                  <p className="list-group-item-text text">
-                    {tweet.data.text}
-                  </p>
-                </div>
-              </li>
-            );
-          }
-        ...
-        `}/>
-      </CodeTabs>
+          return (
+            <li className="list-group-item tweet">
+              <div className="image-container">
+                <img
+                  className="img-circle avatar"
+                  src={'http://ssl.gstatic.com/images/icons/material/product/1x/avatar_circle_blue_120dp.png'} />
+              </div>
+              <div className="content-container">
+                <h4 className="list-group-item-heading title">
+                  Nickname
+                </h4>
+                <h4 className="list-group-item-heading timestamp">
+                  {'- ' + timestamp}
+                </h4>
+                <p className="list-group-item-text text">
+                  {tweet.data.text}
+                </p>
+              </div>
+            </li>
+          );
+        }
+      ...
+      `}/>
 
       <p>
         Let's break down the statement <code>moment(tweet.data.createdAt).fromNow().split(' ago')[0]</code> to explain

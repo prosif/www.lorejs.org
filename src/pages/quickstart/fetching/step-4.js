@@ -14,8 +14,8 @@ export default (props) => {
       </h1>
 
       <p>
-        In this step we're going to use the <code>state</code> property in the data structure in order to display
-        a loading experience while the list of tweets are being fetching.
+        In this step we're going to learn how to use the <code>state</code> property in the data structure, and
+        display a loading experience while the list of tweets are being fetching.
       </p>
 
       <QuickstartBranch branch="fetching.4" />
@@ -25,169 +25,105 @@ export default (props) => {
       </h3>
       <p>
         While it may happen too quickly to notice, there is a period of time before the list of tweets is displayed
-        when the page simply says "Feed" with a blank experience underneath. This happens because the application
-        doesn't fetch the tweets until the first time the <code>Feed</code> component is rendered, and that component
-        can't render data it doesn't have yet.
+        when the page simply says "Feed" with nothing underneath.
       </p>
-
+      <p>
+        This happens because the application doesn't fetch the tweets until the first time
+        the <code>Feed</code> component is rendered, and during that render cycle, the component doesn't have any
+        data to render.
+      </p>
       <p>
         Showing a blank view is a bad user experience, so let's update our <code>Feed</code> component to display a
         "loader" while the tweets are being fetched.
       </p>
 
       <h3>
-        Add a Loading Experience
+        The State Property
       </h3>
       <p>
-        When Lore interacts with data (such as fetching, creating, updating or deleting it) the action creators
-        built into the framework update the <code>state</code> property of the data to reflect the action being
-        performed.
-      </p>
-
-      <p>
-        For example, the first time our <code>Feed</code> component is rendered, it requests the data associated
-        with <code>tweet.find</code> using the <code>getState()</code> method of the <code>connect</code> decorator.
-        Since this data doesn't exist yet, the framework invokes an action to go fetch it.
-      </p>
-
-      <p>
-        This action will set the <code>state</code> property of the data to <code>FETCHING</code> in order to notify
-        you that the data is being fetched. Once the data returns, the action will update the <code>state</code> property
-        to have a value of <code>RESOLVED</code> to signify that the data has been fetched. If an error occurs while
-        fetching the data, the state would be updated to <code>ERROR_FETCHING</code>. Let's use this behavior to
-        create our loading experience.
-      </p>
-
-      <p>
-        We're going to start by importing a file called <code>PayloadStates</code> that resides
-        in <code>src/constants</code>. This file is the set of string constants that the framework applies to data
-        by default.
+        When Lore performs any actions on data (such as fetching, creating, updating or deleting it)
+        the <code>state</code> property of that data is updated to reflect the action being performed.
       </p>
       <p>
-        Import that file into <code>Feed</code> and then update the render method to display a "loader" component
-        when the <code>state</code> of the <code>tweets</code> is <code>FETCHING</code>.
+        For example, the first time our <code>Feed</code> component is rendered, it requests a collection of
+        tweets using <code>getState('tweet.find')</code>. Since this data doesn't exist in the local store yet,
+        the framework will invoke an action to fetch it.
+      </p>
+      <p>
+        What gets provided to the <code>Feed</code> component at that point is a <code>tweets</code> prop that looks
+        like this:
       </p>
 
-      <CodeTabs>
-        <CodeTab syntax="ES5" text={`
-        ...
-        import PayloadStates from '../constants/PayloadStates';
-        ...
+      <Markdown type="jsx" text={`
+      {
+        state: 'FETCHING',
+        data: [],
+        query: {}
+      }
+      `}/>
 
-          render: function() {
-            const { tweets } = this.props;
+      <p>
+        Here the <code>state</code> property of the data has been set to <code>FETCHING</code> in order to notify
+        you that the data is being fetched. Once the data returns, the <code>state</code> property will have a value
+        of <code>RESOLVED</code> to let you know that the data has been fetched. And if an error occurs while
+        fetching the data, the <code>state</code> property would be updated to <code>ERROR_FETCHING</code>.
+      </p>
+      <p>
+        Let's use this behavior to create our loading experience.
+      </p>
 
-            if (tweets.state === PayloadStates.FETCHING) {
-              return (
-                <div className="feed">
-                  <h2 className="title">
-                    Feed
-                  </h2>
-                  <div className="loader"/>
-                </div>
-              );
-            }
+      <h3>
+        Add the Loading Experience
+      </h3>
+      <p>
+        Open the <code>Feed</code> component and import a file called <code>PayloadStates</code> that resides
+        in <code>src/constants</code>. This file is the set of string constants that describe all the states the
+        framework uses to describe data.
+      </p>
+      <p>
+        Then update <code>render()</code> method to render a loading experience if
+        the <code>tweet.state</code> property is equal to <code>PayloadStates.FETCHING</code>.
+      </p>
 
+      <Markdown type="jsx" text={`
+      ...
+      import PayloadStates from '../constants/PayloadStates';
+      ...
+
+        render() {
+          const { tweets } = this.props;
+
+          if (tweets.state === PayloadStates.FETCHING) {
             return (
               <div className="feed">
                 <h2 className="title">
                   Feed
                 </h2>
-                <ul className="media-list tweets">
-                  {tweets.data.map(this.renderTweet)}
-                </ul>
+                <div className="loader"/>
               </div>
             );
           }
 
-        ...
-        `}/>
-        <CodeTab syntax="ES6" text={`
-        ...
-        import PayloadStates from '../constants/PayloadStates';
-        ...
+          return (
+            <div className="feed">
+              <h2 className="title">
+                Feed
+              </h2>
+              <ul className="media-list tweets">
+                {tweets.data.map(this.renderTweet)}
+              </ul>
+            </div>
+          );
+        }
 
-          render() {
-            const { tweets } = this.props;
-
-            if (tweets.state === PayloadStates.FETCHING) {
-              return (
-                <div className="feed">
-                  <h2 className="title">
-                    Feed
-                  </h2>
-                  <div className="loader"/>
-                </div>
-              );
-            }
-
-            return (
-              <div className="feed">
-                <h2 className="title">
-                  Feed
-                </h2>
-                <ul className="media-list tweets">
-                  {tweets.data.map(this.renderTweet)}
-                </ul>
-              </div>
-            );
-          }
-
-        ...
-        `}/>
-        <CodeTab syntax="ESNext" text={`
-        ...
-        import PayloadStates from '../constants/PayloadStates';
-        ...
-
-          render() {
-            const { tweets } = this.props;
-
-            if (tweets.state === PayloadStates.FETCHING) {
-              return (
-                <div className="feed">
-                  <h2 className="title">
-                    Feed
-                  </h2>
-                  <div className="loader"/>
-                </div>
-              );
-            }
-
-            return (
-              <div className="feed">
-                <h2 className="title">
-                  Feed
-                </h2>
-                <ul className="media-list tweets">
-                  {tweets.data.map(this.renderTweet)}
-                </ul>
-              </div>
-            );
-          }
-
-        ...
-        `}/>
-      </CodeTabs>
+      ...
+      `}/>
 
       <p>
         Refresh the browser and you <em>might</em> see an animated "loader" flash on the screen right before the
-        tweets are rendered. But if you can't see it (and you probably can't) you can force it to appear by temporarily
-        changing your <code>if</code> statement to read <code>if (true || ...)</code> like this:
+        tweets are rendered. But if you can't see it (and you probably can't) don't worry; we'll connect to a real
+        API server later that has an artificial delay, and you'll <em>definitely</em> see it then.
       </p>
-
-      <Markdown text={`
-      if (true || tweets.state === PayloadStates.FETCHING) {
-        return (
-          <div className="feed">
-            <h2 className="title">
-              Feed
-            </h2>
-            <div className="loader"/>
-          </div>
-        );
-      }
-      `}/>
 
       <h3>
         Visual Check-in

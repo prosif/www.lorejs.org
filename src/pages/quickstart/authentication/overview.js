@@ -14,8 +14,11 @@ export default (props) => {
       </h1>
 
       <p>
-        In this section we'll learn how to log a user in and restrict access to the application. At the end of
-        this section your application will look like this:
+        In this section we'll integrate with a real authentication server, and restrict access to to the
+        application until the user logs in.
+      </p>
+      <p>
+        At the end of this section your application will look like this:
       </p>
 
       <img className="drop-shadow" src="/assets/images/quickstart/authentication/step-6.png" />

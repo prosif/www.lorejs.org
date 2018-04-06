@@ -37,6 +37,9 @@ export default (props) => {
                 <NavLink title="Connect" url="/connect/" location={location} />
                 <NavLink title="Reducers" url="/reducers/" location={location} />
                 <li role="separator" className="divider"></li>
+                <NavLink title="Models" url="/models/" location={location} />
+                <NavLink title="Collections" url="/collections/" location={location} />
+                <li role="separator" className="divider"></li>
                 <NavLink title="Concepts" url="/concepts/" location={location} />
                 <NavLink title="Hooks" url="/hooks/" location={location} />
                 <NavLink title="Publishing" url="/publishing/" location={location} />

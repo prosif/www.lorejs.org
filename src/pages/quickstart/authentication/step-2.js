@@ -36,30 +36,27 @@ export default (props) => {
         Add Auth0 Config
       </h3>
       <p>
-        In order to use Auth0 as the authentication server, our application needs to know a few things first:
+        Once we integrate Auth0, the user will be redirected to an Auth0 server to login, and then redirected
+        back to our application once they do. In order to accomplish this, our application is going to need to
+        know a few things first:
       </p>
 
       <ol>
         <li>The domain where the authentication server is located</li>
-        <li>The client ID for the application we want to authenticate against</li>
+        <li>The client ID for the application we want the user to log in to</li>
         <li>The URL the user should be redirected to after they login</li>
       </ol>
 
       <p>
-        We're going to add these values to the project configuration, but instead of adding them to an existing
+        We're going to add these values to the application configuration, but instead of adding them to an existing
         config file, we're going to create a new one just for Auth0.
       </p>
 
       <blockquote>
         <p>
-          The <code>/config</code> folder in Lore is actually compiled into a single object, which you can access
+          The <code>/config</code> folder in Lore is compiled into a single object, which you can access
           from <code>lore.config</code>. This means you can add your own files to the <code>/config</code> folder
           and access their values from <code>lore.config</code>.
-        </p>
-        <p>
-          It also means you can change the values in your custom config files on a per-environment basis as well,
-          simply by redefining them in the appropriate environment-specific config file in
-          the <code>/env</code> directory.
         </p>
       </blockquote>
 

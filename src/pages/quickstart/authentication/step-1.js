@@ -31,8 +31,8 @@ export default (props) => {
       `}/>
 
       <p>
-        Update the component to look like this. Note that we're also adding a mock user
-        in <code>getDefaultProps</code>. We'll replace this with real user information soon.
+        Update the component to look like this. Note that we're also adding a mock user in
+        the <code>getDefaultProps()</code> method. We'll replace this mock data with real user information soon.
       </p>
 
       <CodeTabs>
@@ -199,13 +199,19 @@ export default (props) => {
       </h3>
       <p>
         Now that we've created our <code>Profile</code> component, let's modify the <code>Layout</code> to display
-        it. Open your <code>Layout</code> component, import the <code>Profile</code> component we just created, and
-        update the render method to look like this (note that we have adjusted the <code>col-md-*</code> classes to
-        make room for the <code>Profile</code>):
+        it. Open your <code>Layout</code> and import the <code>Profile</code> component we just created. Then
+        update the render method to look like this:
       </p>
+
+      <blockquote>
+        <p>
+          Note that we have adjusted the <code>col-md-*</code> classes to make room for the <code>Profile</code>.
+        </p>
+      </blockquote>
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
+        // src/components/Profile.js
         ...
         import Profile from './Profile';
 
@@ -232,6 +238,7 @@ export default (props) => {
         ...
         `}/>
         <CodeTab syntax="ES6" text={`
+        // src/components/Profile.js
         ...
         import Profile from './Profile';
 
@@ -258,6 +265,7 @@ export default (props) => {
         ...
         `}/>
         <CodeTab syntax="ESNext" text={`
+        // src/components/Profile.js
         ...
         import Profile from './Profile';
 

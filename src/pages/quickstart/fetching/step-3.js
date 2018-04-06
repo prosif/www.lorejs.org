@@ -14,8 +14,8 @@ export default (props) => {
       </h1>
 
       <p>
-        In this step we're going to use the <code>connect</code> decorator to enable our Tweet component to
-        declare what data it needs.
+        In this step we're going to learn about the <code>connect</code> decorator, and use it to allow our Tweet
+        component to declare what data it needs.
       </p>
 
       <QuickstartBranch branch="fetching.3" />
@@ -68,31 +68,25 @@ export default (props) => {
 
       <p>
         The first parameter, called <code>getState</code>, is a function that will retrieve a piece of state from
-        the local store, or invoke the appropriate action to fetch that data if it doesn't already exist (such as
-        when it hasn't been fetched from the server yet).
+        the local store, or invoke the appropriate action to retrieve that data if it hasn't been fetched yet.
       </p>
-
       <p>
         In this example, we're requesting <code>tweet.find</code>, and since we aren't passing in any
         query parameters or pagination information, this request translates to <em>"make a call to the /tweets
         endpoint of the API and give me whatever comes back"</em>.
       </p>
-
       <p>
-        That data will then be passed to our <code>Feed</code> component through the <code>tweets</code> prop, since
+        That data will then be passed to the <code>Feed</code> component through the <code>tweets</code> prop, since
         that's what we named the key.
       </p>
 
       <h3>
-        Wrap the Feed Component with Connect
-      </h3>
-      <h3>
         Connect the Feed Component
       </h3>
       <p>
-        To use <code>connect</code>, we first need to import it from the <code>lore-hook-connect</code> package,
+        To use <code>connect</code>, you first need to import it from the <code>lore-hook-connect</code> package,
         which is already included in your project (we'll introduce hooks later in this tutorial). Open up
-        your <code>Feed</code> component and wrap it with the decorator like this:
+        your <code>Feed</code> component and wrap it with the <code>connect</code> decorator like this:
       </p>
 
       <CodeTabs>
@@ -143,7 +137,7 @@ export default (props) => {
 
       <p>
         Once you've wrapped the <code>Feed</code> component, reload the page, and you'll notice the mock data has
-        been replaced by real data from the API!
+        been replaced by real data from the API.
       </p>
 
       <h3>
