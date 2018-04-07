@@ -81,7 +81,7 @@ export default (props) => {
                     </ul>
                   </div>
                   <button className="btn btn-primary">
-                    Logout
+                    Log out
                   </button>
                 </div>
               </div>
@@ -117,7 +117,7 @@ export default (props) => {
                     </ul>
                   </div>
                   <button className="btn btn-primary">
-                    Logout
+                    Log out
                   </button>
                 </div>
               </div>
@@ -182,7 +182,7 @@ export default (props) => {
                     </ul>
                   </div>
                   <button className="btn btn-primary">
-                    Logout
+                    Log out
                   </button>
                 </div>
               </div>
@@ -366,7 +366,7 @@ export default (props) => {
                     </ul>
                   </div>
                   <button className="btn btn-primary">
-                    Logout
+                    Log out
                   </button>
                 </div>
               </div>
@@ -402,7 +402,7 @@ export default (props) => {
                     </ul>
                   </div>
                   <button className="btn btn-primary">
-                    Logout
+                    Log out
                   </button>
                 </div>
               </div>
@@ -467,7 +467,7 @@ export default (props) => {
                     </ul>
                   </div>
                   <button className="btn btn-primary">
-                    Logout
+                    Log out
                   </button>
                 </div>
               </div>

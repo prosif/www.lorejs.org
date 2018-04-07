@@ -24,8 +24,8 @@ export default (props) => {
         The Master Component
       </h3>
       <p>
-        You may have noticed a component called <code>Master</code> in your components folder. This component is
-        intended to serve as a non-visual wrapper around your application, and has three main functions:
+        Inside the <code>/components</code> folder is a component named <code>Master</code>. This component is
+        intended to serve as a wrapper around your application, and has three main functions:
       </p>
 
       <ol>
@@ -35,18 +35,17 @@ export default (props) => {
       </ol>
 
       <p>
-        In this step, we'll be focusing on the second function, and fetching the profile for the current user
-        before we load the rest of the application.
+        In this step, we'll be focusing on the second function, and fetching the the current user before we
+        render the main application.
       </p>
 
       <h3>
         Fetch the Current User in Master
       </h3>
       <p>
-        Now let's fetch the current user when the application loads. Update the <code>Master</code> component to look
-        like this. We're going to request the <code>currentUser</code> in the <code>connect</code> wrapper, and
-        we're going to check the <code>state</code> in <code>render()</code>, and display a loading experience until
-        the current user has returned.
+        Let's start by using the <code>connect</code> decorator to fetch the current user when the application
+        loads, and rendering a loading experience until we have it. Update the <code>Master</code> component to
+        look like this:
       </p>
 
       <CodeTabs>
@@ -164,10 +163,9 @@ export default (props) => {
         Save the User in Context
       </h3>
       <p>
-        Next we're going to save the current user to the application's context, so any component that needs it can
-        access it. This is a good use of context because we're always going to have a user, and it could be used by
-        any component in the application. Update your <code>Master</code> component to include methods for saving
-        the user to context:
+        Next we're going to save the current user to <a href="https://reactjs.org/docs/context.html">context</a>, so
+        that any component that needs it can access it. Update the <code>Master</code> component to include the
+        necessary fields:
       </p>
 
       <CodeTabs>
@@ -246,13 +244,18 @@ export default (props) => {
         `}/>
       </CodeTabs>
 
+      <p>
+        In the code above we've added <code>childContextTypes</code>, to declare that an object
+        named <code>user</code> should be made available to all child components in the application, and added
+        a <code>getChildContext()</code> method that provides the value of that object, which is our current user.
+      </p>
+
       <h3>
-        Retrieve the user from context in Profile
+        Update Profile to Use Context
       </h3>
       <p>
-        Finally, update your <code>Profile</code> component so that instead of retrieving the current user from props,
-        we retrieve it from <code>context</code>. Once you do, feel free to delete the <code>getDefaultProps()</code> method,
-        as we no longer need it.
+        Next, open the <code>Profile</code> component and modify it to retrieve the current user
+        from <code>context</code> instead of <code>props</code>:
       </p>
 
       <CodeTabs>
@@ -311,6 +314,12 @@ export default (props) => {
         \`\`\`
         `}/>
       </CodeTabs>
+
+      <blockquote>
+        <p>
+          At this point, we no longer need the <code>getDefaultProps()</code> method, so feel free to delete it.
+        </p>
+      </blockquote>
 
       <h3>
         Visual Check-in
@@ -520,7 +529,7 @@ export default (props) => {
                     </ul>
                   </div>
                   <Link className="btn btn-primary" to="/logout">
-                    Logout
+                    Log out
                   </Link>
                 </div>
               </div>
@@ -557,7 +566,7 @@ export default (props) => {
                     </ul>
                   </div>
                   <Link className="btn btn-primary" to="/logout">
-                    Logout
+                    Log out
                   </Link>
                 </div>
               </div>
@@ -603,7 +612,7 @@ export default (props) => {
                     </ul>
                   </div>
                   <Link className="btn btn-primary" to="/logout">
-                    Logout
+                    Log out
                   </Link>
                 </div>
               </div>
@@ -620,7 +629,8 @@ export default (props) => {
       </h2>
 
       <p>
-        In the next section we're going to <Link to="../../server/overview/">replace the mock server with a real server</Link>.
+        In the next section we're going to <Link to="../../server/overview/">replace the mock server with a real
+        server</Link>.
       </p>
     </Template>
   )

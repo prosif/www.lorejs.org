@@ -24,13 +24,15 @@ export default (props) => {
       </h3>
       <p>
         While we don't have a "logout page" in a visual sense, we still have behavior that we want executed when
-        the user logs out, such as removing their user token and redirecting them to the login page. We're going
-        to store this behavior in a component so that we can have it occur when the user navigates to
+        the user logs out, such as removing their user token and redirecting them to the login page.
+      </p>
+      <p>
+        We're going to store this behavior in a component so that we can have it occur when the user navigates to
         the <code>/logout</code> route.
       </p>
 
       <p>
-        To get started, create a <code>Logout</code> component:
+        Start by creating a <code>Logout</code> component:
       </p>
 
       <Markdown type="sh" text={`
@@ -38,7 +40,7 @@ export default (props) => {
       `}/>
 
       <p>
-        Update your Logout component to look like this:
+        Then update the <code>Logout</code> component to look like this:
       </p>
 
       <CodeTabs>
@@ -133,7 +135,7 @@ export default (props) => {
         Add the /logout route
       </h3>
       <p>
-        Next import your <code>Logout</code> component into <code>routes.js</code> and update the routes to
+        Next import the <code>Logout</code> component into <code>routes.js</code> and update the routes to
         look like this:
       </p>
 
@@ -197,7 +199,7 @@ export default (props) => {
 
       <Markdown type="html" text={`
       <button className="btn btn-primary">
-        Logout
+        Log out
       </button>
       `}/>
 
@@ -212,7 +214,7 @@ export default (props) => {
           render: function() {
             ...
               <Link className="btn btn-primary" to="/logout">
-                Logout
+                Log out
               </Link>
             ...
           }
@@ -224,7 +226,7 @@ export default (props) => {
           render() {
             ...
               <Link className="btn btn-primary" to="/logout">
-                Logout
+                Log out
               </Link>
             ...
           }
@@ -236,7 +238,7 @@ export default (props) => {
           render() {
             ...
               <Link className="btn btn-primary" to="/logout">
-                Logout
+                Log out
               </Link>
             ...
           }
@@ -497,7 +499,7 @@ export default (props) => {
                     </ul>
                   </div>
                   <Link className="btn btn-primary" to="/logout">
-                    Logout
+                    Log out
                   </Link>
                 </div>
               </div>
@@ -534,7 +536,7 @@ export default (props) => {
                     </ul>
                   </div>
                   <Link className="btn btn-primary" to="/logout">
-                    Logout
+                    Log out
                   </Link>
                 </div>
               </div>
@@ -600,7 +602,7 @@ export default (props) => {
                     </ul>
                   </div>
                   <Link className="btn btn-primary" to="/logout">
-                    Logout
+                    Log out
                   </Link>
                 </div>
               </div>

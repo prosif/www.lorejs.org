@@ -129,8 +129,8 @@ export default (props) => {
                 </NavLink>
                 <NavLink title="utils" url="/anatomy/src/utils/">
                   <ul>
-                    <NavLink title="auth.js" url="/anatomy/src/decorators/auth/" />
-                    <NavLink title="storageAvailable.js" url="/anatomy/src/decorators/storage-available/" />
+                    <NavLink title="auth.js" url="/anatomy/src/utils/auth/" />
+                    <NavLink title="storageAvailable.js" url="/anatomy/src/utils/storage-available/" />
                   </ul>
                 </NavLink>
               </ul>

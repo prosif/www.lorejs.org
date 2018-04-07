@@ -61,14 +61,16 @@ export default (props) => {
             <NavLink title="4. Redirect to Login" url="/quickstart/authentication/step-4/" />
             <NavLink title="5. Add Callback Route" url="/quickstart/authentication/step-5/" />
             <NavLink title="6. Add Logout Page" url="/quickstart/authentication/step-6/" />
-            <NavLink title="7. Add User Endpoint" url="/quickstart/authentication/step-7/" />
+            <NavLink title="7. Fetch Current User" url="/quickstart/authentication/step-7/" />
             <NavLink title="8. Save User to Context" url="/quickstart/authentication/step-8/" />
 
             <li className="doc-section">Server</li>
             <NavLink title="Overview" url="/quickstart/server/overview/" />
             <NavLink title="1. Clone the API Server" url="/quickstart/server/step-1/" />
-            <NavLink title="2. Parse Server Response" url="/quickstart/server/step-2/" />
-            <NavLink title="3. Add Authorization Header" url="/quickstart/server/step-3/" />
+            <NavLink title="2. Parse the Collection" url="/quickstart/server/step-2/" />
+            <NavLink title="3. Parse the Model" url="/quickstart/server/step-3/" />
+            <NavLink title="4. Add Unauthorized Experience" url="/quickstart/server/step-4/" />
+            <NavLink title="5. Add Authorization Header" url="/quickstart/server/step-5/" />
 
             <li className="doc-section">Pagination</li>
             <NavLink title="Overview" url="/quickstart/pagination/overview/" />

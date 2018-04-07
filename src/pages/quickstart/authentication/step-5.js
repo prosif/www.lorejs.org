@@ -14,8 +14,8 @@ export default (props) => {
       </h1>
 
       <p>
-        In this step we're going to add the redirect route that Auth0 needs, so that we can accept the user token
-        and log the user into the application.
+        In this step we're going to add the redirect route that Auth0 needs so that we can save the token and
+        log the user in.
       </p>
 
       <QuickstartBranch branch="authentication.5" />
@@ -24,23 +24,24 @@ export default (props) => {
         Auth0 Callback
       </h3>
       <p>
-        After you login, Auth0 redirects you to the URL <code>https://localhost:300/auth/callback</code>, but
-        more importantly, it includes a number of important query parameters that look like this:
+        When Auth0 redirects you to the URL <code>https://localhost:300/auth/callback</code>, it also includes a
+        number of important query parameters in the URL that look like this:
       </p>
       <Markdown text={`
         access_token=...&expires_in=...&token_type=...&state=...&id_token=...
       `}/>
 
       <p>
-        What we need to do next is build a component that can extract the JWT token we need from those query
-        parameters, and log the user into the application.
+        Among those query parameters is one called <code>id_token</code>, which contains
+        a <a href="https://jwt.io/introduction/" target="_blank">JWT token</a> we need. So let's build a component
+        to extract that token and save it.
       </p>
 
       <h3>
         Create the AuthCallback Component
       </h3>
       <p>
-        To do that, we're going to create a component called <code>AuthCallback</code>:
+        To do that, create a component called <code>AuthCallback</code>:
       </p>
 
       <Markdown type="sh" text={`
@@ -48,7 +49,7 @@ export default (props) => {
       `}/>
 
       <p>
-        Update the <code>AuthCallback</code> component to look like this:
+        Then update the file to look like this:
       </p>
 
       <CodeTabs>
@@ -167,25 +168,28 @@ export default (props) => {
       </CodeTabs>
 
       <p>
-        When this component gets mounted, we're going to once again create the <code>Auth0.WebAuth</code> object
-        and provide it with our <code>auth0</code> config at <code>lore.config.auth0</code>. Then we're going
-        to call <code>auth0.parseHash()</code>, which will extract the query parameters we need from the callback,
-        and provide them through an object called <code>authResult</code>.
+        When this component gets mounted, we're going to once again create the <code>Auth0.WebAuth()</code> object
+        and provide it with our <code>auth0</code> config at <code>lore.config.auth0</code>.
       </p>
       <p>
-        If all the query parameters we need exist, then we'll save the <code>idToken</code> to localStorage
-        using our <code>auth.saveToken()</code> helper. After that, we'll redirect the user to the home route
-        at <code>/</code>.
+        Then we're going to call <code>auth0.parseHash()</code>, which will extract the query parameters we need
+        from the URL, and provide them through an object called <code>authResult</code>.
+      </p>
+      <p>
+        Then, if all the query parameters that we need exist, we'll save the <code>idToken</code> to localStorage
+        using our <code>auth.saveToken()</code> helper, and redirect the user to the root route at <code>/</code>.
       </p>
 
       <h3>
         Create the /auth/callback route
       </h3>
       <p>
-        Now that the component exists, let's create the corresponding route to display it. Import
-        your <code>AuthCallback</code> component into <code>routes.js</code> and update the routes to look like this:
+        Now that the component exists, let's create the corresponding route to display it.
       </p>
-
+      <p>
+        Import your <code>AuthCallback</code> component into <code>routes.js</code> and update the routes to
+        look like this:
+      </p>
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
@@ -242,7 +246,7 @@ export default (props) => {
       </CodeTabs>
 
       <p>
-        With that change in place, refresh the browser and navigate to <code>/login</code>. Once you log in, Auth0
+        Once that's done, refresh the browser and navigate to <code>/login</code>. This time, once you log in, Auth0
         will redirect you to the <code>/auth/callback</code> route, which will store the token we need, and redirect
         you back to the home route.
       </p>

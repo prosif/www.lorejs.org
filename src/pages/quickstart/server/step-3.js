@@ -10,428 +10,160 @@ export default (props) => {
   return (
     <Template>
       <h1>
-        Step 3: Add Authorization Header
+        Step 3: Parse the Model
       </h1>
 
       <p>
-        In this step we'll add an Authorization header to authentication our API calls.
+        In this step we’ll continue restoring the functionality to the application.
       </p>
 
       <QuickstartBranch branch="server.3" />
 
       <h3>
-        Why is the API call failing?
+        Why is the application still broken?
       </h3>
       <p>
-        Our API call to <code>/user</code> is returning a 401 because we're using a real API now, and the server
-        can't identity who the current user is without having access to the user's token.
+        The error we're seeing now looks like this:
       </p>
 
-      <p>
-        This API is expecting all network requests to protected endpoints to contain
-        an <code>Authorization</code> header with a value of <code>Bearer [token]</code>.
-      </p>
+      <Markdown type="sh" text={`
+      Invalid call to \`getState('user.byId')\`. Missing required attribute 'id'.
+      `}/>
 
       <p>
-        The call to <code>/tweets</code> is succeeding because that endpoint is public - anyone can view it.
+        This error stems from another parsing problem. In our original mock API, the response for a single tweet
+        looked like this:
+      </p>
+
+      <Markdown text={`
+      {
+        id: 1,
+        userId: 1,
+        text: "Ayla fight while alive! Win and live. Lose and die.",
+        createdAt: "2016-11-26T04:03:25.546Z"
+      }
+      `}/>
+
+      <p>
+        But in our current API, the response looks like this:
+      </p>
+
+      <Markdown text={`
+      {
+        id: 1,
+        user: 1,
+        text: "Ayla fight while alive! Win and live. Lose and die.",
+        createdAt: "2016-11-26T04:03:25.546Z"
+      }
+      `}/>
+
+      <p>
+        The difference is that our <code>userId</code> property has been renamed to <code>user</code>, and this is
+        generating an error in the <code>connect</code> call of our <code>Tweet</code> component, show below:
+      </p>
+
+      <Markdown type="jsx" text={`
+      // src/components/Tweet.js
+      connect(function(getState, props) {
+        const { tweet } = props;
+
+        return {
+          user: getState('user.byId', {
+            id: tweet.data.userId
+          })
+        };
+      })
+      `}/>
+
+      <p>
+        Since <code>userId</code> doesn't exist in the new API response, this code is passing <code>undefined</code> as
+        the value of the <code>id</code>.
+      </p>
+      <p>
+        To fix this, we <em>could</em> simply replace <code>userId</code> with <code>user</code> in the code above,
+        and that would certainly be the better long-term solution. But since this Quickstart is intended to showcase
+        key features in Lore, we're going to use an alternative approach, and instead add the
+        missing <code>user</code> field to all tweets.
       </p>
 
       <h3>
-        Display an Unauthorized Experience
+        Parse the Model Response
       </h3>
       <p>
-        The fact that our application is rendering a broken experience isn't ideal. The reason this is
-        happening is because the <code>render()</code> method of the <code>Master</code> component currently
-        looks like this:
-      </p>
-
-      <CodeTabs>
-        <CodeTab syntax="ES5" text={`
-        export default createReactClass({
-
-          ...
-
-          render: function() {
-            const { user } = this.props;
-
-            if (user.state === PayloadStates.FETCHING) {
-              return (
-                <div className="loader" />
-              );
-            }
-
-            return (
-              <div>
-                {React.cloneElement(this.props.children)}
-              </div>
-            );
-          }
-
-        }
-        `}/>
-        <CodeTab syntax="ES6" text={`
-        class Master extends React.Component {
-
-          ...
-
-          render() {
-            const { user } = this.props;
-
-            if (user.state === PayloadStates.FETCHING) {
-              return (
-                <div className="loader" />
-              );
-            }
-
-            return (
-              <div>
-                {React.cloneElement(this.props.children)}
-              </div>
-            );
-          }
-
-        }
-        `}/>
-        <CodeTab syntax="ESNext" text={`
-        class Master extends React.Component {
-
-          ...
-
-          render() {
-            const { user } = this.props;
-
-            if (user.state === PayloadStates.FETCHING) {
-              return (
-                <div className="loader" />
-              );
-            }
-
-            return (
-              <div>
-                {React.cloneElement(this.props.children)}
-              </div>
-            );
-          }
-
-        }
-        `}/>
-      </CodeTabs>
-
-      <p>
-        This component only has two states that it checks for:
-      </p>
-
-      <ul>
-        <li>
-          If the current user is being fetched, display a loading experience.
-        </li>
-        <li>
-          If the current user is NOT being fetched, render the application.
-        </li>
-      </ul>
-
-      <p>
-        To fix this issue we're going to add a third condition, which will be:
-      </p>
-
-      <ul>
-        <li>If there's an error fetching the current user, display an unauthorized experience.</li>
-      </ul>
-
-      <p>
-        To add this experience, update the render method to look like this:
-      </p>
-
-      <CodeTabs>
-        <CodeTab syntax="ES5" text={`
-        export default createReactClass({
-
-          ...
-
-          render: function() {
-            const { user } = this.props;
-
-            if (user.state === PayloadStates.FETCHING) {
-              return (
-                <div className="loader" />
-              );
-            }
-
-            if (user.state === PayloadStates.ERROR_FETCHING) {
-              return (
-                <div>
-                  <RemoveLoadingScreen/>
-                  <h1 className="full-page-text">
-                    Unauthorized
-                  </h1>
-                </div>
-              );
-            }
-
-            return (
-              <div>
-                {React.cloneElement(this.props.children)}
-              </div>
-            );
-          }
-
-        }
-        `}/>
-        <CodeTab syntax="ES6" text={`
-        class Master extends React.Component {
-
-          ...
-
-          render() {
-            const { user } = this.props;
-
-            if (user.state === PayloadStates.FETCHING) {
-              return (
-                <div className="loader" />
-              );
-            }
-
-            if (user.state === PayloadStates.ERROR_FETCHING) {
-              return (
-                <div>
-                  <RemoveLoadingScreen/>
-                  <h1 className="full-page-text">
-                    Unauthorized
-                  </h1>
-                </div>
-              );
-            }
-
-            return (
-              <div>
-                {React.cloneElement(this.props.children)}
-              </div>
-            );
-          }
-
-        }
-        `}/>
-        <CodeTab syntax="ESNext" text={`
-        class Master extends React.Component {
-
-          ...
-
-          render() {
-            const { user } = this.props;
-
-            if (user.state === PayloadStates.FETCHING) {
-              return (
-                <div className="loader" />
-              );
-            }
-
-            if (user.state === PayloadStates.ERROR_FETCHING) {
-              return (
-                <div>
-                  <RemoveLoadingScreen/>
-                  <h1 className="full-page-text">
-                    Unauthorized
-                  </h1>
-                </div>
-              );
-            }
-
-            return (
-              <div>
-                {React.cloneElement(this.props.children)}
-              </div>
-            );
-          }
-
-        }
-        `}/>
-      </CodeTabs>
-
-      <p>
-        With that change in place, the application will now display <strong>"Unauthorized"</strong> when there's
-        an error fetching the current user.
+        Models and Collections in Lore both have a <code>parse()</code> method. The <code>parse()</code> method on
+        Models is responsible for parsing a single resource and producing the final set of attributes that will
+        be used by the components in your application.
       </p>
 
       <blockquote>
         <p>
-          The error response from the server is actually stored in <code>tweet.error</code>, which we could choose
-          to display instead of the hardcoded message. But for this specific error, the server doesn't return any
-          information in the body, so that's not an option we can use here.
+          While <code>config/connections.js</code> <em>does</em> contain a parse method for <code>models</code>,
+          that method will affect <em>all</em> models in the application, which isn't what we want, since this
+          issue only affects the <code>tweet</code> models.
         </p>
       </blockquote>
 
-      <img className="drop-shadow" src="/assets/images/quickstart/server/step-3a.png" />
-
-      <h3>
-        Add the Authorization Header
-      </h3>
       <p>
-        Now that we can clearly see when the user is unauthorized, let's add the user's token to the Authorization
-        header to authenticate them and learn who they are.
+        To fix this open up <code>src/models/tweet.js</code>, and look for the commented
+        out <code>parse()</code> method which will look like this:
       </p>
 
+      <Markdown text={`
+      export default {
+        ...
+        properties: {
+          // parse: function(resp, options) {
+          //  return resp;
+          // }
+        }
+        ...
+      }
+      `}/>
+
       <p>
-        Remember the <code>auth</code> utility in <code>utils/auth.js</code> that we used to save the user's
-        token to localStorage? We're going to be using that once again to retrieve the user's token and add it
-        to the header of all API requests.
+        Modify that method to look like this:
       </p>
 
-      <p>
-        Open up <code>config/connections.js</code> and find the commented out method below
-        the <code>apiRoot</code> called <code>headers</code>. It looks like this:
-      </p>
-
-      <CodeTabs>
-        <CodeTab syntax="ES5" text={`
-        export default {
-
-          default: {
-
-            apiRoot: 'http://localhost:1337',
-
-            // headers: function() {
-            //   return {};
-            // },
-
-            ...
-
+      <Markdown type="jsx" text={`
+      export default {
+        ...
+        properties: {
+          parse: function(resp, options) {
+            resp.userId = resp.user;
+            return resp;
           }
-
-        };
-        `}/>
-        <CodeTab syntax="ES6" text={`
-        export default {
-
-          default: {
-
-            apiRoot: 'http://localhost:1337',
-
-            // headers() {
-            //   return {};
-            // },
-
-            ...
-          }
-
-        };
-        `}/>
-        <CodeTab syntax="ESNext" text={`
-        export default {
-
-          default: {
-
-            apiRoot: 'http://localhost:1337',
-
-            // headers() {
-            //   return {};
-            // },
-
-            ...
-          }
-
-        };
-        `}/>
-      </CodeTabs>
+        }
+        ...
+      }
+      `}/>
 
       <p>
-        Import the <code>auth</code> module into the config and set the <code>Authorization</code> like this:
-      </p>
-
-      <CodeTabs>
-        <CodeTab syntax="ES5" text={`
-        import auth from '../src/utils/auth';
-
-        export default {
-
-          default: {
-
-            apiRoot: 'http://localhost:1337',
-
-            headers: function() {
-              return {
-                Authorization: 'Bearer ' + auth.getToken()
-              };
-            },
-
-            ...
-          }
-
-        };
-        `}/>
-        <CodeTab syntax="ES6" text={`
-        import auth from '../src/utils/auth';
-
-        export default {
-
-          default: {
-
-            apiRoot: 'http://localhost:1337',
-
-            headers() {
-              return {
-                Authorization: \`Bearer \${auth.getToken()}\`
-              };
-            },
-
-            ...
-          }
-
-        };
-        `}/>
-        <CodeTab syntax="ESNext" text={`
-        import auth from '../src/utils/auth';
-
-        export default {
-
-          default: {
-
-            apiRoot: 'http://localhost:1337',
-
-            headers() {
-              return {
-                Authorization: \`Bearer \${auth.getToken()}\`
-              };
-            },
-
-            ...
-          }
-
-        };
-        `}/>
-      </CodeTabs>
-
-      <p>
-        With that change in place, refresh the browser and application should display correctly again.
-      </p>
-
-      <h3>
-        Login as Different Characters
-      </h3>
-      <p>
-        At this point, not only will the application display correctly again, but because we're now backed
-        by a real API, you'll also be able to login as different characters and have the profile reflect
-        that. Try it out!
+        Instead of modifying all the components, we're simply going to create the missing <code>userId</code> property
+        and copy over the value from the <code>user</code> property.
       </p>
 
       <blockquote>
         <p>
-          As a reminder, you can login as any of the characters below:
+          It's worth mentioning that this approach of overriding <code>parse()</code> to resolve breaking API
+          changes is only suitable for <em>consuming</em> data, since you're effectively transforming the server
+          response.
         </p>
-        <ul>
-          <li>ayla</li>
-          <li>crono</li>
-          <li>frog</li>
-          <li>lucca</li>
-          <li>magus</li>
-          <li>marle</li>
-          <li>robo</li>
-        </ul>
         <p>
-          The email format is <code>{"{name}@example.com"}</code>, and the password for all of them
-          is <code>password</code>. So if you wanted to login as marle, you would
-          enter <code>marle@example.com</code> for the email and <code>password</code> for the password.
+          If you edit that data, and want to save your changes, then you'll need to transform it back to the format
+          the server expects before sending it. In that case, you should use the <code>sync()</code> method, which
+          you can learn more about <Link to="/models/">here</Link>.
         </p>
       </blockquote>
+
+      <p>
+        If you refresh the browser, you'll notice the Feed displays correctly again, but our profile picture isn't
+        being displayed. This is because the application doesn't actually know who the user is. If you open the
+        network tab in the browser developer tools, you'll see that the call to <code>/user</code> returns
+        a <code>401 Unauthorized</code>.
+      </p>
+      <p>
+        We'll fix that issue in the next step.
+      </p>
 
       <h3>
         Visual Check-in
@@ -441,8 +173,7 @@ export default (props) => {
         If everything went well, your application should look like this.
       </p>
 
-      <img className="drop-shadow" src="/assets/images/quickstart/server/step-3.png" />
-
+      <img className="drop-shadow" src="/assets/images/quickstart/server/step-2.png" />
 
       <h2>
         Code Changes
@@ -453,276 +184,51 @@ export default (props) => {
       </p>
 
       <h3>
-        config/connections.js
+        src/models/tweet.js
       </h3>
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        import auth from '../src/utils/auth';
-
         export default {
 
-          default: {
+          properties: {
 
-            apiRoot: 'http://localhost:1337',
-
-            headers: function() {
-              return {
-                Authorization: 'Bearer ' + auth.getToken()
-              };
-            },
-
-            collections: {
-              properties: {
-
-                parse: function(attributes) {
-                  return attributes.data;
-                }
-
-              }
+            parse: function(resp, options) {
+              resp.userId = resp.user;
+              return resp;
             }
 
           }
+
         };
         `}/>
         <CodeTab syntax="ES6" text={`
-        import auth from '../src/utils/auth';
-
         export default {
 
-          default: {
+          properties: {
 
-            apiRoot: 'http://localhost:1337',
-
-            headers() {
-              return {
-                Authorization: \`Bearer \${auth.getToken()}\`
-              };
-            },
-
-            collections: {
-              properties: {
-
-                parse(attributes) {
-                  return attributes.data;
-                }
-
-              }
+            parse: function(resp, options) {
+              resp.userId = resp.user;
+              return resp;
             }
 
-          }
-        };
-        `}/>
-        <CodeTab syntax="ESNext" text={`
-        import auth from '../src/utils/auth';
-
-        export default {
-
-          default: {
-
-            apiRoot: 'http://localhost:1337',
-
-            headers() {
-              return {
-                Authorization: \`Bearer \${auth.getToken()}\`
-              };
-            },
-
-            collections: {
-              properties: {
-
-                parse(attributes) {
-                  return attributes.data;
-                }
-
-              }
-            }
-
-          }
-        };
-        `}/>
-      </CodeTabs>
-
-      <h3>
-        src/components/Master.js
-      </h3>
-
-      <CodeTabs>
-        <CodeTab syntax="ES5" text={`
-        import React from 'react';
-        import createReactClass from 'create-react-class';
-        import PropTypes from 'prop-types';
-        import { connect } from 'lore-hook-connect';
-        import PayloadStates from '../constants/PayloadStates';
-        import '../../assets/css/main.css';
-
-        export default connect(function(getState, props) {
-          return {
-            user: getState('currentUser')
-          };
-        }, { subscribe: true })(
-          createReactClass({
-            displayName: 'Master',
-
-            propTypes: {
-              user: PropTypes.object.isRequired
-            },
-
-            childContextTypes: {
-              user: PropTypes.object
-            },
-
-            getChildContext: function() {
-              return {
-                user: this.props.user
-              };
-            },
-
-            render: function() {
-              const { user } = this.props;
-
-              if (user.state === PayloadStates.FETCHING) {
-                return (
-                  <div className="loader" />
-                );
-              }
-
-              if (user.state === PayloadStates.ERROR_FETCHING) {
-                return (
-                <div>
-                  <RemoveLoadingScreen/>
-                  <h1 className="full-page-text">
-                    Unauthorized
-                  </h1>
-                </div>
-                );
-              }
-
-              return (
-                <div>
-                  {React.cloneElement(this.props.children)}
-                </div>
-              );
-            }
-          })
-        );
-        `}/>
-        <CodeTab syntax="ES6" text={`
-        import React from 'react';
-        import PropTypes from 'prop-types';
-        import { connect } from 'lore-hook-connect';
-        import PayloadStates from '../constants/PayloadStates';
-        import '../../assets/css/main.css';
-
-        class Master extends React.Component {
-
-          getChildContext() {
-            return {
-              user: this.props.user
-            };
-          }
-
-          render() {
-            const { user } = this.props;
-
-            if (user.state === PayloadStates.FETCHING) {
-              return (
-                <div className="loader" />
-              );
-            }
-
-            if (user.state === PayloadStates.ERROR_FETCHING) {
-              return (
-                <div>
-                  <RemoveLoadingScreen/>
-                  <h1 className="full-page-text">
-                    Unauthorized
-                  </h1>
-                </div>
-              );
-            }
-
-            return (
-              <div>
-                {React.cloneElement(this.props.children)}
-              </div>
-            );
           }
 
         }
-
-        Master.propTypes = {
-          user: PropTypes.object.isRequired
-        };
-
-        Master.childContextTypes = {
-          user: PropTypes.object
-        };
-
-        export default connect(function(getState, props) {
-          return {
-            user: getState('currentUser')
-          };
-        }, { subscribe: true })(Master);
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React from 'react';
-        import PropTypes from 'prop-types';
-        import { connect } from 'lore-hook-connect';
-        import PayloadStates from '../constants/PayloadStates';
-        import '../../assets/css/main.css';
+        export default {
 
-        @connect(function(getState, props) {
-          return {
-            user: getState('currentUser')
-          };
-        }, { subscribe: true })
-        class Master extends React.Component {
+          properties: {
 
-          static propTypes = {
-            user: PropTypes.object.isRequired
-          };
-
-          static childContextTypes = {
-            user: PropTypes.object
-          };
-
-          getChildContext() {
-            return {
-              user: this.props.user
-            };
-          }
-
-          render() {
-            const { user } = this.props;
-
-            if (user.state === PayloadStates.FETCHING) {
-              return (
-                <div className="loader" />
-              );
+            parse: function(resp, options) {
+              resp.userId = resp.user;
+              return resp;
             }
 
-            if (user.state === PayloadStates.ERROR_FETCHING) {
-              return (
-                <div>
-                  <RemoveLoadingScreen/>
-                  <h1 className="full-page-text">
-                    Unauthorized
-                  </h1>
-                </div>
-              );
-            }
-
-            return (
-              <div>
-                {React.cloneElement(this.props.children)}
-              </div>
-            );
           }
 
         }
-
-        export default Master;
         `}/>
       </CodeTabs>
 
@@ -731,9 +237,8 @@ export default (props) => {
       </h2>
 
       <p>
-        In the next section we'll <Link to="../../pagination/overview/">add support for pagination</Link>.
+        Next we're going to add an experience to <Link to="../step-4/">show when the user is unauthorized</Link>.
       </p>
-
     </Template>
   )
 };

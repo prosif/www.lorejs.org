@@ -32,27 +32,36 @@ export default (props) => {
         API request. The token that we will be sending will be provided to us by Auth0 when the user logs in.
       </p>
       <p>
-        Additionally, in order to prevent requiring the user from needing to login every time they refresh the
-        page (or navigate away from the site), we are also going to store this token in the browser's localStorage,
-        and only redirect the user to the login page if they have no token.
+        Also, in order to prevent requiring the user to log in every time they refresh the page (or
+        navigate away from the site), we be storing this token in the
+        browser's <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage">localStorage</a>, and
+        only redirect the user to the login page if they have no token.
       </p>
 
       <h3>
         Auth Utility
       </h3>
       <p>
-        If you look inside <code>src/utils</code> you'll find a file called <code>auth.js</code> that contains some
-        helper methods for saving and retrieving a user token from localStorage. For example, when the application
-        loads, we're going to check if a <code>userToken</code> exists in localStorage by
-        calling <code>auth.hasToken()</code>. And once we do have a token, we'll be able to save it
+        If you look inside <code>src/utils</code> you'll find a file called <code>auth.js</code>. This file contains
+        some helper methods for saving and retrieving a user token from localStorage.
+      </p>
+      <p>
+        For example, when the application loads, we're going to check if a <code>userToken</code> exists in
+        localStorage by calling <code>auth.hasToken()</code>, and once we have a token, we'll be able to save it
         to <code>localStorage</code> by calling <code>auth.saveToken(token)</code>.
       </p>
 
+      <blockquote>
+        <p>
+          You can read more about this file <Link to="/anatomy/src/utils/auth/">here</Link>.
+        </p>
+      </blockquote>
+
       <h3>
-        Redirecting the User
+        Redirect the User
       </h3>
       <p>
-        Open up <code>routes.js</code> and find the route that renders the <code>Master</code> component. It should
+        Open <code>routes.js</code> and find the route that renders the <code>Master</code> component. It should
         look like this:
       </p>
 
@@ -69,8 +78,7 @@ export default (props) => {
       </p>
 
       <p>
-        Open up <code>src/decorators/UserIsAuthenticated.js</code> and take a look at
-        the <code>isAuthenticated()</code> method:
+        To do that, open <code>src/decorators/UserIsAuthenticated.js</code>, which looks like this:
       </p>
 
       <Markdown type="jsx" text={`
@@ -96,36 +104,40 @@ export default (props) => {
       `}/>
 
       <p>
-        This <code>isAuthenticated()</code> method gets called when the route is rendered, and is responsible for
-        determining whether or not the user is logged in. Since this function currently returns <code>true</code>,
-        the application never redirects the user to <code>/login</code> (the default redirect url).
+        When this component gets mounted, the <code>isAuthenticated()</code> method is called. If it
+        returns <code>true</code>, whatever component this wraps is rendered. If it returns <code>false</code>,
+        the <code>redirect()</code> method is called, and you can send the user somewhere else.
       </p>
+
+      <blockquote>
+        <p>
+          You can read more about this file <Link to="/anatomy/src/decorators/user-is-authenticated/">here</Link>.
+        </p>
+      </blockquote>
 
       <p>
-        To get the behavior we want, import <code>src/utils/auth.js</code> into this decorator and update
+        Since this function currently returns <code>true</code>, the application never redirects the user
+        to <code>/login</code>. To get the behavior we want, import <code>src/utils/auth.js</code> and update
         the <code>isAuthenticated()</code> method to look like this:
       </p>
-
 
       <Markdown type="jsx" text={`
       import auth from '../utils/auth';
       ...
-        isAuthenticated: function() {
+        isAuthenticated() {
           return auth.hasToken();
         }
       ...
       `}/>
 
       <p>
-        With that change in place, if you now try to navigate to root route (such
-        as <code>https://localhost:3000</code>) the application will automatically redirect you to <code>/login</code>.
+        If you now try to navigate to root route at <code>https://localhost:3000</code>, the application will
+        redirect you to <code>/login</code>.
       </p>
-
 
       <h3>
         Visual Check-in
       </h3>
-
       <p>
         If everything went well, your application should now look like this.
       </p>

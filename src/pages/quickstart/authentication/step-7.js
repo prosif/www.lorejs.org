@@ -10,7 +10,7 @@ export default (props) => {
   return (
     <Template>
       <h1>
-        Step 7: Add User Endpoint
+        Step 7: Fetch Current User
       </h1>
 
       <p>
@@ -20,16 +20,22 @@ export default (props) => {
       <QuickstartBranch branch="authentication.7" />
 
       <h3>
-        Add /user route to mock API
+        Add API Endpoint for Current User
       </h3>
       <p>
-        Currently we don't have an API we can use to exchange the token from Auth0 for a proper user object. So
-        let's create one (reminder: we'll be replacing the mock API with a real one later).
+        Currently we don't have an API endpoint that we can use to exchange the token from Auth0 for information
+        about who the current user is. So let's create one.
       </p>
 
+      <blockquote>
+        <p>
+          As a reminder, we'll be replacing the mock API with a real one later.
+        </p>
+      </blockquote>
+
       <p>
-        Open up <code>db.json</code> and add a new endpoint called <code>/user</code> by adding this JSON to the
-        bottom of the file:
+        Open the <code>db.json</code> file at the root of your project and add a new endpoint
+        called <code>/user</code> by adding this JSON to the bottom of the file:
       </p>
 
       <Markdown type="json" text={`
@@ -50,7 +56,7 @@ export default (props) => {
 
       <p>
         With this change in place, if you navigate to <code>http://localhost:1337/user</code> the API will return
-        an object telling us we are Ayla:
+        an object telling us that we are Ayla:
       </p>
 
       <Markdown type="jsx" text={`
@@ -62,12 +68,11 @@ export default (props) => {
       `}/>
 
       <h3>
-        Set the endpoint for the currentUser model
+        Specify Endpoint in Current User Model
       </h3>
       <p>
-        Next, we need to tell Lore where it can fetch the current user. Open up the <code>currentUser</code> model
-        and find the property for <code>endpoint</code>. Change it from <code>currentUser</code> to <code>user</code> like
-        this:
+        Next, we need to tell Lore where it can fetch the current user. Open the <code>currentUser</code> model
+        and find the property for <code>endpoint</code>. Change it from "currentUser" to "user":
       </p>
 
       <CodeTabs>
@@ -87,6 +92,17 @@ export default (props) => {
         }
         `}/>
       </CodeTabs>
+
+      <blockquote>
+        <p>
+          Normally, the <code>endpoint</code> is dervied based on conventions and configuration settings. But
+          when the name of the endpoint doesn't match the name of the model, such as in this case, you need to
+          specify it yourself.
+        </p>
+        <p>
+          You can learn more about this property <Link to="/models/">here</Link>.
+        </p>
+      </blockquote>
 
       <h3>
         Visual Check-in
