@@ -74,14 +74,17 @@ export default (props) => {
 
             <li className="doc-section">Pagination</li>
             <NavLink title="Overview" url="/quickstart/pagination/overview/" />
-            <NavLink title="1. Add Pagination" url="/quickstart/pagination/step-1/" />
-            <NavLink title="2. Improve User Experience" url="/quickstart/pagination/step-2/" />
+            <NavLink title="1. Add Pagination Metadata" url="/quickstart/pagination/step-1/" />
+            <NavLink title="2. Paginate the Tweets" url="/quickstart/pagination/step-2/" />
+            <NavLink title="3. Add Pagination Links" url="/quickstart/pagination/step-3/" />
+            <NavLink title="4. Improve User Experience" url="/quickstart/pagination/step-4/" />
 
             <li className="doc-section">Infinite Scrolling</li>
             <NavLink title="Overview" url="/quickstart/infinite-scrolling/overview/" />
-            <NavLink title="1. Add NextPage to Meta" url="/quickstart/infinite-scrolling/step-1/" />
-            <NavLink title="2. Setup Infinite Scrolling" url="/quickstart/infinite-scrolling/step-2/" />
-            <NavLink title="3. Convert the Feed" url="/quickstart/infinite-scrolling/step-3/" />
+            <NavLink title="1. Update Pagination Metadata" url="/quickstart/infinite-scrolling/step-1/" />
+            <NavLink title="2. Create Load More Button" url="/quickstart/infinite-scrolling/step-2/" />
+            <NavLink title="3. Create Infinite Scrolling List" url="/quickstart/infinite-scrolling/step-3/" />
+            <NavLink title="4. Convert the Feed" url="/quickstart/infinite-scrolling/step-4/" />
 
             <li className="doc-section">Dialogs</li>
             <NavLink title="Overview" url="/quickstart/dialogs/overview/" />

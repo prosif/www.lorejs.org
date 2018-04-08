@@ -10,26 +10,129 @@ export default (props) => {
   return (
     <Template>
       <h1>
-        Step 3: Create Infinite Scrolling List
+        Step 2: Create Load More Button
       </h1>
 
       <p>
-        In this step we'll create the List component we'll need for infinite scrolling.
+        In this step we'll create the components we'll need for infinite scrolling.
       </p>
 
-      <QuickstartBranch branch="infinite-scrolling.3" />
+      <QuickstartBranch branch="infinite-scrolling.2" />
 
       <h3>
-        Create InfiniteScrollingList Component
+        Infinite Scrolling Setup
+      </h3>
+      <p>
+        Infinite Scrolling has <em>a lot</em> of boilerplate associated with it. Components that implement it need to:
+      </p>
+
+      <ul>
+        <li>fetch the first page of data</li>
+        <li>fetch the next page if the user requests it</li>
+        <li>provide some kind of signal to show when a new page is being fetched</li>
+        <li>combine all of the data into a single array containing all pages of data</li>
+      </ul>
+
+      <p>
+        The logic for that can also be a little tricky, but luckily it's easy enough to encapsulate into a couple
+        reusable components.
+      </p>
+
+      <h3>
+        Component #1: LoadMoreButton
       </h3>
 
       <p>
-        The second component we'll create will be called <code>InfiniteScrollingList</code>, and it will be
-        responsible for displaying our list of tweets, as well as merging all the pages of data into a single array.
+        The first component we're going to create is going to be the <code>LoadMoreButton</code>, and it will be
+        a button that the user to click to load more tweets. This button will will have three responsibilities:
+      </p>
+
+      <ol>
+        <li>Display the text "Load More" if there are more tweets to load</li>
+        <li>Display a loading experience if more tweets are being fetched</li>
+        <li>Disappear from view if there are no more tweets to fetch.</li>
+      </ol>
+
+      <p>
+        Create the button component by running the following command:
+      </p>
+
+      <Markdown text={`
+      lore generate component LoadMoreButton
+      `}/>
+
+      <p>
+        Then replace the contents of the file with this:
+      </p>
+
+      <CodeTabs>
+        <CodeTab syntax="ES5" text={`
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
+        import PayloadStates from '../constants/PayloadStates';
+
+        export default createReactClass({
+          displayName: 'LoadMoreButton',
+
+          propTypes: {
+            lastPage: PropTypes.object.isRequired,
+            onLoadMore: PropTypes.func.isRequired,
+            nextPageMetaField: PropTypes.string.isRequired
+          },
+
+          render: function() {
+            const {
+              lastPage,
+              onLoadMore,
+              nextPageMetaField
+            } = this.props;
+
+            if(lastPage.state === PayloadStates.FETCHING) {
+              return (
+                <div className="footer">
+                  <div className="loader"/>
+                </div>
+              );
+            }
+
+            if (!lastPage.meta[nextPageMetaField]) {
+              return (
+                <div className="footer"/>
+              );
+            }
+
+            return (
+              <div className="footer">
+                <button className="btn btn-default btn-lg" onClick={onLoadMore}>
+                  Load More
+                </button>
+              </div>
+            );
+          }
+
+        });
+        `}/>
+        <CodeTab syntax="ES6" text={`
+        TODO
+        `}/>
+        <CodeTab syntax="ESNext" text={`
+        TODO
+        `}/>
+      </CodeTabs>
+
+      <h3>
+        Component #2: InfiniteScrollingLIst
+      </h3>
+
+      <p>
+        The second component we're going to create is going to be called <code>InfiniteScrollingList</code>,
+        and it will be responsible for displaying our list of tweets, as well as fetching the next page, and
+        merging all the data into a single array.
       </p>
 
       <p>
-        Create the component by running the following command:
+        Create the list component by running the following command:
       </p>
 
       <Markdown text={`
@@ -37,7 +140,7 @@ export default (props) => {
       `}/>
 
       <p>
-        Then modify the file to look like this:
+        Then replace the contents of the file with this:
       </p>
 
       <CodeTabs>
@@ -169,9 +272,7 @@ export default (props) => {
       </CodeTabs>
 
       <p>
-        The component above is pretty generic. The props that start with <code>select*</code> are functions that
-        we'll be providing to describe what data we want to display, and the <code>row</code> prop is a function
-        that we'll provide to tell the List how to render each item in the array.
+        We won't spend any time explaining the code above, but it reflects the boilerplate described previously.
       </p>
 
       <h3>
@@ -192,6 +293,151 @@ export default (props) => {
       <p>
         Below is a list of files modified during this step.
       </p>
+
+      <h3>
+        src/components/LoadMoreButton.js
+      </h3>
+
+      <CodeTabs>
+        <CodeTab syntax="ES5" text={`
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
+        import PayloadStates from '../constants/PayloadStates';
+
+        export default createReactClass({
+          displayName: 'LoadMoreButton',
+
+          propTypes: {
+            lastPage: PropTypes.object.isRequired,
+            onLoadMore: PropTypes.func.isRequired,
+            nextPageMetaField: PropTypes.string.isRequired
+          },
+
+          render: function() {
+            const {
+              lastPage,
+              nextPageMetaField
+            } = this.props;
+
+            if(lastPage.state === PayloadStates.FETCHING) {
+              return (
+                <div className="footer">
+                  <div className="loader" />
+                </div>
+              );
+            }
+
+            if (!lastPage.meta[nextPageMetaField]) {
+              return (
+                <div className="footer"></div>
+              );
+            }
+
+            return (
+              <div className="footer">
+                <button className="btn btn-default btn-lg" onClick={this.props.onLoadMore}>
+                  Load More
+                </button>
+              </div>
+            );
+          }
+
+        });
+        `}/>
+        <CodeTab syntax="ES6" text={`
+        import React from 'react';
+        import PropTypes from 'prop-types';
+        import PayloadStates from '../constants/PayloadStates';
+
+        class LoadMoreButton extends React.Component {
+
+          render() {
+            const {
+              lastPage,
+              nextPageMetaField
+            } = this.props;
+
+            if(lastPage.state === PayloadStates.FETCHING) {
+              return (
+                <div className="footer">
+                  <div className="loader" />
+                </div>
+              );
+            }
+
+            if (!lastPage.meta[nextPageMetaField]) {
+              return (
+                <div className="footer"></div>
+              );
+            }
+
+            return (
+              <div className="footer">
+                <button className="btn btn-default btn-lg" onClick={this.props.onLoadMore}>
+                  Load More
+                </button>
+              </div>
+            );
+          }
+
+        }
+
+        LoadMoreButton.propTypes = {
+          lastPage: PropTypes.object.isRequired,
+          onLoadMore: PropTypes.func.isRequired,
+          nextPageMetaField: PropTypes.string.isRequired
+        };
+
+        export default LoadMoreButton;
+        `}/>
+        <CodeTab syntax="ESNext" text={`
+        import React from 'react';
+        import PropTypes from 'prop-types';
+        import PayloadStates from '../constants/PayloadStates';
+
+        class LoadMoreButton extends React.Component {
+
+          static propTypes = {
+            lastPage: PropTypes.object.isRequired,
+            onLoadMore: PropTypes.func.isRequired,
+            nextPageMetaField: PropTypes.string.isRequired
+          };
+
+          render() {
+            const {
+              lastPage,
+              nextPageMetaField
+            } = this.props;
+
+            if(lastPage.state === PayloadStates.FETCHING) {
+              return (
+                <div className="footer">
+                  <div className="loader" />
+                </div>
+              );
+            }
+
+            if (!lastPage.meta[nextPageMetaField]) {
+              return (
+                <div className="footer"></div>
+              );
+            }
+
+            return (
+              <div className="footer">
+                <button className="btn btn-default btn-lg" onClick={this.props.onLoadMore}>
+                  Load More
+                </button>
+              </div>
+            );
+          }
+
+        }
+
+        export default LoadMoreButton;
+        `}/>
+      </CodeTabs>
 
       <h3>
         src/decorators/InfiniteScrolling.js
@@ -550,7 +796,7 @@ export default (props) => {
       </h2>
 
       <p>
-        Next we'll <Link to="../step-4/">convert the Feed to use Infinite Scrolling</Link>.
+        Next we'll <Link to="../step-3/">create the second component we'll need for Infinite Scrolling</Link>.
       </p>
     </Template>
   )

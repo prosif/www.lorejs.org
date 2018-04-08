@@ -14,7 +14,7 @@ export default (props) => {
       </h1>
 
       <p>
-        In this section we'll add pagination links to our application, so we can navigate through all the tweets.
+        In this section we'll add pagination links to our application, and learn how to paginate the tweets.
       </p>
 
       <p>

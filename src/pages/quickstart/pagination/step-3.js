@@ -10,169 +10,228 @@ export default (props) => {
   return (
     <Template>
       <h1>
-        Step 2: Paginate the Tweets
+        Step 3: Add Pagination Links
       </h1>
 
       <p>
-        In this step we'll update the <code>Feed</code> component to support pagination.
+        In this step we'll add pagination links to our Feed.
       </p>
 
-      <QuickstartBranch branch="pagination.2" />
+      <QuickstartBranch branch="pagination.3" />
 
       <h3>
-        Pagination Strategy
+        Add Pagination Links
       </h3>
       <p>
-        To implement pagination we're going to be using a query parameter in the URL in order to determine
-        which page of data to display, and we're going to call that query parameter <code>page</code>.
+        Now that we're fetching data based on the URL in the browser, we need to add a list of pagination links the
+        user can click to navigate between the pages of tweets.
       </p>
       <p>
-        For example, navigating to the URL <code>http://localhost:1337/tweets?page=1</code> will display
-        the first page of tweets, and the URL <code>http://localhost:1337/tweets?page=2</code> will display the
-        second.
-      </p>
-
-      <h3>
-        Request Paginated Data
-      </h3>
-
-      <p>
-        Open the <code>Feed</code> component and take a look at the <code>connect</code> decorator, which currently
-        looks like this:
-      </p>
-
-      <Markdown text={`
-      connect(function(getState, props) {
-        return {
-          tweets: getState('tweet.find')
-        }
-      })
-      `}/>
-
-      <p>
-        Since we didn't provide any additional information to <code>getState('tweet.find')</code>, the API call
-        that's produced is simply a network request to <code>/tweets</code>. But if we're going to use paginated
-        data, we need network calls that look like <code>/tweets?page=1</code>.
-      </p>
-      <p>
-        To do that, update the <code>connect</code> call to look like this:
+        To do that, update the render method of your <code>Feed</code> component to look like this:
       </p>
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        export default connect(function(getState, props) {
-          const { location } = props;
+        ...
+        import { Link } from 'react-router';
 
-          return {
-            tweets: getState('tweet.find', {
-              pagination: {
-                sort: 'createdAt DESC',
-                page: location.query.page || '1'
-              }
-            })
-          }
-        })(
+        ...
         createReactClass({
           ...
+
+          renderPaginationLink: function(page, currentPage) {
+            return (
+              <li key={page} className={currentPage === String(page) ? 'active' : ''}>
+                <Link to={{ pathname: '/', query: { page: page } }}>
+                  {page}
+                </Link>
+              </li>
+            );
+          },
+
+          render: function() {
+            const { tweets } = this.props;
+            const currentPage = tweets.query.pagination.page;
+            const paginationLinks = [];
+
+            if (tweets.state === PayloadStates.FETCHING) {
+              return (
+                <div className="feed">
+                  <h2 className="title">
+                    Feed
+                  </h2>
+                  <div className="loader"/>
+                </div>
+              );
+            }
+
+            // calculate the number of pagination links from our metadata, then
+            // generate an array of pagination links
+            const numberOfPages = Math.ceil(tweets.meta.totalCount / tweets.meta.perPage);
+            for (let pageNumber = 1; pageNumber <= numberOfPages; pageNumber++) {
+              paginationLinks.push(this.renderPaginationLink(pageNumber, currentPage));
+            }
+
+            return (
+              <div className="feed">
+                <h2 className="title">
+                  Feed
+                </h2>
+                <ul className="media-list tweets">
+                  {tweets.data.map(this.renderTweet)}
+                </ul>
+                <nav>
+                  <ul className="pagination">
+                    {paginationLinks}
+                  </ul>
+                </nav>
+              </div>
+            );
+          }
         })
-        )
+        ...
         `}/>
         <CodeTab syntax="ES6" text={`
+        ...
+        import { Link } from 'react-router';
+
+        ...
         class Feed extends React.Component {
-         ...
-        }
 
-        export default connect(function(getState, props) {
-          const { location } = props;
+          ...
 
-          return {
-            tweets: getState('tweet.find', {
-              pagination: {
-                sort: 'createdAt DESC',
-                page: location.query.page || '1'
-              }
-            })
+          renderPaginationLink(page, currentPage) {
+            return (
+              <li key={page} className={currentPage === String(page) ? 'active' : ''}>
+                <Link to={{ pathname: '/', query: { page: page } }}>
+                  {page}
+                </Link>
+              </li>
+            );
           }
-        })(Feed);
+
+          render() {
+            const { tweets } = this.props;
+            const currentPage = tweets.query.pagination.page;
+            const paginationLinks = [];
+
+            if (tweets.state === PayloadStates.FETCHING) {
+              return (
+                <div className="feed">
+                  <h2 className="title">
+                    Feed
+                  </h2>
+                  <div className="loader"/>
+                </div>
+              );
+            }
+
+            // calculate the number of pagination links from our metadata, then
+            // generate an array of pagination links
+            const numberOfPages = Math.ceil(tweets.meta.totalCount / tweets.meta.perPage);
+            for (let pageNumber = 1; pageNumber <= numberOfPages; pageNumber++) {
+              paginationLinks.push(this.renderPaginationLink(pageNumber, currentPage));
+            }
+
+            return (
+              <div className="feed">
+                <h2 className="title">
+                  Feed
+                </h2>
+                <ul className="media-list tweets">
+                  {tweets.data.map(this.renderTweet)}
+                </ul>
+                <nav>
+                  <ul className="pagination">
+                    {paginationLinks}
+                  </ul>
+                </nav>
+              </div>
+            );
+          }
+        }
         `}/>
         <CodeTab syntax="ESNext" text={`
-        @connect(function(getState, props) {
-          const { location } = props;
+        ...
+        import { Link } from 'react-router';
 
-          return {
-            tweets: getState('tweet.find', {
-              pagination: {
-                sort: 'createdAt DESC',
-                page: location.query.page || '1'
-              }
-            })
-          }
-        })
+        ...
         class Feed extends React.Component {
-         ...
+
+          ...
+
+          renderPaginationLink(page, currentPage) {
+            return (
+              <li key={page} className={currentPage === String(page) ? 'active' : ''}>
+                <Link to={{ pathname: '/', query: { page: page } }}>
+                  {page}
+                </Link>
+              </li>
+            );
+          }
+
+          render() {
+            const { tweets } = this.props;
+            const currentPage = tweets.query.pagination.page;
+            const paginationLinks = [];
+
+            if (tweets.state === PayloadStates.FETCHING) {
+              return (
+                <div className="feed">
+                  <h2 className="title">
+                    Feed
+                  </h2>
+                  <div className="loader"/>
+                </div>
+              );
+            }
+
+            // calculate the number of pagination links from our metadata, then
+            // generate an array of pagination links
+            const numberOfPages = Math.ceil(tweets.meta.totalCount / tweets.meta.perPage);
+            for (let pageNumber = 1; pageNumber <= numberOfPages; pageNumber++) {
+              paginationLinks.push(this.renderPaginationLink(pageNumber, currentPage));
+            }
+
+            return (
+              <div className="feed">
+                <h2 className="title">
+                  Feed
+                </h2>
+                <ul className="media-list tweets">
+                  {tweets.data.map(this.renderTweet)}
+                </ul>
+                <nav>
+                  <ul className="pagination">
+                    {paginationLinks}
+                  </ul>
+                </nav>
+              </div>
+            );
+          }
         }
         `}/>
       </CodeTabs>
 
       <p>
-        In the code above, we're first extracting <code>location</code> from <code>props</code>, which is provided
-        by React Router and contains information like the current URL and any query parameters.
-      </p>
-      <p>
-        Then we're providing an object to <code>getState('tweet.find')</code> in order to be more specific about
-        what question we want to ask the API.
+        With this change in place, you should now see pagination links displayed below the tweets, and clicking on
+        the links will allow you to navigate through each page of tweets.
       </p>
 
       <blockquote>
         <p>
-          The <code>find</code> part of <code>tweet.find</code> is actually the name of a blueprint that determines
-          what options can be provided in the second argument to <code>getState()</code>. The same is true
-          of <code>tweet.byId</code>, and it's actually the <code>byId</code> blueprint that requires there to be
-          an <code>id</code> provided when using it.
+          If you look at the network requests, you'll notice requests only go out for pages you haven't clicked on.
+          If you navigate back to a page you'll already viewed, the data loads immediately, without issuing a
+          network request.
         </p>
         <p>
-          You can read more about the available options for
-          the <code>find</code> blueprint <Link to="/connect/find/">here</Link>.
+          Lore's default behavior is to cache data for any API call it's already made.
         </p>
       </blockquote>
 
       <p>
-        Among the available options for the <code>find</code> blueprint is a <code>pagination</code> property that
-        can be used to list query parameters that relate to pagination, such as page number, page size, ordering
-        preferences, etc.
-      </p>
-
-      <p>
-        Within the <code>pagination</code> property we're providing two query parameters that we want sent to the API:
-      </p>
-      <ul>
-        <li>
-          <p>
-            The first is <code>page</code>, which controls which page of data is returned. This is set set to
-            the value of the <code>page</code> query parameter in the URL of the browser if one exists. If not, it
-            defaults to the first page.
-          </p>
-        </li>
-        <li>
-          <p>
-            The second is <code>sort</code>, which controls how the data that's returned will be ordered. In this
-            case we wanted the newest tweets to be returned first, so we've specified that we want the API to return
-            data in descending order, based on the <code>createdAt</code> date of the tweet.
-          </p>
-        </li>
-      </ul>
-
-      <h3>
-        Try it Out
-      </h3>
-      <p>
-        With this change in place, you should now be able to change what tweets are displayed based on the URL
-        in the browser.
-      </p>
-      <p>
-        For example, if you navigate to <code>http://localhost:3000/tweets?page=1</code> you should
-        see the first page of tweets, and navigating to <code>http://localhost:3000/tweets?page=2</code> should show
-        you the second.
+        However, while this does accomplish our goal, it's not a great user experience, since the entire list
+        resets each time you navigate. In the next step, we'll improve the experience.
       </p>
 
       <h3>
@@ -453,7 +512,7 @@ export default (props) => {
       </h2>
 
       <p>
-        Next step we're going to <Link to="../step-3/">add pagination links</Link>.
+        Next step we're going to <Link to="../step-4/">improve the user experience for pagination</Link>.
       </p>
     </Template>
   )

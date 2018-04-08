@@ -19,6 +19,17 @@ export default (props) => {
         we'll also learn how to resolve those issues.
       </p>
 
+      <blockquote>
+        <p>
+          To provide a more realistic experience going forward, the API server we'll be setting up <strong>has a
+          500ms delay</strong> built-in to all requests.
+        </p>
+        <p>
+          This will make it easier for us to see loading experiences in the application, and (later in the
+          Quickstart), to see the delay between the time we create data and when the server confirms its creation.
+        </p>
+      </blockquote>
+
       <p>
         At the end of this section your application will look like this:
       </p>
