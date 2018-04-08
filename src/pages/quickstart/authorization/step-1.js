@@ -14,8 +14,8 @@ export default (props) => {
       </h1>
 
       <p>
-        In this step we're going to wrap our <code>EditLink</code> with a decorator that will only display it for the user who created
-        the tweet.
+        In this step we're going to wrap our <code>EditLink</code> with a decorator that will only display it for
+        the user who created the tweet.
       </p>
 
       <QuickstartBranch branch="authorization.1" />
@@ -25,7 +25,8 @@ export default (props) => {
         The Authorization Decorator
       </h3>
       <p>
-        If you look inside <code>src/decorators</code> you'll see one called <code>UserIsAuthorized</code> that looks like this:
+        If you look inside <code>src/decorators</code> you'll find one called <code>UserIsAuthorized</code> that
+        looks like this:
       </p>
 
       <CodeTabs>
@@ -34,7 +35,7 @@ export default (props) => {
         import { AuthorizationGenerator } from 'lore-auth';
 
         export default AuthorizationGenerator({
-          wrapperDisplayName: 'UserIsAuthorized',
+          displayName: 'UserIsAuthorized',
 
           isAuthorized: function(storeState) {
             return true;
@@ -46,7 +47,7 @@ export default (props) => {
         import { AuthorizationGenerator } from 'lore-auth';
 
         export default AuthorizationGenerator({
-          wrapperDisplayName: 'UserIsAuthorized',
+          displayName: 'UserIsAuthorized',
 
           isAuthorized(storeState) {
             return true;
@@ -58,7 +59,7 @@ export default (props) => {
         import { AuthorizationGenerator } from 'lore-auth';
 
         export default AuthorizationGenerator({
-          wrapperDisplayName: 'UserIsAuthorized',
+          displayName: 'UserIsAuthorized',
 
           isAuthorized(storeState) {
             return true;
@@ -94,7 +95,7 @@ export default (props) => {
         import { AuthorizationGenerator } from 'lore-auth';
 
         export default AuthorizationGenerator({
-          wrapperDisplayName: 'UserCanEditTweet',
+          displayName: 'UserCanEditTweet',
 
           propTypes: {
             tweet: PropTypes.object.isRequired
@@ -119,7 +120,7 @@ export default (props) => {
         import { AuthorizationGenerator } from 'lore-auth';
 
         export default AuthorizationGenerator({
-          wrapperDisplayName: 'UserCanEditTweet',
+          displayName: 'UserCanEditTweet',
 
           propTypes: {
             tweet: PropTypes.object.isRequired
@@ -143,7 +144,7 @@ export default (props) => {
         import { AuthorizationGenerator } from 'lore-auth';
 
         export default AuthorizationGenerator({
-          wrapperDisplayName: 'UserCanEditTweet',
+          displayName: 'UserCanEditTweet',
 
           propTypes: {
             tweet: PropTypes.object.isRequired
@@ -240,7 +241,7 @@ export default (props) => {
         import { AuthorizationGenerator } from 'lore-auth';
 
         export default AuthorizationGenerator({
-          wrapperDisplayName: 'UserCanEditTweet',
+          displayName: 'UserCanEditTweet',
 
           propTypes: {
             tweet: PropTypes.object.isRequired
@@ -264,7 +265,7 @@ export default (props) => {
         import { AuthorizationGenerator } from 'lore-auth';
 
         export default AuthorizationGenerator({
-          wrapperDisplayName: 'UserCanEditTweet',
+          displayName: 'UserCanEditTweet',
 
           propTypes: {
             tweet: PropTypes.object.isRequired
@@ -288,7 +289,7 @@ export default (props) => {
         import { AuthorizationGenerator } from 'lore-auth';
 
         export default AuthorizationGenerator({
-          wrapperDisplayName: 'UserCanEditTweet',
+          displayName: 'UserCanEditTweet',
 
           propTypes: {
             tweet: PropTypes.object.isRequired

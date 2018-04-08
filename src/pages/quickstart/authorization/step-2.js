@@ -35,7 +35,7 @@ export default (props) => {
         import { AuthorizationGenerator } from 'lore-auth';
 
         export default AuthorizationGenerator({
-          wrapperDisplayName: 'UserCanDeleteTweet',
+          displayName: 'UserCanDeleteTweet',
 
           propTypes: {
             tweet: PropTypes.object.isRequired
@@ -60,7 +60,7 @@ export default (props) => {
         import { AuthorizationGenerator } from 'lore-auth';
 
         export default AuthorizationGenerator({
-          wrapperDisplayName: 'UserCanDeleteTweet',
+          displayName: 'UserCanDeleteTweet',
 
           propTypes: {
             tweet: PropTypes.object.isRequired
@@ -84,7 +84,7 @@ export default (props) => {
         import { AuthorizationGenerator } from 'lore-auth';
 
         export default AuthorizationGenerator({
-          wrapperDisplayName: 'UserCanDeleteTweet',
+          displayName: 'UserCanDeleteTweet',
 
           propTypes: {
             tweet: PropTypes.object.isRequired
@@ -174,7 +174,7 @@ export default (props) => {
         import { AuthorizationGenerator } from 'lore-auth';
 
         export default AuthorizationGenerator({
-          wrapperDisplayName: 'UserCanDeleteTweet',
+          displayName: 'UserCanDeleteTweet',
 
           propTypes: {
             tweet: PropTypes.object.isRequired
@@ -198,7 +198,7 @@ export default (props) => {
         import { AuthorizationGenerator } from 'lore-auth';
 
         export default AuthorizationGenerator({
-          wrapperDisplayName: 'UserCanDeleteTweet',
+          displayName: 'UserCanDeleteTweet',
 
           propTypes: {
             tweet: PropTypes.object.isRequired
@@ -222,7 +222,7 @@ export default (props) => {
         import { AuthorizationGenerator } from 'lore-auth';
 
         export default AuthorizationGenerator({
-          wrapperDisplayName: 'UserCanDeleteTweet',
+          displayName: 'UserCanDeleteTweet',
 
           propTypes: {
             tweet: PropTypes.object.isRequired
@@ -379,8 +379,8 @@ export default (props) => {
       </h2>
 
       <p>
-        In the next section we're going to <Link to="../step-3/">look at an alternative approach</Link> to hiding
-        components based on authorization rules.
+        In the next section we're going to look at <Link to="../step-3/">an alternative approach to hiding
+        components that doesn't use decorators</Link>.
       </p>
     </Template>
   )

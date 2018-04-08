@@ -12,10 +12,11 @@ export default (props) => {
       <h1>
         Authorization: Overview
       </h1>
-
       <p>
-        In this section we'll learn how to hide components the user doesn't have permission to view or interact with. At the
-        end of this section your application will look like this:
+        In this section we'll learn how to hide components the user doesn't have permission to view or interact with.
+      </p>
+      <p>
+        At the end of this section your application will look like this:
       </p>
 
       <img className="drop-shadow" src="/assets/images/quickstart/authorization/step-2.png" />
