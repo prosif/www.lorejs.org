@@ -10,94 +10,67 @@ export default (props) => {
   return (
     <Template>
       <h1>
-        Step 1: Update Pagination Metadata
+        Step 1: Create Load More Button
       </h1>
 
       <p>
-        In this step we'll add infinite scrolling to our Feed.
+        In this step we'll create the Load More button that we'll need for infinite scrolling.
       </p>
 
       <QuickstartBranch branch="infinite-scrolling.1" />
 
       <h3>
-        How is Infinite Scrolling different from Pagination?
+        Button Behavior
       </h3>
+
       <p>
-        Infinite Scrolling differs from pagination in the following ways:
+        The first component we're going to create will be the <code>LoadMoreButton</code>. The user will click this
+        button to load more tweets, and it will have three responsibilities:
       </p>
 
       <ol>
-        <li>Instead of letting the user select a page, they can only load the next page</li>
-        <li>Instead of displaying one page at a time, the results are all combined into a single list</li>
+        <li>Display the text "Load More" if there are more tweets to load</li>
+        <li>Display a loading experience if more tweets are being fetched</li>
+        <li>Disappear from view if there are no more tweets to fetch.</li>
       </ol>
-
-      <p>
-        It's important to point out that these are <strong>view specific concerns</strong>, meaning nothing about
-        creating the experience requires changes to infrastructure or to the API. These needs are all related to how
-        a user <em>interacts</em> with data, and have nothing to do with <em>how data is fetched or stored</em>.
-      </p>
-
-      <h3>
-        Our Strategy
-      </h3>
-      <p>
-        Infinite Scrolling has <em>a lot</em> of boilerplate associated with it, but it breaks down into two
-        main components:
-      </p>
-
-      <ul>
-        <li>
-          The first is a <code>List</code> that can keep track of all the pages of data, and merge them into a
-          single array. This component also needs to know how to render each item in the array.
-        </li>
-        <li>
-          The second is a <code>Button</code> that the user can press to load the next page of data. But this button
-          also needs to provide a visual cue to the user when new data is being fetched, as well as know whether
-          there <em>is</em> a next page, so it can hide itself accordingly.
-        </li>
-      </ul>
-
-      <p>
-        Our strategy will be to create those two components first, and then use them to convert our Feed into an
-        Infinite Scrolling experience.
-      </p>
-
-      <h3>
-        Infinite Scrolling Setup
-      </h3>
-      <p>
-        To that end, this section will be focusing on how to implement infinite scrolling in a simple and
-        reusable way.
-      </p>
-      <p>
-        Infinite Scrolling has <em>a lot</em> of boilerplate associated with it. Components that implement it need to:
-      </p>
-
-      <ul>
-        <li>fetch the first page of data</li>
-        <li>fetch the next page if the user requests it</li>
-        <li>provide some kind of signal to show when a new page is being fetched</li>
-        <li>combine all of the data into a single array containing all pages of data</li>
-      </ul>
-
-      <p>
-        The logic for that can also be a little tricky, but luckily it's easy enough to encapsulate into a couple
-        reusable components.
-      </p>
 
       <h3>
         Add NextPage to Collection Metadata
       </h3>
       <p>
-        Unlike traditional pagination links, where we need to calculate the number of links early on, infinite
-        scrolling only cares about whether there is a "next" page. So we're going to provide that information by
-        adding another property to the <code>meta</code> field of the <code>tweets</code> collection.
+        Let's start by expanding the metadata for a collection to know whether there is a "next page" of data
+        to load.
+      </p>
+      <p>
+        To do that, take a look at the API response for any endpoint that returns a collection:
       </p>
 
+      <Markdown text={`
+      {
+        data: [
+          {...tweet...},
+          {...tweet...}
+        ],
+        meta: {
+          paginate: {
+            currentPage: 1,
+            nextPage: 2,
+            prevPage: null,
+            totalPages: 11,
+            totalCount: 51,
+            perPage: 5
+          }
+        }
+      }
+      `}/>
       <p>
-        Open up <code>config/connections.js</code> and update the collection's <code>parse()</code> method to add
-        the <code>nextPage</code> property from the API response to to the <code>meta</code> data. This field will
-        either contain the number of the next page of data or be null if there are no more pages to display.
+        There's a field in <code>meta.paginate</code> called <code>nextPage</code>, and this field will either
+        contain the number of the next page of data or be null if there are no more pages to display.
+      </p>
+      <p>
+        To use that field in our application, we need to add it to be <code>meta</code> property of collections. To
+        do that, open <code>config/connections.js</code> and update the <code>parse()</code> method
+        for collections to look like this:
       </p>
 
       <Markdown text={`
@@ -113,12 +86,89 @@ export default (props) => {
       ...
       `}/>
 
+      <p>
+        With that change, we'll now be able to discover if there's a next page of data by
+        inspecting <code>tweets.meta.nextPage</code>.
+      </p>
+
+      <h3>
+        Create the Button
+      </h3>
+
+      <p>
+        Next, create the button component by running the following command:
+      </p>
+
+      <Markdown text={`
+      lore generate component LoadMoreButton
+      `}/>
+
+      <p>
+        Then modify the file to look like this:
+      </p>
+
+      <CodeTabs>
+        <CodeTab syntax="ES5" text={`
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
+        import PayloadStates from '../constants/PayloadStates';
+
+        export default createReactClass({
+          displayName: 'LoadMoreButton',
+
+          propTypes: {
+            lastPage: PropTypes.object.isRequired,
+            onLoadMore: PropTypes.func.isRequired,
+            nextPageMetaField: PropTypes.string.isRequired
+          },
+
+          render: function() {
+            const {
+              lastPage,
+              onLoadMore,
+              nextPageMetaField
+            } = this.props;
+
+            if(lastPage.state === PayloadStates.FETCHING) {
+              return (
+                <div className="footer">
+                  <div className="loader"/>
+                </div>
+              );
+            }
+
+            if (!lastPage.meta[nextPageMetaField]) {
+              return (
+                <div className="footer"/>
+              );
+            }
+
+            return (
+              <div className="footer">
+                <button className="btn btn-default btn-lg" onClick={onLoadMore}>
+                  Load More
+                </button>
+              </div>
+            );
+          }
+
+        });
+        `}/>
+        <CodeTab syntax="ES6" text={`
+        TODO
+        `}/>
+        <CodeTab syntax="ESNext" text={`
+        TODO
+        `}/>
+      </CodeTabs>
+
       <h3>
         Visual Check-in
       </h3>
 
       <p>
-        If everything went well, your application should now look like this. Exactly the same :)
+        If everything went well, your application should now look like this. Still exactly the same :)
       </p>
 
       <img className="drop-shadow" src="/assets/images/quickstart/infinite-scrolling/step-1.png" />
@@ -170,12 +220,157 @@ export default (props) => {
       };
       `}/>
 
+      <h3>
+        src/components/LoadMoreButton.js
+      </h3>
+
+      <CodeTabs>
+        <CodeTab syntax="ES5" text={`
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
+        import PayloadStates from '../constants/PayloadStates';
+
+        export default createReactClass({
+          displayName: 'LoadMoreButton',
+
+          propTypes: {
+            lastPage: PropTypes.object.isRequired,
+            onLoadMore: PropTypes.func.isRequired,
+            nextPageMetaField: PropTypes.string.isRequired
+          },
+
+          render: function() {
+            const {
+              lastPage,
+              nextPageMetaField
+            } = this.props;
+
+            if(lastPage.state === PayloadStates.FETCHING) {
+              return (
+                <div className="footer">
+                  <div className="loader" />
+                </div>
+              );
+            }
+
+            if (!lastPage.meta[nextPageMetaField]) {
+              return (
+                <div className="footer"></div>
+              );
+            }
+
+            return (
+              <div className="footer">
+                <button className="btn btn-default btn-lg" onClick={this.props.onLoadMore}>
+                  Load More
+                </button>
+              </div>
+            );
+          }
+
+        });
+        `}/>
+        <CodeTab syntax="ES6" text={`
+        import React from 'react';
+        import PropTypes from 'prop-types';
+        import PayloadStates from '../constants/PayloadStates';
+
+        class LoadMoreButton extends React.Component {
+
+          render() {
+            const {
+              lastPage,
+              nextPageMetaField
+            } = this.props;
+
+            if(lastPage.state === PayloadStates.FETCHING) {
+              return (
+                <div className="footer">
+                  <div className="loader" />
+                </div>
+              );
+            }
+
+            if (!lastPage.meta[nextPageMetaField]) {
+              return (
+                <div className="footer"></div>
+              );
+            }
+
+            return (
+              <div className="footer">
+                <button className="btn btn-default btn-lg" onClick={this.props.onLoadMore}>
+                  Load More
+                </button>
+              </div>
+            );
+          }
+
+        }
+
+        LoadMoreButton.propTypes = {
+          lastPage: PropTypes.object.isRequired,
+          onLoadMore: PropTypes.func.isRequired,
+          nextPageMetaField: PropTypes.string.isRequired
+        };
+
+        export default LoadMoreButton;
+        `}/>
+        <CodeTab syntax="ESNext" text={`
+        import React from 'react';
+        import PropTypes from 'prop-types';
+        import PayloadStates from '../constants/PayloadStates';
+
+        class LoadMoreButton extends React.Component {
+
+          static propTypes = {
+            lastPage: PropTypes.object.isRequired,
+            onLoadMore: PropTypes.func.isRequired,
+            nextPageMetaField: PropTypes.string.isRequired
+          };
+
+          render() {
+            const {
+              lastPage,
+              nextPageMetaField
+            } = this.props;
+
+            if(lastPage.state === PayloadStates.FETCHING) {
+              return (
+                <div className="footer">
+                  <div className="loader" />
+                </div>
+              );
+            }
+
+            if (!lastPage.meta[nextPageMetaField]) {
+              return (
+                <div className="footer"></div>
+              );
+            }
+
+            return (
+              <div className="footer">
+                <button className="btn btn-default btn-lg" onClick={this.props.onLoadMore}>
+                  Load More
+                </button>
+              </div>
+            );
+          }
+
+        }
+
+        export default LoadMoreButton;
+        `}/>
+      </CodeTabs>
+
       <h2>
         Next Steps
       </h2>
 
       <p>
-        Next we'll <Link to="../step-2/">create the first component we'll need for Infinite Scrolling</Link>.
+        Next we'll <Link to="../step-2/">create the second component we'll need for Infinite Scrolling</Link>.
       </p>
     </Template>
   )
