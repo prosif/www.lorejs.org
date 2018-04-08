@@ -32,9 +32,7 @@ export default (props) => {
       `}/>
 
       <p>
-        Modify the component to look like this. We're going to add some styling and an <code>onClick</code> callback
-        that will launch the create dialog. For now we'll just have the callback write a log to the console saying
-        it was clicked.
+        Then modify the component to look like this:
       </p>
 
       <CodeTabs>
@@ -114,12 +112,17 @@ export default (props) => {
         `}/>
       </CodeTabs>
 
+      <p>
+        Eventually, we'll have this component launch a dialog when the user clicks on it, but for now we'll just
+        have it write a log to the console to say the button was clicked.
+      </p>
+
       <h3>
         Add Button to Header
       </h3>
       <p>
-        Next open the <code>Header</code> component. Then import the <code>CreateButton</code> component and insert it
-        into the render method:
+        Next open the <code>Header</code> component. Then import the <code>CreateButton</code> component and insert
+        it into the <code>render()</code> method like this:
       </p>
 
       <CodeTabs>

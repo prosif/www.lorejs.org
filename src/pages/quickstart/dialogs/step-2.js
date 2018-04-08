@@ -20,7 +20,7 @@ export default (props) => {
       <QuickstartBranch branch="dialogs.2" />
 
       <h3>
-        Install the Dialog Hook
+        Lore is a Plugin Engine
       </h3>
       <p>
         While it may not be obvious, <strong>Lore is essentially a plugin engine</strong>, and in fact most of
@@ -28,12 +28,17 @@ export default (props) => {
         into the framework.
       </p>
       <p>
-        Because of that, these plugins are referred to as <code>hooks</code>, and we're going to be installing
-        some additional hooks during this section in order to simplify the process of generating and mounting dialogs.
+        Because of that, these plugins are referred to as <strong>hooks</strong>, and we're going to be installing
+        some additional hooks throughout this section in order to simplify the process of generating and mounting
+        dialogs.
       </p>
+
+      <h3>
+        Install the Dialog Hook
+      </h3>
       <p>
-        The first hook we're going to install is called <code>lore-hook-dialog</code>, and provides a utility
-        for mounting dialogs. Install it by running this command:
+        The first hook we'll install is called <code>lore-hook-dialog</code>, and provides a utility for mounting
+        dialogs. Install it by running this command:
       </p>
       <Markdown type="sh" text={`
       npm install lore-hook-dialog --save
@@ -41,10 +46,7 @@ export default (props) => {
 
       <p>
         Next open up <code>index.js</code> and locate the call for <code>lore.summon(...)</code>. Here you can see
-        a list of all the hooks the framework includes by default. You've already seen some of these in action;
-        the <code>actions</code> hook converts your models into actions, the <code>reducers</code> hook creates
-        reducers for each of your models, and the <code>connect</code> hook provides the <code>connect</code> decorator
-        that invokes actions to fetch data if it doesn't exist in the store.
+        a list of all the hooks the framework includes by default.
       </p>
 
       <Markdown text={`
@@ -66,6 +68,24 @@ export default (props) => {
         }
       });
       `}/>
+
+      <blockquote>
+        <p>
+          You've already seen some of these hooks in action:
+        </p>
+        <ul>
+          <li>
+            The <code>actions</code> hook converts your models into actions
+          </li>
+          <li>
+            The <code>reducers</code> hook creates reducers for each of your models
+          </li>
+          <li>
+            The <code>connect</code> hook provides the <code>connect</code> decorator that invokes actions to fetch
+            data if it doesn't exist in the store
+          </li>
+        </ul>
+      </blockquote>
 
       <p>
         To use the hook we just installed, simply add it to the <code>hooks</code> object like this:
@@ -91,9 +111,12 @@ export default (props) => {
         The Dialog Utility
       </h3>
       <p>
-        The hook we just installed adds a utility for mounting dialogs found through the
-        method <code>lore.dialog.show()</code>. To explain what this method does, open
-        up <code>index.html</code> and find the element in the body with the id of <code>dialog</code>:
+        The hook we just installed adds a utility for mounting dialogs, and exposes this utility through the
+        method <code>lore.dialog.show()</code>.
+      </p>
+      <p>
+        To understand what this method does, open the <code>index.html</code> at the root of your project, and find
+        the element in the body with an id of <code>dialog</code>:
       </p>
 
       <Markdown type="html" text={`
@@ -110,25 +133,33 @@ export default (props) => {
       `}/>
 
       <p>
-        When your application runs in the browser, Lore mounts it to the <code>root</code> element.
-        The <code>dialog</code> element is the default target for mounting dialogs, and
-        the <code>lore.dialog.show()</code> method is a helper that renders a React component to that element.
+        After Lore builds your application, it mounts it to the <code>root</code> element. But rendering
+        dialogs <em>inside</em> that element can be problematic, as it allows other components in your application
+        to unintentionally affect the styling and behavior of your dialogs.
       </p>
 
       <blockquote>
         <p>
-          <strong>Why have two separate mounting targets?</strong>
+          Examples where this can show up:
         </p>
-        <p>
-          Lore renders dialogs outside the main application in order to prevent them from being nested inside
-          other DOM elements. If you nest dialogs inside other components, those components can unintentionally
-          affect the styling of your dialogs (through classes applied to parent elements) as well as the
-          behavior (through parent components cancelling the click events in your dialogs).
-        </p>
+        <ul>
+          <li>
+            Classes applies to parent elements affecting the styling of your dialogs
+          </li>
+          <li>
+            Parent components cancelling click events in your dialogs.
+          </li>
+        </ul>
       </blockquote>
 
+      <p>
+        The <code>dialog</code> element is intended to be used as target for mounting dialogs, in order to avoid
+        those issues, and the <code>lore.dialog.show()</code> method is a helper that renders a React component to
+        that element.
+      </p>
+
       <h3>
-        Mounting a Component
+        Update Create Button
       </h3>
       <p>
         To demonstrate this utility, replace the <code>onClick</code> behavior of
@@ -172,10 +203,9 @@ export default (props) => {
       </CodeTabs>
 
       <p>
-        Now if you refresh the browser and click the button, you should see the
-        text <em>"Dialog Placeholder"</em> appears at the bottom of the screen (you may have to scroll down to
-        see it). You can also inspect the <code>dialog</code> element to confirm the component was mounted
-        inside of it.
+        If you refresh the browser and click the button, you should see the text <em>"Dialog Placeholder"</em> appear
+        at the bottom of the screen (you may have to scroll down to see it). You can also inspect
+        the <code>dialog</code> element to confirm the component was mounted inside of it.
       </p>
 
       <p>
