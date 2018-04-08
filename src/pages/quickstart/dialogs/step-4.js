@@ -10,7 +10,7 @@ export default (props) => {
   return (
     <Template>
       <h1>
-        Step 4: Customized Dialog Hook
+        Step 4: Simplify the Dialog
       </h1>
 
       <p>
@@ -21,7 +21,7 @@ export default (props) => {
       <QuickstartBranch branch="dialogs.4" />
 
       <h3>
-        Add Bootstrap-specific Hook for Dialog Mounting
+        What's the problem?
       </h3>
       <p>
         The dialog we just created is responsible for showing and dismissing itself. But in a real application, you
@@ -35,8 +35,11 @@ export default (props) => {
         Bootstrap dialogs. This package is called <code>lore-hook-dialog-bootstrap</code>.
       </p>
 
+      <h3>
+        Add Bootstrap-specific Dialog Hook
+      </h3>
       <p>
-        Run the following command to install the package:
+        Run this command to install the package:
       </p>
 
       <Markdown type="sh" text={`
@@ -44,8 +47,8 @@ export default (props) => {
       `}/>
 
       <p>
-        Next open up <code>index.js</code> and replace the
-        import <code>lore-hook-dialog</code> with <code>lore-hook-dialog-bootstrap</code> like this:
+        Next open <code>index.js</code> and replace the <code>lore-hook-dialog</code> hook
+        with <code>lore-hook-dialog-bootstrap</code> like this:
       </p>
 
       <Markdown text={`
@@ -62,14 +65,18 @@ export default (props) => {
       });
       `}/>
 
+      <p>
+        With that change in place, the application will still work, but you'll notice that now when you launch the
+        dialog, it now has a super dark backdrop that it didn't before.
+      </p>
+
       <h3>
-        Update
+        Why does this happen?
       </h3>
       <p>
-        With that change, the application will still work, but you'll notice that when you launch the dialog,
-        it now has a super dark background. And this is because we're now creating <strong>two</strong> backdrops.
-        This is because the call to <code>lore.dialog.show</code> is now (essentially) automatically wrapping
-        our dialog with this code:
+        This is happening because we're now creating <strong>two</strong> backdrops. Previously, our dialog needed to
+        include code for showing and hiding itself, and it's this code (shown below) that also generates the
+        backdrop:
       </p>
 
       <Markdown text={`
@@ -109,8 +116,16 @@ export default (props) => {
       `}/>
 
       <p>
-        Because of that, we no longer need to include that code in our custom dialog. So let's remove it. Update
-        your dialog to look like this:
+        Since the new <code>lore.dialog.show()</code> method automatically wraps each dialog with this code for us,
+        we can now remove this boilerplate from <em>our</em> dialog.
+      </p>
+
+      <h3>
+        Remove Boilerplate from Dialog
+      </h3>
+
+      <p>
+        Open the <code>CreateTweetDialog</code> and update it to look like this:
       </p>
 
       <Markdown text={`
@@ -219,7 +234,7 @@ export default (props) => {
 
       <p>
         With that change in place, if you launch your dialog again, it will look and behave like we expect, and
-        will have only a single backdrop.
+        will once again have only a single backdrop.
       </p>
 
       <h3>

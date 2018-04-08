@@ -20,32 +20,49 @@ export default (props) => {
       <QuickstartBranch branch="dialogs.2" />
 
       <h3>
-        Lore is a Plugin Engine
+        Introduction to Hooks
       </h3>
       <p>
-        While it may not be obvious, <strong>Lore is essentially a plugin engine</strong>, and in fact most of
-        the functionality and conventions you've seen so far are implemented as a series of plugins that hook
-        into the framework.
+        We've seen Lore do a lot of things up to this point, including mounting the application, setting up routing,
+        generating reducers and actions, and orchestrating data fetching for components. But what we haven't talked
+        about is <em>how it does that</em>, because truthfully, the framework itself doesn't have <em>any</em> of that
+        functionality built into it.
       </p>
       <p>
-        Because of that, these plugins are referred to as <strong>hooks</strong>, and we're going to be installing
-        some additional hooks throughout this section in order to simplify the process of generating and mounting
-        dialogs.
+        Lore itself isn't a framework so much as a plugin engine, and it's all the plugins that combine
+        to <em>make</em> it a framework for building React applications. At it's core, the Lore only does two things:
       </p>
+      <ol>
+        <li>
+          Define the rules for how <code>config</code> files are loaded and combined
+        </li>
+        <li>
+          Define the interface for what these plugins should look like, and how to specify dependencies between
+          them, in order to determine the order they should be loaded
+        </li>
+      </ol>
+      <p>
+        These plugins are referred to as <strong>hooks</strong>, and we're going to be installing some additional
+        hooks throughout this section in order to simplify the process of generating and mounting dialogs.
+      </p>
+      <blockquote>
+        <p>
+          You can learn more about how to create your own hooks <Link to="/hooks/tutorial/overview/">here</Link>.
+        </p>
+      </blockquote>
 
       <h3>
         Install the Dialog Hook
       </h3>
       <p>
-        The first hook we'll install is called <code>lore-hook-dialog</code>, and provides a utility for mounting
-        dialogs. Install it by running this command:
+        The first hook we'll install is called <code>lore-hook-dialog</code>. Install it by running this command:
       </p>
       <Markdown type="sh" text={`
       npm install lore-hook-dialog --save
       `}/>
 
       <p>
-        Next open up <code>index.js</code> and locate the call for <code>lore.summon(...)</code>. Here you can see
+        Next open <code>index.js</code> and locate the call for <code>lore.summon(...)</code>. Here you can see
         a list of all the hooks the framework includes by default.
       </p>
 
@@ -111,7 +128,7 @@ export default (props) => {
         The Dialog Utility
       </h3>
       <p>
-        The hook we just installed adds a utility for mounting dialogs, and exposes this utility through the
+        The hook we just installed adds a utility for mounting dialogs, and it exposes this utility through the
         method <code>lore.dialog.show()</code>.
       </p>
       <p>

@@ -14,13 +14,38 @@ export default (props) => {
       </h1>
 
       <p>
-        In this step we're going to add a "delete" link to tweets that will launch a dialog to delete the tweet.
+        In this step we're going to add a "delete" link to tweets that, when clicked, will launch a dialog to delete
+        the tweet.
       </p>
 
       <QuickstartBranch branch="dialogs.7" />
 
       <h3>
-        Create Edit Link
+        The Destroy Action
+      </h3>
+      <p>
+        The dialog we'll create in this step will allow us to delete a tweet, and we'll be invoking
+        the <code>destroy</code> action to do that. Assuming you have a <code>tweet</code> you want to delete,
+        you invoke the action like this:
+      </p>
+      <Markdown type="jsx" text={`
+      lore.actions.tweet.destroy(tweet)
+      `}/>
+      <p>
+        The argument is the <code>tweet</code> you want to destroy.
+      </p>
+      <p>
+        If we assume the <code>id</code> of this tweet is <code>1</code>, then invoking this action will send a
+        DELETE request to <code>http://localhost:1337/tweets/1</code>.
+      </p>
+      <blockquote>
+        <p>
+          You can learn more about the <code>destroy</code> action <Link to="/actions/destroy/">here</Link>.
+        </p>
+      </blockquote>
+
+      <h3>
+        Create Delete Link
       </h3>
       <p>
         Run this command to create a component for our delete link:
@@ -31,8 +56,7 @@ export default (props) => {
       `}/>
 
       <p>
-        Next update the content of the component to look like this. We're going to integrate an <code>onClick</code>
-        handler that will launch a confirmation dialog when the link is clicked.
+        Then update the component to look like this:
       </p>
 
       <CodeTabs>
@@ -159,12 +183,17 @@ export default (props) => {
         `}/>
       </CodeTabs>
 
+      <p>
+        In the code above, we're rendering a link with an <code>onClick</code> callback. When clicked, we'll
+        show a confirmation dialog, and then invoke the <code>destroy</code> action when the request is confirmed.
+      </p>
+
       <h3>
         Add a Delete Link to the Tweet
       </h3>
       <p>
-        Next we want to add the delete link to each tweet. Open up the <code>Tweet</code> component and modify the render method to look
-        like this:
+        Next we want to add the delete link to each tweet. Open the <code>Tweet</code> component and update
+        the <code>render()</code> method to look like this:
       </p>
 
       <CodeTabs>
@@ -271,18 +300,21 @@ export default (props) => {
       </CodeTabs>
 
       <p>
-        With this change in place, refresh the browser and you should see a <em>"delete"</em> link on each of the tweets. Click this
-        link and you'll be asked to confirm that you want to delete the tweet. Once you confirm, if you look at the network
-        requests, you'll see a DELETE request is sent to the API to delete the tweet.
+        With this change in place, refresh the browser and you should see a <em>"delete"</em> link on each of the
+        tweets.
+      </p>
+      <p>
+        If you click this link, you'll be asked to confirm that you want to delete the tweet. Once you confirm, if
+        you look at the network requests, you'll see a DELETE request is sent to the API to delete the tweet.
       </p>
 
       <blockquote>
         <p>
-          The <code>state</code> of the tweet is also changed to <code>DELETING</code>, so if this were a real application we could add an if
-          statement to detect when data was being changed and modify our UI to communicate that to the user.
+          The <code>state</code> of the tweet is also changed to <code>DELETING</code>, so if this were a real
+          application, we could add an if statement to detect when data was being changed and modify our UI to
+          communicate that to the user.
         </p>
       </blockquote>
-
 
       <h3>
         Visual Check-in

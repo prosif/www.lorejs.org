@@ -178,12 +178,11 @@ export default (props) => {
         Show the Dialog
       </h3>
       <p>
-        Next, open the <code>CreateButton</code> component and import this dialog. Then update
-        the <code>onClick()</code> method so that it shows the dialog instead of the text "Dialog Placeholder":
+        Next, update the <code>CreateButton</code> component to mount this dialog instead of our "Dialog Placeholder"
+        text:
       </p>
 
       <Markdown text={`
-      // src/components/CreateButton.js
       ...
       import CreateTweetDialog from './CreateTweetDialog';
 
@@ -205,66 +204,57 @@ export default (props) => {
         submit the form, causing the data to be logged to the console.
       </p>
 
-      <h3>
-        The Create Action
-      </h3>
-      <p>
-        Now we can launch a dialog and get the user input, but we aren't sending that input to the API yet. To do
-        that we'll need to invoke the <code>create</code> action. You invoke the action like this:
-      </p>
-      <Markdown type="jsx" text={`
-      lore.actions.tweet.create({
-        text: 'My tweet'
-      })
-      `}/>
-      <p>
-        The argument you provide is an object with the attributes you want the tweet created with. In this example,
-        we're creating a tweet and setting the <code>text</code> of the tweet to <em>"My tweet"</em>.
-      </p>
-      <p>
-        Invoking this action will send a POST request to <code>http://localhost:1337/tweets</code> and include our
-        attributes in the body of the request.
-      </p>
-      <blockquote>
-        <p>
-          You can learn more about the <code>create</code> action <Link to="/actions/create/">here</Link>.
-        </p>
-      </blockquote>
-
 
       <h3>
         Save the Tweet
       </h3>
       <p>
-        Let's finish the dialog by replacing the logging behavior with a real API call. Update
-        the <code>onSubmit</code> callback of the <code>CreateTweetDialog</code> to look like this:
+        Now we can launch a dialog and get the user input, but we aren't sending it to the API. Let's fix that.
+      </p>
+
+      <p>
+        Instead of logging the user data, we're going to pass it to the <code>tweet.create</code> action. Modify
+        the <code>onSubmit</code> callback to look like this (you'll also need to import <code>lodash</code> at the
+        top of the file):
       </p>
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        // src/components/CreateTweetDialog.js
+        import _ from 'lodash';
         ...
           onSubmit() {
             const { data } = this.state;
+            // lore.actions.tweet.create(_.defaults(data, {
+            //   userId: 1,
+            //   createdAt: new Date().toISOString()
+            // }));
             lore.actions.tweet.create(data);
             this.dismiss();
           },
         ...
         `}/>
         <CodeTab syntax="ES6" text={`
+        import _ from 'lodash';
         ...
           onSubmit() {
             const { data } = this.state;
-            lore.actions.tweet.create(data);
+            lore.actions.tweet.create(_.defaults(data, {
+              userId: 1,
+              createdAt: new Date().toISOString()
+            }));
             this.dismiss();
           },
         ...
         `}/>
         <CodeTab syntax="ESNext" text={`
+        import _ from 'lodash';
         ...
           onSubmit() {
             const { data } = this.state;
-            lore.actions.tweet.create(data);
+            lore.actions.tweet.create(_.defaults(data, {
+              userId: 1,
+              createdAt: new Date().toISOString()
+            }));
             this.dismiss();
           },
         ...
@@ -274,13 +264,34 @@ export default (props) => {
       <p>
         Now when you submit a tweet, the action will send the data to the API. Try it out!
       </p>
-      <blockquote>
-        <p>
-          It's important to point out that the tweets you create <strong>will not appear on the page</strong> until
-          you refresh the browser. We'll learn how to change that behavior later in the Quickstart, so that new
-          tweets appear in the Feed immediately.
-        </p>
-      </blockquote>
+      <p>
+        It's important to point out that the tweets you create <strong>will not appear on the page</strong> until
+        you refresh the browser. We'll learn how to change that behavior later in the Quickstart, so that the tweets
+        we create will show up at the top of the Feed.
+      </p>
+
+      <h3>
+        [DELETE] What's up with the _.defaults call?
+      </h3>
+
+      <p>
+        Under normal circumstances our action call would only look like this (with no call to <code>_.defaults(...)</code>):
+      </p>
+
+      <Markdown text={`
+      lore.actions.tweet.create(data);
+      `}/>
+
+      <p>
+        But because we're currently using a mock API through <code>json-server</code> some fields that would normally
+        be created by the API (like <code>userId</code> and <code>createdAt</code>) won't exist on the data, and this
+        can break our application code. So for now, we're simply going to create those server-generated properties
+        on the client-side when we create the data.
+      </p>
+      <p>
+        Later in the Quickstart, we'll switch to a real API and will be able to delete this modification.
+      </p>
+
 
       <h3>
         Visual Check-in

@@ -109,13 +109,13 @@ export default (props) => {
       <p>
         We don't see this issue when using the <code>connect</code> decorator because that data is automatically
         refreshed every time the application re-renders. But that kind of always-up-to-date behavior is only
-        possible because when we're <strong>explicit</strong> about what data we want.
+        possible when we're <strong>explicit</strong> about what data we want.
       </p>
       <p>
         In this case, the only thing we're explicit about is the <em>first</em> page of data, which we
-        provide via the <code>select</code> prop; the other pages are all derived, and since this component will be
-        managing <strong>many pages of data</strong>, we're going to need to give it some help to know how
-        to refresh the data for each of those pages.
+        provide via the <code>select</code> prop. The other pages are all derived, based on
+        the <code>page</code> number, and since this component will be managing <strong>many pages of data</strong>,
+        we're going to need to give it some help to know how to refresh the data for each of those pages.
       </p>
 
       <h3>
@@ -127,6 +127,7 @@ export default (props) => {
       </p>
 
       <Markdown text={`
+      ...
       <InfiniteScrollingList
         select={(getState) => {
           return getState('tweet.find', {
@@ -145,6 +146,7 @@ export default (props) => {
           );
         }}
       />
+      ...
       `}/>
 
       <p>
