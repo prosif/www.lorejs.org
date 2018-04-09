@@ -14,8 +14,8 @@ export default (props) => {
       </h1>
 
       <p>
-        In this step we're going to wrap our <code>DeleteLink</code> with a decorator that will only display it for the user who created
-        the tweet.
+        In this step we're going to wrap our <code>DeleteLink</code> with a decorator that will only display it for
+        the user who created that tweet.
       </p>
 
       <QuickstartBranch branch="authorization.2" />
@@ -24,8 +24,8 @@ export default (props) => {
         Create the UserCanDeleteTweet Decorator
       </h3>
       <p>
-        Create a copy of the <code>UserIsAuthorized</code> decorator once again and rename it to <code>UserCanDeleteTweet</code>. Then update the
-        code to look like this:
+        Create a copy of the <code>UserIsAuthorized</code> decorator once again and rename it
+        to <code>UserCanDeleteTweet</code>. Then update the code to look like this:
       </p>
 
       <CodeTabs>
@@ -108,8 +108,8 @@ export default (props) => {
         Wrap the Delete Link
       </h3>
       <p>
-        To use this decorator, open the <code>DeleteLink</code> component and decorate the component just like you
-        would when using <code>connect</code>.
+        Next open the <code>DeleteLink</code> component and decorate the component just like you would when
+        using <code>connect</code>.
       </p>
 
       <CodeTabs>
@@ -140,7 +140,8 @@ export default (props) => {
       </CodeTabs>
 
       <p>
-        Now refresh the page and the delete links should disappear from any tweets not created by Ayla.
+        With that change in place, refresh the page, and the delete links should disappear from any tweets that
+        were not created by Ayla.
       </p>
 
 

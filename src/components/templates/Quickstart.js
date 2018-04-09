@@ -101,19 +101,21 @@ export default (props) => {
             <NavLink title="2. Hide Delete Link" url="/quickstart/authorization/step-2/" />
             <NavLink title="3. Alternative Approach" url="/quickstart/authorization/step-3/" />
 
-            <li className="doc-section">Behavior</li>
-            <NavLink title="Overview" url="/quickstart/behavior/overview/" />
-            <NavLink title="1. Display Tweets Immediately" url="/quickstart/behavior/step-1/" />
+            {/*<li className="doc-section">Behavior</li>*/}
+            {/*<NavLink title="Overview" url="/quickstart/behavior/overview/" />*/}
+            {/*<NavLink title="1. Display Tweets Immediately" url="/quickstart/behavior/step-1/" />*/}
 
-            <li className="doc-section">Cleanup</li>
-            <NavLink title="Overview" url="/quickstart/cleanup/overview/" />
-            <NavLink title="1. Remove Unnecessary Code" url="/quickstart/cleanup/step-1/" />
+            {/*<li className="doc-section">Cleanup</li>*/}
+            {/*<NavLink title="Overview" url="/quickstart/cleanup/overview/" />*/}
+            {/*<NavLink title="1. Remove Unnecessary Code" url="/quickstart/cleanup/step-1/" />*/}
 
             <li className="doc-section">Optimistic Updates</li>
             <NavLink title="Overview" url="/quickstart/optimistic/overview/" />
-            <NavLink title="1. Add Pagination Timestamp" url="/quickstart/optimistic/step-1/" />
+            <NavLink title="1. Freeze Pagination Data" url="/quickstart/optimistic/step-1/" />
             <NavLink title="2. Display New Tweets" url="/quickstart/optimistic/step-2/" />
-            <NavLink title="3. Show Optimistic Visual Cues" url="/quickstart/optimistic/step-3/" />
+            <NavLink title="3. Display Optimistic Tweets" url="/quickstart/optimistic/step-3/" />
+            <NavLink title="4. Add Optimistic Values" url="/quickstart/optimistic/step-4/" />
+            <NavLink title="5. Show Optimistic Visual Cues" url="/quickstart/optimistic/step-5/" />
 
             <li className="doc-section">Normalization</li>
             <NavLink title="Overview" url="/quickstart/normalization/overview/" />
@@ -131,7 +133,7 @@ export default (props) => {
             <li className="doc-section">Publishing</li>
             <NavLink title="Overview" url="/quickstart/publishing/overview/" />
             <NavLink title="1. Create Production Build" url="/quickstart/publishing/step-1/" />
-            <NavLink title="1. Publish the Application" url="/quickstart/publishing/step-2/" />
+            <NavLink title="2. Publish the Application" url="/quickstart/publishing/step-2/" />
 
             <li className="doc-section">Next Steps</li>
             <NavLink title="Overview" url="/quickstart/next-steps/overview/" />

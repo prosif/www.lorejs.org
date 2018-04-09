@@ -15,7 +15,7 @@ export default (props) => {
 
       <p>
         In this step we're going to wrap our <code>EditLink</code> with a decorator that will only display it for
-        the user who created the tweet.
+        the user who created that tweet.
       </p>
 
       <QuickstartBranch branch="authorization.1" />
@@ -31,37 +31,34 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        import React from 'react';
         import { AuthorizationGenerator } from 'lore-auth';
 
         export default AuthorizationGenerator({
           displayName: 'UserIsAuthorized',
 
-          isAuthorized: function(storeState) {
+          isAuthorized: function() {
             return true;
           }
         });
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React from 'react';
         import { AuthorizationGenerator } from 'lore-auth';
 
         export default AuthorizationGenerator({
           displayName: 'UserIsAuthorized',
 
-          isAuthorized(storeState) {
+          isAuthorized() {
             return true;
           }
         })
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React from 'react';
         import { AuthorizationGenerator } from 'lore-auth';
 
         export default AuthorizationGenerator({
           displayName: 'UserIsAuthorized',
 
-          isAuthorized(storeState) {
+          isAuthorized() {
             return true;
           }
         })
@@ -70,13 +67,11 @@ export default (props) => {
 
       <p>
         This decorator is designed to wrap a component, and will only render that component if
-        the <code>isAuthorized()</code> function returns true. The <code>isAuthorized()</code> function receives a
-        copy of the current store state as a convenience, in case you need to inspect it for the current user, the
-        user's permissions, or anything else necessary to determine authorization.
+        the <code>isAuthorized()</code> method returns true.
       </p>
 
       <p>
-        We're going to be using this decorator to hide the edit link from any users who were not the author of the tweet.
+        We're going to use this decorator to hide the edit link from any users who were not the author of the tweet.
       </p>
 
 
@@ -84,92 +79,43 @@ export default (props) => {
         Create the UserCanEditTweet Decorator
       </h3>
       <p>
-        Create a copy of the <code>UserIsAuthorized</code> decorator and rename it to <code>UserCanEditTweet</code>. Then update the code to look
-        like this:
+        Create a copy of the <code>UserIsAuthorized</code> decorator and rename it to <code>UserCanEditTweet</code>.
+        Then update the code to look like this:
       </p>
 
-      <CodeTabs>
-        <CodeTab syntax="ES5" text={`
-        import React from 'react';
-        import PropTypes from 'prop-types';
-        import { AuthorizationGenerator } from 'lore-auth';
+      <Markdown type="jsx" text={`
+      import PropTypes from 'prop-types';
+      import { AuthorizationGenerator } from 'lore-auth';
 
-        export default AuthorizationGenerator({
-          displayName: 'UserCanEditTweet',
+      export default AuthorizationGenerator({
+        displayName: 'UserCanEditTweet',
 
-          propTypes: {
-            tweet: PropTypes.object.isRequired
-          },
+        propTypes: {
+          tweet: PropTypes.object.isRequired
+        },
 
-          contextTypes: {
-            user: PropTypes.object.isRequired
-          },
+        contextTypes: {
+          user: PropTypes.object.isRequired
+        },
 
-          isAuthorized: function(storeState) {
-            const { tweet } = this.props;
-            const { user } = this.context;
+        isAuthorized() {
+          const { tweet } = this.props;
+          const { user } = this.context;
 
-            return tweet.data.user === user.id;
-          }
+          return tweet.data.user === user.id;
+        }
 
-        });
-        `}/>
-        <CodeTab syntax="ES6" text={`
-        import React from 'react';
-        import PropTypes from 'prop-types';
-        import { AuthorizationGenerator } from 'lore-auth';
-
-        export default AuthorizationGenerator({
-          displayName: 'UserCanEditTweet',
-
-          propTypes: {
-            tweet: PropTypes.object.isRequired
-          },
-
-          contextTypes: {
-            user: PropTypes.object.isRequired
-          },
-
-          isAuthorized(storeState) {
-            const { tweet } = this.props;
-            const { user } = this.context;
-
-            return tweet.data.user === user.id;
-          }
-        })
-        `}/>
-        <CodeTab syntax="ESNext" text={`
-        import React from 'react';
-        import PropTypes from 'prop-types';
-        import { AuthorizationGenerator } from 'lore-auth';
-
-        export default AuthorizationGenerator({
-          displayName: 'UserCanEditTweet',
-
-          propTypes: {
-            tweet: PropTypes.object.isRequired
-          },
-
-          contextTypes: {
-            user: PropTypes.object.isRequired
-          },
-
-          isAuthorized(storeState) {
-            const { tweet } = this.props;
-            const { user } = this.context;
-
-            return tweet.data.user === user.id;
-          }
-        })
-        `}/>
-      </CodeTabs>
+      });
+      `}/>
 
       <p>
-        In the code above we're declaring that the decorator expects to receive a tweet. And since we've stored the current
-        user in the context, we're going to retrieve it from there instead of from the store's state directly. In the
-        <code>isAuthorized()</code> function we are then going to check whether the current user was the author of the tweet.
+        In the code above we're declaring that the decorator expects to receive a <code>tweet</code> from props,
+        and will need the <code>user</code> from context.
       </p>
-
+      <p>
+        Then in the <code>isAuthorized()</code> method, we're checking whether the current user was the author of the
+        tweet.
+      </p>
 
       <h3>
         Wrap the Edit Link
@@ -207,7 +153,8 @@ export default (props) => {
       </CodeTabs>
 
       <p>
-        Now refresh the page and the edit links should disappear from any tweets not created by Ayla.
+        With that change in place, refresh the page, and the edit links should disappear from any tweets that were
+        not created by Ayla.
       </p>
 
 
@@ -251,7 +198,7 @@ export default (props) => {
             user: PropTypes.object.isRequired
           },
 
-          isAuthorized(storeState) {
+          isAuthorized() {
             const { tweet } = this.props;
             const { user } = this.context;
 
@@ -275,7 +222,7 @@ export default (props) => {
             user: PropTypes.object.isRequired
           },
 
-          isAuthorized(storeState) {
+          isAuthorized() {
             const { tweet } = this.props;
             const { user } = this.context;
 
@@ -299,7 +246,7 @@ export default (props) => {
             user: PropTypes.object.isRequired
           },
 
-          isAuthorized(storeState) {
+          isAuthorized() {
             const { tweet } = this.props;
             const { user } = this.context;
 

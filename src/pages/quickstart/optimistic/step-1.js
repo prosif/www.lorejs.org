@@ -10,7 +10,7 @@ export default (props) => {
   return (
     <Template>
       <h1>
-        Step 1: Add Pagination Timestamp
+        Step 1: Freeze Pagination Data
       </h1>
 
       <p>
@@ -21,18 +21,14 @@ export default (props) => {
       <QuickstartBranch branch="optimistic.1" />
 
       <h3>
-        Error when paginating after creating a tweet
+        What's the problem?
       </h3>
       <p>
-        Ever since we introduced pagination, new tweets stopped showing up in the Feed when you create them.
-        This certainly doesn't match the expected user experience. The reason for this is that the application
-        doesn't know what to do with the new tweets you create. What the application is displaying is exactly
-        what you asked for; the first page of tweets.
+        Currently, if you create a tweet and refresh the page, the application works fine. And if you load
+        more tweets, the application works fine.
       </p>
-
       <p>
-        You'll also notice that if you <em>DO</em> create a tweet, and then you try to load the next page of tweets,
-        the console fills with this error:
+        But if you create and tweet and <em>THEN</em> load more tweets, you'll see this warning in the console:
       </p>
 
       <Markdown text={`
@@ -40,60 +36,122 @@ export default (props) => {
       `}/>
 
       <p>
-        This error is caused by the fact that some of the tweets on the first page are <em>ALSO</em> on the
-        second page. To illustrate, let's say the server has 6 tweets, and you want to display those tweets in
-        two pages, with three tweets per page:
+        This warning occurs because React is trying to render the same tweet twice. You'll also notice that only
+        4 new tweets show instead of the 5 we expect (which is the size of each page).
       </p>
 
-      <Markdown text={`
-      --- page 1 ----
-      'tweet 6'
-      'tweet 5'
-      'tweet 4'
-      --- page 2 ----
-      'tweet 3'
-      'tweet 2'
-      'tweet 1'
-      `}/>
+      <h3>
+        Why does this happen?
+      </h3>
 
       <p>
-        When you create a new tweet, it gets stored on the server, and becomes <code>tweet 7</code>. But because
-        we're displaying tweets in chronological order, <code>tweet 7</code> now shows up on <code>page 1</code> and
-        pushes back the other tweets, effectively changing what data is displayed on which page, like this:
+        To illustrate why this happen, let's pretend we have an API with 10 tweets, shown below:
       </p>
 
       <Markdown text={`
-      --- page 1 ----
+      --- API page 1 ----
+      'tweet 10'
+      'tweet 9'
+      'tweet 8'
       'tweet 7'
       'tweet 6'
+      --- API page 2 ----
       'tweet 5'
-      --- page 2 ----
       'tweet 4'
       'tweet 3'
       'tweet 2'
-      --- page 3 ----
       'tweet 1'
       `}/>
 
       <p>
-        If you fetch the second page, you'll now get <code>tweet 4</code>, which was already returned as part
-        of the first page. And now React will try to render it twice, once as part of the data
-        for <code>page 1</code> and again as part of the data for <code>page 2</code>, which will throw the error
-        above, because two React components have the same key (the id of the tweet).
+        In this example, we're breaking the tweets up into two pages, with 5 tweets per page, and where tweet 10
+        is the newest tweet and tweet 1 is the oldest tweet.
       </p>
+      <p>
+        Now let's say we fetch the first page of tweets to display to the user, so that our Feed looks like this:
+      </p>
+      <Markdown text={`
+      --- Client page 1 ----
+      'tweet 10'
+      'tweet 9'
+      'tweet 8'
+      'tweet 7'
+      'tweet 6'
+      `}/>
 
       <p>
-        To solve this problem, we're going to create a timestamp, and use that to "freeze" the pagination data
-        by requesting all data relative to a specific point in time. This way, new tweets won't affect what data
-        is displayed on which page.
+        If you now create a tweet, we'll call it tweet 11, then the API looks like this:
+      </p>
+
+      <Markdown text={`
+      --- API page 1 ----
+      'tweet 11'
+      'tweet 10'
+      'tweet 9'
+      'tweet 8'
+      'tweet 7'
+      --- API page 2 ----
+      'tweet 6'
+      'tweet 5'
+      'tweet 4'
+      'tweet 3'
+      'tweet 2'
+      --- API page 3 ----
+      'tweet 1'
+      `}/>
+
+      <p>
+        Because the API is ordering tweets by their <code>createdAt</code> date, then it always puts the newest
+        tweets on page 1, and the other tweets are pushed down the list. And in this case, tweet 6, which used to
+        be on page 1 on page 2.
+      </p>
+      <p>
+        If you now load more tweets on the client side, you'll get the current page 2 from the API, and your list
+        will look like this:
+      </p>
+
+      <Markdown text={`
+      --- Client page 1 ----
+      'tweet 10'
+      'tweet 9'
+      'tweet 8'
+      'tweet 7'
+      'tweet 6'
+      --- Client page 2 ----
+      'tweet 6'
+      'tweet 5'
+      'tweet 4'
+      'tweet 3'
+      'tweet 2'
+      `}/>
+
+      <p>
+        If this case, we now have tweet 6 showing up twice; once on page 1, where it used to be, and now again on
+        page 2 where it currently is.
+      </p>
+      <p>
+        But since we're using the <code>id</code> of a tweet as the React <code>key</code> when rendering the list,
+        we now have two tweets with the same <code>key</code> and React throws a warning.
+      </p>
+
+      <h3>
+        How do we fix this?
+      </h3>
+      <p>
+        To solve this problem, we need a way to "freeze" the API data, so that the tweets on each page stay the same,
+        regardless of whether or not new tweets are created.
+      </p>
+      <p>
+        To do this, we're going to add a timestamp to our API request, so that our requests are relative to a specific
+        point in time.
       </p>
 
       <h3>
         Add Timestamp to Feed
       </h3>
       <p>
-        Open your <code>Feed</code> component and add a <code>getInitialState()</code> method that will generate
-        a timestamp of when that component was mounted.
+        Open your <code>Feed</code> component and add a <code>getInitialState()</code> method that returns a timestamp
+        of when that component was mounted.
       </p>
 
       <Markdown type="jsx" text={`
@@ -107,13 +165,16 @@ export default (props) => {
       `}/>
 
       <h3>
-        Freeze the Pagination Data
+        Fetching Tweets Relative to Timestamp
       </h3>
       <p>
         Now that we have the timestamp, we need to update our network requests to say "only give me tweets
-        created BEFORE this timestamp". To do that, the Sails API accepts a `where` object as a query parameter,
-        that allows us to make some pretty interesting requests. For example, to fetch all tweets created before
-        a certain date, we can pass this object as a query parameter:
+        created BEFORE this timestamp".
+      </p>
+      <p>
+        To do that, the Sails API accepts a <code>where</code> object as a query parameter, that allows us to make
+        some pretty specific requests. For example, to fetch all tweets created before a certain date, we can pass
+        this object as a query parameter:
       </p>
 
       <Markdown text={`
@@ -125,15 +186,19 @@ export default (props) => {
       `}/>
 
       <p>
-        Which would look like this as a network request:
+        As a network request, it looks like this:
       </p>
 
       <Markdown text={`
-      http://localhost:1337/tweets?where={createdAt: {"<=": "2017-05-14T15:28:05-07:00"}}
+      GET http://localhost:1337/tweets?where={createdAt: {"<=": "2017-05-14T15:28:05-07:00"}}
       `}/>
 
+      <h3>
+        Freeze the Pagination Data
+      </h3>
+
       <p>
-        To accomplish this, open up your <code>Feed</code> component and modify the <code>render()</code> function
+        To leverage this ability, open your <code>Feed</code> component and modify the <code>render()</code> method
         to look like this:
       </p>
 
@@ -167,9 +232,8 @@ export default (props) => {
       }
       `}/>
       <p>
-        Here we're getting the <code>timestamp</code> from <code>this.state</code>, and add a <code>where</code> property
-        to the <code>getState()</code> call of the <code>select()</code> method, that reflects the object we need to
-        send the API server.
+        In the code above, we're modifying the <code>select()</code> callback by adding a <code>where</code> property
+        to the <code>getState()</code> call, and providing the object we want sent to the API.
       </p>
 
       <h3>

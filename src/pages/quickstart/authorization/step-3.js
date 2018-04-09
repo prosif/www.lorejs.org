@@ -23,13 +23,26 @@ export default (props) => {
         Why an alternative approach?
       </h3>
       <p>
-        Decorators can provide a concise way to add behavior to an application, but they're not very easy to
-        understand compared to a simple React component. Conceptually, they're functions that return a Component
-        that renders YOUR component, which can be difficult to visualize.
+        While decorators can provide a concise way to add behavior to an application, they're not very easy to
+        understand compared to a simple React component. Conceptually, they're functions that return a function
+        that return a component that renders YOUR component, which can be difficult to visualize.
       </p>
       <p>
-        In this section, we'll be introducing an alternative way of performing authorization rules, that uses a
-        simple component instead of a decorator.
+        In this section, we'll introduce an alternative way of hiding components based on authorization rules, and
+        we'll use a simple component instead of a decorator.
+      </p>
+
+      <h3>
+        Remove Authorization Decorators from Links
+      </h3>
+      <p>
+        <p>
+          Start by removing the <code>UserCanEditTweet</code> decorator from the <code>EditLink</code>, and removing
+          the <code>UserCanDeleteTweet</code> decorator from the <code>DeleteLink</code>.
+        </p>
+        <p>
+          Once you do this, the "edit" and "delete" links should be visible for all tweets.
+        </p>
       </p>
 
       <h3>
@@ -37,7 +50,7 @@ export default (props) => {
       </h3>
 
       <p>
-        Create a new component called <code>IsOwner</code>:
+        Next, create a new component called <code>IsOwner</code>:
       </p>
 
       <Markdown text={`
@@ -45,7 +58,7 @@ export default (props) => {
       `}/>
 
       <p>
-        Next, replace the content with this:
+        Then replace the code with this:
       </p>
 
       <Markdown text={`
@@ -79,9 +92,12 @@ export default (props) => {
       `}/>
 
       <p>
-        This component expects to receive a <code>tweet</code> as a prop, and then compares to <code>id</code> of
-        the current user to the <code>user</code> who created the <code>tweet</code>. If they match, it renders
-        whatever children (other components) were passed to it. If the user doesn't match, it renders nothing.
+        Similar to the decorators we created previously, this component expects to receive a <code>tweet</code> as
+        a prop, along with the <code>user</code> from context.
+      </p>
+      <p>
+        In the <code>render()</code> method, we compare the current user to the user who created the tweet. If
+        they match, we render whatever children (other components) were provided. If they don't, we render nothing.
       </p>
 
       <h3>
@@ -93,63 +109,27 @@ export default (props) => {
         our <code>edit</code> and <code>delete</code> links with it like this:
       </p>
 
-      <CodeTabs>
-        <CodeTab syntax="ES5" text={`
-        ...
-        import IsOwner from './IsOwner';
-        ...
-          render:() {
-            ...
-                  <IsOwner tweet={tweet}>
-                    <div>
-                      <EditLink tweet={tweet} />
-                      <DeleteLink tweet={tweet} />
-                    </div>
-                  </IsOwner>
-            ...
-          }
-        ...
-        `}/>
-        <CodeTab syntax="ES6" text={`
-        ...
-        import IsOwner from './IsOwner';
-        ...
-          render:() {
-            ...
-                  <IsOwner tweet={tweet}>
-                    <div>
-                      <EditLink tweet={tweet} />
-                      <DeleteLink tweet={tweet} />
-                    </div>
-                  </IsOwner>
-            ...
-          }
-        ...
-        `}/>
-        <CodeTab syntax="ESNext" text={`
-        ...
-        import IsOwner from './IsOwner';
-        ...
-          render:() {
-            ...
-                  <IsOwner tweet={tweet}>
-                    <div>
-                      <EditLink tweet={tweet} />
-                      <DeleteLink tweet={tweet} />
-                    </div>
-                  </IsOwner>
-            ...
-          }
-        ...
-        `}/>
-      </CodeTabs>
+      <Markdown type="jsx" text={`
+      // src/components/Tweet.js
+      ...
+      import IsOwner from './IsOwner';
+      ...
+        render() {
+          ...
+            <IsOwner tweet={tweet}>
+              <div>
+                <EditLink tweet={tweet} />
+                <DeleteLink tweet={tweet} />
+              </div>
+            </IsOwner>
+          ...
+        }
+      ...
+      `}/>
 
       <p>
-        With this change in place, you can remove the <code>UserCanEditTweet</code> and <code>UserCanDeleteTweet</code> decorators
-        from the <code>EditLink</code> and <code>DeleteLink</code> respectively.
-      </p>
-      <p>
-        Next, refresh the page, and the application will look and behave exactly the same.
+        With this change in place, refresh the page, and once again, the "edit" and "delete" links should only
+        be visible on tweets created by the current user.
       </p>
 
       <h3>

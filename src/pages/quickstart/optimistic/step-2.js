@@ -20,32 +20,41 @@ export default (props) => {
       <QuickstartBranch branch="optimistic.2" />
 
       <h3>
-        Problem: New Tweets Do Not Appear
+        What's the problem?
       </h3>
       <p>
-        You may have noticed that new tweets you create only show up in the Feed after you refresh the page. The
-        reason for this is that the application doesn't know what to do with the new tweets you create, since that
-        answer is determined based on the experience you're creating.
-      </p>
-      <p>
-        For this type of experience, we want new tweets to appear at the top of the page, otherwise the
-        application will very quickly feel "out of date". But for other applications, it might not be as
-        straight forward.
-      </p>
-      <p>
-        For example, should new tweets show up at all? If yes, where should they show up? At the top of the list, at
-        the bottom of the list? Should ALL new tweets show up, or just some? And if you DO want them to show up,
-        should they show up immediately, or wait until the server confirms they'be been created?
-      </p>
-      <p>
-        Because of that, Lore doesn't make any assumptions about what to do with "new data", and only gives you
-        exactly what you ask for. Which is this case, is just the first page of tweets. But it DOES give you
-        some tools easily describe the answers to those questions, and we'll be leveraging those tools in this
-        step to turn out experience into what we want.
+        Currently, when we create new tweets, we have to refresh the page before they appear, which is not a
+        very good user experience. A better experience would be to have new tweets automatically show up at the
+        top of the Feed.
       </p>
 
       <h3>
-        Display New Tweets
+        Why does this happen?
+      </h3>
+      <p>
+        This happens because the application doesn't know what to do with the new tweets you create, since that
+        answer is determined based on the experience you're creating.
+      </p>
+      <p>
+        For this type of experience, we want new tweets to appear at the top of the page, otherwise the application
+        will feel "out of date" very quickly. But for other applications, it might not be as straight forward.
+      </p>
+      <p>
+        For example, should new tweets show up at all? If yes, where should they show up? At the top of the list?
+        The bottom of the list? Should ALL new tweets show up, or just some? And if you DO want them to show up,
+        should they show up immediately, or wait until the server confirms they'be been created?
+      </p>
+      <p>
+        Because of that uncertainty, Lore doesn't make any assumptions about what to do with "new data", and only
+        gives you exactly what you ask for. And in this case, all we asked for was first page of tweets.
+      </p>
+      <p>
+        But it DOES give you some tools to easily describe the answers to those questions, and we'll be leveraging
+        those tools in this step to shape the experience into what we want.
+      </p>
+
+      <h3>
+        Chose the Location for New Tweets
       </h3>
       <p>
         The <code>InfiniteScrollingList</code> component we created earlier actually has a section that allows
@@ -53,7 +62,8 @@ export default (props) => {
         is shown below:
       </p>
       <Markdown type="jsx" text={`
-      render: function() {
+      // src/components/InfiniteScrollingList.js
+      render() {
         ...
         return (
           <div>
@@ -66,9 +76,13 @@ export default (props) => {
         );
       }
       `}/>
+
+      <h3>
+        Display New Tweets
+      </h3>
       <p>
-        To provide "other" data, open the <code>Feed</code> component and update the <code>render()</code> method
-        to look like this:
+        To get tweets to appear here, we simply need to provide the "other" data to the list. Open
+        the <code>Feed</code> component and update the <code>render()</code> method to look like this:
       </p>
 
       <Markdown type="jsx" text={`
@@ -81,9 +95,9 @@ export default (props) => {
               selectOther={(getState) => {
                 return getState('tweet.all', {
                   where: function(tweet) {
-                    const isOptimistic = !tweet.id;
+                    const isReal = tweet.id;
                     const isNew = moment(tweet.data.createdAt).diff(timestamp) > 0;
-                    return !isOptimistic && isNew;
+                    return isReal && isNew;
                   },
                   sortBy: function(model) {
                     return -moment(model.data.createdAt).unix();
@@ -114,95 +128,27 @@ export default (props) => {
         The <code>sortBy()</code> method allows us to express how we want those tweets to be ordered, and in this
         case, we want the newest tweets on top.
       </p>
-      <p>
-        With that change in place, new tweets will show up at the top of the <code>Feed</code> as soon as you
-        create them.
-      </p>
 
       <h3>
-        Display Optimistic Tweets
+        Try it Out
       </h3>
       <p>
-        So now new tweets show up at the top of the page, but only after the server confirms they exist. This means
-        there's a short delay between the time the user creates the tweet and when they see it in the field. Let's
-        remove that delay.
+        With that change in place, new tweets will show up at the top of the <code>Feed</code> shortly after
+        you create them. You'll notice however that there's a shortly delay between the time you create a tweet
+        and when it actually shows up in the list.
       </p>
       <p>
-        To do that, update your <code>where()</code> method to look like this:
+        In the next step, we'll learn why this happens and to remove it.
       </p>
-
-      <Markdown type="jsx" text={`
-      where() {
-        const isOptimistic = !tweet.id;
-        const isNew = moment(tweet.data.createdAt).diff(timestamp) > 0;
-        return isOptimistic || isNew;
-      }
-      `}/>
-
-      <p>
-        Now we're saying "show any tweets that are optimistic OR new". But when you try to create a new tweet, the
-        application will crash, with both a warning and an error in the console.
-      </p>
-      <Markdown type="jsx" text={`
-      Warning: Each child in an array or iterator should have a unique "key" prop.
-      ...
-      Uncaught Error: Invalid call to 'getState('user.byId')'. Missing required attribute 'id'.
-      `}/>
-      <p>
-        The warning is happening because up until now, we've using the <code>id</code> of our models as the key
-        when rendering a list, which you can see in this code in <code>Feed</code>:
-      </p>
-      <Markdown type="jsx" text={`
-      <InfiniteScrollingList
-        ...
-        row={(tweet) => {
-          return (
-            <Tweet key={tweet.id} tweet={tweet} />
-          );
-        }}
-      />
-      `}/>
-      <p>
-        To solve the warning, we simply need to provide an alternate key, which should be used when there is
-        no <code>id</code> on the tweet. For that we're going to use the <code>cid</code> value. Update that
-        code to look like this:
-      </p>
-      <Markdown type="jsx" text={`
-      <InfiniteScrollingList
-        ...
-        row={(tweet) => {
-          return (
-            <Tweet key={tweet.id || tweet.cid} tweet={tweet} />
-          );
-        }}
-      />
-      `}/>
-      <p>
-        As for the error, that's happening because we're trying to render a tweet that doesn't have
-        a <code>user</code> property yet. When we create data we know the server will assign it a <code>createdAt</code> date
-        of when it was created, as well as set the <code>user</code> property to the user who created it. But when rendering
-        data optimistically, we need to provide those fields ourselves, or provide an alternative version of a tweet
-        specifically for rendering optimistic data.
-      </p>
-      <p>
-        Open the <code>CreateButton</code> component and update the <code>onSubmit() method to look like this</code>:
-      </p>
-      <Markdown type="jsx" text={`
-
-      `}/>
-
-
 
       <h3>
         Visual Check-in
       </h3>
-
       <p>
         If everything went well, your application should now look like this (exactly the same).
       </p>
 
       <img className="drop-shadow" src="/assets/images/quickstart/filtering/step-1.png" />
-
 
       <h2>
         Code Changes
@@ -233,8 +179,8 @@ export default (props) => {
       </h2>
 
       <p>
-        In the next section we'll add a <Link to="../step-3/">visual cue when tweets are being
-        created, updated or deleted</Link>.
+        In the next section we'll <Link to="../step-3/">remove the delay between creating a tweet and when it
+        appears in the Feed</Link>.
       </p>
     </Template>
   )

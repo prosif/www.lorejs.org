@@ -592,7 +592,7 @@ export default (props) => {
       </h2>
 
       <p>
-        In the next section <Link to="../../cleanup/overview/">we'll cleanup our code a bit</Link>.
+        In the next section we'll <Link to="../../websockets/overview/">we'll add support for WebSockets</Link>.
       </p>
     </Template>
   )
