@@ -268,10 +268,13 @@ export default (props) => {
         import { Link } from 'react-router';
 
         export default connect(function(getState, props) {
+          const { location } = props;
+
           return {
             tweets: getState('tweet.find', {
               pagination: {
-                page: props.location.query.page || '1'
+                sort: 'createdAt DESC',
+                page: location.query.page || '1'
               }
             })
           }
@@ -414,10 +417,13 @@ export default (props) => {
         };
 
         export default connect(function(getState, props) {
+          const { location } = props;
+
           return {
             tweets: getState('tweet.find', {
               pagination: {
-                page: props.location.query.page || '1'
+                sort: 'createdAt DESC',
+                page: location.query.page || '1'
               }
             })
           }
@@ -432,10 +438,13 @@ export default (props) => {
         import { Link } from 'react-router';
 
         @connect(function(getState, props) {
+          const { location } = props;
+
           return {
             tweets: getState('tweet.find', {
               pagination: {
-                page: props.location.query.page || '1'
+                sort: 'createdAt DESC',
+                page: location.query.page || '1'
               }
             })
           }

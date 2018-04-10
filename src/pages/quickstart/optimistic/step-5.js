@@ -23,29 +23,18 @@ export default (props) => {
         What's the problem?
       </h3>
       <p>
-        While it's great that we can show tweets in the Feed immediately, we know they're <em>real</em>, in the sense
-        that the user can fully interact with them. But currently, there's no visual cue to distinguish between
-        an optimistic tweet and a real tweet, to say "yes, this tweet really was created" or "yes, this update
-        you asked us to make really did get saved".
-      </p>
-      <p>
-        The change above solves our issue, but we're not providing the user with any feedback that a change
-        is occurring, and even worse, we're exposing functionality that doesn't exist yet when tweets are being
-        created.
+        While it's great that we can now show tweets in the Feed immediately, there's currently no visual cue to
+        distinguish between an optimistic tweet and a real tweet, and we're also exposing functionality like the
+        "edit" and "delete" actions that can't be performed until the tweet has a real <cide>id</cide>.
       </p>
 
       <h3>
         How do we solve this?
       </h3>
       <p>
-        To solve this, we're going to detect a tweet is being created, updated, or deleted, and then add fade the
-        tweet to provide a visual cue that <em>something is happening</em>.
-      </p>
-      <p>
         To improve the experience, we're going to visually fade the tweet when it's being created, updated or
-        deleted, and we're not going to show the <code>edit</code> or <code>delete</code> button until we have
-        confirmation that the tweet actually exists (since we can't update or delete data that we don't know the
-        id for).
+        deleted, and we're not going to show the <code>edit</code> or <code>delete</code> links until we have
+        confirmation that the tweet actually exists.
       </p>
 
       <h3>
@@ -94,12 +83,8 @@ export default (props) => {
       `}/>
       <p>
         In the code above, we're examining the <code>state</code> of the tweet, and if it's in the process of being
-        created, updated, or destroy, then we're going to apply the <code>transition</code> class, which will fade
+        created, updated, or deleted, then we're going to apply the <code>transition</code> class, which will fade
         the tweet and the hide the actions.
-      </p>
-      <p>
-        Now tweets will only show the <code>edit</code> and <code>delete</code> links once the server confirms
-        they exist, and any modifications to a tweet will show a visual cue to the user.
       </p>
 
       <h3>
@@ -142,8 +127,8 @@ export default (props) => {
       </h2>
 
       <p>
-        In the next section <Link to="../../normalization/overview/">we'll add the ability to normalize the API
-        responses</Link>.
+        In the next section we'll learn how to <Link to="../../normalization/overview/">normalize an API response
+        to reduce the number of network requests</Link>.
       </p>
     </Template>
   )

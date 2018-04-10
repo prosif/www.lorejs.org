@@ -14,7 +14,8 @@ export default (props) => {
       </h1>
 
       <p>
-        In this step we'll update our API call to request nested data and teach the application how to process it.
+        In this step we'll ask the API to populate the user for each tweet, and then teach the application how to
+        normalize it.
       </p>
 
       <QuickstartBranch branch="normalization.1" />
@@ -24,23 +25,21 @@ export default (props) => {
         Request Nested Data
       </h2>
       <p>
-        The first thing we need to do is update our <code>Feed</code> component to tell the API we want it
-        to <em>populate</em> the <code>user</code> field in each tweet. We can do that by adding an extra
-        parameter to our request.
-      </p>
-
-      <p>
-        Open up <code>src/components/Feed</code> and modify the <code>connect</code> call to look like this
-        (adding the <code>populate</code> attribute to the pagination parameters):
+        To start, we need to update our network request to ask the API to populate the <code>user</code>. Open
+        the <code>Feed</code> component and modify the <code>connect</code> call to look like this (adding
+        the <code>populate</code> paramter to the pagination properties):
       </p>
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
         export default connect(function(getState, props) {
+          const { location } = props;
+
           return {
             tweets: getState('tweet.find', {
               pagination: {
-                page: props.location.query.page || '1',
+                sort: 'createdAt DESC',
+                page: location.query.page || '1',
                 populate: 'user'
               }
             })
@@ -51,10 +50,13 @@ export default (props) => {
         `}/>
         <CodeTab syntax="ES6" text={`
         export default connect(function(getState, props) {
+          const { location } = props;
+
           return {
             tweets: getState('tweet.find', {
               pagination: {
-                page: props.location.query.page || '1',
+                sort: 'createdAt DESC',
+                page: location.query.page || '1',
                 populate: 'user'
               }
             })
@@ -65,10 +67,13 @@ export default (props) => {
         `}/>
         <CodeTab syntax="ESNext" text={`
         @connect(function(getState, props) {
+          const { location } = props;
+
           return {
             tweets: getState('tweet.find', {
               pagination: {
-                page: props.location.query.page || '1',
+                sort: 'createdAt DESC',
+                page: location.query.page || '1',
                 populate: 'user'
               }
             })
@@ -76,45 +81,45 @@ export default (props) => {
         })
         `}/>
       </CodeTabs>
-
       <p>
-        If you refresh the page, you'll notice it no longer correctly. And if you look at the network requests,
-        you'll see two things worth calling out:
+        If you refresh the page, you'll notice it no longer displays correctly.
       </p>
 
-      <ol>
-        <li>
-          First, the API call to fetch the first page of tweets now looks
-          like <code>http://localhost:1337/tweets?page=1&populate=user</code>, which is what we wanted (and
-          you can confirm the user data is in fact nested in the response).
-        </li>
-        <li>
-          The second thing you'll notice is that the first call to fetch the user for a tweet looks
-          like <code>http://localhost:1337/users/%5Bobject%20Object%5D</code> instead
-          of <code>http://localhost:1337/users/1</code>.
-        </li>
-      </ol>
-
+      <h3>
+        Why is it not working?
+      </h3>
+      <p>
+        To understand why the application is broken, open the developer tools and take a look at the network
+        requests.
+      </p>
+      <p>
+        If you locate the API call to fetch the first page of tweets, you'll see that it now looks
+        like <code>http://localhost:1337/tweets?page=1&populate=user</code>, which is what we wanted, and you can
+        confirm the user data is nested in the response.
+      </p>
+      <p>
+        But you'll also see that not only are we still trying to fetch the user, but that the first call to fetch
+        a user for a tweet looks like <code>http://localhost:1337/users/%5Bobject%20Object%5D</code> instead
+        of <code>http://localhost:1337/users/1</code>.
+      </p>
       <p>
         The reason for the strange looking API call is because <code>tweet.data.user</code> used to be a
         number like <code>1</code>, but now it's an object. And since we haven't taught Lore how to process
         nested data, it just passes it along to the component.
       </p>
 
-
       <h3>
         Specify Nested Relationships
       </h3>
       <p>
         To fix this issue we need to tell Lore that <code>tweet</code> resources may contain
-        nested <code>user</code> data, and this data should be broken out and converted to
+        nested <code>user</code> data, and that this data should be broken out and converted to
         a <code>user</code> model.
       </p>
-
       <p>
-        To do that open up <code>src/models/tweet.js</code> and add another attribute for
-        the <code>user</code> field, specifying the <code>type</code> as a <code>model</code> and the
-        associated <code>model</code> to be a <code>user</code>:
+        To do that open <code>src/models/tweet.js</code> and add another attribute for the <code>user</code> field,
+        specifying the <code>type</code> as a <code>model</code> and the associated <code>model</code> to be
+        a <code>user</code>:
       </p>
 
       <CodeTabs>
@@ -122,11 +127,6 @@ export default (props) => {
         export default {
 
           attributes: {
-            text: {
-              type: 'text',
-              displayName: 'Message',
-              placeholder: "What's happening?"
-            },
             user: {
               type: 'model',
               model: 'user'
@@ -139,11 +139,6 @@ export default (props) => {
         export default {
 
           attributes: {
-            text: {
-              type: 'text',
-              displayName: 'Message',
-              placeholder: "What's happening?"
-            },
             user: {
               type: 'model',
               model: 'user'
@@ -156,11 +151,6 @@ export default (props) => {
         export default {
 
           attributes: {
-            text: {
-              type: 'text',
-              displayName: 'Message',
-              placeholder: "What's happening?"
-            },
             user: {
               type: 'model',
               model: 'user'
@@ -209,11 +199,6 @@ export default (props) => {
         export default {
 
           attributes: {
-            text: {
-              type: 'text',
-              displayName: 'Message',
-              placeholder: "What's happening?"
-            },
             user: {
               type: 'model',
               model: 'user'
@@ -226,11 +211,6 @@ export default (props) => {
         export default {
 
           attributes: {
-            text: {
-              type: 'text',
-              displayName: 'Message',
-              placeholder: "What's happening?"
-            },
             user: {
               type: 'model',
               model: 'user'
@@ -243,11 +223,6 @@ export default (props) => {
         export default {
 
           attributes: {
-            text: {
-              type: 'text',
-              displayName: 'Message',
-              placeholder: "What's happening?"
-            },
             user: {
               type: 'model',
               model: 'user'
@@ -274,10 +249,13 @@ export default (props) => {
         import LoadMoreButton from './LoadMoreButton';
 
         export default connect(function(getState, props) {
+          const { location } = props;
+
           return {
             tweets: getState('tweet.find', {
               pagination: {
-                page: props.location.query.page || '1',
+                sort: 'createdAt DESC',
+                page: location.query.page || '1',
                 populate: 'user'
               }
             })
@@ -330,7 +308,8 @@ export default (props) => {
                 <LoadMoreButton
                   lastPage={lastPage}
                   onLoadMore={this.props.onLoadMore}
-                  nextPageMetaField="nextPage" />
+                  nextPageMetaField="nextPage"
+                />
               </div>
             );
           }
@@ -394,10 +373,13 @@ export default (props) => {
         };
 
         export default connect(function(getState, props) {
+          const { location } = props;
+
           return {
             tweets: getState('tweet.find', {
               pagination: {
-                page: props.location.query.page || '1',
+                sort: 'createdAt DESC',
+                page: location.query.page || '1',
                 populate: 'user'
               }
             })
@@ -418,10 +400,13 @@ export default (props) => {
         import LoadMoreButton from './LoadMoreButton';
 
         @connect(function(getState, props) {
+          const { location } = props;
+
           return {
             tweets: getState('tweet.find', {
               pagination: {
-                page: props.location.query.page || '1',
+                sort: 'createdAt DESC',
+                page: location.query.page || '1',
                 populate: 'user'
               }
             })
