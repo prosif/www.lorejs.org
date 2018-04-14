@@ -14,8 +14,8 @@ export default (props) => {
       </h1>
 
       <p>
-        In this section we'll update our application to immediately display tweets we create at the top of the
-        feed, and we'll also address some of the challenges we need to solve for when performing these types of
+        In this section we'll update our application to immediately display tweets that we create at the top of the
+        feed, and we'll also address some of the challenges that we need to solve for when performing these types of
         optimistic updates.
       </p>
 
@@ -43,14 +43,14 @@ export default (props) => {
       <ul>
         <li>
           <p>
-            One option is to display a "saving experience" to the user, and prevent them from using the application
-            until the request comes back.
+            One option is to display a "saving experience" to the user, and prevent them from interacting with
+            the application further until the request comes back.
           </p>
         </li>
         <li>
           <p>
             Another is to submit the request, but make no changes to the application until the request comes
-            back, at which point it will suddenly "show up" in the application.
+            back, at which point the data will suddenly "show up" in the application.
           </p>
         </li>
       </ul>

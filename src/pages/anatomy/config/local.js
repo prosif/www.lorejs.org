@@ -14,17 +14,19 @@ export default (props) => {
       </h1>
 
       <p>
-        This file allows you to override any of the other config settings in a way that will <em>only</em> affect your development
-        machine. This file is added to the <code>.gitignore</code> by default and will never be checked in.
+        This file allows you to override any of the other config settings in a way that will <em>only</em> affect
+        your development machine. This file is added to the <code>.gitignore</code> by default and will never be
+        checked in.
       </p>
 
       <h3>
         Example Configuration
       </h3>
       <p>
-        To use this file, simply provide a key named after the file you want to override. So if you wanted to override
-        the default headers sent to the <code>default</code> API connection, so that it always sends a specific JWT token, you just
-        need to provide a key named <code>connections</code> and then describe the config modifications you want to make.
+        To use this file, simply provide a key named after the file you want to override. So if you wanted to
+        override the default headers sent to the <code>default</code> API connection, so that it always sends a
+        specific JWT token, you just need to provide a key named <code>connections</code> and then describe the
+        config modifications you want to make.
       </p>
 
       <Markdown text={`

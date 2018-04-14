@@ -14,8 +14,8 @@ export default (props) => {
       </h1>
 
       <p>
-        In this step we'll add a timestamp to our pagination requests, to "freeze" the data and solve an
-        error that occurs when we fetch new pages after creating a new tweet.
+        In this step we'll add a timestamp to our pagination requests, to "freeze" the data for the list, and solve an
+        error that occurs when we fetch a new page right after creating a tweet.
       </p>
 
       <QuickstartBranch branch="optimistic.1" />
@@ -28,7 +28,7 @@ export default (props) => {
         more tweets, the application works fine.
       </p>
       <p>
-        But if you create and tweet and <em>THEN</em> load more tweets, you'll see this warning in the console:
+        But if you create a tweet and <em>THEN</em> load more tweets, you'll see this warning in the console:
       </p>
 
       <Markdown text={`
@@ -45,7 +45,7 @@ export default (props) => {
       </h3>
 
       <p>
-        To illustrate why this happen, let's pretend we have an API with 10 tweets, shown below:
+        To illustrate why this happens, let's pretend we have an API with 10 tweets, shown below:
       </p>
 
       <Markdown text={`
@@ -64,11 +64,12 @@ export default (props) => {
       `}/>
 
       <p>
-        In this example, we're breaking the tweets up into two pages, with 5 tweets per page, and where tweet 10
-        is the newest tweet and tweet 1 is the oldest tweet.
+        In this example, we're breaking the tweets up into two pages, with 5 tweets per page. We're also ordering
+        the tweets chronologically, where tweet 10 is the newest tweet and tweet 1 is the oldest tweet.
       </p>
       <p>
-        Now let's say we fetch the first page of tweets to display to the user, so that our Feed looks like this:
+        Now let's say we fetch the first page of tweets to display to the user, so that our Feed on the client side
+        looks like this:
       </p>
       <Markdown text={`
       --- Client page 1 ----
@@ -80,7 +81,8 @@ export default (props) => {
       `}/>
 
       <p>
-        If you now create a tweet, we'll call it tweet 11, then the API looks like this:
+        If you now create a new tweet, shown here as <code>tweet 11</code>, then the API response would now look
+        like this:
       </p>
 
       <Markdown text={`
@@ -103,7 +105,7 @@ export default (props) => {
       <p>
         Because the API is ordering tweets by their <code>createdAt</code> date, then it always puts the newest
         tweets on page 1, and the other tweets are pushed down the list. And in this case, tweet 6, which used to
-        be on page 1 on page 2.
+        be on page 1, is now on page 2.
       </p>
       <p>
         If you now load more tweets on the client side, you'll get the current page 2 from the API, and your list
@@ -126,20 +128,20 @@ export default (props) => {
       `}/>
 
       <p>
-        If this case, we now have tweet 6 showing up twice; once on page 1, where it used to be, and now again on
-        page 2 where it currently is.
+        In this case, we now have <code>tweet 6</code> showing up twice; once on page 1, where it used to be, and
+        now again on page 2, where it currently is.
       </p>
       <p>
         But since we're using the <code>id</code> of a tweet as the React <code>key</code> when rendering the list,
-        we now have two tweets with the same <code>key</code> and React throws a warning.
+        we now have two tweets being rendered with the same <code>key</code>, and React throws a warning.
       </p>
 
       <h3>
         How do we fix this?
       </h3>
       <p>
-        To solve this problem, we need a way to "freeze" the API data, so that the tweets on each page stay the same,
-        regardless of whether or not new tweets are created.
+        To solve this problem, we need a way to "freeze" the data in the API, so that the tweets on each page stay
+        the same regardless of whether or not new tweets are created.
       </p>
       <p>
         To do this, we're going to add a timestamp to our API request, so that our requests are relative to a specific
@@ -232,8 +234,8 @@ export default (props) => {
       }
       `}/>
       <p>
-        In the code above, we're modifying the <code>select()</code> callback by adding a <code>where</code> property
-        to the <code>getState()</code> call, and providing the object we want sent to the API.
+        Here we're modifying the <code>select()</code> callback by adding a <code>where</code> property to
+        the <code>getState()</code> call, and providing the object we want sent to the API.
       </p>
 
       <h3>

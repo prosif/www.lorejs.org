@@ -14,6 +14,75 @@ export default (props) => {
   return (
     <Template>
       <h1>
+        Philosophy
+      </h1>
+      <p>
+        Lore is a convention-driven framework for the client-side. Conceptually, it's similar to Rails or Sails or
+        ASP.NET MVC. But, for the browser.
+      </p>
+      <blockquote>
+        <p>
+          Lore DOES NOT have anything to do with the server. It expects you to POINT it to an API endpoint, but
+          everything about it is 100% browser based. To use it, you will need to have or choose something else
+          for building out the API.
+        </p>
+      </blockquote>
+      <p>
+        Every web application is unique, and also not. Some parts are unique. The design, the approach to solving
+        the approach, the language and data modeling. But there's also a lot of similarity to web applications built
+        around a single page application experience.
+      </p>
+      <p>
+        The need to communicate with one or more APIs. They need to fetch data, cache it, communicate errors, and
+        support experiences like pagination, infinite scrolling and...
+      </p>
+      <p>
+        Lore's mission is to make front-end development so easy that you feel like a superhero.
+      </p>
+      <p>
+        Lore isn't just about <em>building</em> applications; it's about <em>teaching you how to</em>.
+      </p>
+      <p>
+        Frameworks accel at providing guidelines and bumpers to help you build your applications seriously. But
+        they're also criticized for "locking the developer in". That you have to learn "the framework's way" of
+        solving the problem. Or that you learn how to use the framework, but you don't learn the underlying
+        fundamentals of development.
+      </p>
+      <p>
+        The philosophy behind Lore is a belief that there's a way to get the best of both worlds. That it's possible
+        to build something that makes application development easy <em>and</em> educational. That it's possible to
+        build a framework that provides conventions and conveniences, and also let's you break out of them and take
+        full control.
+      </p>
+      <p>
+        The reason that's possible is Lore doesn't invent anything new. It combines existing technologies in a way
+        that demonstrates how you can use them to solve common problems.
+      </p>
+      <p>
+        Lore is built on React, Webpack, Redux, and React Router. If you like those technologies, you might like
+        Lore. And if you don't, then thanks for stopping by : )
+      </p>
+
+      <h1>
+        Taken from libraries/index
+      </h1>
+      <p>
+        While Lore generally strives to be flexible about it's opinions (allowing you to override them or
+        add and replace behaviors via hooks) there are certain libraries and concepts that are fairly
+        foundational within those opinions, and may require a high level of effort in order to break away from.
+      </p>
+      <p>
+        The libraries listed here make up the foundation of Lore, and represent the core concepts the
+        framework is built around. If you're comfortable with these libraries, and enjoy working with
+        them, then the framework should generally make sense, since it's largely just patterns and
+        conventions built around them.
+      </p>
+      <p>
+        If, on the other hand, you dislike any of these libraries, it seems unlikely you will enjoy working
+        with the framework.
+      </p>
+
+      <h1>
         Why discuss the audience?
       </h1>
 

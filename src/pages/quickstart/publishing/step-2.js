@@ -10,7 +10,7 @@ export default (props) => {
   return (
     <Template>
       <h1>
-        Step 2: Publish the Application
+        Step 2: Deploy to Production
       </h1>
 
       <p>
@@ -24,195 +24,207 @@ export default (props) => {
       </blockquote>
 
       <h3>
-        Choosing a Production Host
+        The Deploy Host
       </h3>
       <p>
-        There are a number of popular options for serving static content, with two popular ones being <a href="http://surge.sh">Surge</a>
-        and <a href="https://pages.github.com">GitHub Pages</a>. Not all options have similar feature sets though, and you can see a
-        comparison between Surge and GitHub Pages in the "Feature Comparison" video <Link to="/publishing/">at this link</Link>.
+        We'll be deploying our project to <a href="https://zeit.co/now">Now</a>, which is a hosting service provided
+        by <a href="https://zeit.co/now">zeit.co</a>.
       </p>
-
       <p>
-        For this example we're going to publishing out application to Surge, because:
+        This particular service is being used for several reasons:
       </p>
-
       <ul>
-        <li>The process is incredibly simple</li>
-        <li>It supports push state routing</li>
-        <li>It provides custom domain support for free</li>
-        <li>It allows you to secure custom domains with SSL</li>
-        <li>It allows you to password protect your site, which can be useful when developing a project for a client</li>
+        <li>
+          Easy deploy process
+        </li>
+        <li>
+          Free SSL certificates for custom domains
+        </li>
+        <li>
+          Zero-downtime deploys
+        </li>
+        <li>
+          Ability to roll-back to previous deploys
+        </li>
+        <li>
+          Provides an informative web dashboard
+        </li>
       </ul>
 
       <h3>
-        Install Surge & Login
+        Create Account
       </h3>
       <p>
-        Before you can publish to Surge, you'll first need to install the surge client. Run this command from the
-        command line:
+        To create an account, first install the Now CLI by running this command:
       </p>
-
-      <Markdown type="sh" text={`
-      npm install -g surge
+      <Markdown type="jsx" text={`
+      npm install -g now
       `}/>
 
       <p>
-        Once the surge client is installed, run this command to login:
+        Once installed, run this command to login, which is also the sign up process:
       </p>
 
-      <Markdown type="sh" text={`
-      surge login
+      <Markdown type="jsx" text={`
+      now login
       `}/>
 
       <p>
-        If you already have an account, just enter your email and password when prompted. If you <em>don't</em> have
-        an account, entering your email and password will <em>create</em> an account. The final experience should
-        look like this:
+        Now will prompt you to enter the email address you'd like to use for your account:
       </p>
 
-      <Markdown type="sh" text={`
-        Welcome to Surge! (surge.sh)
-        Please login or create an account by entering your email and password:
+      <Markdown type="jsx" text={`
+      > Enter your email: [email]
+      `}/>
 
-                  email: xyz@example.com
-               password: ********
+      <p>
+        Once you enter your email, Now will send you an email with a verification link:
+      </p>
 
-        Logged in as xyz@example.com.
+      <Markdown type="jsx" text={`
+      > We sent an email to [email]. Please follow the steps provided
+        inside it and make sure the security code matches Proud Galapagos Penguin.
+      ⠼ Waiting for your confirmation
+      `}/>
+
+      <p>
+        Find the email in your inbox, and click the link inside. Once you do, the CLI will automatically update
+        to display the confirmation message below, and your account will now exist:
+      </p>
+
+      <Markdown type="jsx" text={`
+      > We sent an email to jason_hansen@outlook.com. Please follow the steps provided
+        inside it and make sure the security code matches Proud Galapagos Penguin.
+      ✔ Email confirmed
+      ✔ Fetched your personal details
+      > Ready! Authentication token and personal details saved in "~/.now"
       `}/>
 
       <h3>
-        Publish the Application
+        Deploy the Project
       </h3>
+
       <p>
-        Now that you're logged into surge, you can publish your application by running this command:
+        Next, deploy the <code>/dist</code> folder you created in the last step by running this command:
+      </p>
+      <Markdown type="jsx" text={`
+      npm run deploy
+      `}/>
+
+      <blockquote>
+        <p>
+          This script does two things:
+        </p>
+        <ul>
+          <li>
+            First, it copies the <code>package.json</code> file from the <code>/.now</code> folder at the root of
+            your project into the <code>/dist</code> folder. This file is required in order to get expected behavior
+            when refreshing the application.
+          </li>
+          <li>
+            Then it deploys the <code>/dist</code> folder to Now.
+          </li>
+        </ul>
+      </blockquote>
+
+      <p>
+        Once the process completes, you'll see a message like this:
       </p>
 
-      <Markdown type="sh" text={`
-      surge dist
+      <Markdown type="jsx" text={`
+      > Deploying ~/lore-quickstart/dist under jchansen
+      > Using Node.js 8.11.1 (default)
+      > https://lore-quickstart-avvuiuuwto.now.sh [in clipboard] (sfo1) [11s]
+      > Synced 4 files (5.63MB) [11s]
+      > Building…
+      > ▲ npm install
+      > ⧗ Installing 1 main dependency…
+      > ✓ Installed 130 modules [2s]
+      > ▲ Snapshotting deployment
+      > ▲ Saving deployment image (5.8M)
+      > Build completed
+      > ✔ Verified sfo1 (1) [12s]
+      > Success! Deployment ready!
       `}/>
 
       <p>
-        Once you do, surge will ask you to confirm your intent, and suggest a random subdomain name to publish your application
-        to. If you like the domain, just hit enter to accept it, otherwise you can modify the subdomain to something like
-        <code>lore-quickstart.surge.sh</code>:
+        The important part here is the URL the project was deployed to, which for this example
+        is <code>https://lore-quickstart-avvuiuuwto.now.sh</code>. Copy that URL - we'll going to need it in just a
+        minute.
       </p>
-
-      <Markdown type="sh" text={`
-        Surge - surge.sh
-
-                  email: xyz@example.com
-                  token: *****************
-           project path: dist
-                   size: 16 files, 15.8 MB
-                 domain: lore-quickstart.surge.sh
-      `}/>
-
-      <p>
-        Once you accept or modify the domain name, the publishing process will finish, and the final output will look like this:
-      </p>
-
-      <Markdown type="sh" text={`
-          Surge - surge.sh
-
-                    email: xyz@example.com
-                    token: *****************
-             project path: dist
-                     size: 16 files, 15.8 MB
-                   domain: lore-quickstart.surge.sh
-                   upload: [====================] 100%, eta: 0.0s
-         propagate on CDN: [====================] 100%
-                     plan: Free
-                    users: xyz@example.com
-               IP Address: 45.55.110.124
-
-          Success! Project is published and running at lore-quickstart.surge.sh
-      `}/>
-
-      <p>
-        Finally, navigate to the domain your project was published to (like <code>lore-quickstart.surge.sh</code>), and
-        you should see it load up in the browser.
-      </p>
-
-      <p>
-        As a shortcut, if you know the name of the domain you want to publish to, you can enter it as part of the
-        surge command like <code>surge dist lore-quickstart.surge.sh</code> and skip the prompt.
-      </p>
-
 
       <h3>
-        Modifying the Production Config API Server
+        Set up an Alias
       </h3>
       <p>
-        It's important to highlight that if you look at the network requests for the application running on surge, you'll
-        notice it's still making API calls to <code>localhost:1337</code>. This is important to callout because it means the application
-        will ONLY work for YOU, while the <code>lore-tutorial-api</code> server is running.
+        Every time you deploy an application to Now, it will create a unique auto-generated URL for that deploy.
+        Then you <em>alias</em> that URL to actual domain you want people to access the application from.
       </p>
-
+      <blockquote>
+        <p>
+          It's this two-step process that enables <strong>zero-downtime deploys</strong>. It also means that if you
+          screw up, you can easily roll-back to a previous version of your application simply by switching the alias.
+        </p>
+      </blockquote>
       <p>
-        If you're deploying the application to production for real, it's likely using a different API server, and you'll
-        want the production version of the application to behave different that when running on localhost for development.
+        Let's illustrate what this process looks like.
       </p>
-
       <p>
-        To do that, open up <code>config/env/production.js</code> and set the production server for the default
-        connection. For example, let's say the production API server is located at <code>https://api.example.com</code>.
-        To set that for the production build, edit your <code>production.js</code> config to look like this:
+        In the example above, Now deployed the application to <code>lore-quickstart-avvuiuuwto.now.sh</code>. If we
+        wanted users to access that application from <code>lore-quickstart.now.sh</code>, then we would create
+        an <em>alias</em> from <code>lore-quickstart-avvuiuuwto.now.sh</code> to <code>lore-quickstart.now.sh</code> using
+        this command:
       </p>
-
-      <CodeTabs>
-        <CodeTab syntax="ES5" text={`
-        export default {
-
-          connections: {
-            default: {
-              apiRoot: 'https://api.example.com'
-            }
-          }
-
-        };
-        `}/>
-        <CodeTab syntax="ES6" text={`
-        export default {
-
-          connections: {
-            default: {
-              apiRoot: 'https://api.example.com'
-            }
-          }
-
-        }
-        `}/>
-        <CodeTab syntax="ESNext" text={`
-        export default {
-
-          connections: {
-            default: {
-              apiRoot: 'https://api.example.com'
-            }
-          }
-
-        }
-        `}/>
-      </CodeTabs>
-
+      <Markdown type="jsx" text={`
+      now alias lore-quickstart-avvuiuuwto.now.sh lore-quickstart.now.sh
+      `}/>
       <p>
-        With that change in place, if you run <code>npm run build:prod</code> to rebuild the application, and then
-        redeploy it to surge using the shortcut command (like <code>surge dist lore-quickstart.surge.sh</code>),
-        you'll see the application will automatically change with API server it tries to communicate with, but only
-        in production. When running on localhost for development the API server used will still
-        be <code>localhost:1337</code>.
+        And now the application would now be available from <code>https://lore-quickstart.now.sh</code>.
       </p>
+      <blockquote>
+        <p>
+          To make the application accessible from a custom domain like <code>quickstart.lorejs.org</code>, simply
+          use that custom domain as the alias.
+        </p>
+      </blockquote>
+      <p>
+        Now it's your turn. Choose a subdomain for your project, like <code>lore-quickstart-jchansen</code>, and
+        then create the alias. If the subdomain you want is already taken, you'll see an error like this:
+      </p>
+      <Markdown type="jsx" text={`
+      > Assigning alias lore-quickstart.now.sh to deployment lore-quickstart-avvuiuuwto.now.sh
+      > Error! The alias lore-quickstart.now.sh is a deployment URL or it's in use by a different team.
+      `}/>
+      <p>
+        If that's the case, just keep trying different subdomains until you find one that's available.
+      </p>
+
+      <h3>
+        Try it Out
+      </h3>
+      <p>
+        Once your application has an alias, navigate to that URL, and the application should redirect you to Auth0
+        to log in.
+      </p>
+      <p>
+        After you log in, look at the URL in the browser, and notice that Auth0 redirected you
+        to <code>http://localhost:3000/auth/callback</code>, and <em>not</em> to your production deploy, such
+        as <code>https://lore-quickstart.now.sh/auth/callback</code>.
+      </p>
+      <p>
+        We'll learn how to fix that in the next step.
+      </p>
+
 
       <h3>
         Visual Check-in
       </h3>
-
       <p>
-        If everything went well, your application should still look like this (exactly the same) but will now be hosted on
-        Surge and built for production!
+        If everything went well, your application should still look like this (exactly the same).
       </p>
 
       <img className="drop-shadow" src="/assets/images/quickstart/filtering/step-1.png" />
+
 
       <h2>
         Code Changes
@@ -222,12 +234,13 @@ export default (props) => {
         There are no code changes required for this step.
       </p>
 
+
       <h2>
         Next Steps
       </h2>
 
       <p>
-        In the next section <Link to="../../next-steps/overview/">we'll talk about next steps</Link>.
+        In the next section we'll <Link to="../step-3/">create a production config to fix the redirect issue</Link>.
       </p>
     </Template>
   )

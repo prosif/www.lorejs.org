@@ -30,8 +30,13 @@ export default (props) => {
                 Documentation<span className="caret" />
               </a>
               <ul className="dropdown-menu">
+                <NavLink title="React" url="/react/" location={location} />
+                <NavLink title="React Router" url="/react-router/" location={location} />
+                <NavLink title="Redux" url="/redux/" location={location} />
+                <NavLink title="Webpack" url="/webpack/" location={location} />
+                {/*<NavLink title="Core Libraries" url="/libraries/" location={location} />*/}
+                <li role="separator" className="divider"></li>
                 <NavLink title="Anatomy" url="/anatomy/" location={location} />
-                <NavLink title="Core Libraries" url="/libraries/" location={location} />
                 <li role="separator" className="divider"></li>
                 <NavLink title="Actions" url="/actions/" location={location} />
                 <NavLink title="Connect" url="/connect/" location={location} />

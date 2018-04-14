@@ -19,7 +19,7 @@ export default (props) => {
       <div className="container">
         <div className="docs-content">
           <ul id="markdown-toc" className="fully-expanded-x">
-            <NavLink title="Introduction" url="/features/" />
+            <NavLink title="Introduction" url="/anatomy/" />
 
             <li className="doc-section">Project Structure</li>
             <NavLink title="assets" url="/anatomy/assets/">

@@ -133,7 +133,9 @@ export default (props) => {
             <li className="doc-section">Publishing</li>
             <NavLink title="Overview" url="/quickstart/publishing/overview/" />
             <NavLink title="1. Create Production Build" url="/quickstart/publishing/step-1/" />
-            <NavLink title="2. Publish the Application" url="/quickstart/publishing/step-2/" />
+            <NavLink title="2. Deploy to Production" url="/quickstart/publishing/step-2/" />
+            <NavLink title="3. Create Production Config" url="/quickstart/publishing/step-3/" />
+            <NavLink title="2. Redeploy to Production" url="/quickstart/publishing/step-4/" />
 
             <li className="doc-section">Next Steps</li>
             <NavLink title="Overview" url="/quickstart/next-steps/overview/" />

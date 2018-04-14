@@ -1,52 +1,21 @@
 import React from 'react';
 import Link from 'gatsby-link';
-import Template from '../../../components/templates/Quickstart';
+import Template from '../../../components/templates/Webpack';
 import Markdown from '../../../components/Markdown';
-import CodeTabs from '../../../components/CodeTabs';
-import CodeTab from '../../../components/CodeTab';
-import QuickstartBranch from '../../../components/QuickstartBranch';
 
 export default (props) => {
   return (
     <Template>
       <h1>
-        Step 1: Create Production Build
+        Production Build
       </h1>
-
       <p>
-        In this step we'll learn how to build the application for production.
+        Info about creating a production build...
       </p>
 
-      <blockquote>
-        <p>
-          There is no branch for this step because it does not modify any code.
-        </p>
-      </blockquote>
-
-      <h3>
-        Build the Project
-      </h3>
       <p>
-        If you open up the <code>package.json</code> file you'll see two scripts related to building the project:
-      </p>
-
-      <Markdown text={`
-      "scripts": {
-        "build:development": "npm run clean && webpack --env.webpack=production --env.lore=development",
-        "build:production": "npm run clean && webpack --env.webpack=production --env.lore=production -p",
-        ...
-      },
-      `}/>
-
-      <p>
-        Build the application for production by running this command:
-      </p>
-      <Markdown type="jsx" text={`
-      npm run build:production
-      `}/>
-
-      <p>
-        You should see output similar to this once it completes, which took 49 seconds in this example:
+        Next run <code>npm run build:production</code>. You should see output similar to this once it completes, which
+        took 49 seconds in this example:
       </p>
 
       <Markdown text={`
@@ -76,37 +45,41 @@ export default (props) => {
       `}/>
 
       <p>
-        This build process will compile and minify all your assets and place them in a new folder
-        called <code>/dist</code> at the root of your project.
+        The difference between the two commands is whether minification and uglification occur, which can take a
+        significant amount of time to complete depending on the size of your project. But otherwise the process
+        and generated files are identical.
       </p>
-
-      <h3>
-        Visual Check-in
-      </h3>
 
       <p>
-        If everything went well, your application should still look like this (exactly the same).
+        If you compare the output above between the two commands, you can see that the minification and uglification
+        process has a significant impact in the size of the final JavaScript files. The <code>bundle.main.js</code> file
+        is reduced from <strong>5.17 MB</strong> to <strong>1.41 MB</strong> and the <code>bundle.vendor.js</code> file
+        is reduced from <strong>1.04 MB</strong> to <code>197 kB</code>.
       </p>
-
-      <img className="drop-shadow" src="/assets/images/quickstart/filtering/step-1.png" />
-
-
-      <h2>
-        Code Changes
-      </h2>
 
       <p>
-        There are no code changes required for this step.
+        That may seem a bit unbalanced (one file clearly has more code than the other), and future versions of Lore
+        may tweak which files are included by default in which chunks, to balance out the load and future improve
+        page load time.
       </p>
-
-
-      <h2>
-        Next Steps
-      </h2>
 
       <p>
-        In the next section we'll <Link to="../step-2/">publish the application to the web</Link>.
+        If you want to experiment with the effect chunk size has on page load time, you can add and remove libraries
+        from the <code>vendor</code> chunk by modifying this section in the <code>webpack.config.js</code> file:
       </p>
+
+      <Markdown text={`
+      ...
+        entry: {
+          main: './index.js',
+          vendor: [
+            'react',
+            'react-dom',
+            'react-router'
+          ]
+        },
+      ...
+      `}/>
     </Template>
-  )
+  );
 };
