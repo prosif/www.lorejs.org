@@ -10,150 +10,88 @@ export default (props) => {
         sync
       </h1>
       <p>
-        Sync is the method that's actually responsible for making AJAX calls, and it
-        uses <a href="https://github.com/axios/axios">axios</a> to do that.
+        This method is a wrapper over <Link to="/sync/">sync</Link>, and allows you to modify how server calls are
+        made for the model.
       </p>
-      <p>
-        While it's rare that you would need to interact with this method directly, as the Model methods
-        for <code>save()</code>, <code>update()</code>, and <code>destroy()</code> invoke it automatically,
-        there are two scenarios where it's useful to interact with directly:
-      </p>
-      <ul>
-        <li>
-          <p>
-            Sometimes APIs make breaking changes, like renaming an attribute, and it can be a lot of work to find
-            and replace all references to the old attribute, and test the application to make sure it still works
-            correctly.
-          </p>
-          <p>
-            In this scenario you can use <code>parse()</code> to rename the new attribute back to the original name,
-            but if you ever need to save changes to that attribute, the API won't see the change, because the you'll
-            be sending back the original (no longer recognized) name.
-          </p>
-          <p>
-            In this scenario, you need to map the original name back to the new name, and you can
-            use <code>sync()</code> to do this.
-          </p>
-          <p>
-            Combining the usage of <code>parse()</code> and <code>sync()</code> in this manner allow you to create
-            a complete buffer between the API and your application, and transform properties back and forth however
-            you need.
-          </p>
-        </li>
-        <li>
-          <p>
-            You can also use this method to inspect the response object before the application gets it, This can be
-            useful if you need to make a decision based on the status code of the response, like logging the user
-            out if any request returns a 401 (suggesting their token expired), or if you just want to observe and
-            log all network requests.
-          </p>
-        </li>
-      </ul>
 
       <h3>
-        Example Usage
+        Default Implementation
       </h3>
       <p>
-        To illustrate how to use <code>sync()</code>, the examples below assume a <code>Tweet</code> model has
-        been created like this:
+        The default implementation looks like this:
       </p>
       <Markdown type="jsx" text={`
-      import { Model, syc } from 'lore-models';
-
-      const Tweet = Model.extend({
-        urlRoot: 'http://localhost:1337/tweets'
-      })
+      import { sync } from 'lore-models';
+      ...
+      sync: function(method, model, options) {
+        return sync(method, model, options);
+      },
       `}/>
 
-      <h4>
-        Create
-      </h4>
+      <h3>
+        Usage
+      </h3>
       <p>
-        This code will create a tweet, and is similar to calling <code>tweet.save()</code> when the model instance
-        has no <code>id</code>:
+        One use case for this method is to modify the data before it's sent to the API. For example, let's say the
+        tweets in our application currently use an attribute named <code>text</code> to describe what the user said,
+        but the API underwent a change recently and that property is now called <code>message</code>.
       </p>
-
-      <Markdown type="jsx" text={`
-      const tweet = new Tweet({
-        text: 'A new tweet'
-      })
-
-      sync('create', model).then(function(response){
-       // inspect the response
-      })
-      `}/>
-
-      <h4>
-        Update (PUT)
-      </h4>
       <p>
-        This code will update a tweet, and is similar to calling <code>tweet.save()</code> when the model instance
-        has an <code>id</code>:
+        If we send the <code>text</code> attribute to the API, it will ignore the attribute, because it doesn't
+        recognize it. So we need to transform <code>text</code> to <code>message</code> before making the API
+        call.
       </p>
-
-      <Markdown type="jsx" text={`
-      const tweet = new Tweet({
-        id: 1,
-        text: 'A new tweet'
-      })
-
-      sync('update', model).then(function(response){
-       // inspect the response
-      })
-      `}/>
-
-      <h4>
-        Update (PATCH)
-      </h4>
       <p>
-        This code will update a tweet, but using <code>PATCH</code> instead of <code>PUT</code>, and is similar to
-        calling <code>tweet.save({ `patch: true` })</code> when the model instance has an <code>id</code>:
+        We can do that using this code:
       </p>
-
       <Markdown type="jsx" text={`
-      const tweet = new Tweet({
-        id: 1,
-        text: 'A new tweet'
-      })
+      import { sync } from 'lore-models';
+      ...
+      sync: function(method, model, options) {
+        if (method === 'create' || method === 'update') {
+          // copy the model's attributes
+          const data = _.assign({}, model.attributes);
 
-      sync('patch', model).then(function(response){
-       // inspect the response
-      })
+          // replace 'text' with 'message'
+          data.message = data.text;
+          delete data.text;
+
+          // provide the new 'data' through 'options', which will be sent to the API
+          return sync(method, model, _.assign({}, options, {
+            data: data
+          }));
+        }
+
+        return sync(method, model, options);
+      },
       `}/>
-
-      <h4>
-        Delete
-      </h4>
       <p>
-        This code will delete a tweet, and is similar to calling <code>tweet.destroy()</code>:
+        In the code above, we're checking the <code>method</code> to see whether we're performing
+        a <code>create</code> or <code>update</code> action.
       </p>
-
-      <Markdown type="jsx" text={`
-      const tweet = new Tweet({
-        id: 1
-      })
-
-      sync('delete', model).then(function(response){
-       // inspect the response
-      })
-      `}/>
-
-      <h4>
-        Retrieve
-      </h4>
       <p>
-        This code will retrieve a tweet, and is similar to calling <code>tweet.fetch()</code>:
+        If we are, then we're coping the model's attributes, replacing <code>text</code> with <code>message</code>,
+        and then providing the new data to <code>sync</code>, so that it will be sent to the API instead of the
+        models normal attributes.
       </p>
-
+      <p>
+        A simpler version of the code above would look like this:
+      </p>
       <Markdown type="jsx" text={`
-      const tweet = new Tweet({
-        id: 1
-      })
+      import { sync } from 'lore-models';
+      ...
+      sync: function(method, model, options) {
+        if (method === 'create' || method === 'update') {
+          model.attributes.message = model.attributes.text;
+        }
 
-      sync('read', model).then(function(response){
-       // inspect the response
-      })
+        return sync(method, model, options);
+      },
       `}/>
+      <p>
+        The difference is that in this code, we're actually modifying the attributes of the model, whereas the
+        previous code only modify the network request.
+      </p>
     </Template>
   );
 };
