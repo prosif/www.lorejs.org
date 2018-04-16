@@ -1,6 +1,6 @@
 {
-  "name": "gatsby-starter-hello-world",
-  "description": "Gatsby hello world starter",
+  "name": "lore-homepage",
+  "description": "Homepage for lorejs.org",
   "license": "MIT",
   "scripts": {
     "develop": "gatsby develop -H localhost",
