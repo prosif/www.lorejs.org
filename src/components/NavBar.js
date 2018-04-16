@@ -30,24 +30,37 @@ export default (props) => {
                 Documentation<span className="caret" />
               </a>
               <ul className="dropdown-menu">
+                <li className="dropdown-category">
+                  Core Libraries
+                </li>
                 <NavLink title="React" url="/react/" location={location} />
                 <NavLink title="React Router" url="/react-router/" location={location} />
                 <NavLink title="Redux" url="/redux/" location={location} />
                 <NavLink title="Webpack" url="/webpack/" location={location} />
                 {/*<NavLink title="Core Libraries" url="/libraries/" location={location} />*/}
                 <li role="separator" className="divider"></li>
+                <li className="dropdown-category">
+                  Project
+                </li>
                 <NavLink title="Anatomy" url="/anatomy/" location={location} />
+                <NavLink title="Publishing" url="/publishing/" location={location} />
                 <li role="separator" className="divider"></li>
+                <li className="dropdown-category">
+                  Concepts
+                </li>
                 <NavLink title="Actions" url="/actions/" location={location} />
                 <NavLink title="Connect" url="/connect/" location={location} />
                 <NavLink title="Reducers" url="/reducers/" location={location} />
+                <NavLink title="Hooks" url="/hooks/" location={location} />
                 <li role="separator" className="divider"></li>
+                <li className="dropdown-category">
+                  lore-models
+                </li>
                 <NavLink title="Models" url="/models/" location={location} />
                 <NavLink title="Collections" url="/collections/" location={location} />
+                <NavLink title="sync" url="/sync/" location={location} />
                 <li role="separator" className="divider"></li>
                 <NavLink title="Concepts" url="/concepts/" location={location} />
-                <NavLink title="Hooks" url="/hooks/" location={location} />
-                <NavLink title="Publishing" url="/publishing/" location={location} />
                 <li role="separator" className="divider"></li>
                 <NavLink title="CLI" url="/cli/" location={location} />
                 <li role="separator" className="divider"></li>
