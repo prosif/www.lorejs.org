@@ -14,6 +14,14 @@ export default (props) => {
       </p>
 
       <h3>
+        Usage
+      </h3>
+      <p>
+        You can learn about how this method can be used to retrieve
+        resources <Link to="/models/actions/retrieve/">here</Link>.
+      </p>
+
+      <h3>
         Default Implementation
       </h3>
       <Markdown type="jsx" text={`

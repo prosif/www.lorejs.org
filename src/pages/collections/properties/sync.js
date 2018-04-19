@@ -7,18 +7,10 @@ export default (props) => {
   return (
     <Template>
       <h1>
-        destroy
+        sync
       </h1>
       <p>
-        The <code>destroy()</code> method is used to delete a resource.
-      </p>
-
-      <h3>
-        Usage
-      </h3>
-      <p>
-        You can learn about how this method can be used to delete
-        resources <Link to="/models/actions/delete/">here</Link>.
+        This ...
       </p>
 
       <h3>
@@ -27,11 +19,10 @@ export default (props) => {
       <p>
         The default implementation looks like this:
       </p>
-
       <Markdown type="jsx" text={`
-      destroy: function(options) {
-        options = options ? _.clone(options) : {};
-        return this.sync('delete', this, options);
+      // Proxy \`Backbone.sync\` by default.
+      sync: function() {
+        return sync.apply(this, arguments);
       },
       `}/>
     </Template>

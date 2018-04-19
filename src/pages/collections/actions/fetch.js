@@ -7,22 +7,18 @@ export default (props) => {
   return (
     <Template>
       <h1>
-        has
+        retrieve
       </h1>
+      <p>
+        This page describes how to retrieve a collection of resources using a Collection.
+      </p>
 
       <h3>
-        Default Implementation
+        Basic Usage
       </h3>
       <p>
-        The default implementation looks like this:
+        ???
       </p>
-      <Markdown type="jsx" text={`
-      // Returns \`true\` if the attribute contains a value that is not null
-      // or undefined.
-      has: function(attr) {
-        return this.get(attr) != null;
-      },
-      `}/>
     </Template>
   );
 };

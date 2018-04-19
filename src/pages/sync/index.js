@@ -107,7 +107,7 @@ export default (props) => {
       </h4>
       <p>
         This code will update a tweet, but using <code>PATCH</code> instead of <code>PUT</code>, and is similar to
-        calling <code>tweet.save({ `patch: true` })</code> when the model instance has an <code>id</code>:
+        calling <code>tweet.save({`{ patch: true }`})</code> when the model instance has an <code>id</code>:
       </p>
 
       <Markdown type="jsx" text={`

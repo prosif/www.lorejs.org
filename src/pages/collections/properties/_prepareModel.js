@@ -7,18 +7,10 @@ export default (props) => {
   return (
     <Template>
       <h1>
-        destroy
+        _prepareModel
       </h1>
       <p>
-        The <code>destroy()</code> method is used to delete a resource.
-      </p>
-
-      <h3>
-        Usage
-      </h3>
-      <p>
-        You can learn about how this method can be used to delete
-        resources <Link to="/models/actions/delete/">here</Link>.
+        This ...
       </p>
 
       <h3>
@@ -27,13 +19,18 @@ export default (props) => {
       <p>
         The default implementation looks like this:
       </p>
-
       <Markdown type="jsx" text={`
-      destroy: function(options) {
+      // Prepare a hash of attributes (or other model) to be added to this
+      // collection.
+      _prepareModel: function(attrs, options) {
         options = options ? _.clone(options) : {};
-        return this.sync('delete', this, options);
-      },
+        options.collection = this;
+        const model = new this.model(attrs, options);
+        return model;
+      }
       `}/>
     </Template>
   );
 };
+
+

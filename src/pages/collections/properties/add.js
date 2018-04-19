@@ -7,18 +7,10 @@ export default (props) => {
   return (
     <Template>
       <h1>
-        destroy
+        add
       </h1>
       <p>
-        The <code>destroy()</code> method is used to delete a resource.
-      </p>
-
-      <h3>
-        Usage
-      </h3>
-      <p>
-        You can learn about how this method can be used to delete
-        resources <Link to="/models/actions/delete/">here</Link>.
+        This ...
       </p>
 
       <h3>
@@ -27,11 +19,12 @@ export default (props) => {
       <p>
         The default implementation looks like this:
       </p>
-
       <Markdown type="jsx" text={`
-      destroy: function(options) {
-        options = options ? _.clone(options) : {};
-        return this.sync('delete', this, options);
+      // Add a model, or list of models to the set. \`models\` may be Backbone
+      // Models or raw JavaScript objects to be converted to Models, or any
+      // combination of the two.
+      add: function(models, options) {
+        return this.set(models, _.extend({}, options));
       },
       `}/>
     </Template>

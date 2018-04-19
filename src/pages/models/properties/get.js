@@ -11,9 +11,11 @@ export default (props) => {
       </h1>
 
       <h3>
-        Default
+        Default Implementation
       </h3>
-
+      <p>
+        The default implementation looks like this:
+      </p>
       <Markdown type="jsx" text={`
       // Get the value of an attribute.
       get: function(attr) {
