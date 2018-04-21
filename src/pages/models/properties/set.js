@@ -10,7 +10,7 @@ export default (props) => {
         set
       </h1>
       <p>
-        This method is used to set the attributes for the model.
+        The <code>set()</code> method can be used to set attributes on the model outside the constructor.
       </p>
 
       <h3>
@@ -62,7 +62,6 @@ export default (props) => {
       import { Model } from 'lore-models';
 
       const Tweet = Model.extend({
-        idAttribute: '_id',
         urlRoot: 'http://localhost:1337/tweets'
       })
 

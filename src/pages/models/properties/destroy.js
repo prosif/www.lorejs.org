@@ -18,7 +18,7 @@ export default (props) => {
       </h3>
       <p>
         You can learn about how this method can be used to delete
-        resources <Link to="/models/actions/delete/">here</Link>.
+        resources <Link to="/models/usage/delete/">here</Link>.
       </p>
 
       <h3>

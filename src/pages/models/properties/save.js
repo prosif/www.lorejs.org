@@ -10,8 +10,8 @@ export default (props) => {
         save
       </h1>
       <p>
-        The <code>save()</code> method is used to create or update a resource, depending on whether the model has
-        an <code>id</code>.
+        The <code>save()</code> method is used to <strong>create</strong> or <strong>update</strong> a resource,
+        depending on whether the model has an <code>id</code>.
       </p>
 
       <h3>
@@ -19,8 +19,8 @@ export default (props) => {
       </h3>
       <p>
         You can learn about how this method can be used to create
-        resources <Link to="/models/actions/create/">here</Link>, and about how it can be used to update
-        resources <Link to="/models/actions/update/">here</Link>.
+        resources <Link to="/models/usage/create/">here</Link>, and about how it can be used to update
+        resources <Link to="/models/usage/update/">here</Link>.
       </p>
 
       <h3>

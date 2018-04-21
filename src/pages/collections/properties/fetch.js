@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'gatsby-link';
-import Template from '../../../components/templates/Models';
+import Template from '../../../components/templates/Collections';
 import Markdown from '../../../components/Markdown';
 
 export default (props) => {
@@ -10,7 +10,15 @@ export default (props) => {
         fetch
       </h1>
       <p>
-        This ...
+        The <code>fetch()</code> method is used to retrieve a collection of resources.
+      </p>
+
+      <h3>
+        Usage
+      </h3>
+      <p>
+        You can learn about how this method can be used to retrieve
+        resources <Link to="/collections/usage/retrieve/">here</Link>.
       </p>
 
       <h3>

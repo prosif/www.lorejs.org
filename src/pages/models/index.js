@@ -10,12 +10,9 @@ export default (props) => {
         Introduction
       </h1>
       <p>
-        Models are an abstraction for interacting with a REST API endpoint that make it easier to create, update,
-        destroy or retrieve a resource.
-      </p>
-      <p>
-        The functionality is provided by
-        the <a href="https://github.com/lore/lore/tree/master/packages/lore-models">lore-models</a> package.
+        Models are part of the <a href="https://github.com/lore/lore/tree/master/packages/lore-models">
+        lore-models</a> package, and are an abstraction for interacting with a REST API endpoint that make it easier
+        to create, update, destroy or retrieve a resource.
       </p>
 
       <blockquote>

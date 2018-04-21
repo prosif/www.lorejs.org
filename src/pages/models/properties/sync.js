@@ -10,8 +10,8 @@ export default (props) => {
         sync
       </h1>
       <p>
-        This method is a wrapper over <Link to="/sync/">sync</Link>, and allows you to modify how server calls are
-        made for the model.
+        The <code>sync()</code> method is a wrapper over the <Link to="/sync/">sync</Link> function, and allows you
+        to modify how server calls are made for the model.
       </p>
 
       <h3>

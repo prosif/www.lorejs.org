@@ -66,9 +66,11 @@ export default (props) => {
       }
       `}/>
       <p>
-        Sometimes you might want to transform that data though, such as changing the value or name of a property, or
-        add a new field. This can be a quick way to resolve breaking API changes. You can do that by providing
-        a <code>parse()</code> method like this:
+        Sometimes you might want to transform that data though, such as changing the name or value of a property, or
+        adding a new field, which can be a quick way to resolve breaking API changes.
+      </p>
+      <p>
+        You can do that by defining a <code>parse()</code> like this:
       </p>
       <Markdown type="jsx" text={`
       import { Model } from 'lore-models';

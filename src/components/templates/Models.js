@@ -21,40 +21,37 @@ export default (props) => {
           <ul id="markdown-toc">
             <NavLink title="Introduction" url="/models/" />
 
-            <li className="doc-section">Basic Usage</li>
-            <NavLink title="create" url="/models/actions/create/" />
-            <NavLink title="delete" url="/models/actions/delete/" />
-            <NavLink title="retrieve" url="/models/actions/retrieve/" />
-            <NavLink title="update" url="/models/actions/update/" />
+            <li className="doc-section">Usage</li>
+            <NavLink title="create" url="/models/usage/create/" />
+            <NavLink title="delete" url="/models/usage/delete/" />
+            <NavLink title="retrieve" url="/models/usage/retrieve/" />
+            <NavLink title="update" url="/models/usage/update/" />
 
-            <li className="doc-section">Methods</li>
-            <NavLink title="destroy" url="/models/methods/destroy/" />
-            <NavLink title="fetch" url="/models/methods/fetch/" />
-            <NavLink title="save" url="/models/methods/save/" />
-
-            <li className="doc-section">Key Properties</li>
+            <li className="doc-section">Properties</li>
+            <NavLink title="cidPrefix" url="/models/properties/cidPrefix/" />
+            <NavLink title="destroy" url="/models/properties/destroy/" />
+            <NavLink title="fetch" url="/models/properties/fetch/" />
+            <NavLink title="generateCid" url="/models/properties/generateCid/" />
+            <NavLink title="has" url="/models/properties/has/" />
             <NavLink title="idAttribute" url="/models/properties/idAttribute/" />
             <NavLink title="initialize" url="/models/properties/initialize/" />
+            <NavLink title="isNew" url="/models/properties/isNew/" />
             <NavLink title="parse" url="/models/properties/parse/" />
+            <NavLink title="save" url="/models/properties/save/" />
+            <NavLink title="set" url="/models/properties/set/" />
             <NavLink title="sync" url="/models/properties/sync/" />
             <NavLink title="toJSON" url="/models/properties/toJSON/" />
             <NavLink title="url" url="/models/properties/url/" />
             <NavLink title="urlRoot" url="/models/properties/urlRoot/" />
-
-            <li className="doc-section">Other Properties</li>
-            <NavLink title="_validate" url="/models/properties/_validate/" />
-            <NavLink title="cidPrefix" url="/models/properties/cidPrefix/" />
-            <NavLink title="generateCid" url="/models/properties/generateCid/" />
-            <NavLink title="has" url="/models/properties/has/" />
-            <NavLink title="isNew" url="/models/properties/isNew/" />
-            <NavLink title="set" url="/models/properties/set/" />
+            <NavLink title="validate" url="/models/properties/validate/" />
             <NavLink title="validationError" url="/models/properties/validationError/" />
 
-            <li className="doc-section">Misc</li>
-            <NavLink title="Custom Properties" url="/models/misc/custom/" />
-            <NavLink title="Extending" url="/models/misc/extend/" />
-            <NavLink title="History" url="/models/misc/history/" />
+            <li className="doc-section">Utils</li>
+            <NavLink title="Custom Properties" url="/models/utils/custom/" />
+            <NavLink title="Extending" url="/models/utils/extend/" />
 
+            <li className="doc-section">Misc</li>
+            <NavLink title="History" url="/models/misc/history/" />
           </ul>
           {children}
         </div>

@@ -59,7 +59,7 @@ export default (props) => {
       </h3>
       <p>
         One use for <code>url()</code> is to construct nested URLs. You can read more about that in
-        the <code>initialize()</code> documentation <Link to="/models/properties/url/">here</Link>.
+        the <code>initialize()</code> documentation <Link to="/models/properties/initialize/">here</Link>.
       </p>
     </Template>
   );
