@@ -7,16 +7,34 @@ export default (props) => {
   return (
     <Template>
       <h1>
-        Testing Production Build Locally
+        Verifying Production Build Locally
       </h1>
       <p>
-        It is often useful to be able to test the production build locally, before deploying it to the remote
-        server. One simple way to do this is by install the <a href="https://github.com/tj/serve">serve</a> library,
-        using <code>npm install -g serve</code>.
+        If we want to verify the production build of your application locally, you can do that easily using
+        the <a href="https://github.com/tj/serve">serve</a> package, which allows you to serve files from any
+        folder you choose on your computer.
       </p>
       <p>
-        Once it's installed, you can simply run <code>serve dist --port 3000</code> and then you can navigate
-        to <code>localhost:3000</code> to view the production version of the application.
+        To install it, run this command:
+      </p>
+      <Markdown text={`
+      npm install -g serve
+      `}/>
+      <p>
+        Then generate a development build of the application using this command:
+      </p>
+      <Markdown text={`
+      npm run build:development
+      `}/>
+      <p>
+        Then tell <code>serve</code> to serve the files out of that directory using this command:
+      </p>
+      <Markdown text={`
+      serve dist --port 3000
+      `}/>
+      <p>
+        At this point you can navigate to <code>localhost:3000</code> to view the production version of your
+        application, but using the development configuration for the project.
       </p>
     </Template>
   );

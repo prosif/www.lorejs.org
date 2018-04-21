@@ -22,8 +22,9 @@ export default (props) => {
             <NavLink title="Introduction" url="/webpack/" />
 
             <li className="doc-section">Development</li>
-            <NavLinkPlaceholder title="Changing the Port" />
-            <NavLinkPlaceholder title="Configuring SSL" />
+            <NavLink title="Changing the Port" url="/webpack/development/port/" />
+            <NavLink title="Configuring SSL" url="/webpack/development/ssl/" />
+            <NavLink title="Configuring Basename" url="/webpack/development/basename/" />
 
             <li className="doc-section">Building</li>
             <NavLink title="Development" url="/webpack/building/development/" />
@@ -33,16 +34,16 @@ export default (props) => {
             <NavLink title="Stats" url="/webpack/analyzing/stats/" />
 
             <li className="doc-section">Features</li>
+            <NavLink title="Cache Busting" url="/webpack/features/cache-busting/" />
+            <NavLink title="Chunking" url="/webpack/features/chunking/" />
+            <NavLink title="CSS Preprocessors" url="/webpack/features/preprocessors/" />
             <NavLink title="Favicon" url="/webpack/features/favicon/" />
-            <NavLinkPlaceholder title="Preprocessors" />
-            <NavLinkPlaceholder title="Fonts" />
-            <NavLinkPlaceholder title="Images" />
-            <NavLinkPlaceholder title="CSS Prefixing" />
-            <NavLinkPlaceholder title="Chunking" />
-            <NavLinkPlaceholder title="Cache Busting" />
+            <NavLink title="Fonts" url="/webpack/features/fonts/" />
+            <NavLink title="Images" url="/webpack/features/images/" />
+            <NavLink title="Source Maps" url="/webpack/features/source-maps/" />
 
             <li className="doc-section">Misc</li>
-            <NavLink title="Testing Production Build Locally" url="/webpack/misc/serve/" />
+            <NavLink title="Verify Production Build Locally" url="/webpack/misc/serve/" />
           </ul>
           {children}
         </div>

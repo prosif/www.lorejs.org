@@ -10,14 +10,37 @@ export default (props) => {
         Production Build
       </h1>
       <p>
-        Info about creating a production build...
+        This section describes the process of creating a development build of your project.
       </p>
 
+      <h3>
+        The Command
+      </h3>
       <p>
-        Next run <code>npm run build:production</code>. You should see output similar to this once it completes, which
-        took 49 seconds in this example:
+        If you open up the <code>package.json</code> file you'll see a <code>build:production</code> script that
+        looks like this:
+      </p>
+      <Markdown text={`
+      "scripts": {
+        "build:production": "npm run clean && webpack --env.webpack=production --env.lore=production -p",
+      },
+      `}/>
+      <p>
+        This script is used when you want to create a production build of your project.
       </p>
 
+      <h3>
+        Creating the Build
+      </h3>
+      <p>
+        Run this command to create a development build of your project:
+      </p>
+      <Markdown type="jsx" text={`
+      npm run build:production
+      `}/>
+      <p>
+        You should see output similar to this once it completes, which took 49 seconds for this example:
+      </p>
       <Markdown text={`
       Build completed in 49.237s
 
@@ -44,42 +67,27 @@ export default (props) => {
                                                          index.html    5.27 kB          [emitted]
       `}/>
 
+      <h3>
+        What does it do?
+      </h3>
       <p>
-        The difference between the two commands is whether minification and uglification occur, which can take a
-        significant amount of time to complete depending on the size of your project. But otherwise the process
-        and generated files are identical.
+        Running this command will compile your project and place all the assets in a new folder
+        named <code>/dist</code> at the root of your project.
       </p>
-
       <p>
-        If you compare the output above between the two commands, you can see that the minification and uglification
-        process has a significant impact in the size of the final JavaScript files. The <code>bundle.main.js</code> file
-        is reduced from <strong>5.17 MB</strong> to <strong>1.41 MB</strong> and the <code>bundle.vendor.js</code> file
-        is reduced from <strong>1.04 MB</strong> to <code>197 kB</code>.
+        This process will do everything the <Link to="/webpack/building/development/">development build</Link> does,
+        but will also:
       </p>
-
+      <ul>
+        <li>
+          Minify and uglify all assets, to reduce their file sizes.
+        </li>
+      </ul>
       <p>
-        That may seem a bit unbalanced (one file clearly has more code than the other), and future versions of Lore
-        may tweak which files are included by default in which chunks, to balance out the load and future improve
-        page load time.
+        The minification and ugliciation process can take a significant amount of time to complete depending on the
+        size of your project, which is why the development build exists. But otherwise the process and generated
+        files are identical.
       </p>
-
-      <p>
-        If you want to experiment with the effect chunk size has on page load time, you can add and remove libraries
-        from the <code>vendor</code> chunk by modifying this section in the <code>webpack.config.js</code> file:
-      </p>
-
-      <Markdown text={`
-      ...
-        entry: {
-          main: './index.js',
-          vendor: [
-            'react',
-            'react-dom',
-            'react-router'
-          ]
-        },
-      ...
-      `}/>
     </Template>
   );
 };
