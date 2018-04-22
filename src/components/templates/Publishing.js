@@ -21,10 +21,11 @@ export default (props) => {
           <ul id="markdown-toc">
             <NavLink title="Introduction" url="/publishing/" />
 
-            <li className="doc-section">Publishing</li>
-            <NavLink title="Overview" url="/publishing/providers/" />
-            <NavLink title="Publishing to Surge" url="/publishing/providers/surge/" />
-            <NavLink title="Publishing to GitHub Pages" url="/publishing/providers/github-pages/" />
+            <li className="doc-section">Deploy Hosts</li>
+            <NavLink title="Now" url="/publishing/providers/now/" />
+
+            <li className="doc-section">Misc</li>
+            <NavLink title="Removing Now Support" url="/publishing/misc/removing-now/" />
           </ul>
           {children}
         </div>
