@@ -10,21 +10,21 @@ export default (props) => {
     <div>
       <div className="docs-header" id="content">
         <div className="container">
-          <h1>Publishing</h1>
+          <h1>Building</h1>
           <p>
-            Documentation for deploying your application
+            Documentation for building your application
           </p>
         </div>
       </div>
       <div className="container">
         <div className="docs-content">
           <ul id="markdown-toc">
-            <NavLink title="Introduction" url="/publishing/" />
+            <NavLink title="Introduction" url="/building/" />
 
-            <li className="doc-section">Publishing</li>
-            <NavLink title="Overview" url="/publishing/providers/" />
-            <NavLink title="Publishing to Surge" url="/publishing/providers/surge/" />
-            <NavLink title="Publishing to GitHub Pages" url="/publishing/providers/github-pages/" />
+            <li className="doc-section">Build Environments</li>
+            <NavLink title="Development" url="/building/environments/development/" />
+            <NavLink title="Production" url="/building/environments/production/" />
+            <NavLink title="Custom" url="/building/environments/custom/" />
           </ul>
           {children}
         </div>

@@ -43,6 +43,7 @@ export default (props) => {
                   Project
                 </li>
                 <NavLink title="Anatomy" url="/anatomy/" location={location} />
+                <NavLink title="Building" url="/building/" location={location} />
                 <NavLink title="Publishing" url="/publishing/" location={location} />
                 <li role="separator" className="divider"></li>
                 <li className="dropdown-category">
