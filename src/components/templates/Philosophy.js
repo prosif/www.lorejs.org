@@ -10,16 +10,16 @@ export default (props) => {
     <div>
       <div className="docs-header" id="content">
         <div className="container">
-          <h1>Audience</h1>
+          <h1>Philosophy</h1>
           <p>
-            Problems Lore is trying to solve for different audiences
+            The intended audience and development philosophy behind Lore
           </p>
         </div>
       </div>
       <div className="container">
         <div className="docs-content">
           <ul id="markdown-toc">
-            <NavLink title="Breakdown" url="/audience/" />
+            <NavLink title="Breakdown" url="/philosophy/" />
           </ul>
           {children}
         </div>

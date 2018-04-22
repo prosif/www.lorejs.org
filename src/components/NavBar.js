@@ -22,7 +22,7 @@ export default (props) => {
         </div>
         <div className="navbar-collapse collapse text-uppercase">
           <ul className="nav navbar-nav navbar-right nav-bordered">
-            <NavLink layout="audience" title="Audience" url="/audience/" location={location} />
+            <NavLink layout="philosophy" title="Philosophy" url="/philosophy/" location={location} />
             <NavLink layout="quickstart" title="Quickstart" url="/quickstart/" location={location} />
             <NavLink layout="features" title="Features" url="/features/" location={location} />
             <li className="dropdown">
@@ -74,7 +74,38 @@ export default (props) => {
             </li>
             <li className="dropdown">
               <a href="#" className="dropdown-toggle" data-toggle="dropdown">
-                Forms (new)<span className="caret" />
+                Hooks<span className="caret" />
+              </a>
+              <ul className="dropdown-menu">
+                <li className="dropdown-category">
+                  Tutorial
+                </li>
+                <NavLink title="Creating Custom Hooks" url="/hooks/tutorial/" location={location} />
+                <li role="separator" className="divider"></li>
+                <li className="dropdown-category">
+                  Core Hooks
+                </li>
+                <NavLink title="lore-hook-actions" url="/hooks/lore-hook-actions/" location={location} />
+                <NavLink title="lore-hook-auth" url="/hooks/lore-hook-auth/" location={location} />
+                <NavLink title="lore-hook-bind-actions" url="/hooks/lore-hook-bind-actions/" location={location} />
+                <NavLink title="lore-hook-collections" url="/hooks/lore-hook-collections/" location={location} />
+                <NavLink title="lore-hook-connect" url="/hooks/lore-hook-connect/" location={location} />
+                <NavLink title="lore-hook-connections" url="/hooks/lore-hook-connections/" location={location} />
+                <NavLink title="lore-hook-models" url="/hooks/lore-hook-models/" location={location} />
+                <NavLink title="lore-hook-polling" url="/hooks/lore-hook-polling/" location={location} />
+                <NavLink title="lore-hook-react" url="/hooks/lore-hook-react/" location={location} />
+                <NavLink title="lore-hook-reducers" url="/hooks/lore-hook-reducers/" location={location} />
+                <NavLink title="lore-hook-redux" url="/hooks/lore-hook-redux/" location={location} />
+                <NavLink title="lore-hook-router" url="/hooks/lore-hook-router/" location={location} />
+                <NavLink title="lore-hook-websockets" url="/hooks/lore-hook-websockets/" location={location} />
+                <NavLink title="lore-hook-websockets-actioncable" url="/hooks/lore-hook-websockets-actioncable/" location={location} />
+                <NavLink title="lore-hook-websockets-sails" url="/hooks/lore-hook-websockets-sails/" location={location} />
+                <NavLink title="lore-hook-websockets-socketio" url="/hooks/lore-hook-websockets-socketio/" location={location} />
+              </ul>
+            </li>
+            <li className="dropdown">
+              <a href="#" className="dropdown-toggle" data-toggle="dropdown">
+                Forms<span className="caret" />
               </a>
               <ul className="dropdown-menu">
                 <NavLink title="Concept" url="/forms/concept/" location={location} />

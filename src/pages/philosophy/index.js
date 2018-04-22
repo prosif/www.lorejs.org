@@ -1,9 +1,9 @@
 import React from 'react';
 import Link from 'gatsby-link';
-import Template from '../components/templates/Audience';
-import TocLink from '../components/TocLink';
-import Markdown from '../components/Markdown';
-import '../assets/less/docs.less';
+import Template from '../../components/templates/Philosophy';
+import TocLink from '../../components/TocLink';
+import Markdown from '../../components/Markdown';
+import '../../assets/less/docs.less';
 
 export default (props) => {
   const {

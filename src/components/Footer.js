@@ -21,7 +21,7 @@ export default (props) => {
             <h6 className="m-b text-uppercase">Links</h6>
             <ul className="list-unstyled list-spaced">
               <li className="text-muted">
-                <Link to="/audience/">Audience</Link>
+                <Link to="/philosophy/">Philosophy</Link>
               </li>
               <li className="text-muted">
                 <Link to="/quickstart/">Quickstart</Link>
