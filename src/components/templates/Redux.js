@@ -10,7 +10,7 @@ export default (props) => {
     <div>
       <div className="docs-header" id="content">
         <div className="container">
-          <h1>React</h1>
+          <h1>Redux</h1>
           <p>
             Architectural foundation for Lore
           </p>
@@ -21,9 +21,9 @@ export default (props) => {
           <ul id="markdown-toc">
             <NavLink title="Introduction" url="/redux/" />
 
-            <li className="doc-section">Section</li>
+            {/*<li className="doc-section">Section</li>*/}
             {/*<NavLink title="React-Router" url="/libraries/react-router/" />*/}
-            <NavLinkPlaceholder title="Something" />
+            {/*<NavLinkPlaceholder title="Something" />*/}
           </ul>
           {children}
         </div>

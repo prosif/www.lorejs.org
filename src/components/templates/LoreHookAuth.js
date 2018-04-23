@@ -10,24 +10,27 @@ export default (props) => {
     <div>
       <div className="docs-header" id="content">
         <div className="container">
-          <h1>React Router</h1>
+          <h1>lore-hook-auth</h1>
           <p>
-            Routing library for Lore
+            Provides an action and reducer dedicated to fetching the current user
           </p>
         </div>
       </div>
       <div className="container">
         <div className="docs-content">
           <ul id="markdown-toc">
-            <NavLink title="Introduction" url="/react-router/" />
+            <NavLink title="Introduction" url="/hooks/lore-hook-auth/" />
 
-            {/*<li className="doc-section">Section</li>*/}
-            {/*<NavLink title="React-Router" url="/libraries/react-router/" />*/}
-            {/*<NavLinkPlaceholder title="Something" />*/}
+            <li className="doc-section">Actions</li>
+            <NavLink title="get" url="/hooks/lore-hook-auth/actions/get/" />
+            <NavLink title="update" url="/hooks/lore-hook-auth/actions/update/" />
+
+            <li className="doc-section">Reducers</li>
+            <NavLink title="reducer" url="/hooks/lore-hook-auth/reducers/" />
           </ul>
           {children}
         </div>
       </div>
     </div>
-  )
+  );
 };

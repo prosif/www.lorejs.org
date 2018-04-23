@@ -30,7 +30,7 @@ export default (props) => {
       </p>
       <p>
         Lore itself isn't a framework so much as a plugin engine, and it's all the plugins that combine
-        to <em>make</em> it a framework for building React applications. At it's core, the Lore only does two things:
+        to <em>make</em> it a framework for building React applications. At it's core, Lore only does two things:
       </p>
       <ol>
         <li>
@@ -47,7 +47,7 @@ export default (props) => {
       </p>
       <blockquote>
         <p>
-          You can learn more about how to create your own hooks <Link to="/hooks/tutorial/overview/">here</Link>.
+          You can learn more about how to create your own hooks <Link to="/hooks/tutorial/">here</Link>.
         </p>
       </blockquote>
 

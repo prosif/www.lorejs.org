@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'gatsby-link';
-import Template from '../../../components/templates/Hooks';
+import Template from '../../../components/templates/LoreHookAuth';
 import Markdown from '../../../components/Markdown';
 import CodeTabs from '../../../components/CodeTabs';
 import CodeTab from '../../../components/CodeTab';
@@ -13,7 +13,8 @@ export default (props) => {
         lore-hook-auth
       </h1>
       <p>
-        Source code for this hook can be found on GitHub <a href="https://github.com/lore/lore/tree/master/packages/lore-hook-auth">at this link</a>.
+        Source code for this hook can be found on
+        GitHub <a href="https://github.com/lore/lore/tree/master/packages/lore-hook-auth">at this link</a>.
       </p>
 
       <h2>
@@ -21,7 +22,8 @@ export default (props) => {
       </h2>
 
       <p>
-        Generates an action and reducer for handling retrieval and storage of the current user.
+        Generates actions for retrieving and updating the current user, along with a reducer for storing the
+        current user.
       </p>
 
       <h2>

@@ -10,7 +10,7 @@ export default (props) => {
   return (
     <Template>
       <h1>
-        Custom Hook Tutorial: Overview
+        Overview
       </h1>
 
       <p>

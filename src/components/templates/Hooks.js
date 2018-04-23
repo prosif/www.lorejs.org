@@ -21,6 +21,9 @@ export default (props) => {
           <ul id="markdown-toc">
             <NavLink title="Introduction" url="/hooks/" />
 
+            <li className="doc-section">Tutorial</li>
+            <NavLink title="Creating Custom Hooks" url="/hooks/tutorial/" />
+
             <li className="doc-section">Hooks</li>
             <NavLink title="lore-hook-actions" url="/hooks/lore-hook-actions/" />
             <NavLink title="lore-hook-auth" url="/hooks/lore-hook-auth/" />
@@ -40,16 +43,6 @@ export default (props) => {
             <NavLink title="lore-hook-websockets-actioncable" url="/hooks/lore-hook-websockets-actioncable/" />
             <NavLink title="lore-hook-websockets-sails" url="/hooks/lore-hook-websockets-sails/" />
             <NavLink title="lore-hook-websockets-socketio" url="/hooks/lore-hook-websockets-socketio/" />
-
-            <li className="doc-section">Custom Hook Tutorial</li>
-            <NavLink title="Overview" url="/hooks/tutorial/overview/" />
-            <NavLink title="1. Clone Starter Project" url="/hooks/tutorial/step-1/" />
-            <NavLink title="2. Generate Hook" url="/hooks/tutorial/step-2/" />
-            <NavLink title="3. Specify Dependencies" url="/hooks/tutorial/step-3/" />
-            <NavLink title="4. Make Configurable" url="/hooks/tutorial/step-4/" />
-            <NavLink title="5. Add Implementation" url="/hooks/tutorial/step-5/" />
-            <NavLink title="6. Integrate Hook" url="/hooks/tutorial/step-6/" />
-            <NavLink title="7. Publishing" url="/hooks/tutorial/step-7/" />
           </ul>
           {children}
         </div>

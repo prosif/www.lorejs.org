@@ -92,11 +92,15 @@ export default (props) => {
                 <NavLink title="lore-hook-connect" url="/hooks/lore-hook-connect/" location={location} />
                 <NavLink title="lore-hook-connections" url="/hooks/lore-hook-connections/" location={location} />
                 <NavLink title="lore-hook-models" url="/hooks/lore-hook-models/" location={location} />
-                <NavLink title="lore-hook-polling" url="/hooks/lore-hook-polling/" location={location} />
                 <NavLink title="lore-hook-react" url="/hooks/lore-hook-react/" location={location} />
                 <NavLink title="lore-hook-reducers" url="/hooks/lore-hook-reducers/" location={location} />
                 <NavLink title="lore-hook-redux" url="/hooks/lore-hook-redux/" location={location} />
                 <NavLink title="lore-hook-router" url="/hooks/lore-hook-router/" location={location} />
+                <li role="separator" className="divider"></li>
+                <li className="dropdown-category">
+                  Other Hooks
+                </li>
+                <NavLink title="lore-hook-polling" url="/hooks/lore-hook-polling/" location={location} />
                 <NavLink title="lore-hook-websockets" url="/hooks/lore-hook-websockets/" location={location} />
                 <NavLink title="lore-hook-websockets-actioncable" url="/hooks/lore-hook-websockets-actioncable/" location={location} />
                 <NavLink title="lore-hook-websockets-sails" url="/hooks/lore-hook-websockets-sails/" location={location} />

@@ -1,18 +1,14 @@
 import React from 'react';
 import Link from 'gatsby-link';
-import Template from '../../../components/templates/Hooks';
+import Template from '../../../components/templates/LoreHookActions';
 import Markdown from '../../../components/Markdown';
 
 export default (props) => {
   return (
     <Template>
       <h1>
-        lore-hook-actions
-      </h1>
-
-      <h2>
         Purpose
-      </h2>
+      </h1>
       <p>
         This hook creates the set of default actions for every model.
       </p>
