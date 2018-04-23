@@ -52,7 +52,6 @@ export default (props) => {
                 <NavLink title="Actions" url="/actions/" location={location} />
                 <NavLink title="Connect" url="/connect/" location={location} />
                 <NavLink title="Reducers" url="/reducers/" location={location} />
-                <NavLink title="Hooks" url="/hooks/" location={location} />
                 <li role="separator" className="divider"></li>
                 <li className="dropdown-category">
                   lore-models
@@ -61,9 +60,17 @@ export default (props) => {
                 <NavLink title="Collections" url="/collections/" location={location} />
                 <NavLink title="sync" url="/sync/" location={location} />
                 <li role="separator" className="divider"></li>
-                <NavLink title="Concepts" url="/concepts/" location={location} />
-                <li role="separator" className="divider"></li>
-                <NavLink title="CLI" url="/cli/" location={location} />
+                <li className="dropdown-category">
+                  Concepts (old)
+                </li>
+                <NavLink title="Actions" url="/concepts/core/actions/" location={location} />
+                <NavLink title="Reducers" url="/concepts/core/reducers/" location={location} />
+                <NavLink title="Models" url="/concepts/core/models/" location={location} />
+                <NavLink title="Collections" url="/concepts/core/collections/" location={location} />
+                <NavLink title="Connect" url="/concepts/core/connect/" location={location} />
+                <NavLink title="Routing" url="/concepts/core/routing/" location={location} />
+                <NavLink title="Server Communication" url="/concepts/server-communication/" location={location} />
+                <NavLink title="Data Structure" url="/concepts/data-structure/" location={location} />
                 <li role="separator" className="divider"></li>
                 <NavLink title="Recipes" url="/recipes/" location={location} />
                 <NavLink title="Examples" url="/examples/" location={location} />
@@ -77,6 +84,9 @@ export default (props) => {
                 Hooks<span className="caret" />
               </a>
               <ul className="dropdown-menu">
+                <li className="dropdown-category"></li>
+                <NavLink title="Introduction" url="/hooks/" location={location} />
+                <li role="separator" className="divider"></li>
                 <li className="dropdown-category">
                   Tutorial
                 </li>
@@ -105,6 +115,37 @@ export default (props) => {
                 <NavLink title="lore-hook-websockets-actioncable" url="/hooks/lore-hook-websockets-actioncable/" location={location} />
                 <NavLink title="lore-hook-websockets-sails" url="/hooks/lore-hook-websockets-sails/" location={location} />
                 <NavLink title="lore-hook-websockets-socketio" url="/hooks/lore-hook-websockets-socketio/" location={location} />
+              </ul>
+            </li>
+            <li className="dropdown">
+              <a href="#" className="dropdown-toggle" data-toggle="dropdown">
+                CLI<span className="caret" />
+              </a>
+              <ul className="dropdown-menu">
+                <li className="dropdown-category"></li>
+                <NavLink title="Introduction" url="/cli/" location={location} />
+                <li role="separator" className="divider"></li>
+                <li className="dropdown-category">
+                  Tutorial
+                </li>
+                <NavLink title="Creating Custom Commands" url="/cli/tutorial/" location={location} />
+                <li role="separator" className="divider"></li>
+                <li className="dropdown-category">
+                  Core Commands
+                </li>
+                <NavLink title="lore-extract-action" url="/cli/lore-extract-action/" location={location} />
+                <NavLink title="lore-extract-reducer" url="/cli/lore-extract-reducer/" location={location} />
+                <NavLink title="lore-generate-action" url="/cli/lore-generate-action/" location={location} />
+                <NavLink title="lore-generate-collection" url="/cli/lore-generate-collection/" location={location} />
+                <NavLink title="lore-generate-component" url="/cli/lore-generate-component/" location={location} />
+                <NavLink title="lore-generate-model" url="/cli/lore-generate-model/" location={location} />
+                <NavLink title="lore-generate-new" url="/cli/lore-generate-new/" location={location} />
+                <NavLink title="lore-generate-reducer" url="/cli/lore-generate-reducer/" location={location} />
+                <li role="separator" className="divider"></li>
+                <li className="dropdown-category">
+                  Other Commands
+                </li>
+                <NavLink title="lore-generate-generator" url="/cli/lore-generate-generator/" location={location} />
               </ul>
             </li>
             <li className="dropdown">
