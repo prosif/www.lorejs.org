@@ -116,9 +116,9 @@ export default (props) => {
 
       <p>
         In the code above, we've created a <code>state</code> variable called <code>tweets</code>, and updated our
-        <code>render()</code> method so that we render that instead of what we get from <code>props</code>. Then
-        we've added a <code>componentWillReceiveProps()</code> method that will allow us to inspect the incoming data
-        from <code>props</code> and decide whether or not to render it.
+        <code>render()</code> method so that we render the <code>state</code> version of <code>tweets</code> instead
+        of what we get from <code>props</code>. Then we've added a <code>componentWillReceiveProps()</code> method
+        that will allow us to inspect the incoming data from <code>props</code> and decide whether or not to render it.
       </p>
       <p>
         If the new page <em>is</em> being fetched, then we continue to render the previous page, but add

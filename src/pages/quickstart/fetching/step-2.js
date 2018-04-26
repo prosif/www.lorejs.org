@@ -38,6 +38,12 @@ export default (props) => {
       <p>
         This will create a model called <code>tweet</code>, and place the file at <code>src/models/tweet.js</code>.
       </p>
+      <blockquote>
+        <p>
+          You can learn more about
+          the <code>generate model</code> command <Link to="/cli/lore-generate-model/">here</Link>.
+        </p>
+      </blockquote>
       <p>
         Similar to the files in the <code>/config</code> folder, this file contains a lot of comments, which document
         the properties you can change, along with their default values. But if you ignore all the comments, this file

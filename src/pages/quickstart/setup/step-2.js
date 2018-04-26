@@ -13,7 +13,7 @@ export default (props) => {
       </h1>
 
       <p>
-        To create a new application, type <code>lore new</code> into the command line followed the by name of your
+        To create a new application, type <code>lore new</code> into the command line followed by the name of your
         application. For this example we are going to call our application <code>lore-quickstart</code>.
       </p>
 
@@ -41,9 +41,11 @@ export default (props) => {
       <blockquote>
         <p>
           When you create an application, your language preference is recorded in the <code>.lorerc</code> file
-          at the root of the project, and the CLI will inspect this file before executing commands. That means this
-          is the only time you'll need to declare the JavaScript version, as any files you generate from this point
-          forward will be created using your preference automatically.
+          at the root of the project, and the CLI will inspect this file before executing commands.
+        </p>
+        <p>
+          That means this is the only time you'll need to declare the JavaScript version, as any files you generate
+          from this point forward will be created using your preference automatically.
         </p>
         <p>
           You can learn more about the <code>.lorerc</code> file <Link to="/anatomy/lorerc/">here</Link>.

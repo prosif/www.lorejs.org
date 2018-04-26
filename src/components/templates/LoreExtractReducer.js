@@ -12,7 +12,7 @@ export default (props) => {
         <div className="container">
           <h1>lore-extract-reducer</h1>
           <p>
-            Creates a set of actions for each model using blueprints
+            Extracts the reducer blueprint for a model to <code>src/reducers</code>
           </p>
         </div>
       </div>

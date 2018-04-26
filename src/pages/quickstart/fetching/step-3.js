@@ -30,7 +30,7 @@ export default (props) => {
       </p>
 
       <p>
-        The decorator is called <code>connect</code> and the syntax for using it looks like this:
+        That decorator is called <code>connect</code> and the syntax for using it looks like this:
       </p>
 
       <CodeTabs>
@@ -67,17 +67,27 @@ export default (props) => {
       </blockquote>
 
       <p>
-        The first parameter, called <code>getState</code>, is a function that will retrieve a piece of state from
+        The first parameter, <code>getState</code>, is a function that will retrieve a piece of state from
         the local store, or invoke the appropriate action to retrieve that data if it hasn't been fetched yet.
       </p>
       <p>
-        In this example, we're requesting <code>tweet.find</code>, and since we aren't passing in any
+        The string you provide to <code>getState()</code> is referred to as a "blueprint", and describes what you
+        want the function to do. The first part, <code>tweet</code>, is the resource you want to fetch, and the
+        second part, <code>find</code>, is the name of the blueprint.
+      </p>
+      <p>
+        In this example we're providing <code>tweet.find</code>, and since we aren't passing in any
         query parameters or pagination information, this request translates to <em>"make a call to the /tweets
         endpoint of the API and give me whatever comes back"</em>.
       </p>
+      <blockquote>
+        <p>
+          You can learn more about the <code>find</code> blueprint <Link to="/connect/find/">here</Link>.
+        </p>
+      </blockquote>
       <p>
-        That data will then be passed to the <code>Feed</code> component through the <code>tweets</code> prop, since
-        that's what we named the key.
+        The data returned will then be passed to the <code>Feed</code> component through a prop
+        named <code>tweets</code>, since that's what we named the key.
       </p>
 
       <h3>
@@ -85,8 +95,10 @@ export default (props) => {
       </h3>
       <p>
         To use <code>connect</code>, you first need to import it from the <code>lore-hook-connect</code> package,
-        which is already included in your project (we'll introduce hooks later in this tutorial). Open up
-        your <code>Feed</code> component and wrap it with the <code>connect</code> decorator like this:
+        which is already included in your project (we'll introduce hooks later in this tutorial).
+      </p>
+      <p>
+        Open your <code>Feed</code> component and wrap it with the <code>connect</code> decorator like this:
       </p>
 
       <CodeTabs>

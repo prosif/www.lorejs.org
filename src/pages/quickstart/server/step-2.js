@@ -62,15 +62,18 @@ export default (props) => {
 
       <p>
         The reason for the change is a positive one, as we now have clear metadata that we can use for
-        pagination, but it still breaks our application. Not to worry though; Lore is designed to be able to
-        adapt to these kinds of breaking API changes, it just needs a little help from you to understand how.
+        pagination, but it still breaks our application.
+      </p>
+      <p>
+        Not to worry though; Lore is designed to be able to adapt to these kinds of breaking API changes, it just
+        needs a little help from you to understand how.
       </p>
 
       <h3>
         Parse the Collection Response
       </h3>
       <p>
-        To fix our app, open <code>config/connections.js</code>. Towards the bottom of the file you'll see
+        To fix the application, open <code>config/connections.js</code>. Towards the bottom of the file you'll see
         a property named <code>collections</code>.
       </p>
 

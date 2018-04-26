@@ -32,7 +32,7 @@ export default (props) => {
       `}/>
 
       <p>
-        Next update the <code>render()</code> method to look like this:
+        Then update the <code>render()</code> method to look like this:
       </p>
 
       <CodeTabs>
@@ -137,14 +137,7 @@ export default (props) => {
         Add Feed to Routes.js
       </h3>
       <p>
-        Import the <code>Feed</code> component into your <code>routes</code>. Then add
-        an <code>IndexRoute</code> inside the root route that renders the <code>Feed</code>. This setup will
-        give us the flexibility to change what content is displayed on the main page, while also declaring
-        that the default behavior should be to display the Feed.
-      </p>
-
-      <p>
-        Here are the changes you need to make to <code>routes.js</code>:
+        Import the <code>Feed</code> component into <code>routes.js</code> and update the code to look like this:
       </p>
 
       <Markdown type="jsx" text={`
@@ -160,9 +153,9 @@ export default (props) => {
       )
       `}/>
       <p>
-        Here we've added an <code>IndexRoute</code> inside the root route that will render the <code>Feed</code>.
-        This configuration gives us the flexibility to change what should be displayed on the homepage, while also
-        declaring that the default view should be the Feed.
+        Here we've added an <code>IndexRoute</code> inside the root route and configured it to render
+        the <code>Feed</code>. This configuration gives us the flexibility to change what should be displayed on
+        the homepage later, while also declaring that the default view should be the Feed.
       </p>
 
       <h3>
@@ -170,7 +163,7 @@ export default (props) => {
       </h3>
       <p>
         If you refresh the application right now, you'll notice the <code>Feed</code> component isn't being
-        displayed yet, and that's because we haven't told the <code>Layout</code> where to render it yet.
+        displayed, and that's because we haven't told the <code>Layout</code> where to render it yet.
       </p>
 
       <p>

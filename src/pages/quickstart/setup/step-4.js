@@ -14,7 +14,8 @@ export default (props) => {
       <p>
         To emulate a real application, this Quickstart will be
         using <a href="https://github.com/typicode/json-server">json-server</a> to provide a mock API, which is
-        included in all new projects. You can learn more about the reasons why <Link to="/anatomy/db/">here</Link>.
+        included by default in all new projects. You can learn more about the reasons
+        why <Link to="/anatomy/db/">here</Link>.
       </p>
 
       <blockquote>
@@ -32,8 +33,9 @@ export default (props) => {
         retrieve <code>users</code>.
       </p>
       <p>
-        We can accomplish this by adding data to the <code>db.json</code> file at the root of you project. This
-        file is used by <code>json-server</code> as both a database and a blueprint for what endpoints should exist.
+        We can accomplish this by adding data to the <code>db.json</code> file at the root of your project. This
+        file is used by <code>json-server</code> as the database, and also serves as a blueprint to describe what
+        endpoints should exist.
       </p>
 
       <p>

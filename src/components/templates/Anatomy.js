@@ -91,8 +91,8 @@ export default (props) => {
                 </NavLink>
                 <NavLink title="components" url="/anatomy/src/components/">
                   <ul>
-                    <NavLink title="Layout.js" url="/anatomy/src/components/layout" />
-                    <NavLink title="Master.js" url="/anatomy/src/components/master" />
+                    <NavLink title="Layout.js" url="/anatomy/src/components/layout/" />
+                    <NavLink title="Master.js" url="/anatomy/src/components/master/" />
                   </ul>
                 </NavLink>
                 <NavLink title="constants" url="/anatomy/src/constants/">

@@ -25,8 +25,9 @@ export default (props) => {
           500ms delay</strong> built-in to all requests.
         </p>
         <p>
-          This will make it easier for us to see loading experiences in the application, and (later in the
-          Quickstart), to see the delay between the time we create data and when the server confirms its creation.
+          This will make it easier for us to see loading experiences in the application, and later, once we
+          start creating data, to see the delay between the time we create that data and when the server confirms
+          its creation.
         </p>
       </blockquote>
 

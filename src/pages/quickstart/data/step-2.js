@@ -14,7 +14,7 @@ export default (props) => {
       </h1>
 
       <p>
-        In this step we're going to create our <code>Tweet</code> component, and make our tweets look pretty!
+        In this step we're going to create a <code>Tweet</code> component and make our tweets look more attractive.
       </p>
 
       <QuickstartBranch branch="data.2" />
@@ -23,8 +23,8 @@ export default (props) => {
         Create the Tweet Component
       </h3>
       <p>
-        First we need to create our <code>Tweet</code> component. Once again, we're going to use the CLI to
-        generate that component for us:
+        First we need to create the <code>Tweet</code> component. Run this command to have the CLI generate it
+        for us:
       </p>
 
       <Markdown type="sh" text={`
@@ -156,8 +156,8 @@ export default (props) => {
       </CodeTabs>
 
       <p>
-        Here we've added a <code>propType</code> declaring this component expects to receive a <code>tweet</code>,
-        and then updated the <code>render()</code> method to display it.
+        Here we've added a <code>propType</code> declaring that this component expects to receive a <code>tweet</code>,
+        and then we've updated the <code>render()</code> method to display it.
       </p>
 
       <h3>

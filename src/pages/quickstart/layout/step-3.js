@@ -27,13 +27,6 @@ export default (props) => {
         The Lore CLI includes a number of commands to create various types of project files. One of those commands is
         <code>generate</code>, and we'll be using it to generate the <code>Header</code> component.
       </p>
-
-      <blockquote>
-        <p>
-          You can learn more about the <code>generate</code> command <Link to="/cli/generate/component/">here</Link>.
-        </p>
-      </blockquote>
-
       <p>
         Run this command from the CLI:
       </p>
@@ -42,6 +35,12 @@ export default (props) => {
       lore generate component Header
       `}/>
 
+      <blockquote>
+        <p>
+          You can learn more about the <code>generate
+          component</code> command <Link to="/cli/lore-generate-component/">here</Link>.
+        </p>
+      </blockquote>
       <p>
         This command will generate a component called <code>Header</code> and place it
         at <code>src/components/Header.js</code>. The syntax of this file will match whichever version of JavaScript
@@ -117,7 +116,7 @@ export default (props) => {
       </h3>
 
       <p>
-        Next, modify the <code>render()</code> function to look like this:
+        Next, modify the <code>render()</code> method to look like this:
       </p>
 
       <Markdown type="jsx" text={`
@@ -145,7 +144,7 @@ export default (props) => {
       </h3>
 
       <p>
-        Finally, let's render the <code>Header</code> in the browser. Open the <code>Layout</code> component, and
+        Finally, let's render the <code>Header</code> in the browser. Open the <code>Layout</code> component and
         import the <code>Header</code>. Then update the <code>render()</code> method to look like this:
       </p>
 

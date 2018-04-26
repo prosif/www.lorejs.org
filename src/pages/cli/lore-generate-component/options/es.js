@@ -1,29 +1,28 @@
 import React from 'react';
 import Link from 'gatsby-link';
-import Template from '../../../components/templates/LoreGenerateComponent';
-import Markdown from '../../../components/Markdown';
-import CodeTabs from '../../../components/CodeTabs';
-import CodeTab from '../../../components/CodeTab';
+import Template from '../../../../components/templates/LoreGenerateComponent';
+import Markdown from '../../../../components/Markdown';
+import CodeTabs from '../../../../components/CodeTabs';
+import CodeTab from '../../../../components/CodeTab';
 
 export default (props) => {
   return (
     <Template>
       <h1>
-        generate component
+        --es*
       </h1>
       <p>
-        CLI command to add a Component to your project.
-      </p>
-      <p>
-        The component will be generated using the language preference specified in the <code>.lorerc</code> file
-        of your project, and placed in the <code>src/components</code> folder.
+        You can change which version of ES the component is generated in by passing in a language flag. By default,
+        components are generated in <code>ES5</code> syntax.
       </p>
 
       <h3>
         Usage
       </h3>
       <Markdown type="sh" text={`
-      lore generate component MyComponent
+      lore generate component MyComponent --es5
+      lore generate component MyComponent --es6
+      lore generate component MyComponent --esnext
       `}/>
 
       <CodeTabs>

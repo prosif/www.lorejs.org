@@ -42,7 +42,7 @@ export default (props) => {
         Fetch the Tweet's User
       </h3>
       <p>
-        Next we need to fetch the user who created the tweet. Open up the <code>Tweet</code> component and wrap
+        Next we need to fetch the user who created the tweet. Open the <code>Tweet</code> component and wrap
         it with <code>connect</code>, but this time we're going to use a different string in
         the <code>getState()</code> method:
       </p>
@@ -108,8 +108,13 @@ export default (props) => {
         the user you want to retrieve. If the user exists in the store, it will be returned immediately. If not,
         an action will be invoked to fetch that user from the API.
       </p>
+      <blockquote>
+        <p>
+          You can learn more about the <code>byId</code> blueprint <Link to="/connect/byId/">here</Link>.
+        </p>
+      </blockquote>
       <p>
-        Which this change in place, refresh the browser and you should see each tweet attributed to the correct user.
+        With this change in place, refresh the browser and you should see each tweet attributed to the correct user.
       </p>
 
       <img className="drop-shadow" src="/assets/images/quickstart/fetching/step-5.png" />

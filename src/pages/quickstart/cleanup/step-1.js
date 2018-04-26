@@ -46,8 +46,10 @@ export default (props) => {
         This method added the <code>userId</code> attribute to all <code>tweet</code> resources (an attribute
         that doesn't exist in the API server response) and prevented us from having to refactor our component
         code. But now we <em>are</em> going to refactor our component code to simplify some of the next steps
-        in the Quickstart. Open up <code>src/models/tweet.js</code> and reset that parse method to the commented
-        out default:
+        in the Quickstart.
+      </p>
+      <p>
+        Open <code>src/models/tweet.js</code> and reset that parse method to the commented out default:
       </p>
 
       <CodeTabs>

@@ -54,7 +54,7 @@ export default (props) => {
       </h3>
 
       <p>
-        Open up <code>/assets/css/main.css</code>. Delete the existing styles and replace them with this code:
+        Open <code>/assets/css/main.css</code>. Delete the existing styles and replace them with this code:
       </p>
 
       <Markdown type="css" text={`
@@ -309,12 +309,16 @@ export default (props) => {
 
       <blockquote>
         <p>
-          You may have noticed that this file is not explicitly included in <code>index.html</code>, but still
-          controls the styling of the application. This is because it's imported by the <code>Master</code> component
-          located at <code>src/components/Master.js</code>, which is rendered as the root component of the application.
+          You may notice that this file is not explicitly included in <code>index.html</code>, but still
+          controls the styling of the application.
         </p>
         <p>
-          You will interact with this component more later on.
+          The reason that happens is because this file is imported by the <code>Master</code> component located
+          at <code>src/components/Master.js</code>, which is currently being rendered as the root component of the
+          application, and the styles are being injected into the webpage by Webpack.
+        </p>
+        <p>
+          You will interact with the <code>Master</code> component more later on.
         </p>
       </blockquote>
 

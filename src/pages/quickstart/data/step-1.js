@@ -20,7 +20,7 @@ export default (props) => {
       <blockquote>
         <p>
           The practice of using fake data to populate components while you're building out your application can
-          be quite helpful for supporting rapid development. Sometimes it will also be necessary, as the API to
+          be quite helpful for supporting rapid development. Sometimes, it will also be necessary, as the API to
           support your application may not exist when you start building it.
         </p>
       </blockquote>
@@ -31,8 +31,8 @@ export default (props) => {
         Declare Tweets as a Prop
       </h3>
       <p>
-        First, open your <code>Feed</code> component and declare that it is going to require <code>tweets</code> as
-        a <code>prop</code>:
+        First, open your <code>Feed</code> component and declare that it is going to require
+        a <code>prop</code> called <code>tweets</code>:
       </p>
 
       <CodeTabs>
@@ -73,13 +73,6 @@ export default (props) => {
         Next, add a <code>getDefaultProps()</code> method to your <code>Feed</code> component and use it to
         populate <code>tweets</code> with mock data:
       </p>
-      <blockquote>
-        <p>
-          This is a great method to use for mock data, as it will only populate the <code>tweets</code> prop if
-          no data is passed in. So if you use this method for your mock data, it will automatically be overwritten
-          once real data starts being passed in, which is pretty convenient.
-        </p>
-      </blockquote>
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
@@ -163,6 +156,14 @@ export default (props) => {
         }
         `}/>
       </CodeTabs>
+
+      <blockquote>
+        <p>
+          <code>getDefaultProps()</code> is a great method to use for mock data, since it will only populate
+          the <code>tweets</code> prop if no data is passed in. So if you use this method for your mock data, it
+          will automatically be replaced with real data once it's provided, which is pretty convenient.
+        </p>
+      </blockquote>
 
       <p>
         In the function above, we're declaring a single tweet, with the text <em>"Nothing can beat science!"</em> and

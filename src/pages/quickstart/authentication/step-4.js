@@ -29,11 +29,11 @@ export default (props) => {
       </p>
       <p>
         In order to authenticate the user, we will need to send an authentication token in the header of every
-        API request. The token that we will be sending will be provided to us by Auth0 when the user logs in.
+        API request, and the token we'll be sending will be provided to us by Auth0 after the user logs in.
       </p>
       <p>
-        Also, in order to prevent requiring the user to log in every time they refresh the page (or
-        navigate away from the site), we be storing this token in the
+        Also, in order to prevent asking the user to log in every time they refresh the page (or navigate away
+        from the site), we'll be storing this token in the
         browser's <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage">localStorage</a>, and
         only redirect the user to the login page if they have no token.
       </p>
@@ -131,7 +131,7 @@ export default (props) => {
       `}/>
 
       <p>
-        If you now try to navigate to root route at <code>https://localhost:3000</code>, the application will
+        If you now try to navigate to the root route at <code>https://localhost:3000</code>, the application will
         redirect you to <code>/login</code>.
       </p>
 

@@ -201,7 +201,7 @@ export default (props) => {
       `}/>
 
       <p>
-        Now, when you click the button to create a dialog, a real dialog appears, and you can even fill it and
+        Now when you click the button to create a dialog, a real dialog appears, and you can even fill it and
         submit the form, causing the data to be logged to the console.
       </p>
 
@@ -277,7 +277,7 @@ export default (props) => {
       <blockquote>
         <p>
           It's important to point out that the tweets you create <strong>will not appear on the page</strong> until
-          you refresh the browser. We'll learn how to change that behavior later in the Quickstart, so that new
+          you refresh the browser. We'll learn how to change that behavior later in the Quickstart, so that the new
           tweets appear in the Feed immediately.
         </p>
       </blockquote>

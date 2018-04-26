@@ -14,8 +14,8 @@ export default (props) => {
       </h1>
 
       <p>
-        In this step we're going to save the current user to context, so any component in the application can
-        access it.
+        In this step we're going to save the current user to context, so that any component in the application can
+        easily retrieve it.
       </p>
 
       <QuickstartBranch branch="authentication.8" />
@@ -24,13 +24,13 @@ export default (props) => {
         The Master Component
       </h3>
       <p>
-        Inside the <code>/components</code> folder is a component named <code>Master</code>. This component is
+        Inside the <code>src/components</code> folder is a component named <code>Master</code>. This component is
         intended to serve as a wrapper around your application, and has three main functions:
       </p>
 
       <ol>
         <li>Subscribe to the Redux store, so the application will re-render when the store changes</li>
-        <li>Fetch any data that needs to be retrieved before the application renders</li>
+        <li>Fetch any data that needs to be retrieved before the application is rendered</li>
         <li>Remove the loading screen once the application is ready to display to the user</li>
       </ol>
 
@@ -38,6 +38,12 @@ export default (props) => {
         In this step, we'll be focusing on the second function, and fetching the the current user before we
         render the main application.
       </p>
+      <blockquote>
+        <p>
+          You can learn more about
+          the <code>Master</code> component <Link to="/anatomy/src/components/master/">here</Link>.
+        </p>
+      </blockquote>
 
       <h3>
         Fetch the Current User in Master

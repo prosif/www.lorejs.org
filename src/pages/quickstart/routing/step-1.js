@@ -35,9 +35,7 @@ export default (props) => {
       `} />
 
       <p>
-        Next, import the <code>Link</code> tag from <code>react-router</code> and use it to convert
-        the <code>div</code> tag into a clickable link. Then set the <code>to</code> property to the root
-        URL (<code>/</code>), so that whenever the user clicks it, they'll be taken back to the homepage.
+        Next, import the <code>Link</code> tag from <code>react-router</code> and update the code to look like this:
       </p>
 
       <CodeTabs>
@@ -64,12 +62,18 @@ export default (props) => {
         `} />
       </CodeTabs>
 
+      <p>
+        In the code above, we've converted the <code>div</code> tag into a clickable link, and set
+        the <code>to</code> property to the root URL (<code>/</code>). Now whenever you click the link, you'll be
+        taken back to the homepage.
+      </p>
+
       <h3>
         Visual Check-in
       </h3>
       <p>
-        If everything went well, your application will look the same visually, but now the title in the header will be a
-        clickable link that takes the user back to the homepage.
+        If everything went well, your application will look the same visually, but now the title in the header will
+        be a clickable link that takes you back to the homepage.
       </p>
 
       <img className="drop-shadow" src="/assets/images/quickstart/routing/step-1.png" />

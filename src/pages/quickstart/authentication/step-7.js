@@ -95,9 +95,9 @@ export default (props) => {
 
       <blockquote>
         <p>
-          Normally, the <code>endpoint</code> is dervied based on conventions and configuration settings. But
-          when the name of the endpoint doesn't match the name of the model, such as in this case, you need to
-          specify it yourself.
+          Normally, the <code>endpoint</code> is derived based on conventions and configuration settings, but
+          when the name of the endpoint doesn't match the name of the model, then you need to specify it yourself,
+          which is the case here.
         </p>
         <p>
           You can learn more about this property <Link to="/models/">here</Link>.

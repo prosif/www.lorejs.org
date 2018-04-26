@@ -44,22 +44,13 @@ export default (props) => {
       <ol>
         <li>The domain where the authentication server is located</li>
         <li>The client ID for the application we want the user to log in to</li>
-        <li>The URL the user should be redirected to after they login</li>
+        <li>The URL the user should be redirected to after they log in</li>
       </ol>
 
       <p>
         We're going to add these values to the application configuration, but instead of adding them to an existing
         config file, we're going to create a new one just for Auth0.
       </p>
-
-      <blockquote>
-        <p>
-          The <code>/config</code> folder in Lore is compiled into a single object, which you can access
-          from <code>lore.config</code>. This means you can add your own files to the <code>/config</code> folder
-          and access their values from <code>lore.config</code>.
-        </p>
-      </blockquote>
-
       <p>
         Create a new file in <code>/config</code> called <code>auth0.js</code> and paste in this content:
       </p>
@@ -99,9 +90,14 @@ export default (props) => {
         }
         `}/>
       </CodeTabs>
-
       <p>
-        You'll now be able to access these values from the <code>lore.config.auth0</code> object.
+        The <code>/config</code> folder in Lore is compiled into a single object, which you can access
+        from <code>lore.config</code>. This means you can add your own files to the <code>/config</code> folder
+        and access their values from <code>lore.config</code>.
+      </p>
+      <p>
+        Since the name of the file we just added was <code>auth0</code>, that means we can now access these values
+        from the <code>lore.config.auth0</code> object.
       </p>
 
       <h3>

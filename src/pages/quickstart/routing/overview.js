@@ -18,8 +18,13 @@ export default (props) => {
       </p>
       <p>
         To do that, we'll be using <a href="https://github.com/ReactTraining/react-router">react-router</a>,
-        which is one of the core libraries that Lore is built on, and is included in all projects.
+        which is one of the core libraries that Lore is built on, and is included by default in all projects.
       </p>
+      <blockquote>
+        <p>
+          You can learn more about Lore's use of React Router <Link to="/react-router/">here</Link>.
+        </p>
+      </blockquote>
       <p>
         At the end of this section your application will look like this:
       </p>

@@ -49,7 +49,7 @@ export default (props) => {
       </p>
       <p>
         The blueprints Lore uses for actions and reducers are possible because even though all REST APIs are
-        different, they're also all similar. And dialogs (and forms in general) follow a similar relationship.
+        different, they're also all similar. And dialogs (and forms in general) exist in a similar space.
       </p>
 
       <h3>

@@ -39,9 +39,9 @@ export default (props) => {
         whatever it current is to <em>"Different text"</em>.
       </p>
       <p>
-        If we assume the <code>id</code> of this tweet is <code>1</code>, then invoking this action will send a
-        PUT request to <code>http://localhost:1337/tweets/1</code> and include our new properties in the body of the
-        request.
+        If we assume the <code>id</code> of this tweet is <code>1</code>, then invoking this action will send
+        a <code>PUT</code> request to <code>http://localhost:1337/tweets/1</code> and include our new properties in
+        the body of the request.
       </p>
       <blockquote>
         <p>
@@ -367,9 +367,11 @@ export default (props) => {
         Try it Out
       </h3>
       <p>
-        With this change in place, refresh the browser and you click one of the <em>"edit"</em> links. A dialog
-        will appear allowing you to change the text. Once you submit the form, if you look at the network requests,
-        you'll see a PUT request is sent to the API to update the tweet.
+        With this change in place, refresh the browser and click one of the <em>"edit"</em> links.
+      </p>
+      <p>
+        A dialog will appear allowing you to change the text. Once you submit the form, if you look at the network
+        requests, you'll see a PUT request is sent to the API to update the tweet.
       </p>
 
       <blockquote>

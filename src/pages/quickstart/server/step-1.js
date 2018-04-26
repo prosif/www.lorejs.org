@@ -14,7 +14,7 @@ export default (props) => {
       </h1>
 
       <p>
-        In this step we’ll clone and run the API server needed for the rest of this Quickstart.
+        In this step we’ll clone and run the API server that we'll need for the rest of this Quickstart.
       </p>
 
 

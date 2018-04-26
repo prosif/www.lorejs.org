@@ -153,9 +153,12 @@ export default (props) => {
 
       <p>
         In this structure, <code>data</code> is an array that contains a list of individual resources, each using
-        the data structure we described previously. Additionally, this structure also provides metadata about the
-        list such as what query was made to the API, and what the state of that query is (such as whether the data
-        is still being fetched or the query has been resolved).
+        the data structure we described previously.
+      </p>
+      <p>
+        Additionally, this structure also provides metadata about the list such as what query was made to the API,
+        and what the state of that query is (such as whether the data is still being fetched or the query has been
+        resolved).
       </p>
 
 

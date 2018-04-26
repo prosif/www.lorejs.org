@@ -27,7 +27,7 @@ export default (props) => {
         user can click to navigate between the pages of tweets.
       </p>
       <p>
-        To do that, update the render method of your <code>Feed</code> component to look like this:
+        To do that, update the <code>render()</code> method of your <code>Feed</code> component to look like this:
       </p>
 
       <CodeTabs>

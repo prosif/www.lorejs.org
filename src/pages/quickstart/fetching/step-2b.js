@@ -125,8 +125,11 @@ export default (props) => {
 
       <p>
         While this is certainly useful (we just got a lot of functionality by writing very little code), we can still
-        do one better. In the next section we'll learn how components can declare what data they need, and see how
-        the framework can orchestrate calls to these actions and reducers to give us what we need automatically.
+        do one better.
+      </p>
+      <p>
+        In the next section we'll learn how components can declare what data they need, and see how the framework
+        can orchestrate calls to these actions and reducers to give us what we need automatically.
       </p>
 
       <h2>

@@ -15,7 +15,7 @@ export default (props) => {
 
       <p>
         In this step we're going to learn how to use the <code>state</code> property in the data structure, and
-        display a loading experience while the list of tweets are being fetching.
+        display a loading experience while the list of tweets are being fetched.
       </p>
 
       <QuickstartBranch branch="fetching.4" />
@@ -69,20 +69,45 @@ export default (props) => {
         fetching the data, the <code>state</code> property would be updated to <code>ERROR_FETCHING</code>.
       </p>
       <p>
-        Let's use this behavior to create our loading experience.
+        To make it easier to refer to these states, there's a file located
+        at <code>src/constants/PayloadStates.js</code> that contains all the states Lore might assign to data. If you
+        open it, there will a commented out section that shows the default states used by the framework, which are
+        these:
       </p>
+      <Markdown text={`
+      export default {
+        INITIAL_STATE: 'INITIAL_STATE',
+
+        RESOLVED   : 'RESOLVED',
+        NOT_FOUND: 'NOT_FOUND',
+        DELETED: 'DELETED',
+
+        CREATING: 'CREATING',
+        UPDATING: 'UPDATING',
+        DELETING: 'DELETING',
+        FETCHING: 'FETCHING',
+
+        ERROR_CREATING: 'ERROR_CREATING',
+        ERROR_UPDATING: 'ERROR_UPDATING',
+        ERROR_DELETING: 'ERROR_DELETING',
+        ERROR_FETCHING: 'ERROR_FETCHING'
+      };
+      `}/>
+      <p>
+        Let's use this file to create our loading experience.
+      </p>
+      <blockquote>
+        <p>
+          You can learn more about this file <Link to="/anatomy/src/constants/payload-states/">here</Link>.
+        </p>
+      </blockquote>
 
       <h3>
         Add the Loading Experience
       </h3>
       <p>
-        Open the <code>Feed</code> component and import a file called <code>PayloadStates</code> that resides
-        in <code>src/constants</code>. This file is the set of string constants that describe all the states the
-        framework uses to describe data.
-      </p>
-      <p>
-        Then update <code>render()</code> method to render a loading experience if
-        the <code>tweet.state</code> property is equal to <code>PayloadStates.FETCHING</code>.
+        Open the <code>Feed</code> component and import <code>PayloadStates</code>. Then update
+        the <code>render()</code> method to display a loading experience when the tweets are being fetched, like this:
       </p>
 
       <Markdown type="jsx" text={`
@@ -118,11 +143,15 @@ export default (props) => {
 
       ...
       `}/>
+      <p>
+        Here we've added a check if the <code>tweet.state</code> property is equal
+        to <code>PayloadStates.FETCHING</code>, and if it is, then we're rendering our loading experience.
+      </p>
 
       <p>
         Refresh the browser and you <em>might</em> see an animated "loader" flash on the screen right before the
-        tweets are rendered. But if you can't see it (and you probably can't) don't worry; we'll connect to a real
-        API server later that has an artificial delay, and you'll <em>definitely</em> see it then.
+        tweets are rendered. But if you can't see it (and you probably can't) don't worry; later we'll connect to a
+        real API server that has an artificial delay, and you'll <em>definitely</em> see it then.
       </p>
 
       <h3>

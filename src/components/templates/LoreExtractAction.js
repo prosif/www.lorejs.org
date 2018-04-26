@@ -12,7 +12,7 @@ export default (props) => {
         <div className="container">
           <h1>lore-extract-action</h1>
           <p>
-            Creates a set of actions for each model using blueprints
+            Extracts the action blueprint for a model to <code>src/actions</code>
           </p>
         </div>
       </div>

@@ -28,7 +28,7 @@ export default (props) => {
         To use Bootstrap, we first need to add the necessary CSS and JavaScript files.
       </p>
       <p>
-        Open up the <code>index.html</code> file at the root of your project and add the following stylesheet at
+        Open the <code>index.html</code> file at the root of your project and add the following stylesheet at
         the bottom of the <code>{`<head>`}</code> element.
       </p>
 
@@ -37,7 +37,7 @@ export default (props) => {
       `}/>
 
       <p>
-        Next add the following scripts at the bottom of the <code>{`<body>`}</code> tag.
+        Then add these scripts at the bottom of the <code>{`<body>`}</code> tag.
       </p>
 
       <Markdown type="html" text={`

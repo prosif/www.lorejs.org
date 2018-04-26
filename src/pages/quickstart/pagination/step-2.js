@@ -27,8 +27,8 @@ export default (props) => {
         which page of data to display, and we're going to call that query parameter <code>page</code>.
       </p>
       <p>
-        For example, navigating to the URL <code>http://localhost:1337/tweets?page=1</code> will display
-        the first page of tweets, and the URL <code>http://localhost:1337/tweets?page=2</code> will display the
+        For example, navigating to the URL <code>http://localhost:3000/tweets?page=1</code> will display
+        the first page of tweets, and the URL <code>http://localhost:3000/tweets?page=2</code> will display the
         second.
       </p>
 
@@ -148,16 +148,16 @@ export default (props) => {
       <ul>
         <li>
           <p>
-            The first is <code>page</code>, which controls which page of data is returned. This is set set to
-            the value of the <code>page</code> query parameter in the URL of the browser if one exists. If not, it
-            defaults to the first page.
+            The first is <code>sort</code>, which controls how the data that's returned will be ordered. In this
+            case we wanted the newest tweets to be returned first, so we've specified that we want the API to return
+            data in descending order, based on the <code>createdAt</code> date of the tweet.
           </p>
         </li>
         <li>
           <p>
-            The second is <code>sort</code>, which controls how the data that's returned will be ordered. In this
-            case we wanted the newest tweets to be returned first, so we've specified that we want the API to return
-            data in descending order, based on the <code>createdAt</code> date of the tweet.
+            The second is <code>page</code>, which controls which page of data is returned. This is set set to
+            the value of the <code>page</code> query parameter in the URL of the browser if one exists. If not, it
+            defaults to the first page.
           </p>
         </li>
       </ul>

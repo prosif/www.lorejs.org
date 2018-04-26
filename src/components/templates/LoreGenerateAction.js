@@ -12,7 +12,7 @@ export default (props) => {
         <div className="container">
           <h1>lore-generate-action</h1>
           <p>
-            Creates a set of actions for each model using blueprints
+            Generates a new action in <code>src/actions</code>
           </p>
         </div>
       </div>

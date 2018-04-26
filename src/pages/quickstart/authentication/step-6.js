@@ -27,7 +27,7 @@ export default (props) => {
         the user logs out, such as removing their user token and redirecting them to the login page.
       </p>
       <p>
-        We're going to store this behavior in a component so that we can have it occur when the user navigates to
+        We're going to store this behavior in a component so that we can have it execute when the user navigates to
         the <code>/logout</code> route.
       </p>
 

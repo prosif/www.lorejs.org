@@ -79,8 +79,11 @@ export default (props) => {
         </p>
         <p>
           However, if you plan on following along with this Quickstart, it is strongly recommended that
-          you <strong>do not change the port</strong>. We'll be integrating with a real authentication server,
-          and the application will need to be running on port 3000 to do so.
+          you <strong>do not change the port</strong>.
+        </p>
+        <p>
+          Later in the Quickstart we'll be integrating with a real authentication server, and the application
+          will need to be running on port 3000 to do so.
         </p>
       </blockquote>
 

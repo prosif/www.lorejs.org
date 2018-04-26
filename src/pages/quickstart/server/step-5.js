@@ -34,7 +34,7 @@ export default (props) => {
       </p>
 
       <p>
-        Open up <code>config/connections.js</code> and find the commented out method below
+        Open <code>config/connections.js</code> and find the commented out method below
         the <code>apiRoot</code> called <code>headers</code>. It looks like this:
       </p>
 

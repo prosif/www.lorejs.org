@@ -89,8 +89,8 @@ export default (props) => {
         <li>
           <p>
             The second prop is called <code>row</code>, and we're using it to tell the list <em>how to render the
-            data</em>. It will be invoked for each tweet in the list, and whatever that it returns is what will be
-            rendered.
+            data</em>. It will be invoked for each tweet in the list, and whatever the function returns is what will be
+            rendered for that tweet.
           </p>
         </li>
       </ul>
@@ -204,9 +204,9 @@ export default (props) => {
         and then iterate it by one to request the next page of tweets.
       </p>
       <p>
-        Refresh the browser, and you should now have a button says "LoadMore" at the bottom of the tweets. Clicking
-        this button will cause the next page to load, and if you continue to click it until there are no more pages
-        of data, the button will disappear.
+        Refresh the browser, and you should now have a button that says "LoadMore" at the bottom of the tweets.
+        Clicking this button will cause the next page to load, and if you continue to click it until there are no
+        more pages of data, the button will disappear.
       </p>
 
       <h3>

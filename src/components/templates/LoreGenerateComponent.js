@@ -12,7 +12,7 @@ export default (props) => {
         <div className="container">
           <h1>lore-generate-component</h1>
           <p>
-            Creates a set of actions for each model using blueprints
+            Generates a new React component in <code>src/components</code>
           </p>
         </div>
       </div>
@@ -21,8 +21,10 @@ export default (props) => {
           <ul id="markdown-toc">
             <NavLink title="Introduction" url="/cli/lore-generate-component/" />
 
-            <li className="doc-section">???</li>
-            {/*<NavLink title="normalize" url="/hooks/lore-hook-actions/config/normalize/" />*/}
+            <li className="doc-section">Options</li>
+            <NavLink title="--es*" url="/cli/lore-generate-component/options/es/" />
+            <NavLink title="--router" url="/cli/lore-generate-component/options/router/" />
+            <NavLink title="--connect" url="/cli/lore-generate-component/options/connect/" />
           </ul>
           {children}
         </div>
