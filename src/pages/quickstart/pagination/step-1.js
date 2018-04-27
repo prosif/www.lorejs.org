@@ -70,16 +70,17 @@ export default (props) => {
       </p>
 
       <Markdown text={`
+      // config/connections.js
       ...
         collections: {
           properties: {
 
-            parse(attributes) {
+            parse: function(response) {
               this.meta = {
-                totalCount: attributes.meta.paginate.totalCount,
-                perPage: attributes.meta.paginate.perPage
+                totalCount: response.meta.paginate.totalCount,
+                perPage: response.meta.paginate.perPage
               };
-              return attributes.data;
+              return response.data;
             }
 
           }
@@ -119,104 +120,39 @@ export default (props) => {
         config/connections.js
       </h3>
 
-      <CodeTabs>
-        <CodeTab syntax="ES5" text={`
-        import auth from '../src/utils/auth';
+      <Markdown text={`
+      // config/connections.js
+      import auth from '../src/utils/auth';
 
-        export default {
+      export default {
 
-          default: {
+        default: {
 
-            apiRoot: 'http://localhost:1337',
+          apiRoot: 'http://localhost:1337',
 
-            headers: function() {
-              return {
-                Authorization: 'Bearer ' + auth.getToken()
-              };
-            },
+          headers: function() {
+            return {
+              Authorization: \`Bearer \${auth.getToken()}\`
+            };
+          },
 
-            collections: {
-              properties: {
+          collections: {
+            properties: {
 
-                parse: function(attributes) {
-                  this.meta = {
-                    totalCount: attributes.meta.paginate.totalCount,
-                    perPage: attributes.meta.paginate.perPage
-                  };
-                  return attributes.data;
-                }
-
+              parse: function(response) {
+                this.meta = {
+                  totalCount: response.meta.paginate.totalCount,
+                  perPage: response.meta.paginate.perPage
+                };
+                return response.data;
               }
+
             }
-
           }
-        };
-        `}/>
-        <CodeTab syntax="ES6" text={`
-        import auth from '../src/utils/auth';
 
-        export default {
-
-          default: {
-
-            apiRoot: 'http://localhost:1337',
-
-            headers() {
-              return {
-                Authorization: \`Bearer \${auth.getToken()}\`
-              };
-            },
-
-            collections: {
-              properties: {
-
-                parse(attributes) {
-                  this.meta = {
-                    totalCount: attributes.meta.paginate.totalCount,
-                    perPage: attributes.meta.paginate.perPage
-                  };
-                  return attributes.data;
-                }
-
-              }
-            }
-
-          }
         }
-        `}/>
-        <CodeTab syntax="ESNext" text={`
-        import auth from '../src/utils/auth';
-
-        export default {
-
-          default: {
-
-            apiRoot: 'http://localhost:1337',
-
-            headers() {
-              return {
-                Authorization: \`Bearer \${auth.getToken()}\`
-              };
-            },
-
-            collections: {
-              properties: {
-
-                parse(attributes) {
-                  this.meta = {
-                    totalCount: attributes.meta.paginate.totalCount,
-                    perPage: attributes.meta.paginate.perPage
-                  };
-                  return attributes.data;
-                }
-
-              }
-            }
-
-          }
-        }
-        `}/>
-      </CodeTabs>
+      };
+      `}/>
 
       <h2>
         Next Steps

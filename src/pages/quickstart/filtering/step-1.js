@@ -51,7 +51,7 @@ export default (props) => {
             user: PropTypes.object.isRequired
           },
 
-          render: function() {
+          render() {
             const { user } = this.context;
 
             return (
@@ -151,7 +151,7 @@ export default (props) => {
         export default createReactClass({
           displayName: 'Layout',
 
-          render: function() {
+          render() {
             return (
               <div>
                 <Header />
@@ -271,7 +271,7 @@ export default (props) => {
             user: PropTypes.object.isRequired
           },
 
-          render: function() {
+          render() {
             const { user } = this.context;
 
             return (
@@ -372,7 +372,7 @@ export default (props) => {
         export default createReactClass({
           displayName: 'Layout',
 
-          render: function() {
+          render() {
             return (
               <div>
                 <Header />
@@ -394,7 +394,7 @@ export default (props) => {
         });
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React, { Component } from 'react';
+        import React from 'react';
         import Header from './Header';
         import Profile from './Profile';
         import Filter from './Filter';
@@ -425,7 +425,7 @@ export default (props) => {
         export default Layout;
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React, { Component } from 'react';
+        import React from 'react';
         import Header from './Header';
         import Profile from './Profile';
         import Filter from './Filter';

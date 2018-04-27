@@ -75,13 +75,13 @@ export default (props) => {
 
       <Markdown text={`
       ...
-        parse(attributes) {
+        parse: function(response) {
           this.meta = {
-            totalCount: attributes.meta.paginate.totalCount,
-            perPage: attributes.meta.paginate.perPage,
-            nextPage: attributes.meta.paginate.nextPage
+            totalCount: response.meta.paginate.totalCount,
+            perPage: response.meta.paginate.perPage,
+            nextPage: response.meta.paginate.nextPage
           };
-          return attributes.data;
+          return response.data;
         }
       ...
       `}/>
@@ -123,7 +123,7 @@ export default (props) => {
             nextPageMetaField: PropTypes.string.isRequired
           },
 
-          render: function() {
+          render() {
             const {
               lastPage,
               onLoadMore,
@@ -197,20 +197,20 @@ export default (props) => {
 
           headers: function() {
             return {
-              Authorization: 'Bearer ' + auth.getToken()
+              Authorization: \`Bearer \${auth.getToken()}\`
             };
           },
 
           collections: {
             properties: {
 
-              parse: function(attributes) {
+              parse: function(response) {
                 this.meta = {
-                  totalCount: attributes.meta.paginate.totalCount,
-                  perPage: attributes.meta.paginate.perPage,
-                  nextPage: attributes.meta.paginate.nextPage
+                  totalCount: response.meta.paginate.totalCount,
+                  perPage: response.meta.paginate.perPage,
+                  nextPage: response.meta.paginate.nextPage
                 };
-                return attributes.data;
+                return response.data;
               }
 
             }
@@ -240,7 +240,7 @@ export default (props) => {
             nextPageMetaField: PropTypes.string.isRequired
           },
 
-          render: function() {
+          render() {
             const {
               lastPage,
               nextPageMetaField

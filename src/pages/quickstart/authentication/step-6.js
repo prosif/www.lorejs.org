@@ -58,14 +58,14 @@ export default (props) => {
             router: PropTypes.object.isRequired
           },
 
-          componentDidMount: function() {
+          componentDidMount() {
             const { router } = this.props;
 
             auth.deleteToken();
             router.push('/');
           },
 
-          render: function() {
+          render() {
             return (
               <ShowLoadingScreen/>
             );
@@ -139,50 +139,21 @@ export default (props) => {
         look like this:
       </p>
 
-      <CodeTabs>
-        <CodeTab syntax="ES5" text={`
-        ...
-        import Logout from './src/components/Logout';
+      <Markdown text={`
+      // routes.js
+      ...
+      import Logout from './src/components/Logout';
 
-        export default (
-          <Route>
-            <Route path="/login" component={Login} />
-            <Route path="/logout" component={Logout} />
-            <Route path="/auth/callback" component={AuthCallback} />
+      export default (
+        <Route>
+          <Route path="/login" component={Login} />
+          <Route path="/logout" component={Logout} />
+          <Route path="/auth/callback" component={AuthCallback} />
 
-            ...
-          </Route>
-        );
-        `}/>
-        <CodeTab syntax="ES6" text={`
-        ...
-        import Logout from './src/components/Logout';
-
-        export default (
-          <Route>
-            <Route path="/login" component={Login} />
-            <Route path="/logout" component={Logout} />
-            <Route path="/auth/callback" component={AuthCallback} />
-
-            ...
-          </Route>
-        )
-        `}/>
-        <CodeTab syntax="ESNext" text={`
-        ...
-        import Logout from './src/components/Logout';
-
-        export default (
-          <Route>
-            <Route path="/login" component={Login} />
-            <Route path="/logout" component={Logout} />
-            <Route path="/auth/callback" component={AuthCallback} />
-
-            ...
-          </Route>
-        )
-        `}/>
-      </CodeTabs>
+          ...
+        </Route>
+      );
+      `}/>
 
       <h3>
         Convert Logout Button to Link
@@ -197,7 +168,8 @@ export default (props) => {
         Locate the Logout button in your <code>Profile</code> component:
       </p>
 
-      <Markdown type="html" text={`
+      <Markdown text={`
+      // src/components/Profile.js
       <button className="btn btn-primary">
         Log out
       </button>
@@ -209,9 +181,10 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
+        // src/components/Profile.js
         import { Link } from 'react-router';
         ...
-          render: function() {
+          render() {
             ...
               <Link className="btn btn-primary" to="/logout">
                 Log out
@@ -221,6 +194,7 @@ export default (props) => {
         ...
         `}/>
         <CodeTab syntax="ES6" text={`
+        // src/components/Profile.js
         import { Link } from 'react-router';
         ...
           render() {
@@ -233,6 +207,7 @@ export default (props) => {
         ...
         `}/>
         <CodeTab syntax="ESNext" text={`
+        // src/components/Profile.js
         import { Link } from 'react-router';
         ...
           render() {
@@ -281,6 +256,7 @@ export default (props) => {
         import createReactClass from 'create-react-class';
         import PropTypes from 'prop-types';
         import auth from '../utils/auth';
+        import ShowLoadingScreen from './ShowLoadingScreen';
 
         export default createReactClass({
           displayName: 'Logout',
@@ -289,16 +265,16 @@ export default (props) => {
             router: PropTypes.object.isRequired
           },
 
-          componentDidMount: function() {
+          componentDidMount() {
+            const { router } = this.props;
+
             auth.deleteToken();
-            this.props.router.push('/');
+            router.push('/');
           },
 
-          render: function() {
+          render() {
             return (
-              <h1 className="loading-text">
-                Logging out...
-              </h1>
+              <ShowLoadingScreen/>
             );
           }
 
@@ -308,19 +284,20 @@ export default (props) => {
         import React from 'react';
         import PropTypes from 'prop-types';
         import auth from '../utils/auth';
+        import ShowLoadingScreen from './ShowLoadingScreen';
 
         class Logout extends React.Component {
 
           componentDidMount() {
+            const { router } = this.props;
+
             auth.deleteToken();
-            this.props.router.push('/');
+            router.push('/');
           }
 
           render() {
             return (
-              <h1 className="loading-text">
-                Logging out...
-              </h1>
+              <ShowLoadingScreen/>
             );
           }
         }
@@ -335,6 +312,7 @@ export default (props) => {
         import React from 'react';
         import PropTypes from 'prop-types';
         import auth from '../utils/auth';
+        import ShowLoadingScreen from './ShowLoadingScreen';
 
         class Logout extends React.Component {
 
@@ -343,15 +321,15 @@ export default (props) => {
           };
 
           componentDidMount() {
+            const { router } = this.props;
+
             auth.deleteToken();
-            this.props.router.push('/');
+            router.push('/');
           }
 
           render() {
             return (
-              <h1 className="loading-text">
-                Logging out...
-              </h1>
+              <ShowLoadingScreen/>
             );
           }
         }
@@ -363,90 +341,35 @@ export default (props) => {
       <h3>
         src/components/routes.js
       </h3>
+      <Markdown text={`
+      import React from 'react';
+      import { Route, IndexRoute, Redirect } from 'react-router';
+      import UserIsAuthenticated from './src/decorators/UserIsAuthenticated';
 
-      <CodeTabs>
-        <CodeTab syntax="ES5" text={`
-        import React from 'react';
-        import { Route, IndexRoute, Redirect } from 'react-router';
-        import UserIsAuthenticated from './src/decorators/UserIsAuthenticated';
+      /**
+       * Routes
+       */
+      import Master from './src/components/Master';
+      import Layout from './src/components/Layout';
+      import Feed from './src/components/Feed';
+      import Login from './src/components/Login';
+      import AuthCallback from './src/components/AuthCallback';
+      import Logout from './src/components/Logout';
 
-        /**
-         * Routes
-         */
-        import Master from './src/components/Master';
-        import Layout from './src/components/Layout';
-        import Feed from './src/components/Feed';
-        import Login from './src/components/Login';
-        import Logout from './src/components/Logout';
+      export default (
+        <Route>
+          <Route path="/login" component={Login} />
+          <Route path="/logout" component={Logout} />
+          <Route path="/auth/callback" component={AuthCallback} />
 
-        export default (
-          <Route>
-            <Route path="/login" component={Login} />
-            <Route path="/logout" component={Logout} />
-
-            <Route component={UserIsAuthenticated(Master)}>
-              <Route path="/" component={Layout}>
-                <IndexRoute component={Feed} />
-              </Route>
+          <Route component={UserIsAuthenticated(Master)}>
+            <Route path="/" component={Layout}>
+              <IndexRoute component={Feed} />
             </Route>
           </Route>
-        );
-        `}/>
-        <CodeTab syntax="ES6" text={`
-        import React from 'react';
-        import { Route, IndexRoute, Redirect } from 'react-router';
-        import UserIsAuthenticated from './src/decorators/UserIsAuthenticated';
-
-        /**
-         * Routes
-         */
-        import Master from './src/components/Master';
-        import Layout from './src/components/Layout';
-        import Feed from './src/components/Feed';
-        import Login from './src/components/Login';
-        import Logout from './src/components/Logout';
-
-        export default (
-          <Route>
-            <Route path="/login" component={Login} />
-            <Route path="/logout" component={Logout} />
-
-            <Route component={UserIsAuthenticated(Master)}>
-              <Route path="/" component={Layout}>
-                <IndexRoute component={Feed} />
-              </Route>
-            </Route>
-          </Route>
-        );
-        `}/>
-        <CodeTab syntax="ESNext" text={`
-        import React from 'react';
-        import { Route, IndexRoute, Redirect } from 'react-router';
-        import UserIsAuthenticated from './src/decorators/UserIsAuthenticated';
-
-        /**
-         * Routes
-         */
-        import Master from './src/components/Master';
-        import Layout from './src/components/Layout';
-        import Feed from './src/components/Feed';
-        import Login from './src/components/Login';
-        import Logout from './src/components/Logout';
-
-        export default (
-          <Route>
-            <Route path="/login" component={Login} />
-            <Route path="/logout" component={Logout} />
-
-            <Route component={UserIsAuthenticated(Master)}>
-              <Route path="/" component={Layout}>
-                <IndexRoute component={Feed} />
-              </Route>
-            </Route>
-          </Route>
-        );
-        `}/>
-      </CodeTabs>
+        </Route>
+      );
+      `}/>
 
       <h3>
         src/components/Profile.js
@@ -466,7 +389,7 @@ export default (props) => {
             user: PropTypes.object.isRequired
           },
 
-          getDefaultProps: function() {
+          getDefaultProps() {
             return {
               user: {
                 id: 1,
@@ -478,7 +401,7 @@ export default (props) => {
             }
           },
 
-          render: function() {
+          render() {
             const { user } = this.props;
 
             return (

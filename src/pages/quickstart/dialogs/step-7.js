@@ -72,7 +72,7 @@ export default (props) => {
             tweet: PropTypes.object.isRequired
           },
 
-          onDestroy: function() {
+          onDestroy() {
             const { tweet } = this.props;
 
             function destroyTweet() {
@@ -87,7 +87,7 @@ export default (props) => {
             });
           },
 
-          render: function() {
+          render() {
             return (
               <a className="link" onClick={this.onDestroy}>
                 delete
@@ -202,7 +202,7 @@ export default (props) => {
         import DeleteLink from './DeleteLink';
 
         ...
-          render: function() {
+          render() {
             ...
             return (
               <li className="list-group-item tweet">

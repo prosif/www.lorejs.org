@@ -53,7 +53,7 @@ export default (props) => {
         is shown below:
       </p>
       <Markdown type="jsx" text={`
-      render: function() {
+      render() {
         ...
         return (
           <div>
@@ -72,7 +72,7 @@ export default (props) => {
       </p>
 
       <Markdown type="jsx" text={`
-      render: function() {
+      render() {
         ...
         return (
           <div className="feed">

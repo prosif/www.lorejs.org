@@ -48,7 +48,7 @@ export default (props) => {
             user: PropTypes.object.isRequired
           },
 
-          getDefaultProps: function() {
+          getDefaultProps() {
             return {
               user: {
                 id: 1,
@@ -60,7 +60,7 @@ export default (props) => {
             }
           },
 
-          render: function() {
+          render() {
             const { user } = this.props;
 
             return (
@@ -217,7 +217,7 @@ export default (props) => {
 
         ...
 
-          render: function() {
+          render() {
             return (
               <div>
                 <Header />
@@ -333,7 +333,7 @@ export default (props) => {
             user: PropTypes.object.isRequired
           },
 
-          getDefaultProps: function() {
+          getDefaultProps() {
             return {
               user: {
                 id: 1,
@@ -345,7 +345,7 @@ export default (props) => {
             }
           },
 
-          render: function() {
+          render() {
             const { user } = this.props;
 
             return (
@@ -499,7 +499,7 @@ export default (props) => {
         export default createReactClass({
           displayName: 'Layout',
 
-          render: function() {
+          render() {
             return (
               <div>
                 <Header />
@@ -550,7 +550,7 @@ export default (props) => {
         export default Layout;
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React, { Component } from 'react';
+        import React from 'react';
         import Header from './Header';
         import Profile from './Profile';
 

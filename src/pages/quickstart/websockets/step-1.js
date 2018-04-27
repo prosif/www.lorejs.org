@@ -75,12 +75,12 @@ export default (props) => {
       </p>
 
       <Markdown text={`
-      componentDidMount: function() {
+      componentDidMount() {
         lore.websockets.tweet.connect();
         lore.websockets.tweet.subscribe();
       },
 
-      componentWillUnmount: function() {
+      componentWillUnmount() {
         lore.websockets.tweet.unsubscribe();
       },
       `}/>

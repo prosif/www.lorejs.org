@@ -93,12 +93,13 @@ export default (props) => {
         <CodeTab syntax="ES5" text={`
         import React from 'react';
         import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
         import { Link } from 'react-router';
 
         export default createReactClass({
           displayName: 'Header',
 
-          render: function() {
+          render() {
             return (
               <nav className="navbar navbar-default navbar-static-top header">
                 <div className="container">
@@ -114,7 +115,8 @@ export default (props) => {
         });
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React, { Component } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
         import { Link } from 'react-router';
 
         class Header extends React.Component {
@@ -138,7 +140,8 @@ export default (props) => {
         export default Header;
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React, { Component } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
         import { Link } from 'react-router';
 
         class Header extends React.Component {

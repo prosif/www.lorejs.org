@@ -107,9 +107,12 @@ export default (props) => {
         Next open the <code>routes.js</code> file at the root of your project. It should look like this:
       </p>
       <Markdown type="jsx" text={`
+      import React from 'react';
+      import { Route, IndexRoute, Redirect } from 'react-router';
+
+      import UserIsAuthenticated from './src/decorators/UserIsAuthenticated';
       import Master from './src/components/Master';
       import Layout from './src/components/Layout';
-      import UserIsAuthenticated from './src/decorators/UserIsAuthenticated';
 
       export default (
         <Route component={UserIsAuthenticated(Master)}>
@@ -295,87 +298,32 @@ export default (props) => {
       <h3>
         routes.js
       </h3>
+      <Markdown text={`
+      import React from 'react';
+      import { Route, IndexRoute, Redirect } from 'react-router';
 
-      <CodeTabs>
-        <CodeTab syntax="ES5" text={`
-        import React from 'react';
-        import { Route, IndexRoute, Redirect } from 'react-router';
+      /**
+       * Wrapping the Master component with this decorator provides an easy way
+       * to redirect the user to a login experience if we don't know who they are.
+       */
+      import UserIsAuthenticated from './src/decorators/UserIsAuthenticated';
 
-        /**
-         * Wrapping the Master component with this decorator provides an easy way
-         * to redirect the user to a login experience if we don't know who they are.
-         */
-        import UserIsAuthenticated from './src/decorators/UserIsAuthenticated';
+      /**
+       * Routes are used to declare your view hierarchy
+       * See: https://github.com/rackt/react-router/blob/master/docs/API.md
+       */
+      import Master from './src/components/Master';
+      import Layout from './src/components/Layout';
+      import Feed from './src/components/Feed';
 
-        /**
-         * Routes are used to declare your view hierarchy
-         * See: https://github.com/rackt/react-router/blob/master/docs/API.md
-         */
-        import Master from './src/components/Master';
-        import Layout from './src/components/Layout';
-        import Feed from './src/components/Feed';
-
-        export default (
-          <Route component={UserIsAuthenticated(Master)}>
-            <Route path="/" component={Layout}>
-              <IndexRoute component={Feed} />
-            </Route>
+      export default (
+        <Route component={UserIsAuthenticated(Master)}>
+          <Route path="/" component={Layout}>
+            <IndexRoute component={Feed} />
           </Route>
-        );
-        `}/>
-        <CodeTab syntax="ES6" text={`
-        import React from 'react';
-        import { Route, IndexRoute, Redirect } from 'react-router';
-
-        /**
-         * Wrapping the Master component with this decorator provides an easy way
-         * to redirect the user to a login experience if we don't know who they are.
-         */
-        import UserIsAuthenticated from './src/decorators/UserIsAuthenticated';
-
-        /**
-         * Routes are used to declare your view hierarchy
-         * See: https://github.com/rackt/react-router/blob/master/docs/API.md
-         */
-        import Master from './src/components/Master';
-        import Layout from './src/components/Layout';
-        import Feed from './src/components/Feed';
-
-        export default (
-          <Route component={UserIsAuthenticated(Master)}>
-            <Route path="/" component={Layout}>
-              <IndexRoute component={Feed} />
-            </Route>
-          </Route>
-        );
-        `}/>
-        <CodeTab syntax="ESNext" text={`
-        import React from 'react';
-        import { Route, IndexRoute, Redirect } from 'react-router';
-
-        /**
-         * Wrapping the Master component with this decorator provides an easy way
-         * to redirect the user to a login experience if we don't know who they are.
-         */
-        import UserIsAuthenticated from './src/decorators/UserIsAuthenticated';
-
-        /**
-         * Routes are used to declare your view hierarchy
-         * See: https://github.com/rackt/react-router/blob/master/docs/API.md
-         */
-        import Master from './src/components/Master';
-        import Layout from './src/components/Layout';
-        import Feed from './src/components/Feed';
-
-        export default (
-          <Route component={UserIsAuthenticated(Master)}>
-            <Route path="/" component={Layout}>
-              <IndexRoute component={Feed} />
-            </Route>
-          </Route>
-        );
-        `}/>
-      </CodeTabs>
+        </Route>
+      );
+      `}/>
 
 
       <h3>
@@ -392,6 +340,7 @@ export default (props) => {
 
         import React from 'react';
         import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
         import Header from './Header';
 
         export default createReactClass({
@@ -421,7 +370,7 @@ export default (props) => {
          **/
 
         import React from 'react';
-        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
         import Header from './Header';
 
         class Layout extends React.Component {
@@ -451,7 +400,7 @@ export default (props) => {
          **/
 
         import React from 'react';
-        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
         import Header from './Header';
 
         class Layout extends React.Component {

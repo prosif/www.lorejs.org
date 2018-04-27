@@ -49,6 +49,8 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
+        // src/components/Tweet.js
+        ...
         import { connect } from 'lore-hook-connect';
 
         export default connect(function(getState, props) {
@@ -68,6 +70,8 @@ export default (props) => {
         );
         `}/>
         <CodeTab syntax="ES6" text={`
+        // src/components/Tweet.js
+        ...
         import { connect } from 'lore-hook-connect';
 
         class Tweet extends React.Component {
@@ -85,6 +89,8 @@ export default (props) => {
         })(Tweet);
         `}/>
         <CodeTab syntax="ESNext" text={`
+        // src/components/Tweet.js
+        ...
         import { connect } from 'lore-hook-connect';
 
         @connect(function(getState, props) {
@@ -186,7 +192,7 @@ export default (props) => {
             user: PropTypes.object.isRequired
           },
 
-          getDefaultProps: function() {
+          getDefaultProps() {
             return {
               user: {
                 id: 1,
@@ -199,7 +205,7 @@ export default (props) => {
             }
           },
 
-          render: function() {
+          render() {
             const {
               tweet,
               user

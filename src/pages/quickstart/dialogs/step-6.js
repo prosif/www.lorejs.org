@@ -77,7 +77,7 @@ export default (props) => {
             tweet: PropTypes.object.isRequired
           },
 
-          onEdit: function() {
+          onEdit() {
             const { tweet } = this.props;
 
             function updateTweet(params) {
@@ -92,7 +92,7 @@ export default (props) => {
             });
           },
 
-          render: function() {
+          render() {
             return (
               <a className="link" onClick={this.onEdit}>
                 edit
@@ -211,7 +211,7 @@ export default (props) => {
         import EditLink from './EditLink';
 
         ...
-          render: function() {
+          render() {
             ...
             return (
               <li className="list-group-item tweet">

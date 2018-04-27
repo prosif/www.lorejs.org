@@ -48,7 +48,7 @@ export default (props) => {
           description: PropTypes.node
         },
 
-        getInitialState: function() {
+        getInitialState() {
           return {
             data: {
               text: ''
@@ -56,27 +56,27 @@ export default (props) => {
           };
         },
 
-        componentDidMount: function() {
+        componentDidMount() {
           this.show();
         },
 
-        show: function() {
+        show() {
           const modal = this.refs.modal;
           $(modal).modal('show');
         },
 
-        dismiss: function() {
+        dismiss() {
           const modal = this.refs.modal;
           $(modal).modal('hide');
         },
 
-        onSubmit: function() {
+        onSubmit() {
           const { data } = this.state;
           console.log(data);
           this.dismiss();
         },
 
-        onChange: function(name, value) {
+        onChange(name, value) {
           const nextData = _.merge({}, this.state.data);
           nextData[name] = value;
           this.setState({
@@ -84,7 +84,7 @@ export default (props) => {
           });
         },
 
-        render: function() {
+        render() {
           const { data } = this.state;
 
           return (
@@ -162,7 +162,7 @@ export default (props) => {
       </p>
 
       <Markdown text={`
-      onSubmit: function() {
+      onSubmit() {
         const { data } = this.state;
         console.log(data);
         this.dismiss();
@@ -189,7 +189,7 @@ export default (props) => {
 
       export default createReactClass({
         ...
-        onClick: function() {
+        onClick() {
           lore.dialog.show(function() {
             return (
               <CreateTweetDialog />

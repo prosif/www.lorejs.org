@@ -103,6 +103,7 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
+        // src/components/Feed.js
         ...
         import { connect } from 'lore-hook-connect';
 
@@ -117,6 +118,7 @@ export default (props) => {
         );
         `}/>
         <CodeTab syntax="ES6" text={`
+        // src/components/Feed.js
         ...
         import { connect } from 'lore-hook-connect';
 
@@ -131,6 +133,7 @@ export default (props) => {
         })(Feed);
         `}/>
         <CodeTab syntax="ESNext" text={`
+        // src/components/Feed.js
         ...
         import { connect } from 'lore-hook-connect';
 
@@ -194,7 +197,7 @@ export default (props) => {
             tweets: PropTypes.object.isRequired
           },
 
-          getDefaultProps: function() {
+          getDefaultProps() {
             const tweet = {
               id: 1,
               cid: 'c1',
@@ -203,7 +206,7 @@ export default (props) => {
                 id: 1,
                 userId: 1,
                 text: 'Nothing can beat science!',
-                createdAt: '2016-10-04T05:10:49.382Z'
+                createdAt: '2018-04-24T05:10:49.382Z'
               }
             };
 
@@ -215,13 +218,13 @@ export default (props) => {
             }
           },
 
-          renderTweet: function(tweet) {
+          renderTweet(tweet) {
             return (
               <Tweet key={tweet.id} tweet={tweet} />
             );
           },
 
-          render: function() {
+          render() {
             const { tweets } = this.props;
 
             return (
@@ -282,7 +285,7 @@ export default (props) => {
               id: 1,
               userId: 1,
               text: 'Nothing can beat science!',
-              createdAt: '2016-10-04T05:10:49.382Z'
+              createdAt: '2018-04-24T05:10:49.382Z'
             }
           };
 
@@ -326,7 +329,7 @@ export default (props) => {
                 id: 1,
                 userId: 1,
                 text: 'Nothing can beat science!',
-                createdAt: '2016-10-04T05:10:49.382Z'
+                createdAt: '2018-04-24T05:10:49.382Z'
               }
             };
 

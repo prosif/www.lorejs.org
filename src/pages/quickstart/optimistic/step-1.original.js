@@ -138,7 +138,7 @@ export default (props) => {
       </p>
 
       <Markdown type="jsx" text={`
-      render: function() {
+      render() {
         const { timestamp } = this.state;
 
         return (

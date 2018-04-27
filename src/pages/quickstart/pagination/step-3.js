@@ -32,6 +32,7 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
+        // src/components/Feed.js
         ...
         import { Link } from 'react-router';
 
@@ -39,7 +40,7 @@ export default (props) => {
         createReactClass({
           ...
 
-          renderPaginationLink: function(page, currentPage) {
+          renderPaginationLink(page, currentPage) {
             return (
               <li key={page} className={currentPage === String(page) ? 'active' : ''}>
                 <Link to={{ pathname: '/', query: { page: page } }}>
@@ -49,7 +50,7 @@ export default (props) => {
             );
           },
 
-          render: function() {
+          render() {
             const { tweets } = this.props;
             const currentPage = tweets.query.pagination.page;
             const paginationLinks = [];
@@ -92,6 +93,7 @@ export default (props) => {
         ...
         `}/>
         <CodeTab syntax="ES6" text={`
+        // src/components/Feed.js
         ...
         import { Link } from 'react-router';
 
@@ -152,6 +154,7 @@ export default (props) => {
         }
         `}/>
         <CodeTab syntax="ESNext" text={`
+        // src/components/Feed.js
         ...
         import { Link } from 'react-router';
 
@@ -286,13 +289,13 @@ export default (props) => {
             tweets: PropTypes.object.isRequired
           },
 
-          renderTweet: function(tweet) {
+          renderTweet(tweet) {
             return (
               <Tweet key={tweet.id || tweet.cid} tweet={tweet} />
             );
           },
 
-          renderPaginationLink: function(page, currentPage) {
+          renderPaginationLink(page, currentPage) {
             return (
               <li key={page} className={currentPage === String(page) ? 'active' : ''}>
                 <Link to={{ pathname: '/', query: { page: page } }}>
@@ -302,7 +305,7 @@ export default (props) => {
             );
           },
 
-          render: function() {
+          render() {
             const { tweets } = this.props;
             const currentPage = tweets.query.pagination.page;
             const paginationLinks = [];

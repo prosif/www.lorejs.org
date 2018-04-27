@@ -75,23 +75,12 @@ export default (props) => {
         and find the property for <code>endpoint</code>. Change it from "currentUser" to "user":
       </p>
 
-      <CodeTabs>
-        <CodeTab syntax="ES5" text={`
-        export default {
-          endpoint: 'user'
-        }
-        `}/>
-        <CodeTab syntax="ES6" text={`
-        export default {
-          endpoint: 'user'
-        }
-        `}/>
-        <CodeTab syntax="ESNext" text={`
-        export default {
-          endpoint: 'user'
-        }
-        `}/>
-      </CodeTabs>
+      <Markdown text={`
+      // src/models/currentUser.js
+      export default {
+        endpoint: 'user'
+      }
+      `}/>
 
       <blockquote>
         <p>
@@ -171,43 +160,43 @@ export default (props) => {
             "id": 1,
             "userId": 1,
             "text": "Ayla fight while alive! Win and live. Lose and die. Rule of life. No change rule.",
-            "createdAt": "2016-11-26T04:03:25.546Z"
+            "createdAt": "2018-04-24T04:03:25.546Z"
           },
           {
             "id": 2,
             "userId": 2,
             "text": "What ARE you two doing? I thought you said something about a nice little slideshow?",
-            "createdAt": "2016-11-26T04:03:25.546Z"
+            "createdAt": "2018-04-24T04:03:25.546Z"
           },
           {
             "id": 3,
             "userId": 3,
             "text": "Ma'am, you're mistaken, I'm not a pet, I'm a Knight and master swordsman.",
-            "createdAt": "2016-11-26T04:03:25.546Z"
+            "createdAt": "2018-04-24T04:03:25.546Z"
           },
           {
             "id": 4,
             "userId": 4,
             "text": "Nothing can beat science!",
-            "createdAt": "2016-11-26T04:03:25.546Z"
+            "createdAt": "2018-04-24T04:03:25.546Z"
           },
           {
             "id": 5,
             "userId": 5,
             "text": "I never imagined that we would settle our score in this dusty old era. Come, let us finish this charade!",
-            "createdAt": "2016-11-26T04:03:25.546Z"
+            "createdAt": "2018-04-24T04:03:25.546Z"
           },
           {
             "id": 6,
             "userId": 6,
             "text": "Crono!! We can't keep sponging off my dad! Go and get a job!!",
-            "createdAt": "2016-11-26T04:03:25.546Z"
+            "createdAt": "2018-04-24T04:03:25.546Z"
           },
           {
             "id": 7,
             "userId": 7,
             "text": "Something is written in archaic script. I will translate... R...o...i...h...c...l...e...m? Roihclem? System error! I reversed it! It says \\"Melchior!\\".",
-            "createdAt": "2016-11-26T04:03:25.546Z"
+            "createdAt": "2018-04-24T04:03:25.546Z"
           }
         ],
         "user": {
@@ -221,24 +210,11 @@ export default (props) => {
       <h3>
         src/models/currentUser.js
       </h3>
-
-      <CodeTabs>
-        <CodeTab syntax="ES5" text={`
-        export default {
-          endpoint: 'user'
-        }
-        `}/>
-        <CodeTab syntax="ES6" text={`
-        export default {
-          endpoint: 'user'
-        }
-        `}/>
-        <CodeTab syntax="ESNext" text={`
-        export default {
-          endpoint: 'user'
-        }
-        `}/>
-      </CodeTabs>
+      <Markdown text={`
+      export default {
+        endpoint: 'user'
+      }
+      `}/>
 
       <h2>
         Next Steps

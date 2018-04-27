@@ -86,7 +86,7 @@ export default (props) => {
       </p>
 
       <Markdown type="jsx" text={`
-      render: function() {
+      render() {
         const { tweets, nextTweets } = this.state;
         const currentPage = nextTweets.query.pagination.page;
         const paginationLinks = [];
@@ -215,13 +215,13 @@ export default (props) => {
             }
           },
 
-          renderTweet: function(tweet) {
+          renderTweet(tweet) {
             return (
               <Tweet key={tweet.id} tweet={tweet} />
             );
           },
 
-          renderPaginationLink: function(page, currentPage) {
+          renderPaginationLink(page, currentPage) {
             return (
               <li key={page} className={currentPage === String(page) ? 'active' : ''}>
                 <Link to={{ pathname: '/', query: { page: page } }}>
@@ -231,7 +231,7 @@ export default (props) => {
             );
           },
 
-          render: function() {
+          render() {
             const { tweets, nextTweets } = this.state;
             const currentPage = nextTweets.query.pagination.page;
             const paginationLinks = [];

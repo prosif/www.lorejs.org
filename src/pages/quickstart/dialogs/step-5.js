@@ -119,7 +119,7 @@ export default (props) => {
       </p>
 
       <Markdown text={`
-      onClick: function() {
+      onClick() {
         // function createTweet(data) {
         //   lore.actions.tweet.create(data);
         // }

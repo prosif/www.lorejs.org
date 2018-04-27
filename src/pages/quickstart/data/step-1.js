@@ -37,6 +37,7 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
+        // src/components/Feed.js
         export default createReactClass({
           displayName: 'Feed',
 
@@ -47,6 +48,7 @@ export default (props) => {
         })
         `}/>
         <CodeTab syntax="ES6" text={`
+        // src/components/Feed.js
         class Feed extends React.Component {
           ...
         }
@@ -56,6 +58,7 @@ export default (props) => {
         };
         `}/>
         <CodeTab syntax="ESNext" text={`
+        // src/components/Feed.js
         class Feed extends React.Component {
 
           static propTypes = {
@@ -76,9 +79,10 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
+        // src/components/Feed.js
         const Feed = createReactClass({
           ...
-          getDefaultProps: function() {
+          getDefaultProps() {
             const tweet = {
               id: 1,
               cid: 'c1',
@@ -87,7 +91,7 @@ export default (props) => {
                 id: 1,
                 userId: 1,
                 text: 'Nothing can beat science!',
-                createdAt: '2016-10-04T05:10:49.382Z'
+                createdAt: '2018-04-24T05:10:49.382Z'
               }
             };
 
@@ -102,6 +106,7 @@ export default (props) => {
         })
         `}/>
         <CodeTab syntax="ES6" text={`
+        // src/components/Feed.js
         class Feed extends React.Component {
           ...
         }
@@ -117,7 +122,7 @@ export default (props) => {
               id: 1,
               userId: 1,
               text: 'Nothing can beat science!',
-              createdAt: '2016-10-04T05:10:49.382Z'
+              createdAt: '2018-04-24T05:10:49.382Z'
             }
           };
 
@@ -130,6 +135,7 @@ export default (props) => {
         })();
         `}/>
         <CodeTab syntax="ESNext" text={`
+        // src/components/Feed.js
         class Feed extends React.Component {
           ...
           static defaultProps = (function() {
@@ -141,7 +147,7 @@ export default (props) => {
                 id: 1,
                 userId: 1,
                 text: 'Nothing can beat science!',
-                createdAt: '2016-10-04T05:10:49.382Z'
+                createdAt: '2018-04-24T05:10:49.382Z'
               }
             };
 
@@ -178,8 +184,9 @@ export default (props) => {
           and has been collapsed into a single data structure:
         </p>
       <Markdown text={`
+      // src/components/Feed.js
       ...
-        getDefaultProps: function() {
+        getDefaultProps() {
           return {
             tweets: {
               data: [
@@ -188,7 +195,7 @@ export default (props) => {
                   data: {
                     userId: 1,
                     text: 'Nothing can beat science!',
-                    createdAt: '2016-10-04T05:10:49.382Z'
+                    createdAt: '2018-04-24T05:10:49.382Z'
                   }
                 }
               ]
@@ -210,7 +217,7 @@ export default (props) => {
       <Markdown type="jsx" text={`
       // src/components/Feed.js
       ...
-        renderTweet: function(tweet) {
+        renderTweet(tweet) {
           return (
             <li key={tweet.id}>
               {tweet.data.text}
@@ -297,7 +304,7 @@ export default (props) => {
             tweets: PropTypes.object.isRequired
           },
 
-          getDefaultProps: function() {
+          getDefaultProps() {
             const tweet = {
               id: 1,
               cid: 'c1',
@@ -306,7 +313,7 @@ export default (props) => {
                 id: 1,
                 userId: 1,
                 text: 'Nothing can beat science!',
-                createdAt: '2016-10-04T05:10:49.382Z'
+                createdAt: '2018-04-24T05:10:49.382Z'
               }
             };
 
@@ -318,7 +325,7 @@ export default (props) => {
             }
           },
 
-          renderTweet: function(tweet) {
+          renderTweet(tweet) {
             return (
               <li key={tweet.id}>
                 {tweet.data.text}
@@ -326,7 +333,7 @@ export default (props) => {
             );
           },
 
-          render: function() {
+          render() {
             const { tweets } = this.props;
 
             return (
@@ -387,7 +394,7 @@ export default (props) => {
               id: 1,
               userId: 1,
               text: 'Nothing can beat science!',
-              createdAt: '2016-10-04T05:10:49.382Z'
+              createdAt: '2018-04-24T05:10:49.382Z'
             }
           };
 
@@ -420,7 +427,7 @@ export default (props) => {
                 id: 1,
                 userId: 1,
                 text: 'Nothing can beat science!',
-                createdAt: '2016-10-04T05:10:49.382Z'
+                createdAt: '2018-04-24T05:10:49.382Z'
               }
             };
 

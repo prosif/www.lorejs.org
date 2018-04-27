@@ -58,7 +58,7 @@ export default (props) => {
 
           propTypes: {},
 
-          render: function() {
+          render() {
             return (
               <div></div>
             );
@@ -153,7 +153,7 @@ export default (props) => {
         // src/components/Layout.js
         import Header from './Header';
         ...
-          render: function() {
+          render() {
             return (
               <div>
                 <Header />
@@ -243,7 +243,7 @@ export default (props) => {
         export default createReactClass({
           displayName: 'Header',
 
-          render: function() {
+          render() {
             return (
               <nav className="navbar navbar-default navbar-static-top header">
                 <div className="container">
@@ -317,12 +317,13 @@ export default (props) => {
         <CodeTab syntax="ES5" text={`
         import React from 'react';
         import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
         import Header from './Header';
 
         export default createReactClass({
           displayName: 'Layout',
 
-          render: function() {
+          render() {
             return (
               <div>
                 <Header />

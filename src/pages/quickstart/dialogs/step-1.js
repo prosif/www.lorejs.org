@@ -39,15 +39,16 @@ export default (props) => {
         <CodeTab syntax="ES5" text={`
         import React from 'react';
         import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
 
         export default createReactClass({
           displayName: 'CreateButton',
 
-          onClick: function() {
+          onClick() {
             console.log('Create tweet!');
           },
 
-          render: function() {
+          render() {
             return (
               <button
                 type="button"
@@ -129,13 +130,14 @@ export default (props) => {
         <CodeTab syntax="ES5" text={`
         import React from 'react';
         import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
         import { Link } from 'react-router';
         import CreateButton from './CreateButton';
 
         export default createReactClass({
           displayName: 'Header',
 
-          render: function() {
+          render() {
             return (
               <nav className="navbar navbar-default navbar-static-top header">
                 <div className="container">
@@ -234,15 +236,16 @@ export default (props) => {
         <CodeTab syntax="ES5" text={`
         import React from 'react';
         import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
 
         export default createReactClass({
           displayName: 'CreateButton',
 
-          onClick: function() {
+          onClick() {
             console.log('Create tweet!');
           },
 
-          render: function() {
+          render() {
             return (
               <button
                 type="button"
@@ -281,7 +284,8 @@ export default (props) => {
         export default CreateButton;
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React, { Component } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
 
         class CreateButton extends React.Component {
 
@@ -314,13 +318,14 @@ export default (props) => {
         <CodeTab syntax="ES5" text={`
         import React from 'react';
         import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
         import { Link } from 'react-router';
         import CreateButton from './CreateButton';
 
         export default createReactClass({
           displayName: 'Header',
 
-          render: function() {
+          render() {
             return (
               <nav className="navbar navbar-default navbar-static-top header">
                 <div className="container">

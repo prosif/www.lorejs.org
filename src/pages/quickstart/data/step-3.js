@@ -33,7 +33,7 @@ export default (props) => {
         id: 1,
         userId: 1,
         text: 'Nothing can beat science!',
-        createdAt: '2016-10-04T05:10:49.382Z'
+        createdAt: '2018-04-24T05:10:49.382Z'
       }
       `}/>
 
@@ -70,7 +70,7 @@ export default (props) => {
             user: PropTypes.object.isRequired
           },
 
-          getDefaultProps: function() {
+          getDefaultProps() {
             return {
               user: {
                 id: 1,
@@ -204,7 +204,7 @@ export default (props) => {
             user: PropTypes.object.isRequired
           },
 
-          getDefaultProps: function() {
+          getDefaultProps() {
             return {
               user: {
                 id: 1,
@@ -217,7 +217,7 @@ export default (props) => {
             }
           },
 
-          render: function() {
+          render() {
             const { tweet, user } = this.props;
             const timestamp = moment(tweet.data.createdAt).fromNow().split(' ago')[0];
 

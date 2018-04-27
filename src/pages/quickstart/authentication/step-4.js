@@ -66,10 +66,11 @@ export default (props) => {
       </p>
 
       <Markdown text={`
-        <Route component={UserIsAuthenticated(Master)}>
-          ...
-        </Route>
-        `}/>
+      // routes.js
+      <Route component={UserIsAuthenticated(Master)}>
+        ...
+      </Route>
+      `}/>
 
       <p>
         The <code>UserIsAuthenticated()</code> function that wraps <code>Master</code> is a higher order component that
@@ -82,6 +83,7 @@ export default (props) => {
       </p>
 
       <Markdown type="jsx" text={`
+      // src/decorators/UserIsAuthenticated.js
       import PropTypes from 'prop-types';
       import AuthenticationGenerator from './_common/AuthenticationGenerator';
 
@@ -122,6 +124,7 @@ export default (props) => {
       </p>
 
       <Markdown type="jsx" text={`
+      // src/decorators/UserIsAuthenticated.js
       import auth from '../utils/auth';
       ...
         isAuthenticated() {

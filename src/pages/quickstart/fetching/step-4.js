@@ -111,6 +111,7 @@ export default (props) => {
       </p>
 
       <Markdown type="jsx" text={`
+      // src/components/Feed.js
       ...
       import PayloadStates from '../constants/PayloadStates';
       ...
@@ -181,8 +182,8 @@ export default (props) => {
         import createReactClass from 'create-react-class';
         import PropTypes from 'prop-types';
         import { connect } from 'lore-hook-connect';
-        import Tweet from './Tweet';
         import PayloadStates from '../constants/PayloadStates';
+        import Tweet from './Tweet';
 
         export default connect(function(getState, props) {
           return {
@@ -196,7 +197,7 @@ export default (props) => {
             tweets: PropTypes.object.isRequired
           },
 
-          getDefaultProps: function() {
+          getDefaultProps() {
             const tweet = {
               id: 1,
               cid: 'c1',
@@ -205,7 +206,7 @@ export default (props) => {
                 id: 1,
                 userId: 1,
                 text: 'Nothing can beat science!',
-                createdAt: '2016-10-04T05:10:49.382Z'
+                createdAt: '2018-04-24T05:10:49.382Z'
               }
             };
 
@@ -217,13 +218,13 @@ export default (props) => {
             }
           },
 
-          renderTweet: function(tweet) {
+          renderTweet(tweet) {
             return (
               <Tweet key={tweet.id} tweet={tweet} />
             );
           },
 
-          render: function() {
+          render() {
             const { tweets } = this.props;
 
             if (tweets.state === PayloadStates.FETCHING) {
@@ -256,8 +257,8 @@ export default (props) => {
         import React from 'react';
         import PropTypes from 'prop-types';
         import { connect } from 'lore-hook-connect';
-        import Tweet from './Tweet';
         import PayloadStates from '../constants/PayloadStates';
+        import Tweet from './Tweet';
 
         class Feed extends React.Component {
 
@@ -307,7 +308,7 @@ export default (props) => {
               id: 1,
               userId: 1,
               text: 'Nothing can beat science!',
-              createdAt: '2016-10-04T05:10:49.382Z'
+              createdAt: '2018-04-24T05:10:49.382Z'
             }
           };
 
@@ -329,8 +330,8 @@ export default (props) => {
         import React from 'react';
         import PropTypes from 'prop-types';
         import { connect } from 'lore-hook-connect';
-        import Tweet from './Tweet';
         import PayloadStates from '../constants/PayloadStates';
+        import Tweet from './Tweet';
 
         @connect(function(getState, props) {
           return {
@@ -352,7 +353,7 @@ export default (props) => {
                 id: 1,
                 userId: 1,
                 text: 'Nothing can beat science!',
-                createdAt: '2016-10-04T05:10:49.382Z'
+                createdAt: '2018-04-24T05:10:49.382Z'
               }
             };
 

@@ -38,124 +38,50 @@ export default (props) => {
         the <code>apiRoot</code> called <code>headers</code>. It looks like this:
       </p>
 
-      <CodeTabs>
-        <CodeTab syntax="ES5" text={`
-        export default {
+      <Markdown text={`
+      // config/connections.js
+      export default {
 
-          default: {
+        default: {
 
-            apiRoot: 'http://localhost:1337',
+          apiRoot: 'http://localhost:1337',
 
-            // headers: function() {
-            //   return {};
-            // },
+          // headers: function() {
+          //   return {};
+          // },
 
-            ...
+          ...
 
-          }
+        }
 
-        };
-        `}/>
-        <CodeTab syntax="ES6" text={`
-        export default {
-
-          default: {
-
-            apiRoot: 'http://localhost:1337',
-
-            // headers() {
-            //   return {};
-            // },
-
-            ...
-          }
-
-        };
-        `}/>
-        <CodeTab syntax="ESNext" text={`
-        export default {
-
-          default: {
-
-            apiRoot: 'http://localhost:1337',
-
-            // headers() {
-            //   return {};
-            // },
-
-            ...
-          }
-
-        };
-        `}/>
-      </CodeTabs>
+      };
+      `}/>
 
       <p>
         Import the <code>auth</code> module into the config and set the <code>Authorization</code> like this:
       </p>
 
-      <CodeTabs>
-        <CodeTab syntax="ES5" text={`
-        import auth from '../src/utils/auth';
+      <Markdown text={`
+      // config/connections.js
+      import auth from '../src/utils/auth';
 
-        export default {
+      export default {
 
-          default: {
+        default: {
 
-            apiRoot: 'http://localhost:1337',
+          apiRoot: 'http://localhost:1337',
 
-            headers: function() {
-              return {
-                Authorization: 'Bearer ' + auth.getToken()
-              };
-            },
+          headers: function() {
+            return {
+              Authorization: \`Bearer \${auth.getToken()}\`
+            };
+          },
 
-            ...
-          }
+          ...
+        }
 
-        };
-        `}/>
-        <CodeTab syntax="ES6" text={`
-        import auth from '../src/utils/auth';
-
-        export default {
-
-          default: {
-
-            apiRoot: 'http://localhost:1337',
-
-            headers() {
-              return {
-                Authorization: \`Bearer \${auth.getToken()}\`
-              };
-            },
-
-            ...
-          }
-
-        };
-        `}/>
-        <CodeTab syntax="ESNext" text={`
-        import auth from '../src/utils/auth';
-
-        export default {
-
-          default: {
-
-            apiRoot: 'http://localhost:1337',
-
-            headers() {
-              return {
-                Authorization: \`Bearer \${auth.getToken()}\`
-              };
-            },
-
-            ...
-          }
-
-        };
-        `}/>
-      </CodeTabs>
+      };
+      `}/>
 
       <p>
         With that change in place, refresh the browser and application should display correctly again.
@@ -213,92 +139,34 @@ export default (props) => {
         config/connections.js
       </h3>
 
-      <CodeTabs>
-        <CodeTab syntax="ES5" text={`
-        import auth from '../src/utils/auth';
+      <Markdown text={`
+      import auth from '../src/utils/auth';
 
-        export default {
+      export default {
 
-          default: {
+        default: {
 
-            apiRoot: 'http://localhost:1337',
+          apiRoot: 'http://localhost:1337',
 
-            headers: function() {
-              return {
-                Authorization: 'Bearer ' + auth.getToken()
-              };
-            },
+          headers: function() {
+            return {
+              Authorization: \`Bearer \${auth.getToken()}\`
+            };
+          },
 
-            collections: {
-              properties: {
+          collections: {
+            properties: {
 
-                parse: function(attributes) {
-                  return attributes.data;
-                }
-
+              parse: function(response) {
+                return response.data;
               }
+
             }
-
           }
-        };
-        `}/>
-        <CodeTab syntax="ES6" text={`
-        import auth from '../src/utils/auth';
 
-        export default {
-
-          default: {
-
-            apiRoot: 'http://localhost:1337',
-
-            headers() {
-              return {
-                Authorization: \`Bearer \${auth.getToken()}\`
-              };
-            },
-
-            collections: {
-              properties: {
-
-                parse(attributes) {
-                  return attributes.data;
-                }
-
-              }
-            }
-
-          }
-        };
-        `}/>
-        <CodeTab syntax="ESNext" text={`
-        import auth from '../src/utils/auth';
-
-        export default {
-
-          default: {
-
-            apiRoot: 'http://localhost:1337',
-
-            headers() {
-              return {
-                Authorization: \`Bearer \${auth.getToken()}\`
-              };
-            },
-
-            collections: {
-              properties: {
-
-                parse(attributes) {
-                  return attributes.data;
-                }
-
-              }
-            }
-
-          }
-        };
-        `}/>
-      </CodeTabs>
+        }
+      };
+      `}/>
 
       <h2>
         Next Steps

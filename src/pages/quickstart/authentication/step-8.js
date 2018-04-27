@@ -56,6 +56,7 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
+        // src/components/Master.js
         import React from 'react';
         import createReactClass from 'create-react-class';
         import { connect } from 'lore-hook-connect';
@@ -70,7 +71,7 @@ export default (props) => {
           createReactClass({
             displayName: 'Master',
 
-            render: function() {
+            render() {
               const { user } = this.props;
 
               if (user.state === PayloadStates.FETCHING) {
@@ -89,6 +90,7 @@ export default (props) => {
         );
         `}/>
         <CodeTab syntax="ES6" text={`
+        // src/components/Master.js
         import React from 'react';
         import PropTypes from 'prop-types';
         import { connect } from 'lore-hook-connect';
@@ -126,6 +128,7 @@ export default (props) => {
         }, { subscribe: true })(Master);
         `}/>
         <CodeTab syntax="ESNext" text={`
+        // src/components/Master.js
         import React from 'react';
         import PropTypes from 'prop-types';
         import { connect } from 'lore-hook-connect';
@@ -176,6 +179,7 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
+        // src/components/Master.js
         ...
         createReactClass({
           ...
@@ -188,19 +192,20 @@ export default (props) => {
             user: PropTypes.object
           },
 
-          getChildContext: function() {
+          getChildContext() {
             return {
               user: this.props.user
             };
           },
 
-          render: function() {
+          render() {
             ...
           }
 
         })
         `}/>
         <CodeTab syntax="ES6" text={`
+        // src/components/Master.js
         ...
 
         class Master extends React.Component {
@@ -226,6 +231,7 @@ export default (props) => {
         ...
         `}/>
         <CodeTab syntax="ESNext" text={`
+        // src/components/Master.js
         ...
         class Master extends React.Component {
 
@@ -266,6 +272,7 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
+        // src/components/Profile.js
         ...
 
         export default createReactClass({
@@ -277,7 +284,7 @@ export default (props) => {
 
           ...
 
-          render: function() {
+          render() {
             const { user } = this.context;
             ...
           }
@@ -285,10 +292,11 @@ export default (props) => {
         });
         `}/>
         <CodeTab syntax="ES6" text={`
+        // src/components/Profile.js
         ...
         class Profile extends React.Component {
           ...
-          render: function() {
+          render() {
             const { user } = this.context;
             ...
           }
@@ -301,6 +309,7 @@ export default (props) => {
         export default Profile;
         `}/>
         <CodeTab syntax="ESNext" text={`
+        // src/components/Profile.js
         ...
         class Profile extends React.Component {
 
@@ -310,7 +319,7 @@ export default (props) => {
 
           ...
 
-          render: function() {
+          render() {
             const { user } = this.context;
             ...
           }
@@ -375,13 +384,13 @@ export default (props) => {
               user: PropTypes.object
             },
 
-            getChildContext: function() {
+            getChildContext() {
               return {
                 user: this.props.user
               };
             },
 
-            render: function() {
+            render() {
               const { user } = this.props;
 
               if (user.state === PayloadStates.FETCHING) {
@@ -514,7 +523,7 @@ export default (props) => {
             user: PropTypes.object.isRequired
           },
 
-          render: function() {
+          render() {
             const { user } = this.context;
 
             return (

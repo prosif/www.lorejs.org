@@ -186,7 +186,7 @@ export default (props) => {
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
         ...
-          onClick: function() {
+          onClick() {
             lore.dialog.show(function() {
               return (
                 <h1>Dialog Placeholder</h1>
@@ -255,11 +255,12 @@ export default (props) => {
         <CodeTab syntax="ES5" text={`
         import React from 'react';
         import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
 
         export default createReactClass({
           displayName: 'CreateButton',
 
-          onClick: function() {
+          onClick() {
             lore.dialog.show(function() {
               return (
                 <h1>Dialog Placeholder</h1>
@@ -267,7 +268,7 @@ export default (props) => {
             });
           },
 
-          render: function() {
+          render() {
             return (
               <button
                 type="button"
@@ -281,7 +282,8 @@ export default (props) => {
         });
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React, { Component } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
 
         class CreateButton extends React.Component {
 
@@ -309,7 +311,8 @@ export default (props) => {
         export default CreateButton;
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React, { Component } from 'react';
+        import React from 'react';
+        import PropTypes from 'prop-types';
 
         class CreateButton extends React.Component {
 

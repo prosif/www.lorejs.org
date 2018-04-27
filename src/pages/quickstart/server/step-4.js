@@ -48,11 +48,12 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
+        // src/components/Master.js
         export default createReactClass({
 
           ...
 
-          render: function() {
+          render() {
             const { user } = this.props;
 
             if (user.state === PayloadStates.FETCHING) {
@@ -63,6 +64,7 @@ export default (props) => {
 
             return (
               <div>
+                <RemoveLoadingScreen/>
                 {React.cloneElement(this.props.children)}
               </div>
             );
@@ -71,6 +73,7 @@ export default (props) => {
         }
         `}/>
         <CodeTab syntax="ES6" text={`
+        // src/components/Master.js
         class Master extends React.Component {
 
           ...
@@ -86,6 +89,7 @@ export default (props) => {
 
             return (
               <div>
+                <RemoveLoadingScreen/>
                 {React.cloneElement(this.props.children)}
               </div>
             );
@@ -94,6 +98,7 @@ export default (props) => {
         }
         `}/>
         <CodeTab syntax="ESNext" text={`
+        // src/components/Master.js
         class Master extends React.Component {
 
           ...
@@ -109,6 +114,7 @@ export default (props) => {
 
             return (
               <div>
+                <RemoveLoadingScreen/>
                 {React.cloneElement(this.props.children)}
               </div>
             );
@@ -145,11 +151,12 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
+        // src/components/Master.js
         export default createReactClass({
 
           ...
 
-          render: function() {
+          render() {
             const { user } = this.props;
 
             if (user.state === PayloadStates.FETCHING) {
@@ -171,6 +178,7 @@ export default (props) => {
 
             return (
               <div>
+                <RemoveLoadingScreen/>
                 {React.cloneElement(this.props.children)}
               </div>
             );
@@ -179,6 +187,7 @@ export default (props) => {
         }
         `}/>
         <CodeTab syntax="ES6" text={`
+        // src/components/Master.js
         class Master extends React.Component {
 
           ...
@@ -205,6 +214,7 @@ export default (props) => {
 
             return (
               <div>
+                <RemoveLoadingScreen/>
                 {React.cloneElement(this.props.children)}
               </div>
             );
@@ -213,6 +223,7 @@ export default (props) => {
         }
         `}/>
         <CodeTab syntax="ESNext" text={`
+        // src/components/Master.js
         class Master extends React.Component {
 
           ...
@@ -239,6 +250,7 @@ export default (props) => {
 
             return (
               <div>
+                <RemoveLoadingScreen/>
                 {React.cloneElement(this.props.children)}
               </div>
             );
@@ -309,13 +321,13 @@ export default (props) => {
               user: PropTypes.object
             },
 
-            getChildContext: function() {
+            getChildContext() {
               return {
                 user: this.props.user
               };
             },
 
-            render: function() {
+            render() {
               const { user } = this.props;
 
               if (user.state === PayloadStates.FETCHING) {
@@ -337,6 +349,7 @@ export default (props) => {
 
               return (
                 <div>
+                  <RemoveLoadingScreen/>
                   {React.cloneElement(this.props.children)}
                 </div>
               );
@@ -381,6 +394,7 @@ export default (props) => {
 
             return (
               <div>
+                <RemoveLoadingScreen/>
                 {React.cloneElement(this.props.children)}
               </div>
             );
@@ -452,6 +466,7 @@ export default (props) => {
 
             return (
               <div>
+                <RemoveLoadingScreen/>
                 {React.cloneElement(this.props.children)}
               </div>
             );

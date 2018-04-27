@@ -68,7 +68,7 @@ export default (props) => {
             router: PropTypes.object.isRequired
           },
 
-          componentDidMount: function() {
+          componentDidMount() {
             const { router } = this.props;
             const auth0 = new Auth0.WebAuth(lore.config.auth0);
 
@@ -83,7 +83,7 @@ export default (props) => {
             });
           },
 
-          render: function() {
+          render() {
             return (
               <ShowLoadingScreen/>
             );
@@ -193,6 +193,7 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
+        // routes.js
         ...
         import AuthCallback from './src/components/AuthCallback';
 
@@ -210,6 +211,7 @@ export default (props) => {
         );
         `}/>
         <CodeTab syntax="ES6" text={`
+        // routes.js
         ...
         import AuthCallback from './src/components/AuthCallback';
 
@@ -227,6 +229,7 @@ export default (props) => {
         )
         `}/>
         <CodeTab syntax="ESNext" text={`
+        // routes.js
         ...
         import AuthCallback from './src/components/AuthCallback';
 
@@ -271,198 +274,85 @@ export default (props) => {
       </p>
 
       <h3>
-        src/components/Login.js
+        src/components/AuthCallback.js
       </h3>
-
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
         import React from 'react';
         import createReactClass from 'create-react-class';
-        import { Auth0Lock } from 'auth0-lock';
+        import PropTypes from 'prop-types';
+        import Auth0 from 'auth0-js';
+        import ShowLoadingScreen from './ShowLoadingScreen';
         import auth from '../utils/auth';
 
         export default createReactClass({
-          displayName: 'Login',
+          displayName: 'AuthCallback',
 
-          componentDidMount: function() {
-            this.lock = this.getLock();
-            this.showLogin();
+          propTypes: {
+            router: PropTypes.object.isRequired
           },
 
-          componentWillUnmount: function() {
-            this.lock.hide();
-          },
+          componentDidMount() {
+            const { router } = this.props;
+            const auth0 = new Auth0.WebAuth(lore.config.auth0);
 
-          getLock: function() {
-            const {
-              clientId,
-              domain
-            } = lore.config.auth0;
-
-            return new Auth0Lock(clientId, domain, {
-              auth: {
-                redirect: false,
-                sso: false
-              },
-              languageDictionary: {
-                title: "Lore Quickstart"
+            auth0.parseHash((err, authResult) => {
+              if (authResult && authResult.accessToken && authResult.idToken) {
+                auth.saveToken(authResult.idToken);
+                router.push('/');
+              } else if (err) {
+                console.log(err);
+                alert('An error occurred. See the console for more information.');
               }
             });
           },
 
-          onAuthentication: function(authResult) {
-            auth.saveToken(authResult.idToken);
-            this.props.router.push('/');
-          },
-
-          showLogin: function() {
-            this.lock.on('authenticated', this.onAuthentication);
-            this.lock.show();
-          },
-
-          render: function() {
+          render() {
             return (
-              <div/>
+              <ShowLoadingScreen/>
             );
           }
 
         });
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React from 'react';
-        import PropTypes from 'prop-types';
-        import Auth0Lock from 'auth0-lock';
-        import auth from '../utils/auth';
-
-        class Login extends React.Component {
-
-          constructor(props) {
-            super(props);
-
-            // Bind your custom methods so you can access the expected 'this'
-            this.getLock = this.getLock.bind(this);
-            this.onAuthentication = this.onAuthentication.bind(this);
-            this.showLogin = this.showLogin.bind(this);
-          }
-
-          componentDidMount() {
-            this.lock = this.getLock();
-            this.showLogin();
-          }
-
-          componentWillUnmount() {
-            this.lock.hide();
-          }
-
-          getLock() {
-            const {
-              clientId,
-              domain
-            } = lore.config.auth0;
-
-            return new Auth0Lock(clientId, domain, {
-              auth: {
-                redirect: false,
-                sso: false
-              },
-              languageDictionary: {
-                title: "Lore Quickstart"
-              }
-            });
-          }
-
-          onAuthentication(authResult) {
-            auth.saveToken(authResult.idToken);
-            this.props.router.push('/');
-          }
-
-          showLogin() {
-            this.lock.on('authenticated', this.onAuthentication);
-            this.lock.show();
-          }
-
-          render() {
-            return (
-              <div/>
-            );
-          }
-
-        }
-
-        Login.propTypes = {
-          router: PropTypes.object.isRequired
-        };
-
-        export default Login;
+        TODO
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React from 'react';
-        import PropTypes from 'prop-types';
-        import Auth0Lock from 'auth0-lock';
-        import auth from '../utils/auth';
-
-        class Login extends React.Component {
-
-          static propTypes = {
-            router: PropTypes.object.isRequired
-          };
-
-          constructor(props) {
-            super(props);
-
-            // Bind your custom methods so you can access the expected 'this'
-            this.getLock = this.getLock.bind(this);
-            this.onAuthentication = this.onAuthentication.bind(this);
-            this.showLogin = this.showLogin.bind(this);
-          }
-
-          componentDidMount() {
-            this.lock = this.getLock();
-            this.showLogin();
-          }
-
-          componentWillUnmount() {
-            this.lock.hide();
-          }
-
-          getLock() {
-            const {
-              clientId,
-              domain
-            } = lore.config.auth0;
-
-            return new Auth0Lock(clientId, domain, {
-              auth: {
-                redirect: false,
-                sso: false
-              },
-              languageDictionary: {
-                title: "Lore Quickstart"
-              }
-            });
-          }
-
-          onAuthentication(authResult) {
-            auth.saveToken(authResult.idToken);
-            this.props.router.push('/');
-          }
-
-          showLogin() {
-            this.lock.on('authenticated', this.onAuthentication);
-            this.lock.show();
-          }
-
-          render() {
-            return (
-              <div/>
-            );
-          }
-
-        }
-
-        export default Login;
+        TODO
         `}/>
       </CodeTabs>
+
+      <h3>
+        routes.js
+      </h3>
+      <Markdown text={`
+      import React from 'react';
+      import { Route, IndexRoute, Redirect } from 'react-router';
+      import UserIsAuthenticated from './src/decorators/UserIsAuthenticated';
+
+      /**
+       * Routes
+       */
+      import Master from './src/components/Master';
+      import Layout from './src/components/Layout';
+      import Feed from './src/components/Feed';
+      import Login from './src/components/Login';
+      import AuthCallback from './src/components/AuthCallback';
+
+      export default (
+        <Route>
+          <Route path="/login" component={Login} />
+          <Route path="/auth/callback" component={AuthCallback} />
+
+          <Route component={UserIsAuthenticated(Master)}>
+            <Route path="/" component={Layout}>
+              <IndexRoute component={Feed} />
+            </Route>
+          </Route>
+        </Route>
+      );
+      `}/>
 
       <h2>
         Next Steps

@@ -88,21 +88,21 @@ export default (props) => {
       export default createReactClass({
         displayName: 'BootstrapDialog',
 
-        componentDidMount: function() {
+        componentDidMount() {
           this.show();
         },
 
-        show: function() {
+        show() {
           const modal = this.refs.modal;
           $(modal).modal('show');
         },
 
-        dismiss: function() {
+        dismiss() {
           const modal = this.refs.modal;
           $(modal).modal('hide');
         },
 
-        render: function() {
+        render() {
           const { data } = this.state;
 
           return (
@@ -141,7 +141,7 @@ export default (props) => {
           onCancel: PropTypes.func
         },
 
-        getInitialState: function() {
+        getInitialState() {
           return {
             data: {
               text: ''
@@ -149,7 +149,7 @@ export default (props) => {
           };
         },
 
-        onSubmit: function() {
+        onSubmit() {
           const { data } = this.state;
           // lore.actions.tweet.create(_.defaults(data, {
           //   userId: 1,
@@ -159,11 +159,11 @@ export default (props) => {
           this.dismiss();
         },
 
-        dismiss: function() {
+        dismiss() {
           this.props.onCancel();
         },
 
-        onChange: function(name, value) {
+        onChange(name, value) {
           const nextData = _.merge({}, this.state.data);
           nextData[name] = value;
           this.setState({
@@ -171,7 +171,7 @@ export default (props) => {
           });
         },
 
-        render: function() {
+        render() {
           const { data } = this.state;
 
           return (
@@ -406,7 +406,7 @@ export default (props) => {
             onCancel: PropTypes.func
           },
 
-          getInitialState: function() {
+          getInitialState() {
             return {
               data: {
                 text: ''
@@ -414,7 +414,7 @@ export default (props) => {
             };
           },
 
-          onSubmit: function() {
+          onSubmit() {
             const { data } = this.state;
             lore.actions.tweet.create({
               userId: 1,
@@ -423,11 +423,11 @@ export default (props) => {
             this.dismiss();
           },
 
-          dismiss: function() {
+          dismiss() {
             this.props.onCancel();
           },
 
-          onChange: function(name, value) {
+          onChange(name, value) {
             const nextData = _.merge({}, this.state.data);
             nextData[name] = value;
             this.setState({
@@ -435,7 +435,7 @@ export default (props) => {
             });
           },
 
-          render: function() {
+          render() {
             const { data } = this.state;
 
             return (

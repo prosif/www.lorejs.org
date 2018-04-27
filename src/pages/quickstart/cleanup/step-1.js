@@ -32,9 +32,9 @@ export default (props) => {
         ...
         properties: {
 
-          parse: function(resp, options) {
-            resp.userId = resp.user;
-            return resp;
+          parse: function(response, options) {
+            response.userId = response.user;
+            return response;
           }
 
         }
@@ -56,8 +56,8 @@ export default (props) => {
         <CodeTab syntax="ES5" text={`
         export default {
           ...
-          // parse: function(resp, options) {
-          //   return resp;
+          // parse: function(response, options) {
+          //   return response;
           // }
           ...
         };
@@ -65,8 +65,8 @@ export default (props) => {
         <CodeTab syntax="ES6" text={`
         export default {
           ...
-          // parse: function(resp, options) {
-          //   return resp;
+          // parse: function(response, options) {
+          //   return response;
           // }
           ...
         }
@@ -74,8 +74,8 @@ export default (props) => {
         <CodeTab syntax="ESNext" text={`
         export default {
           ...
-          // parse: function(resp, options) {
-          //   return resp;
+          // parse: function(response, options) {
+          //   return response;
           // }
           ...
         }
@@ -153,7 +153,7 @@ export default (props) => {
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
         ...
-          onClick: function() {
+          onClick() {
             function createTweet(params) {
               lore.actions.tweet.create(params);
             }
@@ -294,7 +294,7 @@ export default (props) => {
             user: PropTypes.object.isRequired
           },
 
-          render: function() {
+          render() {
             const {
               tweet,
               user
@@ -459,11 +459,12 @@ export default (props) => {
         <CodeTab syntax="ES5" text={`
         import React from 'react';
         import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
 
         export default createReactClass({
           displayName: 'CreateButton',
 
-          onClick: function() {
+          onClick() {
             function createTweet(params) {
               lore.actions.tweet.create(params);
             }
@@ -475,7 +476,7 @@ export default (props) => {
             });
           },
 
-          render: function() {
+          render() {
             return (
               <button
                 type="button"

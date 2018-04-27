@@ -70,7 +70,7 @@ export default (props) => {
             }
           },
 
-          getInitialState: function() {
+          getInitialState() {
             return {
               other: null,
               pages: []
@@ -122,7 +122,7 @@ export default (props) => {
             });
           },
 
-          render: function() {
+          render() {
             const { row, exclude, selectNextPage } = this.props;
             const { pages, other } = this.state;
             const numberOfPages = pages.length;
@@ -232,7 +232,7 @@ export default (props) => {
                 store: PropTypes.object.isRequired
               },
 
-              getInitialState: function() {
+              getInitialState() {
                 return {
                   pages: [
                     this.props[propName]
@@ -240,7 +240,7 @@ export default (props) => {
                 };
               },
 
-              componentWillReceiveProps: function(nextProps) {
+              componentWillReceiveProps(nextProps) {
                 const storeState = this.context.store.getState();
                 const { pages } = this.state;
 
@@ -268,7 +268,7 @@ export default (props) => {
                 });
               },
 
-              onLoadMore: function() {
+              onLoadMore() {
                 const storeState = this.context.store.getState();
                 const { pages } = this.state;
                 const lastPage = pages[pages.length - 1];
@@ -303,7 +303,7 @@ export default (props) => {
                 });
               },
 
-              render: function() {
+              render() {
                 return React.createElement(
                   DecoratedComponent,
                   _.assign({ref: 'decoratedComponent'}, this.state, this.props, { onLoadMore: this.onLoadMore })
@@ -347,7 +347,7 @@ export default (props) => {
                 store: PropTypes.object.isRequired
               },
 
-              getInitialState: function() {
+              getInitialState() {
                 return {
                   pages: [
                     this.props[propName]
@@ -355,7 +355,7 @@ export default (props) => {
                 };
               },
 
-              componentWillReceiveProps: function(nextProps) {
+              componentWillReceiveProps(nextProps) {
                 const storeState = this.context.store.getState();
                 const { pages } = this.state;
 
@@ -383,7 +383,7 @@ export default (props) => {
                 });
               },
 
-              onLoadMore: function() {
+              onLoadMore() {
                 const storeState = this.context.store.getState();
                 const { pages } = this.state;
                 const lastPage = pages[pages.length - 1];
@@ -418,7 +418,7 @@ export default (props) => {
                 });
               },
 
-              render: function() {
+              render() {
                 return React.createElement(
                   DecoratedComponent,
                   _.assign({ref: 'decoratedComponent'}, this.state, this.props, { onLoadMore: this.onLoadMore })
@@ -462,7 +462,7 @@ export default (props) => {
                 store: PropTypes.object.isRequired
               },
 
-              getInitialState: function() {
+              getInitialState() {
                 return {
                   pages: [
                     this.props[propName]
@@ -470,7 +470,7 @@ export default (props) => {
                 };
               },
 
-              componentWillReceiveProps: function(nextProps) {
+              componentWillReceiveProps(nextProps) {
                 const storeState = this.context.store.getState();
                 const { pages } = this.state;
 
@@ -498,7 +498,7 @@ export default (props) => {
                 });
               },
 
-              onLoadMore: function() {
+              onLoadMore() {
                 const storeState = this.context.store.getState();
                 const { pages } = this.state;
                 const lastPage = pages[pages.length - 1];
@@ -533,7 +533,7 @@ export default (props) => {
                 });
               },
 
-              render: function() {
+              render() {
                 return React.createElement(
                   DecoratedComponent,
                   _.assign({ref: 'decoratedComponent'}, this.state, this.props, { onLoadMore: this.onLoadMore })

@@ -48,7 +48,7 @@ export default (props) => {
             tweet: PropTypes.object.isRequired
           },
 
-          render: function() {
+          render() {
             const { tweet } = this.props;
 
             return (
@@ -169,6 +169,7 @@ export default (props) => {
       </p>
 
       <Markdown type="jsx" text={`
+      // src/components/Feed.js
       import Tweet from './Tweet';
       ...
         renderTweet(tweet) {
@@ -197,6 +198,7 @@ export default (props) => {
       </p>
 
       <Markdown type="jsx" text={`
+      // src/components/Tweet.js
       ...
           render() {
             const { tweet } = this.props;
@@ -235,7 +237,7 @@ export default (props) => {
         Fix the Timestamp
       </h3>
       <p>
-        That's a little better, but what's up with that ugly timestamp of <code>2016-10-04T05:10:49.382Z</code>? That's not what we want;
+        That's a little better, but what's up with that ugly timestamp of <code>2018-04-24T05:10:49.382Z</code>? That's not what we want;
         we want a clear statement like <code>3 days</code> to show how old the Tweet is. Luckily we can easily fix that using a library
         called <a href="http://momentjs.com/">moment</a>.
       </p>
@@ -267,6 +269,7 @@ export default (props) => {
       </p>
 
       <Markdown type="jsx" text={`
+      // src/components/Tweet.js
       import moment from 'moment';
 
       ...
@@ -308,7 +311,7 @@ export default (props) => {
       </p>
       <p>
         Then we're appending <code>fromNow()</code> to the end of that statement to convert the timestamp from the
-        format <code>2016-10-04T05:10:49.382Z</code> into a human-readable string like <code>3 days ago</code>.
+        format <code>2018-04-24T05:10:49.382Z</code> into a human-readable string like <code>3 days ago</code>.
       </p>
       <p>
         And finally, while we could leave it at that, the word <em>"ago"</em> in the phrase <em>"3 days ago"</em> is
@@ -352,7 +355,7 @@ export default (props) => {
             tweet: PropTypes.object.isRequired
           },
 
-          render: function() {
+          render() {
             const { tweet } = this.props;
             const timestamp = moment(tweet.data.createdAt).fromNow().split(' ago')[0];
 
@@ -482,7 +485,7 @@ export default (props) => {
             tweets: PropTypes.object.isRequired
           },
 
-          getDefaultProps: function() {
+          getDefaultProps() {
             const tweet = {
               id: 1,
               cid: 'c1',
@@ -491,7 +494,7 @@ export default (props) => {
                 id: 1,
                 userId: 1,
                 text: 'Nothing can beat science!',
-                createdAt: '2016-10-04T05:10:49.382Z'
+                createdAt: '2018-04-24T05:10:49.382Z'
               }
             };
 
@@ -503,13 +506,13 @@ export default (props) => {
             }
           },
 
-          renderTweet: function(tweet) {
+          renderTweet(tweet) {
             return (
               <Tweet key={tweet.id} tweet={tweet} />
             );
           },
 
-          render: function() {
+          render() {
             const { tweets } = this.props;
 
             return (
@@ -569,7 +572,7 @@ export default (props) => {
               id: 1,
               userId: 1,
               text: 'Nothing can beat science!',
-              createdAt: '2016-10-04T05:10:49.382Z'
+              createdAt: '2018-04-24T05:10:49.382Z'
             }
           };
 
@@ -603,7 +606,7 @@ export default (props) => {
                 id: 1,
                 userId: 1,
                 text: 'Nothing can beat science!',
-                createdAt: '2016-10-04T05:10:49.382Z'
+                createdAt: '2018-04-24T05:10:49.382Z'
               }
             };
 

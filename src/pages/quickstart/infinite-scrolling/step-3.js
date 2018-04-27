@@ -41,7 +41,7 @@ export default (props) => {
         export default createReactClass({
           displayName: 'Feed',
 
-          render: function() {
+          render() {
             return (
               <div className="feed">
                 <h2 className="title">
@@ -261,13 +261,13 @@ export default (props) => {
             onLoadMore: PropTypes.func.isRequired
           },
 
-          renderTweet: function(tweet) {
+          renderTweet(tweet) {
             return (
               <Tweet key={tweet.id || tweet.cid} tweet={tweet} />
             );
           },
 
-          render: function() {
+          render() {
             const { pages } = this.props;
             const numberOfPages = pages.length;
             const firstPage = pages[0];

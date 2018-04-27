@@ -45,7 +45,7 @@ export default (props) => {
             user: PropTypes.object.isRequired
           },
 
-          isAuthorized: function(storeState) {
+          isAuthorized(storeState) {
             const { tweet } = this.props;
             const { user } = this.context;
 
@@ -261,7 +261,7 @@ export default (props) => {
             tweet: PropTypes.object.isRequired
           },
 
-          onDestroy: function() {
+          onDestroy() {
             const { tweet } = this.props;
 
             function destroyTweet() {
@@ -276,7 +276,7 @@ export default (props) => {
             });
           },
 
-          render: function() {
+          render() {
             return (
               <a className="link" onClick={this.onDestroy}>
                 delete

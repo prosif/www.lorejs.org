@@ -45,11 +45,10 @@ export default (props) => {
       </p>
 
       <Markdown text={`
-      render: function() {
-        var tweet = this.props.tweet;
-        var user = this.props.user;
-        var timestamp = moment(tweet.data.createdAt).fromNow().split(' ago')[0];
-        var isOptimistic = (
+      render() {
+        const { tweet, user } = this.props;
+        const timestamp = moment(tweet.data.createdAt).fromNow().split(' ago')[0];
+        const isOptimistic = (
           tweet.state === PayloadStates.CREATING ||
           tweet.state === PayloadStates.UPDATING ||
           tweet.state === PayloadStates.DELETING

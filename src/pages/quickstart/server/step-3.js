@@ -40,7 +40,7 @@ export default (props) => {
         id: 1,
         userId: 1,
         text: "Ayla fight while alive! Win and live. Lose and die.",
-        createdAt: "2016-11-26T04:03:25.546Z"
+        createdAt: "2018-04-24T04:03:25.546Z"
       }
       `}/>
 
@@ -53,7 +53,7 @@ export default (props) => {
         id: 1,
         user: 1,
         text: "Ayla fight while alive! Win and live. Lose and die.",
-        createdAt: "2016-11-26T04:03:25.546Z"
+        createdAt: "2018-04-24T04:03:25.546Z"
       }
       `}/>
 
@@ -109,11 +109,12 @@ export default (props) => {
       </p>
 
       <Markdown text={`
+      // src/models/tweet.js
       export default {
         ...
         properties: {
-          // parse: function(resp, options) {
-          //  return resp;
+          // parse: function(response, options) {
+          //  return response;
           // }
         }
         ...
@@ -125,12 +126,13 @@ export default (props) => {
       </p>
 
       <Markdown type="jsx" text={`
+      // src/models/tweet.js
       export default {
         ...
         properties: {
-          parse: function(resp, options) {
-            resp.userId = resp.user;
-            return resp;
+          parse: function(response, options) {
+            response.userId = response.user;
+            return response;
           }
         }
         ...
@@ -193,9 +195,9 @@ export default (props) => {
 
           properties: {
 
-            parse: function(resp, options) {
-              resp.userId = resp.user;
-              return resp;
+            parse: function(response, options) {
+              response.userId = response.user;
+              return response;
             }
 
           }
@@ -207,9 +209,9 @@ export default (props) => {
 
           properties: {
 
-            parse: function(resp, options) {
-              resp.userId = resp.user;
-              return resp;
+            parse: function(response, options) {
+              response.userId = response.user;
+              return response;
             }
 
           }
@@ -221,9 +223,9 @@ export default (props) => {
 
           properties: {
 
-            parse: function(resp, options) {
-              resp.userId = resp.user;
-              return resp;
+            parse: function(response, options) {
+              response.userId = response.user;
+              return response;
             }
 
           }

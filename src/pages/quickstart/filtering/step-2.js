@@ -41,7 +41,7 @@ export default (props) => {
         export default createReactClass({
           displayName: 'UserTweets',
 
-          render: function() {
+          render() {
             const { params } = this.props;
 
             return (
@@ -95,7 +95,7 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        render: function() {
+        render() {
           const { params } = this.props;
 
           return (
@@ -313,13 +313,13 @@ export default (props) => {
             onLoadMore: PropTypes.func.isRequired
           },
 
-          renderTweet: function(tweet) {
+          renderTweet(tweet) {
             return (
               <Tweet key={tweet.id || tweet.cid} tweet={tweet} />
             );
           },
 
-          render: function() {
+          render() {
             const { pages } = this.props;
             const numberOfPages = pages.length;
             const firstPage = pages[0];

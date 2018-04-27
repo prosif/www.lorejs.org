@@ -97,8 +97,8 @@ export default (props) => {
         ...
         collections: {
           properties: {
-            // parse(attributes) {
-            //   return attributes;
+            // parse: function(response) {
+            //   return response;
             // }
           }
         }
@@ -112,13 +112,12 @@ export default (props) => {
         </p>
       </blockquote>
       <p>
-        When the <code>/tweets</code> endpoint returns data, that data is passed to this <code>parse()</code> method,
-        which is expected to return an array of resources.
+        When the <code>/tweets</code> endpoint returns data, that data is passed to the <code>parse()</code> method
+        as the <code>response</code> argument, and this method is expected to return an array of resources.
       </p>
       <p>
-        The default behavior is to return whatever data was provided (referred to here as <code>attributes</code>),
-        and when we were using our mock API this worked just fine, because the original API response <em>was</em> an
-        array of tweets.
+        The default behavior is to return whatever data was provided, and when we were using our mock API, that
+        wasn't a problem, because the original API response <em>was</em> an array of tweets.
       </p>
       <p>
         But now the array we want is embedded inside the <code>data</code> property of the server response, so we
@@ -132,8 +131,8 @@ export default (props) => {
       ...
         collections: {
           properties: {
-            parse(attributes) {
-              return attributes.data;
+            parse: function(response) {
+              return response.data;
             }
           }
         }
@@ -179,8 +178,8 @@ export default (props) => {
 
             collections: {
               properties: {
-                parse: function(attributes) {
-                  return attributes.data;
+                parse: function(response) {
+                  return response.data;
                 }
               }
             }
@@ -198,8 +197,8 @@ export default (props) => {
 
             collections: {
               properties: {
-                parse(attributes) {
-                  return attributes.data;
+                parse: function(response) {
+                  return response.data;
                 }
               }
             }
@@ -217,8 +216,8 @@ export default (props) => {
 
             collections: {
               properties: {
-                parse(attributes) {
-                  return attributes.data;
+                parse: function(response) {
+                  return response.data;
                 }
               }
             }

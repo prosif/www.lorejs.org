@@ -42,7 +42,7 @@ export default (props) => {
             tweet: PropTypes.object.isRequired
           },
 
-          render: function() {
+          render() {
             const { tweet } = this.props;
 
             return (
