@@ -5,6 +5,7 @@ import Markdown from '../../../components/Markdown';
 import CodeTabs from '../../../components/CodeTabs';
 import CodeTab from '../../../components/CodeTab';
 import QuickstartBranch from '../../../components/QuickstartBranch';
+import image from '../../../assets/images/quickstart/infinite-scrolling/final.png';
 
 export default (props) => {
   return (
@@ -96,7 +97,7 @@ export default (props) => {
         If everything went well, your application should look like this (exactly the same):
       </p>
 
-      <img className="drop-shadow" src="/assets/images/quickstart/server/step-2.png" />
+      <img className="drop-shadow" src={image} />
 
       <h2>
         Code Changes
@@ -112,13 +113,13 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-
+        TODO
         `}/>
         <CodeTab syntax="ES6" text={`
-
+        TODO
         `}/>
         <CodeTab syntax="ESNext" text={`
-
+        TODO
         `}/>
       </CodeTabs>
 

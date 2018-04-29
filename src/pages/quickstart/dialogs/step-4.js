@@ -5,6 +5,8 @@ import Markdown from '../../../components/Markdown';
 import CodeTabs from '../../../components/CodeTabs';
 import CodeTab from '../../../components/CodeTab';
 import QuickstartBranch from '../../../components/QuickstartBranch';
+import doubleBackdropImage from '../../../assets/images/quickstart/dialogs/double-backdrop.png';
+import image from '../../../assets/images/quickstart/dialogs/step-3.png';
 
 export default (props) => {
   return (
@@ -70,6 +72,8 @@ export default (props) => {
         With that change in place, the application will still work, but you'll notice that now when you launch the
         dialog, it now has a super dark backdrop that it didn't before.
       </p>
+
+      <img className="drop-shadow" src={doubleBackdropImage} />
 
       <h3>
         Why does this happen?
@@ -248,7 +252,7 @@ export default (props) => {
         If everything went well, your application should now look like this.
       </p>
 
-      {/*<img className="drop-shadow" src="/assets/images/quickstart/dialogs/step-3.png" />*/}
+      <img className="drop-shadow" src={image} />
 
       <h2>
         Code Changes

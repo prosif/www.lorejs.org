@@ -5,6 +5,8 @@ import Markdown from '../../../components/Markdown';
 import CodeTabs from '../../../components/CodeTabs';
 import CodeTab from '../../../components/CodeTab';
 import QuickstartBranch from '../../../components/QuickstartBranch';
+import loginImage from '../../../assets/images/quickstart/authentication/login.png';
+import authorizeImage from '../../../assets/images/quickstart/authentication/authorize.png';
 
 export default (props) => {
   return (
@@ -172,7 +174,7 @@ export default (props) => {
         dialog to be skipped <a href="https://auth0.com/docs/api-auth/user-consent#skipping-consent-for-first-party-clients">when
         an application is redirecting to localhost</a>.
       </p>
-      <img className="drop-shadow" src="/assets/images/quickstart/authentication/step-2b.png" />
+      <img className="drop-shadow" src={authorizeImage} />
 
       <h3>
         Redirect Error after Login
@@ -200,10 +202,11 @@ export default (props) => {
       </h3>
 
       <p>
-        If everything went well, your application should now look like this.
+        If everything went well, your application should now look like this when you navigate to
+        the <code>/login</code> route:
       </p>
 
-      <img className="drop-shadow" src="/assets/images/quickstart/authentication/step-2.png" />
+      <img className="drop-shadow" src={loginImage} />
 
       <h2>
         Code Changes

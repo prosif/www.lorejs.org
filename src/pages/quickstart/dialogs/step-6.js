@@ -5,6 +5,7 @@ import Markdown from '../../../components/Markdown';
 import CodeTabs from '../../../components/CodeTabs';
 import CodeTab from '../../../components/CodeTab';
 import QuickstartBranch from '../../../components/QuickstartBranch';
+import image from '../../../assets/images/quickstart/dialogs/step-6.png';
 
 export default (props) => {
   return (
@@ -388,7 +389,7 @@ export default (props) => {
         If everything went well, your application should now look like this.
       </p>
 
-      <img className="drop-shadow" src="/assets/images/quickstart/dialogs/step-5.png" />
+      <img className="drop-shadow" src={image} />
 
       <h2>
         Code Changes
@@ -547,13 +548,6 @@ export default (props) => {
         dialogs: {
           create: fields,
           update: fields
-        },
-
-        properties: {
-          parse: function(response, options) {
-            response.userId = response.user;
-            return response;
-          }
         }
 
       }

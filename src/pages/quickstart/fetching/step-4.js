@@ -5,6 +5,7 @@ import Markdown from '../../../components/Markdown';
 import CodeTabs from '../../../components/CodeTabs';
 import CodeTab from '../../../components/CodeTab';
 import QuickstartBranch from '../../../components/QuickstartBranch';
+import image from '../../../assets/images/quickstart/fetching/step-4.png';
 
 export default (props) => {
   return (
@@ -159,10 +160,10 @@ export default (props) => {
         Visual Check-in
       </h3>
       <p>
-        If everything went well, your application should now look like this.
+        If everything went well, your application should now look like this when the Feed is loading:
       </p>
 
-      <img className="drop-shadow" src="/assets/images/quickstart/fetching/step-3.png" />
+      <img className="drop-shadow" src={image} />
 
       <h2>
         Code Changes

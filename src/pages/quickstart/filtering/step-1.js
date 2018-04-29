@@ -5,6 +5,7 @@ import Markdown from '../../../components/Markdown';
 import CodeTabs from '../../../components/CodeTabs';
 import CodeTab from '../../../components/CodeTab';
 import QuickstartBranch from '../../../components/QuickstartBranch';
+import image from '../../../assets/images/quickstart/filtering/step-1.png';
 
 export default (props) => {
   return (
@@ -32,9 +33,7 @@ export default (props) => {
       `}/>
 
       <p>
-        Update the code to look like this. We're going to add two links; one to display all tweets (the Feed) and
-        one to display only the tweets belonging to a specific user. In this case, we're going to call that link
-        "My Tweets" and use it to display the current user's tweets.
+        Update the code to look like this:
       </p>
 
       <CodeTabs>
@@ -135,16 +134,23 @@ export default (props) => {
         export default Filter;
         `}/>
       </CodeTabs>
+      <p>
+        In the code above, we've added two links; one to display all tweets (the Feed) and one to display only the
+        tweets belonging to a specific user. In this case, we're going to call that link "My Tweets" and use it to
+        display the current user's tweets.
+      </p>
 
       <h3>
         Update Layout
       </h3>
       <p>
-        With our <code>Feed</code> component created, import it into the <code>Layout</code> component and insert it right below the <code>Profile</code>:
+        With our <code>Feed</code> component created, import it into the <code>Layout</code> component and insert it
+        right below the <code>Profile</code>:
       </p>
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
+        // src/components/Layout.js
         ...
         import Filter from './Filter';
 
@@ -173,6 +179,7 @@ export default (props) => {
         });
         `}/>
         <CodeTab syntax="ES6" text={`
+        // src/components/Layout.js
         ...
         import Filter from './Filter';
 
@@ -201,6 +208,7 @@ export default (props) => {
         ...
         `}/>
         <CodeTab syntax="ESNext" text={`
+        // src/components/Layout.js
         ...
         import Filter from './Filter';
 
@@ -243,7 +251,7 @@ export default (props) => {
         If everything went well, your application should now look like this.
       </p>
 
-      <img className="drop-shadow" src="/assets/images/quickstart/filtering/step-1.png" />
+      <img className="drop-shadow" src={image} />
 
       <h2>
         Code Changes
@@ -262,7 +270,7 @@ export default (props) => {
         import React from 'react';
         import createReactClass from 'create-react-class';
         import PropTypes from 'prop-types';
-        import { Link } from 'react-router';
+        import { Link, IndexLink } from 'react-router';
 
         export default createReactClass({
           displayName: 'Filter',
@@ -277,9 +285,9 @@ export default (props) => {
             return (
               <div className="filter">
                 <ul className="list-group">
-                  <Router.IndexLink className="list-group-item" activeClassName="active" to="/">
+                  <IndexLink className="list-group-item" activeClassName="active" to="/">
                     Feed
-                  </Router.IndexLink>
+                  </IndexLink>
                   <Link className="list-group-item" activeClassName="active" to={"/users/" + user.id}>
                     My Tweets
                   </Link>
@@ -364,7 +372,7 @@ export default (props) => {
         <CodeTab syntax="ES5" text={`
         import React from 'react';
         import createReactClass from 'create-react-class';
-        import logo from '../../assets/images/logo.png';
+        import PropTypes from 'prop-types';
         import Header from './Header';
         import Profile from './Profile';
         import Filter from './Filter';
@@ -395,6 +403,7 @@ export default (props) => {
         `}/>
         <CodeTab syntax="ES6" text={`
         import React from 'react';
+        import PropTypes from 'prop-types';
         import Header from './Header';
         import Profile from './Profile';
         import Filter from './Filter';
@@ -426,6 +435,7 @@ export default (props) => {
         `}/>
         <CodeTab syntax="ESNext" text={`
         import React from 'react';
+        import PropTypes from 'prop-types';
         import Header from './Header';
         import Profile from './Profile';
         import Filter from './Filter';

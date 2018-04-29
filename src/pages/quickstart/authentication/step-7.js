@@ -5,6 +5,7 @@ import Markdown from '../../../components/Markdown';
 import CodeTabs from '../../../components/CodeTabs';
 import CodeTab from '../../../components/CodeTab';
 import QuickstartBranch from '../../../components/QuickstartBranch';
+import image from '../../../assets/images/quickstart/authentication/step-1.png';
 
 export default (props) => {
   return (
@@ -48,22 +49,22 @@ export default (props) => {
         ],
         "user": {
           "id": 1,
-          "nickname": "ayla",
-          "avatar": "https://cloud.githubusercontent.com/assets/2637399/19027069/a356e82a-88e1-11e6-87d8-e3e74f55c069.png"
+          "nickname": "marle",
+          "avatar": "https://cloud.githubusercontent.com/assets/2637399/19027074/a37105c0-88e1-11e6-9645-3e1af37671f7.png"
         }
       }
       `}/>
 
       <p>
         With this change in place, if you navigate to <code>http://localhost:1337/user</code> the API will return
-        an object telling us that we are Ayla:
+        an object telling us that we are Marle:
       </p>
 
       <Markdown type="jsx" text={`
       {
         "id": 1,
-        "nickname": "ayla",
-        "avatar": "https://cloud.githubusercontent.com/assets/2637399/19027069/a356e82a-88e1-11e6-87d8-e3e74f55c069.png"
+        "nickname": "marle",
+        "avatar": "https://cloud.githubusercontent.com/assets/2637399/19027074/a37105c0-88e1-11e6-9645-3e1af37671f7.png"
       }
       `}/>
 
@@ -101,7 +102,7 @@ export default (props) => {
         If everything went well, your application should now look like this. Exactly the same :)
       </p>
 
-      <img className="drop-shadow" src="/assets/images/quickstart/authentication/step-6.png" />
+      <img className="drop-shadow" src={image} />
 
 
       <h2>
@@ -201,8 +202,8 @@ export default (props) => {
         ],
         "user": {
           "id": 1,
-          "nickname": "ayla",
-          "avatar": "https://cloud.githubusercontent.com/assets/2637399/19027069/a356e82a-88e1-11e6-87d8-e3e74f55c069.png"
+          "nickname": "marle",
+          "avatar": "https://cloud.githubusercontent.com/assets/2637399/19027074/a37105c0-88e1-11e6-9645-3e1af37671f7.png"
         }
       }
       `} />

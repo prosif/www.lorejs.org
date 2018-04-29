@@ -5,6 +5,7 @@ import Markdown from '../../../components/Markdown';
 import CodeTabs from '../../../components/CodeTabs';
 import CodeTab from '../../../components/CodeTab';
 import QuickstartBranch from '../../../components/QuickstartBranch';
+import image from '../../../assets/images/quickstart/data/final.png';
 
 export default (props) => {
   return (
@@ -19,7 +20,7 @@ export default (props) => {
         like this:
       </p>
 
-      <img className="drop-shadow" src="/assets/images/quickstart/data/step-3.png" />
+      <img className="drop-shadow" src={image} />
 
       <h3>
         Lore's Data Structure

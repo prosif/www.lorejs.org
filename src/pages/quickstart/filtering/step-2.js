@@ -5,6 +5,7 @@ import Markdown from '../../../components/Markdown';
 import CodeTabs from '../../../components/CodeTabs';
 import CodeTab from '../../../components/CodeTab';
 import QuickstartBranch from '../../../components/QuickstartBranch';
+import image from '../../../assets/images/quickstart/filtering/step-2.png';
 
 export default (props) => {
   return (
@@ -34,15 +35,22 @@ export default (props) => {
         import React from 'react';
         import createReactClass from 'create-react-class';
         import PropTypes from 'prop-types';
-        import _ from 'lodash';
+        import moment from 'moment';
+        import PayloadStates from '../constants/PayloadStates';
         import InfiniteScrollingList from './InfiniteScrollingList';
         import Tweet from './Tweet';
 
         export default createReactClass({
           displayName: 'UserTweets',
 
+          getInitialState() {
+            return {
+              timestamp: new Date().toISOString()
+            };
+          },
+
           render() {
-            const { params } = this.props;
+            const { timestamp } = this.state;
 
             return (
               <div className="feed">
@@ -50,11 +58,37 @@ export default (props) => {
                   Feed
                 </h2>
                 <InfiniteScrollingList
+                  selectOther={(getState) => {
+                    return getState('tweet.all', {
+                      where: function(tweet) {
+                        const isOptimistic = !tweet.id;
+                        const isNew = moment(tweet.data.createdAt).diff(timestamp) > 0;
+                        return isOptimistic || isNew;
+                      },
+                      sortBy: function(model) {
+                        return -moment(model.data.createdAt).unix();
+                      },
+                      exclude: function(tweet) {
+                        return tweet.state === PayloadStates.DELETED;
+                      }
+                    });
+                  }}
                   select={(getState) => {
                     return getState('tweet.find', {
+                      where: {
+                        where: {
+                          createdAt: {
+                            '<=': timestamp
+                          }
+                        }
+                      },
                       pagination: {
                         sort: 'createdAt DESC',
-                        page: 1
+                        page: 1,
+                        populate: 'user'
+                      },
+                      exclude: function(tweet) {
+                        return tweet.state === PayloadStates.DELETED;
                       }
                     });
                   }}
@@ -64,15 +98,22 @@ export default (props) => {
                     return getState('tweet.find', _.defaultsDeep({
                       pagination: {
                         page: lastPageNumber + 1
+                      },
+                      exclude: function(tweet) {
+                        return tweet.state === PayloadStates.DELETED;
                       }
                     }, lastPage.query));
                   }}
                   refresh={(page, getState) => {
-                    return getState('tweet.find', page.query);
+                    return getState('tweet.find', _.defaultsDeep({
+                      exclude: function(tweet) {
+                        return tweet.state === PayloadStates.DELETED;
+                      }
+                    }, page.query));
                   }}
                   row={(tweet) => {
                     return (
-                      <Tweet key={tweet.id} tweet={tweet} />
+                      <Tweet key={tweet.id || tweet.cid} tweet={tweet} />
                     );
                   }}
                 />
@@ -102,14 +143,39 @@ export default (props) => {
             <div className="feed">
               // ...
               <InfiniteScrollingList
+                selectOther={(getState) => {
+                  return getState('tweet.all', {
+                    where: function(tweet) {
+                      const isOptimistic = !tweet.id;
+                      const isNew = moment(tweet.data.createdAt).diff(timestamp) > 0;
+                      const isByUser = tweet.data.user === Number(params.userId);
+                      return (isOptimistic || isNew) && isByUser;
+                    },
+                    sortBy: function(model) {
+                      return -moment(model.data.createdAt).unix();
+                    },
+                    exclude: function(tweet) {
+                      return tweet.state === PayloadStates.DELETED;
+                    }
+                  });
+                }}
                 select={(getState) => {
                   return getState('tweet.find', {
                     where: {
-                      user: params.userId
-                    }
+                      where: {
+                        createdAt: {
+                          '<=': timestamp
+                        },
+                        user: Number(params.userId)
+                      }
+                    },
                     pagination: {
                       sort: 'createdAt DESC',
-                      page: 1
+                      page: 1,
+                      populate: 'user'
+                    },
+                    exclude: function(tweet) {
+                      return tweet.state === PayloadStates.DELETED;
                     }
                   });
                 }}
@@ -127,14 +193,39 @@ export default (props) => {
             <div className="feed">
               // ...
               <InfiniteScrollingList
+                selectOther={(getState) => {
+                  return getState('tweet.all', {
+                    where: function(tweet) {
+                      const isOptimistic = !tweet.id;
+                      const isNew = moment(tweet.data.createdAt).diff(timestamp) > 0;
+                      const isByUser = tweet.data.user === Number(params.userId);
+                      return (isOptimistic || isNew) && isByUser;
+                    },
+                    sortBy: function(model) {
+                      return -moment(model.data.createdAt).unix();
+                    },
+                    exclude: function(tweet) {
+                      return tweet.state === PayloadStates.DELETED;
+                    }
+                  });
+                }}
                 select={(getState) => {
                   return getState('tweet.find', {
                     where: {
-                      user: params.userId
-                    }
+                      where: {
+                        createdAt: {
+                          '<=': timestamp
+                        },
+                        user: Number(params.userId)
+                      }
+                    },
                     pagination: {
                       sort: 'createdAt DESC',
-                      page: 1
+                      page: 1,
+                      populate: 'user'
+                    },
+                    exclude: function(tweet) {
+                      return tweet.state === PayloadStates.DELETED;
                     }
                   });
                 }}
@@ -152,14 +243,39 @@ export default (props) => {
             <div className="feed">
               // ...
               <InfiniteScrollingList
+                selectOther={(getState) => {
+                  return getState('tweet.all', {
+                    where: function(tweet) {
+                      const isOptimistic = !tweet.id;
+                      const isNew = moment(tweet.data.createdAt).diff(timestamp) > 0;
+                      const isByUser = tweet.data.user === Number(params.userId);
+                      return (isOptimistic || isNew) && isByUser;
+                    },
+                    sortBy: function(model) {
+                      return -moment(model.data.createdAt).unix();
+                    },
+                    exclude: function(tweet) {
+                      return tweet.state === PayloadStates.DELETED;
+                    }
+                  });
+                }}
                 select={(getState) => {
                   return getState('tweet.find', {
                     where: {
-                      user: params.userId
-                    }
+                      where: {
+                        createdAt: {
+                          '<=': timestamp
+                        },
+                        user: Number(params.userId)
+                      }
+                    },
                     pagination: {
                       sort: 'createdAt DESC',
-                      page: 1
+                      page: 1,
+                      populate: 'user'
+                    },
+                    exclude: function(tweet) {
+                      return tweet.state === PayloadStates.DELETED;
                     }
                   });
                 }}
@@ -173,19 +289,17 @@ export default (props) => {
 
       <p>
         Here we've extracted <code>params</code> from <code>props</code>, which is automatically provided
-        by <code>react-router</code>, and modified our <code>getState</code> call.
+        by <code>react-router</code>, so that we can get the <code>userId</code> provided in the URL.
       </p>
-
       <p>
-        The second argument of the <code>getState</code> call actually supports multiple properties. We introduced
-        the <code>pagination</code> property previously, and now we're introducing the <code>where</code> property,
-        which is intended to be used to describe filtering criteria. Since we only want to view tweets by a specific
-        user, we've passed in a <code>where</code> clause that provides an id for the user we are interested in.
+        For the <code>selectOther()</code> callback, we've added an <code>isByUser</code> variable, to detect whether
+        the tweet is by the user with the <code>userId</code>. This will mean that only tweets created by the current
+        user will show up on this page.
       </p>
-
       <p>
-        That user id is going to come from a query parameter called <code>userId</code>, which React Router provides
-        through the <code>params</code> prop.
+        For the <code>select()</code> callback, we did something similar, added the <code>user</code> to the query
+        parameters, so that the API will only return tweets created by that user. That means the Feed on the "My
+        Tweets" page will consist only of tweets created by a single user.
       </p>
 
       <h3>
@@ -196,62 +310,26 @@ export default (props) => {
         route for <code>/users/:userId</code> that will display that component.
       </p>
 
-      <CodeTabs>
-        <CodeTab syntax="ES5" text={`
-        ...
-        import UserTweets from './src/components/UserTweets';
+      <Markdown text={`
+      // routes.js
+      ...
+      import UserTweets from './src/components/UserTweets';
 
-        export default (
-          <Route>
-            <Route path="/login" component={Login} />
-            <Route path="/logout" component={Logout} />
+      export default (
+        <Route>
+          <Route path="/login" component={Login} />
+          <Route path="/logout" component={Logout} />
+          <Route path="/auth/callback" component={AuthCallback} />
 
-            <Route component={UserIsAuthenticated(Master)}>
-              <Route path="/" component={Layout}>
-                <IndexRoute component={Feed} />
-                <Route path="users/:userId" component={UserTweets} />
-              </Route>
+          <Route component={UserIsAuthenticated(Master)}>
+            <Route path="/" component={Layout}>
+              <IndexRoute component={Feed} />
+              <Route path="users/:userId" component={UserTweets} />
             </Route>
           </Route>
-        );
-        `}/>
-        <CodeTab syntax="ES6" text={`
-        ...
-        import UserTweets from './src/components/UserTweets';
-
-        export default (
-          <Route>
-            <Route path="/login" component={Login} />
-            <Route path="/logout" component={Logout} />
-
-            <Route component={UserIsAuthenticated(Master)}>
-              <Route path="/" component={Layout}>
-                <IndexRoute component={Feed} />
-                <Route path="users/:userId" component={UserTweets} />
-              </Route>
-            </Route>
-          </Route>
-        );
-        `}/>
-        <CodeTab syntax="ESNext" text={`
-        ...
-        import UserTweets from './src/components/UserTweets';
-
-        export default (
-          <Route>
-            <Route path="/login" component={Login} />
-            <Route path="/logout" component={Logout} />
-
-            <Route component={UserIsAuthenticated(Master)}>
-              <Route path="/" component={Layout}>
-                <IndexRoute component={Feed} />
-                <Route path="users/:userId" component={UserTweets} />
-              </Route>
-            </Route>
-          </Route>
-        );
-        `}/>
-      </CodeTabs>
+        </Route>
+      );
+      `}/>
 
       <p>
         With that change in place, refresh the browser and you'll now be able to view all the tweets or just the
@@ -263,10 +341,10 @@ export default (props) => {
       </h3>
 
       <p>
-        If everything went well, your application should now look like this.
+        If everything went well, your application should now look like this when you select "My Tweets":
       </p>
 
-      <img className="drop-shadow" src="/assets/images/quickstart/filtering/step-2.png" />
+      <img className="drop-shadow" src={image} />
 
 
       <h2>
@@ -280,216 +358,106 @@ export default (props) => {
       <h3>
         src/components/UserTweets.js
       </h3>
-
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
         import React from 'react';
         import createReactClass from 'create-react-class';
         import PropTypes from 'prop-types';
-        import { connect } from 'lore-hook-connect';
-        import Tweet from './Tweet';
+        import moment from 'moment';
         import PayloadStates from '../constants/PayloadStates';
-        import InfiniteScrolling from '../decorators/InfiniteScrolling';
-        import LoadMoreButton from './LoadMoreButton';
+        import InfiniteScrollingList from './InfiniteScrollingList';
+        import Tweet from './Tweet';
 
-        export default connect(function(getState, props) {
-          return {
-            tweets: getState('tweet.find', {
-              where: {
-                user: props.params.userId
-              },
-              pagination: {
-                page: '1'
-              }
-            })
-          }
-        })(
-        InfiniteScrolling({ propName: 'tweets', modelName: 'tweet' })(
-        createReactClass({
+        export default createReactClass({
           displayName: 'UserTweets',
 
-          propTypes: {
-            pages: PropTypes.array.isRequired,
-            onLoadMore: PropTypes.func.isRequired
-          },
-
-          renderTweet(tweet) {
-            return (
-              <Tweet key={tweet.id || tweet.cid} tweet={tweet} />
-            );
+          getInitialState() {
+            return {
+              timestamp: new Date().toISOString()
+            };
           },
 
           render() {
-            const { pages } = this.props;
-            const numberOfPages = pages.length;
-            const firstPage = pages[0];
-            const lastPage = pages[pages.length - 1];
-
-            if (numberOfPages === 1 && lastPage.state === PayloadStates.FETCHING) {
-              return (
-                <div className="loader" />
-              );
-            }
-
-            const tweetListItems = _.flatten(pages.map(function(tweets) {
-              return tweets.data.map(this.renderTweet);
-            }.bind(this)));
+            const { params } = this.props;
+            const { timestamp } = this.state;
 
             return (
               <div className="feed">
                 <h2 className="title">
                   Feed
                 </h2>
-                <ul className="media-list tweets">
-                  {tweetListItems}
-                </ul>
-                <LoadMoreButton
-                  lastPage={lastPage}
-                  onLoadMore={this.props.onLoadMore}
-                  nextPageMetaField="nextPage" />
+                <InfiniteScrollingList
+                  selectOther={(getState) => {
+                    return getState('tweet.all', {
+                      where: function(tweet) {
+                        const isOptimistic = !tweet.id;
+                        const isNew = moment(tweet.data.createdAt).diff(timestamp) > 0;
+                        const isByUser = tweet.data.user === Number(params.userId);
+                        return (isOptimistic || isNew) && isByUser;
+                      },
+                      sortBy: function(model) {
+                        return -moment(model.data.createdAt).unix();
+                      },
+                      exclude: function(tweet) {
+                        return tweet.state === PayloadStates.DELETED;
+                      }
+                    });
+                  }}
+                  select={(getState) => {
+                    return getState('tweet.find', {
+                      where: {
+                        where: {
+                          createdAt: {
+                            '<=': timestamp
+                          },
+                          user: Number(params.userId)
+                        }
+                      },
+                      pagination: {
+                        sort: 'createdAt DESC',
+                        page: 1,
+                        populate: 'user'
+                      },
+                      exclude: function(tweet) {
+                        return tweet.state === PayloadStates.DELETED;
+                      }
+                    });
+                  }}
+                  selectNextPage={(lastPage, getState) => {
+                    const lastPageNumber = lastPage.query.pagination.page;
+
+                    return getState('tweet.find', _.defaultsDeep({
+                      pagination: {
+                        page: lastPageNumber + 1
+                      },
+                      exclude: function(tweet) {
+                        return tweet.state === PayloadStates.DELETED;
+                      }
+                    }, lastPage.query));
+                  }}
+                  refresh={(page, getState) => {
+                    return getState('tweet.find', _.defaultsDeep({
+                      exclude: function(tweet) {
+                        return tweet.state === PayloadStates.DELETED;
+                      }
+                    }, page.query));
+                  }}
+                  row={(tweet) => {
+                    return (
+                      <Tweet key={tweet.id || tweet.cid} tweet={tweet} />
+                    );
+                  }}
+                />
               </div>
             );
           }
-
-        })
-        )
-        );
+        });
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React from 'react';
-        import PropTypes from 'prop-types';
-        import { connect } from 'lore-hook-connect';
-        import Tweet from './Tweet';
-        import PayloadStates from '../constants/PayloadStates';
-        import InfiniteScrolling from '../decorators/InfiniteScrolling';
-        import LoadMoreButton from './LoadMoreButton';
-
-        class UserTweets extends React.Component {
-
-          renderTweet(tweet) {
-            return (
-              <Tweet key={tweet.id || tweet.cid} tweet={tweet} />
-            );
-          }
-
-          render() {
-            const { pages } = this.props;
-            const numberOfPages = pages.length;
-            const firstPage = pages[0];
-            const lastPage = pages[pages.length - 1];
-
-            if (numberOfPages === 1 && lastPage.state === PayloadStates.FETCHING) {
-              return (
-                <div className="loader" />
-              );
-            }
-
-            const tweetListItems = _.flatten(pages.map(function(tweets) {
-              return tweets.data.map(this.renderTweet);
-            }.bind(this)));
-
-            return (
-              <div className="feed">
-                <h2 className="title">
-                  My Tweets
-                </h2>
-                <ul className="media-list tweets">
-                  {tweetListItems}
-                </ul>
-                <LoadMoreButton lastPage={lastPage} onLoadMore={this.props.onLoadMore} nextPageMetaField="nextPage" />
-              </div>
-            );
-          }
-
-        }
-
-        UserTweets.propTypes = {
-          pages: PropTypes.array.isRequired,
-          onLoadMore: PropTypes.func.isRequired
-        };
-
-        export default connect(function(getState, props) {
-          return {
-            tweets: getState('tweet.find', {
-              where: {
-                user: props.params.userId
-              },
-              pagination: {
-                page: '1'
-              }
-            })
-          }
-        })(
-          InfiniteScrolling({ propName: 'tweets', modelName: 'tweet' })
-        )(UserTweets);
+        TODO
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React from 'react';
-        import PropTypes from 'prop-types';
-        import { connect } from 'lore-hook-connect';
-        import Tweet from './Tweet';
-        import PayloadStates from '../constants/PayloadStates';
-        import InfiniteScrolling from '../decorators/InfiniteScrolling';
-        import LoadMoreButton from './LoadMoreButton';
-
-        @connect(function(getState, props) {
-          return {
-            tweets: getState('tweet.find', {
-              where: {
-                user: props.params.userId
-              },
-              pagination: {
-                page: '1'
-              }
-            })
-          }
-        })
-        @InfiniteScrolling({ propName: 'tweets', modelName: 'tweet' })
-        class UserTweets extends React.Component {
-
-          static propTypes = {
-            pages: PropTypes.array.isRequired,
-            onLoadMore: PropTypes.func.isRequired
-          };
-
-          renderTweet(tweet) {
-            return (
-              <Tweet key={tweet.id || tweet.cid} tweet={tweet} />
-            );
-          }
-
-          render() {
-            const { pages } = this.props;
-            const numberOfPages = pages.length;
-            const firstPage = pages[0];
-            const lastPage = pages[pages.length - 1];
-
-            if (numberOfPages === 1 && lastPage.state === PayloadStates.FETCHING) {
-              return (
-                <div className="loader" />
-              );
-            }
-
-            const tweetListItems = _.flatten(pages.map(function(tweets) {
-              return tweets.data.map(this.renderTweet);
-            }.bind(this)));
-
-            return (
-              <div className="feed">
-                <h2 className="title">
-                  My Tweets
-                </h2>
-                <ul className="media-list tweets">
-                  {tweetListItems}
-                </ul>
-                <LoadMoreButton lastPage={lastPage} onLoadMore={this.props.onLoadMore} nextPageMetaField="nextPage" />
-              </div>
-            );
-          }
-
-        }
-
-        export default UserTweets;
+        TODO
         `}/>
       </CodeTabs>
 
@@ -497,95 +465,43 @@ export default (props) => {
         routes.js
       </h3>
 
-      <CodeTabs>
-        <CodeTab syntax="ES5" text={`
-        import React from 'react';
-        import { Route, IndexRoute, Redirect } from 'react-router';
-        import UserIsAuthenticated from './src/decorators/UserIsAuthenticated';
+      <Markdown text={`
+      import React from 'react';
+      import { Route, IndexRoute, Redirect } from 'react-router';
 
-        /**
-         * Routes
-         */
-        import Master from './src/components/Master');
-        import Layout from './src/components/Layout');
-        import Feed from './src/components/Feed');
-        import Login from './src/components/Login');
-        import Logout from './src/components/Logout');
-        import UserTweets from './src/components/UserTweets');
+      /**
+       * Wrapping the Master component with this decorator provides an easy way
+       * to redirect the user to a login experience if we don't know who they are.
+       */
+      import UserIsAuthenticated from './src/decorators/UserIsAuthenticated';
 
-        export default (
-          <Route>
-            <Route path="/login" component={Login} />
-            <Route path="/logout" component={Logout} />
+      /**
+       * Routes are used to declare your view hierarchy
+       * See: https://github.com/ReactTraining/react-router/blob/v3/docs/API.md
+       */
+      import Master from './src/components/Master';
+      import Layout from './src/components/Layout';
+      import Feed from './src/components/Feed';
+      import Login from './src/components/Login';
+      import AuthCallback from './src/components/AuthCallback';
+      import Logout from './src/components/Logout';
+      import UserTweets from './src/components/UserTweets';
 
-            <Route component={UserIsAuthenticated(Master)}>
-              <Route path="/" component={Layout}>
-                <IndexRoute component={Feed} />
-                <Route path="users/:userId" component={UserTweets} />
-              </Route>
+      export default (
+        <Route>
+          <Route path="/login" component={Login} />
+          <Route path="/logout" component={Logout} />
+          <Route path="/auth/callback" component={AuthCallback} />
+
+          <Route component={UserIsAuthenticated(Master)}>
+            <Route path="/" component={Layout}>
+              <IndexRoute component={Feed} />
+              <Route path="users/:userId" component={UserTweets} />
             </Route>
           </Route>
-        );
-        `}/>
-        <CodeTab syntax="ES6" text={`
-        import React from 'react';
-        import { Route, IndexRoute, Redirect } from 'react-router';
-        import UserIsAuthenticated from './src/decorators/UserIsAuthenticated';
-
-        /**
-         * Routes
-         */
-        import Master from './src/components/Master';
-        import Layout from './src/components/Layout';
-        import Feed from './src/components/Feed';
-        import Login from './src/components/Login';
-        import Logout from './src/components/Logout';
-        import UserTweets from './src/components/UserTweets';
-
-        export default (
-          <Route>
-            <Route path="/login" component={Login} />
-            <Route path="/logout" component={Logout} />
-
-            <Route component={UserIsAuthenticated(Master)}>
-              <Route path="/" component={Layout}>
-                <IndexRoute component={Feed} />
-                <Route path="users/:userId" component={UserTweets} />
-              </Route>
-            </Route>
-          </Route>
-        );
-        `}/>
-        <CodeTab syntax="ESNext" text={`
-        import React from 'react';
-        import { Route, IndexRoute, Redirect } from 'react-router';
-        import UserIsAuthenticated from './src/decorators/UserIsAuthenticated';
-
-        /**
-         * Routes
-         */
-        import Master from './src/components/Master';
-        import Layout from './src/components/Layout';
-        import Feed from './src/components/Feed';
-        import Login from './src/components/Login';
-        import Logout from './src/components/Logout';
-        import UserTweets from './src/components/UserTweets';
-
-        export default (
-          <Route>
-            <Route path="/login" component={Login} />
-            <Route path="/logout" component={Logout} />
-
-            <Route component={UserIsAuthenticated(Master)}>
-              <Route path="/" component={Layout}>
-                <IndexRoute component={Feed} />
-                <Route path="users/:userId" component={UserTweets} />
-              </Route>
-            </Route>
-          </Route>
-        );
-        `}/>
-      </CodeTabs>
+        </Route>
+      );
+      `}/>
 
       <h2>
         Next Steps

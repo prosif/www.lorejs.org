@@ -5,6 +5,7 @@ import Markdown from '../../../components/Markdown';
 import CodeTabs from '../../../components/CodeTabs';
 import CodeTab from '../../../components/CodeTab';
 import QuickstartBranch from '../../../components/QuickstartBranch';
+import image from '../../../assets/images/quickstart/filtering/final.png';
 
 export default (props) => {
   return (
@@ -125,11 +126,11 @@ export default (props) => {
       </h3>
 
       <p>
-        If everything went well, your application should still look like this (exactly the same) but will now be hosted on
-        Surge and built for production!
+        If everything went well, your application should still look like this (exactly the same) but will now be
+        hosted on Now and built for production!
       </p>
 
-      <img className="drop-shadow" src="/assets/images/quickstart/filtering/step-1.png" />
+      <img className="drop-shadow" src={image} />
 
       <h2>
         Code Changes

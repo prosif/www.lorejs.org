@@ -5,6 +5,7 @@ import Markdown from '../../../components/Markdown';
 import CodeTabs from '../../../components/CodeTabs';
 import CodeTab from '../../../components/CodeTab';
 import QuickstartBranch from '../../../components/QuickstartBranch';
+import image from '../../../assets/images/quickstart/layout/step-1.png';
 
 export default (props) => {
   return (
@@ -67,7 +68,7 @@ export default (props) => {
         If everything went well, your application should now look like this.
       </p>
 
-      <img className="drop-shadow" src="/assets/images/quickstart/layout/step-1.png" />
+      <img className="drop-shadow" src={image} />
 
       <h2>
         Code Changes

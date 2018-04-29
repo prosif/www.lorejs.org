@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'gatsby-link';
 import Template from '../../../components/templates/Quickstart';
+import image from '../../../assets/images/quickstart/setup/final.png';
 
 export default (props) => {
   return (
@@ -17,7 +18,7 @@ export default (props) => {
         At the end of this section your application will look like this:
       </p>
 
-      <img className="drop-shadow" src="/assets/images/quickstart/setup/step-3.png" />
+      <img className="drop-shadow" src={image} />
 
       <h2>
         Next Steps

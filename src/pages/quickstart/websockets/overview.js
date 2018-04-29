@@ -5,6 +5,7 @@ import Markdown from '../../../components/Markdown';
 import CodeTabs from '../../../components/CodeTabs';
 import CodeTab from '../../../components/CodeTab';
 import QuickstartBranch from '../../../components/QuickstartBranch';
+import image from '../../../assets/images/quickstart/filtering/final.png';
 
 export default (props) => {
   return (
@@ -23,7 +24,7 @@ export default (props) => {
         At the end of this section your application will look like this (visually identical):
       </p>
 
-      <img className="drop-shadow" src="/assets/images/quickstart/filtering/step-1.png" />
+      <img className="drop-shadow" src={image} />
 
       <h2>
         Next Steps

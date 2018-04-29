@@ -4,6 +4,7 @@ import Template from '../../../components/templates/Quickstart';
 import Markdown from '../../../components/Markdown';
 import CodeTabs from '../../../components/CodeTabs';
 import CodeTab from '../../../components/CodeTab';
+import image from '../../../assets/images/quickstart/setup/final.png';
 
 export default (props) => {
   return (
@@ -70,7 +71,7 @@ export default (props) => {
         do, you should see this:
       </p>
 
-      <img className="drop-shadow" src="/assets/images/quickstart/setup/step-3.png" />
+      <img className="drop-shadow" src={image} />
 
       <blockquote>
         <p>

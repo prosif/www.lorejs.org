@@ -5,6 +5,7 @@ import Markdown from '../../../components/Markdown';
 import CodeTabs from '../../../components/CodeTabs';
 import CodeTab from '../../../components/CodeTab';
 import QuickstartBranch from '../../../components/QuickstartBranch';
+import image from '../../../assets/images/quickstart/fetching/final.png';
 
 export default (props) => {
   return (
@@ -123,7 +124,7 @@ export default (props) => {
         With this change in place, refresh the browser and you should see each tweet attributed to the correct user.
       </p>
 
-      <img className="drop-shadow" src="/assets/images/quickstart/fetching/step-5.png" />
+      <img className="drop-shadow" src={image} />
 
       <blockquote>
         <p>

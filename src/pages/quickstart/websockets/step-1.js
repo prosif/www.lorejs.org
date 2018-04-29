@@ -5,6 +5,7 @@ import Markdown from '../../../components/Markdown';
 import CodeTabs from '../../../components/CodeTabs';
 import CodeTab from '../../../components/CodeTab';
 import QuickstartBranch from '../../../components/QuickstartBranch';
+import image from '../../../assets/images/quickstart/filtering/final.png';
 
 export default (props) => {
   return (
@@ -36,11 +37,15 @@ export default (props) => {
       </p>
 
       <Markdown text={`
+      // index.js
+      ...
+      import websockets from 'lore-hook-websockets-sails';
+
       lore.summon({
         hooks: {
           // ...
-          router: require('lore-hook-router'),
-          websockets: require('lore-hook-websockets-sails')
+          router,
+          websockets
         }
       });
       `}/>
@@ -55,13 +60,13 @@ export default (props) => {
 
       <Markdown text={`
       // config/websockets.js
-      module.exports = {
+      export default {
         serverUrl: 'http://localhost:1337'
       };
       `}/>
 
       <p>
-        While the hook exposes many more config options, the only one we need for this example is the location
+        While the hook exposes more config options, the only one we need for this example is the location
         of the socket.io server, which runs on the same port as the Sails API.
       </p>
 
@@ -69,12 +74,12 @@ export default (props) => {
         Subscribe to Data
       </h2>
       <p>
-        Next, initialize the hook by subscribing to data for <code>tweets</code> in
-        the <code>Master</code> component when the application mounts, and unsubscribe to the data when
-        the application unmounts:
+        Next, initialize the hook by subscribing to data for <code>tweets</code> in the <code>Master</code> component
+        when the application mounts, and unsubscribe to the data when the application unmounts:
       </p>
 
       <Markdown text={`
+      // src/components/Master.js
       componentDidMount() {
         lore.websockets.tweet.connect();
         lore.websockets.tweet.subscribe();
@@ -100,7 +105,7 @@ export default (props) => {
         longer see an error in the console when you paginate after creating a tweet.
       </p>
 
-      <img className="drop-shadow" src="/assets/images/quickstart/filtering/step-1.png" />
+      <img className="drop-shadow" src={image} />
 
 
       <h2>

@@ -5,6 +5,7 @@ import Markdown from '../../../components/Markdown';
 import CodeTabs from '../../../components/CodeTabs';
 import CodeTab from '../../../components/CodeTab';
 import QuickstartBranch from '../../../components/QuickstartBranch';
+import image from '../../../assets/images/quickstart/layout/final.png';
 
 export default (props) => {
   return (
@@ -76,7 +77,7 @@ export default (props) => {
         be a clickable link that takes you back to the homepage.
       </p>
 
-      <img className="drop-shadow" src="/assets/images/quickstart/routing/step-1.png" />
+      <img className="drop-shadow" src={image} />
 
       <h2>
         Code Changes
