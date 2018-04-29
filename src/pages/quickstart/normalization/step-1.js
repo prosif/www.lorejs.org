@@ -26,61 +26,32 @@ export default (props) => {
       </h2>
       <p>
         To start, we need to update our network request to ask the API to populate the <code>user</code>. Open
-        the <code>Feed</code> component and modify the <code>connect</code> call to look like this (adding
-        the <code>populate</code> paramter to the pagination properties):
+        the <code>Feed</code> component and modify the <code>select()</code> callback to look like this (adding
+        the <code>populate</code> parameter to the pagination properties):
       </p>
 
-      <CodeTabs>
-        <CodeTab syntax="ES5" text={`
-        export default connect(function(getState, props) {
-          const { location } = props;
-
-          return {
-            tweets: getState('tweet.find', {
-              pagination: {
-                sort: 'createdAt DESC',
-                page: location.query.page || '1',
-                populate: 'user'
+      <Markdown text={`
+      // src/components/Feed.js
+      select={(getState) => {
+        return getState('tweet.find', {
+          where: {
+            where: {
+              createdAt: {
+                '<=': timestamp
               }
-            })
+            }
+          },
+          pagination: {
+            sort: 'createdAt DESC',
+            page: 1,
+            populate: 'user'
+          },
+          exclude: function(tweet) {
+            return tweet.state === PayloadStates.DELETED;
           }
-        })(
-          ...
-        );
-        `}/>
-        <CodeTab syntax="ES6" text={`
-        export default connect(function(getState, props) {
-          const { location } = props;
-
-          return {
-            tweets: getState('tweet.find', {
-              pagination: {
-                sort: 'createdAt DESC',
-                page: location.query.page || '1',
-                populate: 'user'
-              }
-            })
-          }
-        })(
-          ...
-        );
-        `}/>
-        <CodeTab syntax="ESNext" text={`
-        @connect(function(getState, props) {
-          const { location } = props;
-
-          return {
-            tweets: getState('tweet.find', {
-              pagination: {
-                sort: 'createdAt DESC',
-                page: location.query.page || '1',
-                populate: 'user'
-              }
-            })
-          }
-        })
-        `}/>
-      </CodeTabs>
+        });
+      }}
+      `}/>
       <p>
         If you refresh the page, you'll notice it no longer displays correctly.
       </p>
@@ -127,7 +98,7 @@ export default (props) => {
         export default {
 
           attributes: {
-            user: {
+            userId: {
               type: 'model',
               model: 'user'
             }
@@ -139,7 +110,7 @@ export default (props) => {
         export default {
 
           attributes: {
-            user: {
+            userId: {
               type: 'model',
               model: 'user'
             }
@@ -151,7 +122,7 @@ export default (props) => {
         export default {
 
           attributes: {
-            user: {
+            userId: {
               type: 'model',
               model: 'user'
             }
@@ -185,53 +156,59 @@ export default (props) => {
       <h2>
         Code Changes
       </h2>
-
       <p>
         Below is a list of files modified during this step.
       </p>
 
       <h3>
-        src/models/tweet.js
+        src/models/Tweet.js
       </h3>
-
-      <CodeTabs>
-        <CodeTab syntax="ES5" text={`
-        export default {
-
-          attributes: {
-            user: {
-              type: 'model',
-              model: 'user'
+      <Markdown text={`
+      const fields = {
+        data: {
+          text: ''
+        },
+        validators: {
+          text: [function(value) {
+            if (!value) {
+              return 'This field is required';
+            }
+          }]
+        },
+        fields: {
+          text: {
+            type: 'text',
+            props: {
+              label: 'Message',
+              placeholder: "What's happening?"
             }
           }
-
-        };
-        `}/>
-        <CodeTab syntax="ES6" text={`
-        export default {
-
-          attributes: {
-            user: {
-              type: 'model',
-              model: 'user'
-            }
-          }
-
         }
-        `}/>
-        <CodeTab syntax="ESNext" text={`
-        export default {
+      };
 
-          attributes: {
-            user: {
-              type: 'model',
-              model: 'user'
-            }
+      export default {
+
+        attributes: {
+          userId: {
+            type: 'model',
+            model: 'user'
           }
+        },
 
+        dialogs: {
+          create: fields,
+          update: fields
+        },
+
+        properties: {
+          parse: function(response, options) {
+            response.userId = response.user;
+            return response;
+          },
         }
-        `}/>
-      </CodeTabs>
+
+      }
+      `}/>
 
       <h3>
         src/components/Feed.js
@@ -242,225 +219,98 @@ export default (props) => {
         import React from 'react';
         import createReactClass from 'create-react-class';
         import PropTypes from 'prop-types';
-        import { connect } from 'lore-hook-connect';
-        import Tweet from './Tweet';
+        import moment from 'moment';
         import PayloadStates from '../constants/PayloadStates';
-        import InfiniteScrolling from '../decorators/InfiniteScrolling';
-        import LoadMoreButton from './LoadMoreButton';
+        import InfiniteScrollingList from './InfiniteScrollingList';
+        import Tweet from './Tweet';
 
-        export default connect(function(getState, props) {
-          const { location } = props;
-
-          return {
-            tweets: getState('tweet.find', {
-              pagination: {
-                sort: 'createdAt DESC',
-                page: location.query.page || '1',
-                populate: 'user'
-              }
-            })
-          }
-        })(
-        InfiniteScrolling({ propName: 'tweets', modelName: 'tweet' })(
-        createReactClass({
+        export default createReactClass({
           displayName: 'Feed',
 
-          propTypes: {
-            pages: PropTypes.array.isRequired,
-            onLoadMore: PropTypes.func.isRequired
-          },
-
-          renderTweet(tweet) {
-            return (
-              <Tweet key={tweet.id || tweet.cid} tweet={tweet} />
-            );
+          getInitialState() {
+            return {
+              timestamp: new Date().toISOString()
+            };
           },
 
           render() {
-            const { pages } = this.props;
-            const numberOfPages = pages.length;
-            const firstPage = pages[0];
-            const lastPage = pages[pages.length - 1];
-
-            if (numberOfPages === 1 && lastPage.state === PayloadStates.FETCHING) {
-              return (
-                <div className="feed">
-                  <h2 className="title">
-                    Feed
-                  </h2>
-                  <div className="loader"/>
-                </div>
-              );
-            }
-
-            const tweetListItems = _.flatten(pages.map(function(tweets) {
-              return tweets.data.map(this.renderTweet);
-            }.bind(this)));
+            const { timestamp } = this.state;
 
             return (
               <div className="feed">
                 <h2 className="title">
                   Feed
                 </h2>
-                <ul className="media-list tweets">
-                  {tweetListItems}
-                </ul>
-                <LoadMoreButton
-                  lastPage={lastPage}
-                  onLoadMore={this.props.onLoadMore}
-                  nextPageMetaField="nextPage"
+                <InfiniteScrollingList
+                  selectOther={(getState) => {
+                    return getState('tweet.all', {
+                      where: function(tweet) {
+                        const isOptimistic = !tweet.id;
+                        const isNew = moment(tweet.data.createdAt).diff(timestamp) > 0;
+                        return isOptimistic || isNew;
+                      },
+                      sortBy: function(model) {
+                        return -moment(model.data.createdAt).unix();
+                      },
+                      exclude: function(tweet) {
+                        return tweet.state === PayloadStates.DELETED;
+                      }
+                    });
+                  }}
+                  select={(getState) => {
+                    return getState('tweet.find', {
+                      where: {
+                        where: {
+                          createdAt: {
+                            '<=': timestamp
+                          }
+                        }
+                      },
+                      pagination: {
+                        sort: 'createdAt DESC',
+                        page: 1,
+                        populate: 'user'
+                      },
+                      exclude: function(tweet) {
+                        return tweet.state === PayloadStates.DELETED;
+                      }
+                    });
+                  }}
+                  selectNextPage={(lastPage, getState) => {
+                    const lastPageNumber = lastPage.query.pagination.page;
+
+                    return getState('tweet.find', _.defaultsDeep({
+                      pagination: {
+                        page: lastPageNumber + 1
+                      },
+                      exclude: function(tweet) {
+                        return tweet.state === PayloadStates.DELETED;
+                      }
+                    }, lastPage.query));
+                  }}
+                  refresh={(page, getState) => {
+                    return getState('tweet.find', _.defaultsDeep({
+                      exclude: function(tweet) {
+                        return tweet.state === PayloadStates.DELETED;
+                      }
+                    }, page.query));
+                  }}
+                  row={(tweet) => {
+                    return (
+                      <Tweet key={tweet.id || tweet.cid} tweet={tweet} />
+                    );
+                  }}
                 />
               </div>
             );
           }
-
-        })
-        )
-        );
+        });
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React from 'react';
-        import PropTypes from 'prop-types';
-        import Tweet from './Tweet';
-        import PayloadStates from '../constants/PayloadStates';
-        import InfiniteScrolling from '../decorators/InfiniteScrolling';
-        import LoadMoreButton from './LoadMoreButton';
-
-        class Feed extends React.Component {
-
-          renderTweet(tweet) {
-            return (
-              <Tweet key={tweet.id || tweet.cid} tweet={tweet} />
-            );
-          }
-
-          render() {
-            const { pages } = this.props;
-            const numberOfPages = pages.length;
-            const firstPage = pages[0];
-            const lastPage = pages[pages.length - 1];
-
-            if (numberOfPages === 1 && lastPage.state === PayloadStates.FETCHING) {
-              return (
-                <div className="loader" />
-              );
-            }
-
-            const tweetListItems = _.flatten(pages.map(function(tweets) {
-              return tweets.data.map(this.renderTweet);
-            }.bind(this)));
-
-            return (
-              <div className="feed">
-                <h2 className="title">
-                  Feed
-                </h2>
-                <ul className="media-list tweets">
-                  {tweetListItems}
-                </ul>
-                <LoadMoreButton
-                  lastPage={lastPage}
-                  onLoadMore={this.props.onLoadMore}
-                  nextPageMetaField="nextPage" />
-              </div>
-            );
-          }
-
-        }
-
-        Feed.propTypes ={
-          tweets: PropTypes.object.isRequired
-        };
-
-        export default connect(function(getState, props) {
-          const { location } = props;
-
-          return {
-            tweets: getState('tweet.find', {
-              pagination: {
-                sort: 'createdAt DESC',
-                page: location.query.page || '1',
-                populate: 'user'
-              }
-            })
-          }
-        })(
-        InfiniteScrolling({ propName: 'tweets', modelName: 'tweet' })(
-        Feed
-        )
-        );
+        TODO
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React from 'react';
-        import PropTypes from 'prop-types';
-        import { connect } from 'lore-hook-connect';
-        import Tweet from './Tweet';
-        import PayloadStates from '../constants/PayloadStates';
-        import InfiniteScrolling from '../decorators/InfiniteScrolling';
-        import LoadMoreButton from './LoadMoreButton';
-
-        @connect(function(getState, props) {
-          const { location } = props;
-
-          return {
-            tweets: getState('tweet.find', {
-              pagination: {
-                sort: 'createdAt DESC',
-                page: location.query.page || '1',
-                populate: 'user'
-              }
-            })
-          }
-        })
-        @InfiniteScrolling({ propName: 'tweets', modelName: 'tweet' })
-        class Feed extends React.Component {
-
-          static propTypes = {
-            pages: PropTypes.array.isRequired,
-            onLoadMore: PropTypes.func.isRequired
-          };
-
-          renderTweet(tweet) {
-            return (
-              <Tweet key={tweet.id || tweet.cid} tweet={tweet} />
-            );
-          }
-
-          render() {
-            const { pages } = this.props;
-            const numberOfPages = pages.length;
-            const firstPage = pages[0];
-            const lastPage = pages[pages.length - 1];
-
-            if (numberOfPages === 1 && lastPage.state === PayloadStates.FETCHING) {
-              return (
-                <div className="loader" />
-              );
-            }
-
-            const tweetListItems = _.flatten(pages.map(function(tweets) {
-              return tweets.data.map(this.renderTweet);
-            }.bind(this)));
-
-            return (
-              <div className="feed">
-                <h2 className="title">
-                  Feed
-                </h2>
-                <ul className="media-list tweets">
-                  {tweetListItems}
-                </ul>
-                <LoadMoreButton
-                  lastPage={lastPage}
-                  onLoadMore={this.props.onLoadMore}
-                  nextPageMetaField="nextPage" />
-              </div>
-            );
-          }
-
-        }
-
-        export default Feed;
+        TODO
         `}/>
       </CodeTabs>
 

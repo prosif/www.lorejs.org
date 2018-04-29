@@ -266,9 +266,9 @@ export default (props) => {
         import createReactClass from 'create-react-class';
         import PropTypes from 'prop-types';
         import { connect } from 'lore-hook-connect';
-        import Tweet from './Tweet';
-        import PayloadStates from '../constants/PayloadStates';
         import { Link } from 'react-router';
+        import PayloadStates from '../constants/PayloadStates';
+        import Tweet from './Tweet';
 
         export default connect(function(getState, props) {
           const { location } = props;
@@ -291,7 +291,7 @@ export default (props) => {
 
           renderTweet(tweet) {
             return (
-              <Tweet key={tweet.id || tweet.cid} tweet={tweet} />
+              <Tweet key={tweet.id} tweet={tweet} />
             );
           },
 
@@ -344,7 +344,6 @@ export default (props) => {
               </div>
             );
           }
-
         })
         );
         `}/>
@@ -352,15 +351,15 @@ export default (props) => {
         import React from 'react';
         import PropTypes from 'prop-types';
         import { connect } from 'lore-hook-connect';
-        import Tweet from './Tweet';
-        import PayloadStates from '../constants/PayloadStates';
         import { Link } from 'react-router';
+        import PayloadStates from '../constants/PayloadStates';
+        import Tweet from './Tweet';
 
         class Feed extends React.Component {
 
           renderTweet(tweet) {
             return (
-              <Tweet key={tweet.id || tweet.cid} tweet={tweet} />
+              <Tweet key={tweet.id} tweet={tweet} />
             );
           }
 
@@ -436,9 +435,9 @@ export default (props) => {
         import React from 'react';
         import PropTypes from 'prop-types';
         import { connect } from 'lore-hook-connect';
-        import Tweet from './Tweet';
-        import PayloadStates from '../constants/PayloadStates';
         import { Link } from 'react-router';
+        import PayloadStates from '../constants/PayloadStates';
+        import Tweet from './Tweet';
 
         @connect(function(getState, props) {
           const { location } = props;
@@ -460,7 +459,7 @@ export default (props) => {
 
           renderTweet(tweet) {
             return (
-              <Tweet key={tweet.id || tweet.cid} tweet={tweet} />
+              <Tweet key={tweet.id} tweet={tweet} />
             );
           }
 

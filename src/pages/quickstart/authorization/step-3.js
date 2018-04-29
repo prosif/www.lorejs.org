@@ -117,7 +117,7 @@ export default (props) => {
         render() {
           ...
             <IsOwner tweet={tweet}>
-              <div>
+              <div className="tweet-actions">
                 <EditLink tweet={tweet} />
                 <DeleteLink tweet={tweet} />
               </div>
@@ -157,7 +157,33 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        TODO
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
+
+        export default createReactClass({
+          displayName: 'IsOwner',
+
+          propTypes: {
+            tweet: PropTypes.object.isRequired
+          },
+
+          contextTypes: {
+            user: PropTypes.object.isRequired
+          },
+
+          render() {
+            const { tweet, children } = this.props;
+            const { user } = this.context;
+
+            if (tweet.data.user === user.id) {
+              return children;
+            }
+
+            return null;
+          }
+
+        });
         `}/>
         <CodeTab syntax="ES6" text={`
         TODO
@@ -173,7 +199,39 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        TODO
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
+
+        export default createReactClass({
+          displayName: 'EditLink',
+
+          propTypes: {
+            tweet: PropTypes.object.isRequired
+          },
+
+          onClick() {
+            const { tweet } = this.props;
+
+            lore.dialog.show(function() {
+              return lore.dialogs.tweet.update(tweet, {
+                blueprint: 'optimistic',
+                request: function(data) {
+                  return lore.actions.tweet.update(tweet, data);
+                }
+              });
+            });
+          },
+
+          render() {
+            return (
+              <a className="link" onClick={this.onClick}>
+                edit
+              </a>
+            );
+          }
+
+        });
         `}/>
         <CodeTab syntax="ES6" text={`
         TODO
@@ -189,13 +247,119 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        TODO
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
+
+        export default createReactClass({
+          displayName: 'DeleteLink',
+
+          propTypes: {
+            tweet: PropTypes.object.isRequired
+          },
+
+          onClick() {
+            const { tweet } = this.props;
+
+            lore.dialog.show(function() {
+              return lore.dialogs.tweet.destroy(tweet, {
+                blueprint: 'optimistic',
+                request: function(data) {
+                  return lore.actions.tweet.destroy(tweet).payload;
+                }
+              });
+            });
+          },
+
+          render() {
+            return (
+              <a className="link" onClick={this.onClick}>
+                delete
+              </a>
+            );
+          }
+
+        });
         `}/>
         <CodeTab syntax="ES6" text={`
         TODO
         `}/>
         <CodeTab syntax="ESNext" text={`
         TODO
+        `}/>
+      </CodeTabs>
+
+      <h3>
+        src/components/Feed.js
+      </h3>
+      <CodeTabs>
+        <CodeTab syntax="ES5" text={`
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
+        import moment from 'moment';
+        import { connect } from 'lore-hook-connect';
+        import EditLink from './EditLink';
+        import DeleteLink from './DeleteLink';
+        import IsOwner from './IsOwner';
+
+        export default connect(function(getState, props) {
+          const { tweet } = props;
+
+          return {
+            user: getState('user.byId', {
+              id: tweet.data.userId
+            })
+          };
+        })(
+        createReactClass({
+          displayName: 'Tweet',
+
+          propTypes: {
+            tweet: PropTypes.object.isRequired,
+            user: PropTypes.object.isRequired
+          },
+
+          render() {
+            const { tweet, user } = this.props;
+            const timestamp = moment(tweet.data.createdAt).fromNow().split(' ago')[0];
+
+            return (
+              <li className="list-group-item tweet">
+                <div className="image-container">
+                  <img
+                    className="img-circle avatar"
+                    src={user.data.avatar} />
+                </div>
+                <div className="content-container">
+                  <h4 className="list-group-item-heading title">
+                    {user.data.nickname}
+                  </h4>
+                  <h4 className="list-group-item-heading timestamp">
+                    {'- ' + timestamp}
+                  </h4>
+                  <p className="list-group-item-text text">
+                    {tweet.data.text}
+                  </p>
+                  <IsOwner tweet={tweet}>
+                    <div className="tweet-actions">
+                      <EditLink tweet={tweet} />
+                      <DeleteLink tweet={tweet} />
+                    </div>
+                  </IsOwner>
+                </div>
+              </li>
+            );
+          }
+
+        })
+        );
+        `}/>
+        <CodeTab syntax="ES6" text={`
+
+        `}/>
+        <CodeTab syntax="ESNext" text={`
+
         `}/>
       </CodeTabs>
 

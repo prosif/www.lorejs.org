@@ -39,6 +39,7 @@ export default (props) => {
         below:
       </p>
       <Markdown text={`
+      // src/components/Tweet.js
       lore.connect(function(getState, props){
         var tweet = props.tweet;
 
@@ -86,28 +87,32 @@ export default (props) => {
         Add Optimistic Values
       </h3>
       <p>
-        Open the <code>CreateButton</code> component and update the <code>onClick()</code> callback to look like this:
+        Open the <code>CreateButton</code> component, import the user from context, and update
+        the <code>onClick()</code> callback to look like this:
       </p>
       <Markdown type="jsx" text={`
-        import _ from 'lodash';
-        ...
-        contextTypes: {
-          user: PropTypes.object.isRequired
-        },
-
-        onClick() {
-          const { user } = this.context;
-
-          function createTweet(data) {
-            lore.actions.tweet.create(_.defaults({
-              user: user.id,
-              createdAt: new Date().toISOString()
-            }, data));
-          }
-
-          ...
-        },
+      // src/components/CreateButton.js
+      import _ from 'lodash';
       ...
+      contextTypes: {
+        user: PropTypes.object.isRequired
+      },
+
+      onClick() {
+        const { user } = this.context;
+
+        lore.dialog.show(function() {
+          return lore.dialogs.tweet.create({
+            blueprint: 'optimistic',
+            request: function(data) {
+              return lore.actions.tweet.create(_.defaults({
+                userId: user.id,
+                createdAt: new Date().toISOString()
+              }, data)).payload;
+            }
+          });
+        });
+      },
       `}/>
       <p>
         Since we know the tweet is being created by the current user, the first thing we do is get
@@ -126,8 +131,8 @@ export default (props) => {
           when the tweet was saved to the database.
         </p>
         <p>
-          All we're doing is here providing values that will allow the tweet to be rendered in the interim, between
-          the time the request is sent, and when it comes back from the server with "official" values.
+          All we're doing is here providing values that will allow the tweet to be rendered correctly in the interim,
+          between the time when the request is sent, and when it comes back from the server with official values.
         </p>
       </blockquote>
 
@@ -159,12 +164,51 @@ export default (props) => {
       </p>
 
       <h3>
-        src/components/Feed.js
+        src/components/CreateButton.js
       </h3>
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        TODO
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
+        import _ from 'lodash';
+
+        export default createReactClass({
+          displayName: 'CreateButton',
+
+          contextTypes: {
+            user: PropTypes.object.isRequired
+          },
+
+          onClick() {
+            const { user } = this.context;
+
+            lore.dialog.show(function() {
+              return lore.dialogs.tweet.create({
+                blueprint: 'optimistic',
+                request: function(data) {
+                  return lore.actions.tweet.create(_.defaults({
+                    userId: user.id,
+                    createdAt: new Date().toISOString()
+                  }, data)).payload;
+                }
+              });
+            });
+          },
+
+          render() {
+            return (
+              <button
+                type="button"
+                className="btn btn-primary btn-lg create-button"
+                onClick={this.onClick}>
+                +
+              </button>
+            );
+          }
+
+        });
         `}/>
         <CodeTab syntax="ES6" text={`
         TODO

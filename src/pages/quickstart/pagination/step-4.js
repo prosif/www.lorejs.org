@@ -52,6 +52,7 @@ export default (props) => {
       </p>
 
       <Markdown type="jsx" text={`
+      // src/components/Feed.js
       ...
       getInitialState() {
         const { tweets } = this.props;
@@ -86,6 +87,7 @@ export default (props) => {
       </p>
 
       <Markdown type="jsx" text={`
+      // src/components/Feed.js
       render() {
         const { tweets, nextTweets } = this.state;
         const currentPage = nextTweets.query.pagination.page;

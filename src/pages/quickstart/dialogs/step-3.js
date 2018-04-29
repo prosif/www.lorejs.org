@@ -70,9 +70,13 @@ export default (props) => {
           $(modal).modal('hide');
         },
 
+        request(data) {
+          console.log(data);
+        },
+
         onSubmit() {
           const { data } = this.state;
-          console.log(data);
+          this.request(data);
           this.dismiss();
         },
 
@@ -158,20 +162,27 @@ export default (props) => {
         </p>
       </blockquote>
       <p>
-        The important part to call out here is the <code>onSubmit</code> handler, shown below:
+        The important parts to call out here are the <code>onSubmit()</code> and <code>request()</code> methods
+        shown below:
       </p>
 
       <Markdown text={`
+      // src/components/CreateTweetDialog.js
+      request(data) {
+        console.log(data);
+      },
+
       onSubmit() {
         const { data } = this.state;
-        console.log(data);
+        this.request(data);
         this.dismiss();
       },
       `}/>
 
       <p>
-        Once the user submits the dialog, this function will be invoked. For now, we're simply going to log the
-        data to the console, and then dismiss the dialog.
+        Once the user submits the dialog, the <code>request()</code> method will be invoked and make the API
+        request to send the data to the server. But for now, we're simply going to log the data to the console, and
+        then dismiss the dialog.
       </p>
 
       <h3>
@@ -210,7 +221,7 @@ export default (props) => {
       </h3>
       <p>
         Now we can launch a dialog and get the user input, but we aren't sending that input to the API yet. To do
-        that we'll need to invoke the <code>create</code> action. You invoke the action like this:
+        that we'll need to invoke the <code>create</code> action, which is done like this:
       </p>
       <Markdown type="jsx" text={`
       lore.actions.tweet.create({
@@ -237,39 +248,15 @@ export default (props) => {
       </h3>
       <p>
         Let's finish the dialog by replacing the logging behavior with a real API call. Update
-        the <code>onSubmit</code> callback of the <code>CreateTweetDialog</code> to look like this:
+        the <code>request()</code> method of the <code>CreateTweetDialog</code> to look like this:
       </p>
 
-      <CodeTabs>
-        <CodeTab syntax="ES5" text={`
-        // src/components/CreateTweetDialog.js
-        ...
-          onSubmit() {
-            const { data } = this.state;
-            lore.actions.tweet.create(data);
-            this.dismiss();
-          },
-        ...
-        `}/>
-        <CodeTab syntax="ES6" text={`
-        ...
-          onSubmit() {
-            const { data } = this.state;
-            lore.actions.tweet.create(data);
-            this.dismiss();
-          },
-        ...
-        `}/>
-        <CodeTab syntax="ESNext" text={`
-        ...
-          onSubmit() {
-            const { data } = this.state;
-            lore.actions.tweet.create(data);
-            this.dismiss();
-          },
-        ...
-        `}/>
-      </CodeTabs>
+      <Markdown text={`
+      // src/components/CreateTweetDialog.js
+      request(data) {
+        lore.actions.tweet.create(data);
+      },
+      `}/>
 
       <p>
         Now when you submit a tweet, the action will send the data to the API. Try it out!
@@ -301,12 +288,166 @@ export default (props) => {
       </p>
 
       <h3>
-        index.js
+        src/components/CreateTweetDialog.js
       </h3>
-
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
+        import _ from 'lodash';
+
+        export default createReactClass({
+          displayName: 'CreateTweetDialog',
+
+          propTypes: {
+            title: PropTypes.node,
+            description: PropTypes.node
+          },
+
+          getInitialState() {
+            return {
+              data: {
+                text: ''
+              }
+            };
+          },
+
+          componentDidMount() {
+            this.show();
+          },
+
+          show() {
+            const modal = this.refs.modal;
+            $(modal).modal('show');
+          },
+
+          dismiss() {
+            const modal = this.refs.modal;
+            $(modal).modal('hide');
+          },
+
+          request(data) {
+            lore.actions.tweet.create(data);
+          },
+
+          onSubmit() {
+            const { data } = this.state;
+            this.request(data);
+            this.dismiss();
+          },
+
+          onChange(name, value) {
+            const nextData = _.merge({}, this.state.data);
+            nextData[name] = value;
+            this.setState({
+              data: nextData
+            });
+          },
+
+          render() {
+            const { data } = this.state;
+
+            return (
+              <div ref="modal" className="modal fade">
+                <div className="modal-dialog">
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <button type="button" className="close" onClick={this.dismiss}>
+                        <span>&times;</span>
+                      </button>
+                      <h4 className="modal-title">
+                        Create Tweet
+                      </h4>
+                    </div>
+                    <div className="modal-body">
+                      <div className="row">
+                        <div className="col-md-12">
+                          <div className="form-group">
+                            <label>Message</label>
+                            <textarea
+                              className="form-control"
+                              rows="3"
+                              value={data.text}
+                              placeholder="What's happening?"
+                              onChange={(event) => {
+                                this.onChange('text', event.target.value)
+                              }}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="modal-footer">
+                      <div className="row">
+                        <div className="col-md-12">
+                          <button
+                            type="button"
+                            className="btn btn-default"
+                            onClick={this.dismiss}
+                          >
+                            Cancel
+                          </button>
+                          <button
+                            type="button"
+                            className="btn btn-primary"
+                            disabled={!data.text}
+                            onClick={this.onSubmit}
+                          >
+                            Create
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          }
+
+        });
+        `}/>
+        <CodeTab syntax="ES6" text={`
         TODO
+        `}/>
+        <CodeTab syntax="ESNext" text={`
+        TODO
+        `}/>
+      </CodeTabs>
+
+      <h3>
+        src/components/CreateButton.js
+      </h3>
+      <CodeTabs>
+        <CodeTab syntax="ES5" text={`
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
+        import CreateTweetDialog from './CreateTweetDialog';
+
+        export default createReactClass({
+          displayName: 'CreateButton',
+
+          onClick() {
+            lore.dialog.show(function() {
+              return (
+                <CreateTweetDialog />
+              );
+            });
+          },
+
+          render() {
+            return (
+              <button
+                type="button"
+                className="btn btn-primary btn-lg create-button"
+                onClick={this.onClick}>
+                +
+              </button>
+            );
+          }
+
+        });
         `}/>
         <CodeTab syntax="ES6" text={`
         TODO

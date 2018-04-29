@@ -138,7 +138,7 @@ export default (props) => {
       `}/>
 
       <p>
-        Since we <em>know</em> we need to user for each tweet, one way to solve the aforementioned problem is to
+        Since we <em>know</em> we need the user for each tweet, one way to solve the aforementioned problem is to
         ask the API to embed the <code>user</code> data <em>inside the <code>tweet</code></em>, so that we can learn
         who the user is without making a follow-up request.
       </p>

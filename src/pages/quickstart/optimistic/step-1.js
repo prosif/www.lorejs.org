@@ -157,6 +157,7 @@ export default (props) => {
       </p>
 
       <Markdown type="jsx" text={`
+      // src/components/Feed.js
       ...
       getInitialState() {
         return {
@@ -205,6 +206,7 @@ export default (props) => {
       </p>
 
       <Markdown type="jsx" text={`
+      // src/components/Feed.js
       render() {
         const { timestamp } = this.state;
 
@@ -264,7 +266,67 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        TODO
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
+        import InfiniteScrollingList from './InfiniteScrollingList';
+        import Tweet from './Tweet';
+
+        export default createReactClass({
+          displayName: 'Feed',
+
+          getInitialState() {
+            return {
+              timestamp: new Date().toISOString()
+            };
+          },
+
+          render() {
+            const { timestamp } = this.state;
+
+            return (
+              <div className="feed">
+                <h2 className="title">
+                  Feed
+                </h2>
+                <InfiniteScrollingList
+                  select={(getState) => {
+                    return getState('tweet.find', {
+                      where: {
+                        where: {
+                          createdAt: {
+                            '<=': timestamp
+                          }
+                        }
+                      },
+                      pagination: {
+                        sort: 'createdAt DESC',
+                        page: 1
+                      }
+                    });
+                  }}
+                  selectNextPage={(lastPage, getState) => {
+                    const lastPageNumber = lastPage.query.pagination.page;
+
+                    return getState('tweet.find', _.defaultsDeep({
+                      pagination: {
+                        page: lastPageNumber + 1
+                      }
+                    }, lastPage.query));
+                  }}
+                  refresh={(page, getState) => {
+                    return getState('tweet.find', page.query);
+                  }}
+                  row={(tweet) => {
+                    return (
+                      <Tweet key={tweet.id} tweet={tweet} />
+                    );
+                  }}
+                />
+              </div>
+            );
+          }
+        });
         `}/>
         <CodeTab syntax="ES6" text={`
         TODO

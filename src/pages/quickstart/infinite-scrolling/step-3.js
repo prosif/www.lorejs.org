@@ -127,6 +127,7 @@ export default (props) => {
       </p>
 
       <Markdown text={`
+      // src/components/Feed.js
       ...
       <InfiniteScrollingList
         select={(getState) => {
@@ -167,6 +168,7 @@ export default (props) => {
       </p>
 
       <Markdown text={`
+      // src/components/Feed.js
       import _ from 'lodash';
       ...
       <InfiniteScrollingList
@@ -445,8 +447,7 @@ export default (props) => {
       </h2>
 
       <p>
-        Next we're going to add dialogs to our application <Link to="../../dialogs/overview/">so we can create,
-        update and delete tweets</Link>.
+        Next we're going to <Link to="../../cleanup/overview/">clean up our code base bit.</Link>.
       </p>
     </Template>
   )

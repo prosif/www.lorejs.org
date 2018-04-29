@@ -127,6 +127,7 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
+        // src/components/EditLink.js
         import UserCanEditTweet from '../decorators/UserCanEditTweet';
 
         export default UserCanEditTweet(createReactClass({
@@ -134,6 +135,7 @@ export default (props) => {
         }));
         `}/>
         <CodeTab syntax="ES6" text={`
+        // src/components/EditLink.js
         import UserCanEditTweet from '../decorators/UserCanEditTweet';
 
         class EditLink extends React.Component {
@@ -143,6 +145,7 @@ export default (props) => {
         export default UserCanEditTweet(EditLink);
         `}/>
         <CodeTab syntax="ESNext" text={`
+        // src/components/EditLink.js
         import UserCanEditTweet from '../decorators/UserCanEditTweet';
 
         @UserCanEditTweet
@@ -181,80 +184,30 @@ export default (props) => {
         src/decorators/UserCanEditTweet.js
       </h3>
 
-      <CodeTabs>
-        <CodeTab syntax="ES5" text={`
-        import React from 'react';
-        import PropTypes from 'prop-types';
-        import { AuthorizationGenerator } from 'lore-auth';
+      <Markdown text={`
+      import PropTypes from 'prop-types';
+      import { AuthorizationGenerator } from 'lore-auth';
 
-        export default AuthorizationGenerator({
-          displayName: 'UserCanEditTweet',
+      export default AuthorizationGenerator({
+        displayName: 'UserCanEditTweet',
 
-          propTypes: {
-            tweet: PropTypes.object.isRequired
-          },
+        propTypes: {
+          tweet: PropTypes.object.isRequired
+        },
 
-          contextTypes: {
-            user: PropTypes.object.isRequired
-          },
+        contextTypes: {
+          user: PropTypes.object.isRequired
+        },
 
-          isAuthorized() {
-            const { tweet } = this.props;
-            const { user } = this.context;
+        isAuthorized() {
+          const { tweet } = this.props;
+          const { user } = this.context;
 
-            return tweet.data.user === user.id;
-          }
-        });
-        `}/>
-        <CodeTab syntax="ES6" text={`
-        import React from 'react';
-        import PropTypes from 'prop-types';
-        import { AuthorizationGenerator } from 'lore-auth';
+          return tweet.data.user === user.id;
+        }
 
-        export default AuthorizationGenerator({
-          displayName: 'UserCanEditTweet',
-
-          propTypes: {
-            tweet: PropTypes.object.isRequired
-          },
-
-          contextTypes: {
-            user: PropTypes.object.isRequired
-          },
-
-          isAuthorized() {
-            const { tweet } = this.props;
-            const { user } = this.context;
-
-            return tweet.data.user === user.id;
-          }
-        })
-        `}/>
-        <CodeTab syntax="ESNext" text={`
-        import React from 'react';
-        import PropTypes from 'prop-types';
-        import { AuthorizationGenerator } from 'lore-auth';
-
-        export default AuthorizationGenerator({
-          displayName: 'UserCanEditTweet',
-
-          propTypes: {
-            tweet: PropTypes.object.isRequired
-          },
-
-          contextTypes: {
-            user: PropTypes.object.isRequired
-          },
-
-          isAuthorized() {
-            const { tweet } = this.props;
-            const { user } = this.context;
-
-            return tweet.data.user === user.id;
-          }
-        })
-        `}/>
-      </CodeTabs>
+      });
+      `}/>
 
       <h3>
         src/components/EditLink.js
@@ -274,24 +227,22 @@ export default (props) => {
             tweet: PropTypes.object.isRequired
           },
 
-          onEdit() {
+          onClick() {
             const { tweet } = this.props;
 
-            function updateTweet(params) {
-              lore.actions.tweet.update(tweet, params);
-            }
-
             lore.dialog.show(function() {
-              return lore.dialogs.tweet.update({
-                model: tweet,
-                onSubmit: updateTweet
+              return lore.dialogs.tweet.update(tweet, {
+                blueprint: 'optimistic',
+                request: function(data) {
+                  return lore.actions.tweet.update(tweet, data);
+                }
               });
             });
           },
 
           render() {
             return (
-              <a className="link" onClick={this.onEdit}>
+              <a className="link" onClick={this.onClick}>
                 edit
               </a>
             );
@@ -300,92 +251,10 @@ export default (props) => {
         }));
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React from 'react';
-        import PropTypes from 'prop-types';
-        import UserCanEditTweet from '../decorators/UserCanEditTweet';
-
-        @UserCanEditTweet
-        class EditLink extends React.Component {
-
-          constructor(props) {
-            super(props);
-            this.onEdit = this.onEdit.bind(this);
-          }
-
-          onEdit() {
-            const { tweet } = this.props;
-
-            function updateTweet(params) {
-              lore.actions.tweet.update(tweet, params);
-            }
-
-            lore.dialog.show(function() {
-              return lore.dialogs.tweet.update({
-                model: tweet,
-                onSubmit: updateTweet
-              });
-            });
-          }
-
-          render() {
-            return (
-              <a className="link" onClick={this.onEdit}>
-                edit
-              </a>
-            );
-          }
-
-        }
-
-        EditLink.propTypes = {
-          tweet: PropTypes.object.isRequired
-        };
-
-        export default UserCanEditTweet(EditLink);
+        TODO
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React from 'react';
-        import PropTypes from 'prop-types';
-        import UserCanEditTweet from '../decorators/UserCanEditTweet';
-
-        @UserCanEditTweet
-        class EditLink extends React.Component {
-
-          constructor(props) {
-            super(props);
-            this.onEdit = this.onEdit.bind(this);
-          }
-
-          static propTypes = {
-            tweet: PropTypes.object.isRequired
-          };
-
-          onEdit() {
-            const { tweet } = this.props;
-
-            function updateTweet(params) {
-              lore.actions.tweet.update(tweet, params);
-            }
-
-            lore.dialog.show(function() {
-              return lore.dialogs.tweet.update({
-                model: tweet,
-                onSubmit: updateTweet
-              });
-            });
-          }
-
-          render() {
-            return (
-              <a className="link" onClick={this.onEdit}>
-                edit
-              </a>
-            );
-          }
-
-        }
-
-        export default EditLink;
+        TODO
         `}/>
       </CodeTabs>
 

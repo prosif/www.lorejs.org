@@ -216,7 +216,7 @@ export default (props) => {
       }
 
       .tweet.transition .link {
-        visibility: hidden;
+        pointer-events: none;
       }
 
       /*
@@ -503,7 +503,7 @@ export default (props) => {
       }
 
       .tweet.transition .link {
-        visibility: hidden;
+        pointer-events: none;
       }
 
       /*

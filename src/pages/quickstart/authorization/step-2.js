@@ -114,6 +114,7 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
+        // src/components/DeleteLink.js
         import UserCanDeleteTweet from '../decorators/UserCanDeleteTweet';
 
         export default UserCanDeleteTweet(createReactClass({
@@ -121,6 +122,7 @@ export default (props) => {
         }));
         `}/>
         <CodeTab syntax="ES6" text={`
+        // src/components/DeleteLink.js
         import UserCanDeleteTweet from '../decorators/UserCanDeleteTweet';
 
         class DeleteLink extends React.Component {
@@ -130,6 +132,7 @@ export default (props) => {
         export default UserCanDeleteTweet(DeleteLink);
         `}/>
         <CodeTab syntax="ESNext" text={`
+        // src/components/DeleteLink.js
         import UserCanDeleteTweet from '../decorators/UserCanDeleteTweet';
 
         @UserCanDeleteTweet
@@ -261,24 +264,22 @@ export default (props) => {
             tweet: PropTypes.object.isRequired
           },
 
-          onDestroy() {
+          onClick() {
             const { tweet } = this.props;
 
-            function destroyTweet() {
-              lore.actions.tweet.destroy(tweet);
-            }
-
             lore.dialog.show(function() {
-              return lore.dialogs.tweet.destroy({
-                model: tweet,
-                onSubmit: destroyTweet
+              return lore.dialogs.tweet.destroy(tweet, {
+                blueprint: 'optimistic',
+                request: function(data) {
+                  return lore.actions.tweet.destroy(tweet).payload;
+                }
               });
             });
           },
 
           render() {
             return (
-              <a className="link" onClick={this.onDestroy}>
+              <a className="link" onClick={this.onClick}>
                 delete
               </a>
             );
@@ -287,91 +288,10 @@ export default (props) => {
         }));
         `}/>
         <CodeTab syntax="ES6" text={`
-        import React from 'react';
-        import PropTypes from 'prop-types';
-        import UserCanDeleteTweet from '../decorators/UserCanDeleteTweet';
-
-        class DeleteLink extends React.Component {
-
-          constructor(props) {
-            super(props);
-            this.onDestroy = this.onDestroy.bind(this);
-          }
-
-          onDestroy() {
-            const { tweet } = this.props;
-
-            function destroyTweet() {
-              lore.actions.tweet.destroy(tweet);
-            }
-
-            lore.dialog.show(function() {
-              return lore.dialogs.tweet.destroy({
-                model: tweet,
-                onSubmit: destroyTweet
-              });
-            });
-          }
-
-          render() {
-            return (
-              <a className="link" onClick={this.onDestroy}>
-                delete
-              </a>
-            );
-          }
-
-        }
-
-        DeleteLink.propTypes = {
-          tweet: PropTypes.object.isRequired
-        };
-
-        export default UserCanDeleteTweet(DeleteLink);
+        TODO
         `}/>
         <CodeTab syntax="ESNext" text={`
-        import React from 'react';
-        import PropTypes from 'prop-types';
-        import UserCanDeleteTweet from '../decorators/UserCanDeleteTweet';
-
-        @UserCanDeleteTweet
-        class DeleteLink extends React.Component {
-
-          static propTypes = {
-            tweet: PropTypes.object.isRequired
-          };
-
-          constructor(props) {
-            super(props);
-            this.onDestroy = this.onDestroy.bind(this);
-          }
-
-          onDestroy() {
-            const { tweet } = this.props;
-
-            function destroyTweet() {
-              lore.actions.tweet.destroy(tweet);
-            }
-
-            lore.dialog.show(function() {
-              return lore.dialogs.tweet.destroy({
-                model: tweet,
-                onSubmit: destroyTweet
-              });
-            });
-          }
-
-          render() {
-            return (
-              <a className="link" onClick={this.onDestroy}>
-                delete
-              </a>
-            );
-          }
-
-        }
-
-        export default DeleteLink;
+        TODO
         `}/>
       </CodeTabs>
 

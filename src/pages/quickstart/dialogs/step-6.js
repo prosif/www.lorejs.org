@@ -77,24 +77,22 @@ export default (props) => {
             tweet: PropTypes.object.isRequired
           },
 
-          onEdit() {
+          onClick() {
             const { tweet } = this.props;
-
-            function updateTweet(params) {
-              lore.actions.tweet.update(tweet, params);
-            }
 
             lore.dialog.show(function() {
               return lore.dialogs.tweet.update(tweet, {
                 blueprint: 'optimistic',
-                onSubmit: updateTweet
+                request: function(data) {
+                  return lore.actions.tweet.update(tweet, data);
+                }
               });
             });
           },
 
           render() {
             return (
-              <a className="link" onClick={this.onEdit}>
+              <a className="link" onClick={this.onClick}>
                 edit
               </a>
             );
@@ -110,27 +108,25 @@ export default (props) => {
 
           constructor(props) {
             super(props);
-            this.onEdit = this.onEdit.bind(this);
+            this.onClick = this.onClick.bind(this);
           }
 
-          onEdit() {
+          onClick() {
             const { tweet } = this.props;
-
-            function updateTweet(params) {
-              lore.actions.tweet.update(tweet, params);
-            }
 
             lore.dialog.show(function() {
               return lore.dialogs.tweet.update(tweet, {
                 blueprint: 'optimistic',
-                onSubmit: updateTweet
+                request: function(data) {
+                  return lore.actions.tweet.update(tweet, data);
+                }
               });
             });
-          }
+          },
 
           render() {
             return (
-              <a className="link" onClick={this.onEdit}>
+              <a className="link" onClick={this.onClick}>
                 edit
               </a>
             );
@@ -152,31 +148,29 @@ export default (props) => {
 
           constructor(props) {
             super(props);
-            this.onEdit = this.onEdit.bind(this);
+            this.onClick = this.onClick.bind(this);
           }
 
           static propTypes = {
             tweet: PropTypes.object.isRequired
           };
 
-          onEdit() {
+          onClick() {
             const { tweet } = this.props;
-
-            function updateTweet(params) {
-              lore.actions.tweet.update(tweet, params);
-            }
 
             lore.dialog.show(function() {
               return lore.dialogs.tweet.update(tweet, {
                 blueprint: 'optimistic',
-                onSubmit: updateTweet
+                request: function(data) {
+                  return lore.actions.tweet.update(tweet, data);
+                }
               });
             });
-          }
+          },
 
           render() {
             return (
-              <a className="link" onClick={this.onEdit}>
+              <a className="link" onClick={this.onClick}>
                 edit
               </a>
             );
@@ -207,6 +201,7 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
+        // src/components/Tweet.js
         ...
         import EditLink from './EditLink';
 
@@ -230,7 +225,7 @@ export default (props) => {
                   <p className="list-group-item-text text">
                     {tweet.data.text}
                   </p>
-                  <div>
+                  <div className="tweet-actions">
                     <EditLink tweet={tweet} />
                   </div>
                 </div>
@@ -240,6 +235,7 @@ export default (props) => {
         ...
         `}/>
         <CodeTab syntax="ES6" text={`
+        // src/components/Tweet.js
         ...
         import EditLink from './EditLink';
 
@@ -263,7 +259,7 @@ export default (props) => {
                   <p className="list-group-item-text text">
                     {tweet.data.text}
                   </p>
-                  <div>
+                  <div className="tweet-actions">
                     <EditLink tweet={tweet} />
                   </div>
                 </div>
@@ -273,6 +269,7 @@ export default (props) => {
         ...
         `}/>
         <CodeTab syntax="ESNext" text={`
+        // src/components/Tweet.js
         ...
         import EditLink from './EditLink';
 
@@ -296,7 +293,7 @@ export default (props) => {
                   <p className="list-group-item-text text">
                     {tweet.data.text}
                   </p>
-                  <div>
+                  <div className="tweet-actions">
                     <EditLink tweet={tweet} />
                   </div>
                 </div>
@@ -324,6 +321,7 @@ export default (props) => {
       </p>
 
       <Markdown text={`
+      // src/models/tweet.js
       const fields = {
         data: {
           text: ''
@@ -406,7 +404,39 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        TODO
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
+
+        export default createReactClass({
+          displayName: 'EditLink',
+
+          propTypes: {
+            tweet: PropTypes.object.isRequired
+          },
+
+          onClick() {
+            const { tweet } = this.props;
+
+            lore.dialog.show(function() {
+              return lore.dialogs.tweet.update(tweet, {
+                blueprint: 'optimistic',
+                request: function(data) {
+                  return lore.actions.tweet.update(tweet, data);
+                }
+              });
+            });
+          },
+
+          render() {
+            return (
+              <a className="link" onClick={this.onClick}>
+                edit
+              </a>
+            );
+          }
+
+        });
         `}/>
         <CodeTab syntax="ES6" text={`
         TODO
@@ -422,7 +452,61 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        TODO
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
+        import moment from 'moment';
+        import { connect } from 'lore-hook-connect';
+        import EditLink from './EditLink';
+
+        export default connect(function(getState, props) {
+          const { tweet } = props;
+
+          return {
+            user: getState('user.byId', {
+              id: tweet.data.userId
+            })
+          };
+        })(
+        createReactClass({
+          displayName: 'Tweet',
+
+          propTypes: {
+            tweet: PropTypes.object.isRequired,
+            user: PropTypes.object.isRequired
+          },
+
+          render() {
+            const { tweet, user } = this.props;
+            const timestamp = moment(tweet.data.createdAt).fromNow().split(' ago')[0];
+
+            return (
+              <li className="list-group-item tweet">
+                <div className="image-container">
+                  <img
+                    className="img-circle avatar"
+                    src={user.data.avatar} />
+                </div>
+                <div className="content-container">
+                  <h4 className="list-group-item-heading title">
+                    {user.data.nickname}
+                  </h4>
+                  <h4 className="list-group-item-heading timestamp">
+                    {'- ' + timestamp}
+                  </h4>
+                  <p className="list-group-item-text text">
+                    {tweet.data.text}
+                  </p>
+                  <div className="tweet-actions">
+                    <EditLink tweet={tweet} />
+                  </div>
+                </div>
+              </li>
+            );
+          }
+
+        })
+        );
         `}/>
         <CodeTab syntax="ES6" text={`
         TODO
@@ -435,18 +519,45 @@ export default (props) => {
       <h3>
         src/models/tweet.js
       </h3>
+      <Markdown text={`
+      const fields = {
+        data: {
+          text: ''
+        },
+        validators: {
+          text: [function(value) {
+            if (!value) {
+              return 'This field is required';
+            }
+          }]
+        },
+        fields: {
+          text: {
+            type: 'text',
+            props: {
+              label: 'Message',
+              placeholder: "What's happening?"
+            }
+          }
+        }
+      };
 
-      <CodeTabs>
-        <CodeTab syntax="ES5" text={`
-        TODO
-        `}/>
-        <CodeTab syntax="ES6" text={`
-        TODO
-        `}/>
-        <CodeTab syntax="ESNext" text={`
-        TODO
-        `}/>
-      </CodeTabs>
+      export default {
+
+        dialogs: {
+          create: fields,
+          update: fields
+        },
+
+        properties: {
+          parse: function(response, options) {
+            response.userId = response.user;
+            return response;
+          }
+        }
+
+      }
+      `}/>
 
       <h2>
         Next Steps

@@ -85,6 +85,10 @@ export default (props) => {
             <NavLink title="2. Create Infinite Scrolling List" url="/quickstart/infinite-scrolling/step-2/" />
             <NavLink title="3. Convert the Feed" url="/quickstart/infinite-scrolling/step-3/" />
 
+            <li className="doc-section">Cleanup</li>
+            <NavLink title="Overview" url="/quickstart/cleanup/overview/" />
+            <NavLink title="1. Remove Unnecessary Code" url="/quickstart/cleanup/step-1/" />
+
             <li className="doc-section">Dialogs</li>
             <NavLink title="Overview" url="/quickstart/dialogs/overview/" />
             <NavLink title="1. Add Create Button" url="/quickstart/dialogs/step-1/" />
@@ -101,14 +105,6 @@ export default (props) => {
             <NavLink title="2. Hide Delete Link" url="/quickstart/authorization/step-2/" />
             <NavLink title="3. Alternative Approach" url="/quickstart/authorization/step-3/" />
 
-            {/*<li className="doc-section">Behavior</li>*/}
-            {/*<NavLink title="Overview" url="/quickstart/behavior/overview/" />*/}
-            {/*<NavLink title="1. Display Tweets Immediately" url="/quickstart/behavior/step-1/" />*/}
-
-            {/*<li className="doc-section">Cleanup</li>*/}
-            {/*<NavLink title="Overview" url="/quickstart/cleanup/overview/" />*/}
-            {/*<NavLink title="1. Remove Unnecessary Code" url="/quickstart/cleanup/step-1/" />*/}
-
             <li className="doc-section">Optimistic Updates</li>
             <NavLink title="Overview" url="/quickstart/optimistic/overview/" />
             <NavLink title="1. Freeze Pagination Data" url="/quickstart/optimistic/step-1/" />
@@ -116,6 +112,7 @@ export default (props) => {
             <NavLink title="3. Display Optimistic Tweets" url="/quickstart/optimistic/step-3/" />
             <NavLink title="4. Add Optimistic Values" url="/quickstart/optimistic/step-4/" />
             <NavLink title="5. Show Optimistic Visual Cues" url="/quickstart/optimistic/step-5/" />
+            <NavLink title="6. Hide Deleted Tweets" url="/quickstart/optimistic/step-6/" />
 
             <li className="doc-section">Normalization</li>
             <NavLink title="Overview" url="/quickstart/normalization/overview/" />

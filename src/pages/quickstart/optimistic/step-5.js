@@ -45,6 +45,9 @@ export default (props) => {
       </p>
 
       <Markdown text={`
+      // src/components/Tweet.js
+      import PayloadStates from '../constants/PayloadStates';
+      ...
       render() {
         const { tweet, user } = this.props;
         const timestamp = moment(tweet.data.createdAt).fromNow().split(' ago')[0];
@@ -71,10 +74,12 @@ export default (props) => {
               <p className="list-group-item-text text">
                 {tweet.data.text}
               </p>
-              <div className="tweet-actions">
-                <EditLink tweet={tweet} />
-                <DeleteLink tweet={tweet} />
-              </div>
+              <IsOwner tweet={tweet}>
+                <div className="tweet-actions">
+                  <EditLink tweet={tweet} />
+                  <DeleteLink tweet={tweet} />
+                </div>
+              </IsOwner>
             </div>
           </li>
         );
@@ -96,7 +101,6 @@ export default (props) => {
 
       <img className="drop-shadow" src="/assets/images/quickstart/filtering/step-1.png" />
 
-
       <h2>
         Code Changes
       </h2>
@@ -106,12 +110,77 @@ export default (props) => {
       </p>
 
       <h3>
-        src/components/CreateButton.js
+        src/components/Tweet.js
       </h3>
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
-        TODO
+        import React from 'react';
+        import createReactClass from 'create-react-class';
+        import PropTypes from 'prop-types';
+        import moment from 'moment';
+        import { connect } from 'lore-hook-connect';
+        import PayloadStates from '../constants/PayloadStates';
+        import EditLink from './EditLink';
+        import DeleteLink from './DeleteLink';
+        import IsOwner from './IsOwner';
+
+        export default connect(function(getState, props) {
+          const { tweet } = props;
+
+          return {
+            user: getState('user.byId', {
+              id: tweet.data.userId
+            })
+          };
+        })(
+        createReactClass({
+          displayName: 'Tweet',
+
+          propTypes: {
+            tweet: PropTypes.object.isRequired,
+            user: PropTypes.object.isRequired
+          },
+
+          render() {
+            const { tweet, user } = this.props;
+            const timestamp = moment(tweet.data.createdAt).fromNow().split(' ago')[0];
+            const isOptimistic = (
+              tweet.state === PayloadStates.CREATING ||
+              tweet.state === PayloadStates.UPDATING ||
+              tweet.state === PayloadStates.DELETING
+            );
+
+            return (
+              <li className={"list-group-item tweet" + (isOptimistic ? " transition" : "")}>
+                <div className="image-container">
+                  <img
+                    className="img-circle avatar"
+                    src={user.data.avatar} />
+                </div>
+                <div className="content-container">
+                  <h4 className="list-group-item-heading title">
+                    {user.data.nickname}
+                  </h4>
+                  <h4 className="list-group-item-heading timestamp">
+                    {'- ' + timestamp}
+                  </h4>
+                  <p className="list-group-item-text text">
+                    {tweet.data.text}
+                  </p>
+                  <IsOwner tweet={tweet}>
+                    <div className="tweet-actions">
+                      <EditLink tweet={tweet} />
+                      <DeleteLink tweet={tweet} />
+                    </div>
+                  </IsOwner>
+                </div>
+              </li>
+            );
+          }
+
+        })
+        );
         `}/>
         <CodeTab syntax="ES6" text={`
         TODO
@@ -126,8 +195,7 @@ export default (props) => {
       </h2>
 
       <p>
-        In the next section we'll learn how to <Link to="../../normalization/overview/">normalize an API response
-        to reduce the number of network requests</Link>.
+        In the next section we'll <Link to="../step-6/">hide tweets that have been deleted</Link>.
       </p>
     </Template>
   )

@@ -67,6 +67,7 @@ export default (props) => {
       </p>
 
       <Markdown text={`
+      // index.js
       lore.summon({
         hooks: {
           auth,
@@ -109,6 +110,7 @@ export default (props) => {
       </p>
 
       <Markdown text={`
+      // index.js
       ...
       import dialog from 'lore-hook-dialog';
       ...
@@ -183,41 +185,18 @@ export default (props) => {
         our <code>CreateButton</code> component with this code:
       </p>
 
-      <CodeTabs>
-        <CodeTab syntax="ES5" text={`
-        ...
-          onClick() {
-            lore.dialog.show(function() {
-              return (
-                <h1>Dialog Placeholder</h1>
-              );
-            });
-          },
-        ...
-        `}/>
-        <CodeTab syntax="ES6" text={`
-        ...
-          onClick() {
-            lore.dialog.show(() => {
-              return (
-                <h1>Dialog Placeholder</h1>
-              );
-            });
-          }
-        ...
-        `}/>
-        <CodeTab syntax="ESNext" text={`
-        ...
-          onClick() {
-            lore.dialog.show(() => {
-              return (
-                <h1>Dialog Placeholder</h1>
-              );
-            });
-          }
-        ...
-        `}/>
-      </CodeTabs>
+      <Markdown text={`
+      // src/components/CreateButton.js
+      ...
+        onClick() {
+          lore.dialog.show(function() {
+            return (
+              <h1>Dialog Placeholder</h1>
+            );
+          });
+        },
+      ...
+      `}/>
 
       <p>
         If you refresh the browser and click the button, you should see the text <em>"Dialog Placeholder"</em> appear
@@ -340,6 +319,153 @@ export default (props) => {
         export default CreateButton;
         `}/>
       </CodeTabs>
+
+      <h3>
+        index.js
+      </h3>
+      <Markdown text={`
+      /**
+      * This file kicks off the build process for the application.  It also attaches
+      * the Lore singleton to the window, so you can access it from the command line
+      * in case you need to play with it or want to manually kick off actions or check
+      * the reducer state (through \`lore.actions.xyz\`, \`lore.reducers.xyz\`,
+      * \`lore.models.xyz\`, etc.)
+      **/
+
+      import lore from 'lore';
+      import _ from 'lodash';
+
+      // Import the styles for the loading screen. We're doing that here to make
+      // sure they get loaded regardless of the entry point for the application.
+      import './assets/css/loading-screen.css';
+
+      // Allows you to access your lore app globally as well as from within
+      // the console. Remove this line if you don't want to be able to do that.
+      window.lore = lore;
+
+      // Hooks
+      import auth from 'lore-hook-auth';
+      import actions from 'lore-hook-actions';
+      import bindActions from 'lore-hook-bind-actions';
+      import collections from 'lore-hook-collections';
+      import connections from 'lore-hook-connections';
+      import connect from 'lore-hook-connect';
+      import dialog from 'lore-hook-dialog';
+      import models from 'lore-hook-models';
+      import react from 'lore-hook-react';
+      import reducers from 'lore-hook-reducers';
+      import redux from 'lore-hook-redux';
+      import router from 'lore-hook-router';
+
+      // Summon the app!
+      lore.summon({
+        hooks: {
+          auth,
+          actions,
+          bindActions,
+          collections,
+          connections,
+          connect,
+          dialog,
+          models,
+          react,
+          reducers,
+          redux: _.extend(redux, {
+            dependencies: ['reducers', 'auth']
+          }),
+          router
+        }
+      });
+      `}/>
+
+      <h3>
+        package.json
+      </h3>
+      <Markdown text={`
+      {
+        "name": "lore-quickstart",
+        "private": true,
+        "version": "0.0.0",
+        "description": "A Lore application",
+        "keywords": [],
+        "scripts": {
+          "build": "npm run build:development",
+          "build:development": "npm run clean && webpack --env.webpack=production --env.lore=development",
+          "build:production": "npm run clean && webpack --env.webpack=production --env.lore=production -p",
+          "deploy": "npm run now:copy && now dist",
+          "deploy:production": "npm run build:production && npm run deploy",
+          "clean": "rimraf dist",
+          "now:copy": "cp .now/package.json dist/package.json",
+          "server": "json-server --watch db.json --port=1337",
+          "start": "webpack-dev-server --hot --env.webpack=development --env.lore=development",
+          "stats": "npm run stats:development",
+          "stats:development": "webpack --json --env=development > stats.json",
+          "stats:production": "webpack --json --env=production -p > stats.json",
+          "test": "echo \\"Error: no test specified\\" && exit 1"
+        },
+        "dependencies": {
+          "auth0-js": "^9.5.0",
+          "create-react-class": "^15.6.2",
+          "lodash": "^4.0.0",
+          "lore": "~0.13.0-beta",
+          "lore-auth": "~0.13.0-beta",
+          "lore-hook-actions": "~0.13.0-beta",
+          "lore-hook-auth": "~0.13.0-beta",
+          "lore-hook-bind-actions": "~0.13.0-beta",
+          "lore-hook-collections": "~0.13.0-beta",
+          "lore-hook-connect": "~0.13.0-beta",
+          "lore-hook-connections": "~0.13.0-beta",
+          "lore-hook-dialog": "~0.13.0-beta",
+          "lore-hook-models": "~0.13.0-beta",
+          "lore-hook-react": "~0.13.0-beta",
+          "lore-hook-reducers": "~0.13.0-beta",
+          "lore-hook-redux": "~0.13.0-beta",
+          "lore-hook-router": "~0.13.0-beta",
+          "lore-utils": "~0.13.0-beta",
+          "moment": "^2.22.1",
+          "prop-types": "^15.6.0",
+          "react": "^16.1.1",
+          "react-dom": "^16.0.0",
+          "react-redux": "^4.4.1",
+          "react-router": "^3.0.0",
+          "redux": "^3.0.2",
+          "redux-batched-subscribe": "^0.1.6",
+          "redux-thunk": "^2.0.1"
+        },
+        "devDependencies": {
+          "babel-cli": "^6.4.5",
+          "babel-core": "^6.2.1",
+          "babel-loader": "^7.0.0",
+          "babel-preset-es2015": "^6.5.0",
+          "babel-preset-react": "^6.5.0",
+          "copy-webpack-plugin": "^4.0.1",
+          "css-loader": "^0.26.2",
+          "extract-text-webpack-plugin": "^3.0.2",
+          "favicons-webpack-plugin": "~0.0.7",
+          "file-loader": "^0.10.1",
+          "html-webpack-plugin": "^2.28.0",
+          "json-loader": "^0.5.4",
+          "json-server": "~0.12.1",
+          "less": "2.5.1",
+          "less-loader": "^2.2.0",
+          "node-sass": "^4.1.1",
+          "now": "^11.1.4",
+          "postcss-loader": "^1.3.3",
+          "progress-bar-webpack-plugin": "^1.9.3",
+          "redux-devtools": "^3.4.1",
+          "redux-devtools-dock-monitor": "^1.1.3",
+          "redux-devtools-log-monitor": "^1.4.0",
+          "rimraf": "^2.6.1",
+          "sass-loader": "^6.0.3",
+          "style-loader": "^0.13.2",
+          "url-loader": "^0.5.8",
+          "webpack": "^3.11.0",
+          "webpack-config-utils": "^2.3.0",
+          "webpack-dev-server": "^2.4.1",
+          "webpack-manifest-plugin": "^1.1.0"
+        }
+      }
+      `}/>
 
       <h2>
         Next Steps

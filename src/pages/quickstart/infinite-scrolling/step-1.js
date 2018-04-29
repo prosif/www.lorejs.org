@@ -74,6 +74,7 @@ export default (props) => {
       </p>
 
       <Markdown text={`
+      // config/connections.js
       ...
         parse: function(response) {
           this.meta = {
