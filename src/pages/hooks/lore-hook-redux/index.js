@@ -124,41 +124,6 @@ export default (props) => {
 
       };
       `}/>
-
-      <h2>
-        Example Usage
-      </h2>
-      <p>
-        This hook essentially just breaks up the standard Redux store creation process into a single of
-        functions that can be overridden on a per-environment basis, so that you don't have to override
-        the <em>entire</em> store creation process.
-      </p>
-
-      <p>
-        For example, in some environments (like development) you might want to override just the middleware, and
-        apply apply a store enhancer to enable the <a href="https://github.com/gaearon/redux-devtools">Redux
-        DevTools</a>, but leave the rest of the creation process the same.
-      </p>
-
-      <p>
-        This standard Redux Store build process looks like this:
-      </p>
-
-      <Markdown text={`
-      var Redux = require('redux');
-      var thunk = require('redux-thunk');
-
-      var middleware = [thunk];
-      var enhancer = Redux.compose(
-        Redux.applyMiddleware.apply(null, middleware)
-      );
-      var rootReducer = Redux.combineReducers(reducers);
-      var preloadedState = {};
-      var store = Redux.createStore(rootReducer, preloadedState, enhancer);
-
-      // expose store on Lore instance
-      lore.store = store;
-      `}/>
     </Template>
   )
 };

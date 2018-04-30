@@ -21,6 +21,11 @@ export default (props) => {
           <ul id="markdown-toc">
             <NavLink title="Introduction" url="/hooks/lore-hook-auth/" />
 
+            <li className="doc-section">Config</li>
+            <NavLink title="modelName" url="/hooks/lore-hook-auth/config/modelName/" />
+            <NavLink title="reducerName" url="/hooks/lore-hook-auth/config/reducerName/" />
+            <NavLink title="actionName" url="/hooks/lore-hook-auth/config/actionName/" />
+
             <li className="doc-section">Actions</li>
             <NavLink title="get" url="/hooks/lore-hook-auth/actions/get/" />
             <NavLink title="update" url="/hooks/lore-hook-auth/actions/update/" />

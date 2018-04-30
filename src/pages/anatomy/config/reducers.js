@@ -12,101 +12,82 @@ export default (props) => {
       <h1>
         config/reducers.js
       </h1>
-
       <p>
         This file is connected to the <code>lore-hook-reducers</code> hook and overrides the default reducer behaviors.
       </p>
-
-      <h2>
-        Purpose
-      </h2>
       <p>
-        Sometimes child reducers need to execute in a specific order, which is the case with the default Lore reducers. There
-        are some edge cases when caching optimistic data, and others that occur during routing and page loading, that require
-        the <code>find</code> reducer to use the information just calculated by the <code>byId</code> and <code>byCid</code> reducers. So the execution cycle
-        with the parent <code>post</code> reducer looks something like this:
+        You can learn more about the configuration options <Link to="/hooks/lore-hook-reducers/">here</Link>.
       </p>
 
+      <h2>
+        Default Config
+      </h2>
+      <p>
+        The default config is shown below.
+      </p>
       <Markdown text={`
-      // virtual reducer: src/reducers/post.js
-      module.exports = function(state, action) {
-        var _byId = byId(state.byId, action);
-        var _byCid = byCid(state.byId, action);
-        var _find = find(state.byId, action, {
-          nextState: {
-            byId: _byId,
-            byCid: _byCid
-          }
-        });
+      /**
+       * Configuration file for reducers
+       *
+       * This file is where you define overrides for the default reducer behaviors.
+       */
 
-        return {
-          byId: _byId,
-          byCid: _byCid,
-          find: _find,
-        }
+      export default {
+
+        /**
+         * Specify dependencies between child reducers, which will determine the
+         * order they are called in, as well as what data is passed in through the
+         * third 'options' argument:
+         *
+         * function someReducer(state, action, options) {
+         *   // your reducer code...
+         * }
+         *
+         * The \`options.nextState\` property will contain the results of the child
+         * reducers you have declared a dependency on.
+         *
+         * The default dependency structure (based on the built-in blueprints) looks
+         * like this:
+         */
+
+        // dependencies: {
+        //   modelName: {
+        //     byId: [],
+        //     byCid: [],
+        //     find: ['byId', 'byCid']
+        //   }
+        // }
+
+        /**
+         * Change what gets returned from the Redux store.
+         *
+         * This method is intended ONLY as a way to explore different solutions for addressing
+         * immutability concerns that arise when components have a direct reference to
+         * the data kept in the reducers.
+         *
+         * The default behavior in Redux is to provide components with a reference to the
+         * store state returned from the reducers. This poses a problem when a component
+         * tries to change that data, because it will modify the state of the store through
+         * that reference.
+         *
+         * To address this issue, the top-level reducer will invoke this method right before
+         * returning the next state, which gives you the ability to experiment with different
+         * solutions for this problem.
+         *
+         * The default behavior is to return a copy of the store state, which will prevent any
+         * component from being able to modify the "truth" kept in the reducers.
+         *
+         * Others solutions could be invoking \`Object.freeze(nextState)\` (which will throw an
+         * error if a component tries to modify the store state) or converting the store state
+         * to an Immutable object using \`Immutable.map(nextState)\` from Immutable.js.
+         */
+
+        // nextState: function(nextState) {
+        //   return _.cloneDeep(nextState);
+        // }
+
       }
       `}/>
-
-      <p>
-        In order to properly keep track of the query and pagination information and prevent duplicates related to optimistic
-        updates and page load order, the <code>find</code> reducer uses the information from the other two. So basically, it has a
-        dependency on the first two reducers, which are passed in as a third <code>options</code> argument.
-      </p>
-
-      <p>
-        If you find yourself creating reducers that need information from other reducers (and you don't want to take full
-        control of the parent reducer) you can specify those dependencies in the <code>config/reducers.js</code> file. The explicit
-        representation of the scenario above looks like this:
-      </p>
-
-      <Markdown text={`
-      // config/reducers.js
-
-      module.exports = {
-        dependencies: {
-          post: {
-            find: ['byId', 'byCid']
-          }
-        }
-      }
-      `}/>
-
-      <p>
-        That object structure says "the post.find reducer needs byId and byCid to execute first and needs the result of those
-        two reducers passed to it in the third options argument".
-      </p>
-
-      <p>
-        So if you need to create a custom reducer and place it alongside the blueprints, but also need information from the
-        blueprints, you can simple declare it and lore will make sure everything is called in the right order.
-      </p>
-
-      <h2>
-        Example Config File
-      </h2>
-
-      <Markdown text={`
-      module.exports = {
-        dependencies: {
-          post: {
-            byId: [],
-            byCid: [],
-            find: ['byId', 'byCid']
-          }
-        }
-      };
-      `}/>
-
-      <h2>
-        Configuration Options
-      </h2>
-      <h4>
-        dependencies
-      </h4>
-      <p>
-        The dependency map between a top-level parent reducer like <code>post</code> and it's child reducers that determines execution
-        order and whether (if any) data about the next state should be passed between them.
-      </p>
     </Template>
   )
 };

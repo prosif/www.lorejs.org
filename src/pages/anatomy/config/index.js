@@ -9,8 +9,8 @@ export default (props) => {
         /config
       </h1>
       <p>
-        This directory contains the project configuration, as well as instructions for how that confirmation should
-        change based on the environment the project is build for (development, production, etc.)
+        This directory contains the project configuration, as well as instructions for how that configuration should
+        change based on the environment the project is built for (e.g. development, production, etc.)
       </p>
     </Template>
   );

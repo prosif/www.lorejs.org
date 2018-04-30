@@ -23,41 +23,49 @@ export default (props) => {
         This file let's you control the name of the model, action and reducer used for fetching and storing the
         current user.
       </p>
+      <p>
+        You can learn more about the configuration options <Link to="/hooks/lore-hook-auth/">here</Link>.
+      </p>
 
       <h2>
-        Configuration
+        Default Config
       </h2>
-
-      <h3>
-        modelName
-      </h3>
       <p>
-        The name of the model with a URL property set to the endpoint that can return the current user.
+        The default config is shown below.
       </p>
       <Markdown text={`
-      modelName: 'currentUser'
-      `}/>
+      /**
+       * Configuration file for authentication
+       *
+       * This file is where you define overrides for the default authentication behaviors.
+       */
 
-      <h3>
-        reducerName
-      </h3>
-      <p>
-        The name of the reducer that should be created that is responsible for storing the current user. This
-        defaults to the name of the model.
-      </p>
-      <Markdown text={`
-      reducerName: 'currentUser'
-      `}/>
+      export default {
 
-      <h3>
-        actionName
-      </h3>
-      <p>
-        The name of the action that should be created that is responsible for fetching the current user. This
-        defaults to the name of the model.
-      </p>
-      <Markdown text={`
-      actionName: 'currentUser'
+        /**
+         * The name of the model with a URL property set to the endpoint
+         * that can return the current user.
+         */
+
+        modelName: 'currentUser'
+
+        /**
+         * The name of the reducer that should be created that is responsible
+         * for storing the current user. This defaults to the name of the
+         * model.
+         */
+
+        reducerName: 'currentUser'
+
+        /**
+         * The name of the action that should be created at this responsible
+         * for fetching the current user. This defaults to the name of the
+         * model.
+         */
+
+        actionName: 'currentUser'
+
+      }
       `}/>
     </Template>
   )

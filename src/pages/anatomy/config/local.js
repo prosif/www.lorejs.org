@@ -12,12 +12,52 @@ export default (props) => {
       <h1>
         config/local.js
       </h1>
-
       <p>
         This file allows you to override any of the other config settings in a way that will <em>only</em> affect
         your development machine. This file is added to the <code>.gitignore</code> by default and will never be
         checked in.
       </p>
+
+      <h2>
+        Default Config
+      </h2>
+      <p>
+        The default config is shown below.
+      </p>
+      <Markdown text={`
+      /**
+       * Local environment settings
+       *
+       * This file is excluded from your project by default as part of the .gitignore
+       * file.  Use it to override any configuration settings for any other config
+       * files, or to specify sensitive data that you shouldn't be committed to your
+       * git repo.
+       *
+       * Use this file to specify configuration settings for use while developing
+       * the app on your personal system.
+       *
+       * These settings take precedence over all other config files, including those
+       * in the env/ subfolder.
+       */
+
+      export default {
+
+        /**
+         * This file will override other config settings based on the environment
+         */
+
+        // actions: {
+        //   normalize: true
+        // },
+
+        // connections: {
+        //   default: {
+        //     apiRoot: 'https://api.example.dev'
+        //   }
+        // }
+
+      }
+      `}/>
 
       <h3>
         Example Configuration

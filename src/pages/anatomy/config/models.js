@@ -12,65 +12,59 @@ export default (props) => {
       <h1>
         config/models.js
       </h1>
-
       <p>
         This file is connected to the <code>lore-hook-models</code> hook and allows you to map models to connections.
       </p>
-
-      <h2>
-        Purpose
-      </h2>
       <p>
-        If you're only consuming data from a single API, you'll never need to modify this file. But once you start consuming
-        data from multiple APIs, you'll need to tell Lore which models are associated with each connection.
+        You can learn more about the configuration options <Link to="/hooks/lore-hook-models/">here</Link>.
       </p>
 
       <h2>
-        Example Config File
+        Default Config
       </h2>
-
+      <p>
+        The default config is shown below.
+      </p>
       <Markdown text={`
-      module.exports = {
+      /**
+       * Configuration file for models
+       *
+       * This file is where you define overrides for the default model behaviors.
+       * Settings here apply to all models, and some are inherited by collections.
+       */
 
-        defaultConnection: 'default'
+      export default {
 
-        connectionModelMap: {
-          default: [],
-          v1: [
-            'currentUser',
-            'author'
-          ],
-          v2: [
-            'book',
-            'publisher'
-          ]
-        }
+        /**
+         * The default API connection that models should use if they have no explicit mapping.
+         */
 
-      };
+        // defaultConnection: 'default'
+
+        /**
+         * If your application interacts with multiple APIs, create a connection for each
+         * API and then define which models are associated with each connection here.
+         *
+         * Here is an example for an application with a versioned API (v1 and v2):
+         *
+         * {
+         *   v1: [
+         *     'currentUser',
+         *     'author'
+         *   ],
+         *   v2: [
+         *     'book',
+         *     'publisher'
+         *   ]
+         * }
+         */
+
+        // connectionModelMap: {
+        //   default: []
+        // }
+
+      }
       `}/>
-
-      <h2>
-        Configuration Options
-      </h2>
-      <h4>
-        defaultConnection
-      </h4>
-      <p>
-        The default API connection that models should use if they have no explicit mapping.
-      </p>
-
-      <h4>
-        connectionModelMap
-      </h4>
-      <p>
-        If your application interacts with multiple APIs, create a connection for each API and then define which models
-        are associated with each connection here.
-      </p>
-
-      <p>
-        In the example above, the models <code>currentUser</code> and <code>author</code> use the <code>v1</code> connection, while the <code>book</code> and <code>publisher</code>
-        models use the <code>v2</code> connection. All other models use the <code>default</code> connection.
-      </p>
     </Template>
   )
 };

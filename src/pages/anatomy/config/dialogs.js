@@ -11,6 +11,19 @@ export default (props) => {
       <p>
         This section describes the application structure.
       </p>
+      <p>
+        You can learn more about the configuration options <Link to="/hooks/lore-hook-dialogs/">here</Link>.
+      </p>
+
+      <h2>
+        Default Config
+      </h2>
+      <p>
+        The default config is shown below.
+      </p>
+      <Markdown text={`
+
+      `}/>
     </Template>
   );
 };

@@ -21,9 +21,12 @@ export default (props) => {
           <ul id="markdown-toc">
             <NavLink title="Introduction" url="/hooks/lore-hook-models/" />
 
-            <li className="doc-section">???</li>
-            <NavLinkPlaceholder title="???" />
-            {/*<NavLink title="create" url="/hooks/lore-hook-actions/blueprints/create/" />*/}
+            <li className="doc-section">Usage</li>
+            <NavLink title="Overview" url="/hooks/lore-hook-models/usage/" />
+
+            <li className="doc-section">config</li>
+            <NavLink title="defaultConnection" url="/hooks/lore-hook-models/config/defaultConnection/" />
+            <NavLink title="connectionModelMap" url="/hooks/lore-hook-models/config/connectionModelMap/" />
           </ul>
           {children}
         </div>

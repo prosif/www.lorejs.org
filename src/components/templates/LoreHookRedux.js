@@ -21,9 +21,16 @@ export default (props) => {
           <ul id="markdown-toc">
             <NavLink title="Introduction" url="/hooks/lore-hook-redux/" />
 
-            <li className="doc-section">???</li>
-            <NavLinkPlaceholder title="???" />
-            {/*<NavLink title="create" url="/hooks/lore-hook-actions/blueprints/create/" />*/}
+            <li className="doc-section">Usage</li>
+            <NavLink title="Overview" url="/hooks/lore-hook-redux/usage/" />
+
+            <li className="doc-section">config</li>
+            <NavLink title="middleware" url="/hooks/lore-hook-redux/config/middleware/" />
+            <NavLink title="debounceWait" url="/hooks/lore-hook-redux/config/debounceWait/" />
+            <NavLink title="enhancer" url="/hooks/lore-hook-redux/config/enhancer/" />
+            <NavLink title="rootReducer" url="/hooks/lore-hook-redux/config/rootReducer/" />
+            <NavLink title="preloadedState" url="/hooks/lore-hook-redux/config/preloadedState/" />
+            <NavLink title="configureStore" url="/hooks/lore-hook-redux/config/configureStore/" />
           </ul>
           {children}
         </div>
