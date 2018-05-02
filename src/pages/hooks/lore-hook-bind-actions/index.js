@@ -10,15 +10,8 @@ export default (props) => {
   return (
     <Template>
       <h1>
-        lore-hook-bind-actions
-      </h1>
-      <p>
-        Source code for this hook can be found on GitHub <a href="https://github.com/lore/lore/tree/master/packages/lore-hook-bind-actions">at this link</a>.
-      </p>
-
-      <h2>
         Purpose
-      </h2>
+      </h1>
 
       <p>
         This hook binds all action creators to the dispatch method of the Redux store, to simplify their invocation.
@@ -62,7 +55,11 @@ export default (props) => {
       <Markdown text={`
       import { bindActionCreators } from 'redux'
 
-      let createAction = bindActionCreators(lore.actions.tweet.create, lore.store.dispatch);
+      let createAction = bindActionCreators(
+        lore.actions.tweet.create,
+        lore.store.dispatch
+      );
+
       createAction({
         text: 'Message to tweet'
       })

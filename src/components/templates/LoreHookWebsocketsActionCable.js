@@ -21,6 +21,9 @@ export default (props) => {
         <div className="docs-content">
           <ul id="markdown-toc">
             <NavLink title="Introduction" url="/hooks/lore-hook-websockets-actioncable/" />
+            <NavLink title="Dependencies" url="/hooks/lore-hook-websockets-actioncable/dependencies/" />
+            <NavLink title="Installation" url="/hooks/lore-hook-websockets-actioncable/installation/" />
+            <NavLink title="Code" url="/hooks/lore-hook-websockets-actioncable/code/" />
 
             <li className="doc-section">???</li>
             <NavLinkPlaceholder title="???" />
