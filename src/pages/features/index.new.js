@@ -13,39 +13,33 @@ export default (props) => {
         Purpose
       </h1>
       <p>
-        Lore is an opinionated convention-driven framework, designed to make it easier to build React applications
-        and evolve them over time.
+        Lore is an opinionated convention-driven framework, focused on making it easier to build React applications.
+      </p>
+      <p>
+        Lore is an opinionated convention-driven framework, designed to make it easier to build and evolve React applications on making it easier to build React applications.
       </p>
       <p>
         It's designed to be approachable for less experienced developers, while using an architecture that supports
-        the feature set and concerns that applications often need as grow to become larger and more complex.
+        the feature set and concerns of large complex applications.
       </p>
       <p>
         Lore's goal is to make it easier to build applications, by reducing the time and knowledge required, and
         using an architecture that's designed to incorporate common needs of applications as they evolve overtime to
         meet the growing needs of the user base.
       </p>
-      <p>
-        Lore's goal is to provide a solid and easy-to-use architectural foundation that you can spend more of your
-        time building features that provide unique user value, and less time trying to "just get things to work".
-      </p>
 
       <h3>
         Respectfully Opinionated
       </h3>
       <p>
-        Lore describes itself as "respectfully opinionated".
-      </p>
-      <p>
-        Lore's purpose is to <em>provide a solution for front-end
+        Lore describes itself as "respectfully opinionated". Lore's purpose is to <em>provide a solution for front-end
         application development</em>, and software can't provide a solution to a problem without having an opinion
         about what that solution looks like. Things that entirely unopinionated require you to inject your own
         opinions before you solve problems with it.
       </p>
       <p>
-        The "opinionated" part is what gives Lore value, and allows it to fulfill its purpose of providing a solution
-        for front-end application development. While "unopinionated software" can provide a great foundation to build
-        on (and largely describes the types of libraries that Lore is composed of), at some point software has to have opinions before it can solve problems.
+        The "opinionated" part is what gives Lore value, and allows it to fulfill it's purpose of providing a solution
+        for front-end application development.
       </p>
       <p>
         The "opinionated" part is what gives Lore value, since software that has no opinions is not capable of solvign
@@ -93,33 +87,35 @@ export default (props) => {
         represents an operation that returned an error from the API.
       </p>
       <p>
-        The two main data structures Lore uses are called <strong>models</strong>, which represent a single resource,
-        and a <strong>collection</strong>, which represents a collection of resources of the same type.
+        The video below provides an overview of how Lore simplifies React development, as well as how it integrates
+        support for Webpack, Redux, React-Router and Publishing,
       </p>
 
-      <h3>
-        UI Patterns
-      </h3>
-      <p>
-        Lore's focus is the development of browser-based web applications, and one of the metrics by which it measures
-        its success is the number and type of experiences it can easily accommodate. It's also the easiest way to
-        demonstrate what the framework is capable of, by showcasing how to construct or solve common application
-        needs.
-      </p>
+      {/*<!--<div className="video">-->*/}
+      {/*<!--<div className="embed-responsive embed-responsive-16by9 drop-shadow pretty-embed" data-pe-videoid="Y-VLSaUJv_8">-->*/}
+      {/*<!--</div>-->*/}
+      {/*<!--</div>-->*/}
 
       <h3>
-        Extensibility
+        Supported Features
       </h3>
       <p>
-        Lore is designed to be extensible, not as an add-on, but as a foundational element of it's architecture.
-        Nearly everything the framework does is provided as a customizable plugin, and you can create, add, or remove
-        those plugins as you'd like.
+        A list of features that Lore supports, each with an explanation of how it's supported and an example
+        demonstrating usage.
       </p>
+
+      {/*<!--<div className="video">-->*/}
+      {/*<!--<div className="embed-responsive embed-responsive-16by9 drop-shadow pretty-embed" data-pe-videoid="HHj1aAtifso">-->*/}
+      {/*<!--</div>-->*/}
+      {/*<!--</div>-->*/}
+
+      <h3>
+        Architecture
+      </h3>
       <p>
-        Lore also includes a CLI that provides a number of commands that make certain aspects of development more
-        convenient, and the CLI follows that same principle. Not only is the CLI implemented as a series of plugins,
-        but you can create, add and remove commands to tailor the behavior of the CLI to your project, and all
-        without needing to fork the repo.
+        This section discusses principles or aspects of Lore that apply to multiple features, or make up the foundation
+        of the architecture. This section will be expanded in the future to demonstrate how to extend Lore with your
+        own plugins and behavior.
       </p>
     </Template>
   )

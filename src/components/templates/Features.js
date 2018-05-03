@@ -22,11 +22,10 @@ export default (props) => {
             <NavLink title="Introduction" url="/features/" />
 
             <li className="doc-section">Core Libraries</li>
-            <NavLink title="React" url="/libraries/react/" />
-            <NavLink title="Webpack" url="/libraries/webpack/" />
-            <NavLink title="Redux" url="/libraries/redux/" />
-            <NavLink title="React-Router" url="/libraries/react-router/" />
-            <NavLinkPlaceholder title="Axios (todo)" />
+            <NavLink title="React" url="/features/core/react/" />
+            <NavLink title="Webpack" url="/features/core/webpack/" />
+            <NavLink title="Redux" url="/features/core/redux/" />
+            <NavLink title="React-Router" url="/features/core/react-router/" />
 
             <li className="doc-section">Data Structure</li>
             <NavLink title="Overview" url="/features/data-structure/" />
