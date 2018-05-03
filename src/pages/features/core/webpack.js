@@ -15,16 +15,9 @@ export default (props) => {
       <p>
         Lore uses <a href="https://webpack.github.io/">Webpack</a> for the build system.
       </p>
-
-      <h3>
-        Links for Learning Webpack
-      </h3>
-      <ul>
-        <li>
-          <a href="http://webpack.github.io/docs/tutorials/audience/">Official Tutorial</a>
-        </li>
-        <li>???</li>
-      </ul>
+      <blockquote>
+        You can learn more about how Lore uses Webpack <Link to="/webpack/">here</Link>.
+      </blockquote>
     </Template>
   )
 };

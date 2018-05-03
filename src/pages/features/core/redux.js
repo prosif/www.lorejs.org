@@ -15,19 +15,9 @@ export default (props) => {
       <p>
         Lore uses <a href="https://github.com/reactjs/redux">Redux</a> for the underlying application architecture.
       </p>
-
-      <h3>
-        Links for Learning Redux
-      </h3>
-      <ul>
-        <li>
-          <a href="http://redux.js.org/">Official Documentation</a>
-        </li>
-        <li>
-          <a href="https://egghead.io/series/getting-started-with-redux">Getting Started With Redux (Video Series)</a>
-        </li>
-        <li>???</li>
-      </ul>
+      <blockquote>
+        You can learn more about how Lore uses Redux <Link to="/redux/">here</Link>.
+      </blockquote>
     </Template>
   )
 };

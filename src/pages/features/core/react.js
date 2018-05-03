@@ -15,16 +15,9 @@ export default (props) => {
       <p>
         Lore uses <a href="http://facebook.github.io/react/">React</a> for the presentation tier.
       </p>
-
-      <h3>
-        Links for Learning React
-      </h3>
-      <ul>
-        <li>
-          <a href="http://facebook.github.io/react/">Official Tutorial</a>
-        </li>
-        <li>???</li>
-      </ul>
+      <blockquote>
+        You can learn more about how Lore uses React <Link to="/react/">here</Link>.
+      </blockquote>
     </Template>
   )
 };
