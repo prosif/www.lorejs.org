@@ -1,16 +1,16 @@
 import React from 'react';
 import Link from 'gatsby-link';
-import Template from '../../../components/templates/Concepts';
-import Markdown from '../../../components/Markdown';
-import CodeTabs from '../../../components/CodeTabs';
-import CodeTab from '../../../components/CodeTab';
-import QuickstartBranch from '../../../components/QuickstartBranch';
+import Template from '../../components/templates/Connect';
+import Markdown from '../../components/Markdown';
+import CodeTabs from '../../components/CodeTabs';
+import CodeTab from '../../components/CodeTab';
+import QuickstartBranch from '../../components/QuickstartBranch';
 
 export default (props) => {
   return (
     <Template>
       <h1>
-        Connect
+        Concept
       </h1>
       <p>
         The main purpose for the connect decorator is to extract the data components need from the Store and provide it

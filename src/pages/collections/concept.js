@@ -1,16 +1,16 @@
 import React from 'react';
 import Link from 'gatsby-link';
-import Template from '../../../components/templates/Concepts';
-import Markdown from '../../../components/Markdown';
-import CodeTabs from '../../../components/CodeTabs';
-import CodeTab from '../../../components/CodeTab';
-import QuickstartBranch from '../../../components/QuickstartBranch';
+import Template from '../../components/templates/Collections';
+import Markdown from '../../components/Markdown';
+import CodeTabs from '../../components/CodeTabs';
+import CodeTab from '../../components/CodeTab';
+import QuickstartBranch from '../../components/QuickstartBranch';
 
 export default (props) => {
   return (
     <Template>
       <h1>
-        Collections
+        Concept
       </h1>
       <p>
         Collections represent an API endpoint for a collection of resources you need to interact with, like

@@ -1,26 +1,27 @@
 import React from 'react';
 import Link from 'gatsby-link';
-import Template from '../../../components/templates/Concepts';
-import Markdown from '../../../components/Markdown';
-import CodeTabs from '../../../components/CodeTabs';
-import CodeTab from '../../../components/CodeTab';
-import QuickstartBranch from '../../../components/QuickstartBranch';
+import Template from '../../components/templates/Actions';
+import Markdown from '../../components/Markdown';
+import CodeTabs from '../../components/CodeTabs';
+import CodeTab from '../../components/CodeTab';
+import QuickstartBranch from '../../components/QuickstartBranch';
 
 export default (props) => {
   return (
     <Template>
       <h1>
-        Actions
+        Overriding Actions
       </h1>
       <p>
         Actions are responsible for server communicating and emitting the proper events to reducers to enable them to
         accurately keep track of the applications state.
       </p>
-
       <p>
         When you create a model in Lore, the framework automatically creates a set of actions for finding, creating,
-        updating, deleting, and getting that resource. The blueprints have an implicit file structure that looks like
-        this:
+        updating, deleting, and getting that resource.
+      </p>
+      <p>
+        The blueprints have an implicit file structure that looks like this:
       </p>
 
       <Markdown type="sh" text={`

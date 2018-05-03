@@ -20,6 +20,7 @@ export default (props) => {
         <div className="docs-content">
           <ul id="markdown-toc">
             <NavLink title="Introduction" url="/connect/" />
+            <NavLink title="Concept" url="/connect/concept/" />
 
             <li className="doc-section">Utilities</li>
             <NavLink title="connect" url="/connect/connect/" />

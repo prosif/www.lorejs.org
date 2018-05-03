@@ -20,10 +20,7 @@ export default (props) => {
         <div className="docs-content">
           <ul id="markdown-toc">
             <NavLink title="Introduction" url="/react-router/" />
-
-            {/*<li className="doc-section">Section</li>*/}
-            {/*<NavLink title="React-Router" url="/libraries/react-router/" />*/}
-            {/*<NavLinkPlaceholder title="Something" />*/}
+            <NavLink title="Concept" url="/react-router/concept/" />
           </ul>
           {children}
         </div>

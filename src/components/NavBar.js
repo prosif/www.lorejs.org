@@ -60,18 +60,6 @@ export default (props) => {
                 <NavLink title="Collections" url="/collections/" location={location} />
                 <NavLink title="sync" url="/sync/" location={location} />
                 <li role="separator" className="divider"></li>
-                <li className="dropdown-category">
-                  Concepts (old)
-                </li>
-                <NavLink title="Actions" url="/concepts/core/actions/" location={location} />
-                <NavLink title="Reducers" url="/concepts/core/reducers/" location={location} />
-                <NavLink title="Models" url="/concepts/core/models/" location={location} />
-                <NavLink title="Collections" url="/concepts/core/collections/" location={location} />
-                <NavLink title="Connect" url="/concepts/core/connect/" location={location} />
-                <NavLink title="Routing" url="/concepts/core/routing/" location={location} />
-                <NavLink title="Server Communication" url="/concepts/server-communication/" location={location} />
-                <NavLink title="Data Structure" url="/concepts/data-structure/" location={location} />
-                <li role="separator" className="divider"></li>
                 <NavLink title="Recipes" url="/recipes/" location={location} />
                 <NavLink title="Examples" url="/examples/" location={location} />
                 <li role="separator" className="divider"></li>

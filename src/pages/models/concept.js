@@ -1,16 +1,16 @@
 import React from 'react';
 import Link from 'gatsby-link';
-import Template from '../../../components/templates/Concepts';
-import Markdown from '../../../components/Markdown';
-import CodeTabs from '../../../components/CodeTabs';
-import CodeTab from '../../../components/CodeTab';
-import QuickstartBranch from '../../../components/QuickstartBranch';
+import Template from '../../components/templates/Models';
+import Markdown from '../../components/Markdown';
+import CodeTabs from '../../components/CodeTabs';
+import CodeTab from '../../components/CodeTab';
+import QuickstartBranch from '../../components/QuickstartBranch';
 
 export default (props) => {
   return (
     <Template>
       <h1>
-        Models
+        Concept
       </h1>
       <p>
         Models represent an API endpoint for a resource you need to interact with,
