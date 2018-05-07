@@ -54,7 +54,7 @@ export default (props) => {
           ...
         }
 
-        Feed.propTypes ={
+        Feed.propTypes = {
           tweets: PropTypes.object.isRequired
         };
         `}/>

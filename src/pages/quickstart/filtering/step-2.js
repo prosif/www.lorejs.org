@@ -464,7 +464,6 @@ export default (props) => {
       <h3>
         routes.js
       </h3>
-
       <Markdown text={`
       import React from 'react';
       import { Route, IndexRoute, Redirect } from 'react-router';
@@ -477,7 +476,7 @@ export default (props) => {
 
       /**
        * Routes are used to declare your view hierarchy
-       * See: https://github.com/ReactTraining/react-router/blob/v3/docs/API.md
+       * See: https://github.com/rackt/react-router/blob/master/docs/API.md
        */
       import Master from './src/components/Master';
       import Layout from './src/components/Layout';

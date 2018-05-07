@@ -34,6 +34,7 @@ export default (props) => {
       </p>
 
       <Markdown text={`
+      // config/connections.js
       ...
         default: {
 
@@ -67,6 +68,7 @@ export default (props) => {
       </p>
 
       <Markdown text={`
+      // config/connections.js
       ...
         apiRoot: 'http://localhost:1337',
       ...

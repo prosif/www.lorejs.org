@@ -109,7 +109,7 @@ export default (props) => {
         import auth from '../utils/auth';
         import ShowLoadingScreen from './ShowLoadingScreen';
 
-        export default class Logout extends React.Component {
+        class Logout extends React.Component {
 
           static propTypes = {
             router: PropTypes.object.isRequired
@@ -129,6 +129,8 @@ export default (props) => {
           }
 
         };
+
+        export default Logout;
         `}/>
       </CodeTabs>
 
@@ -301,6 +303,7 @@ export default (props) => {
               <ShowLoadingScreen/>
             );
           }
+
         }
 
         Logout.propTypes = {
@@ -333,6 +336,7 @@ export default (props) => {
               <ShowLoadingScreen/>
             );
           }
+
         }
 
         export default Logout;
@@ -340,15 +344,21 @@ export default (props) => {
       </CodeTabs>
 
       <h3>
-        src/components/routes.js
+        routes.js
       </h3>
       <Markdown text={`
       import React from 'react';
       import { Route, IndexRoute, Redirect } from 'react-router';
+
+      /**
+       * Wrapping the Master component with this decorator provides an easy way
+       * to redirect the user to a login experience if we don't know who they are.
+       */
       import UserIsAuthenticated from './src/decorators/UserIsAuthenticated';
 
       /**
-       * Routes
+       * Routes are used to declare your view hierarchy
+       * See: https://github.com/rackt/react-router/blob/master/docs/API.md
        */
       import Master from './src/components/Master';
       import Layout from './src/components/Layout';
@@ -466,6 +476,7 @@ export default (props) => {
               </div>
             );
           }
+
         }
 
         Profile.propTypes = {
@@ -532,6 +543,7 @@ export default (props) => {
               </div>
             );
           }
+
         }
 
         export default Profile;

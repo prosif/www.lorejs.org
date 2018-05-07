@@ -271,6 +271,7 @@ export default (props) => {
               </div>
             );
           }
+
         }
 
         Feed.propTypes = {
@@ -362,6 +363,7 @@ export default (props) => {
               </div>
             );
           }
+
         }
 
         export default Feed;

@@ -509,7 +509,7 @@ export default (props) => {
         import PropTypes from 'prop-types';
         import _ from 'lodash';
 
-        export default class CreateTweetDialog extends React.Component {
+        class CreateTweetDialog extends React.Component {
 
           propTypes: {
             onCancel: PropTypes.func
@@ -604,6 +604,8 @@ export default (props) => {
           }
 
         };
+
+        export default CreateTweetDialog;
         `}/>
         <CodeTab syntax="ESNext" text={`
         import React from 'react';
@@ -611,7 +613,7 @@ export default (props) => {
         import PropTypes from 'prop-types';
         import _ from 'lodash';
 
-        export default class CreateTweetDialog extends React.Component {
+        class CreateTweetDialog extends React.Component {
 
           static propTypes = {
             onCancel: PropTypes.func
@@ -706,6 +708,8 @@ export default (props) => {
           }
 
         };
+
+        export default CreateTweetDialog;
         `}/>
       </CodeTabs>
 

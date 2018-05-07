@@ -87,6 +87,7 @@ export default (props) => {
                 </div>
               );
             }
+
           })
         );
         `}/>
@@ -406,6 +407,7 @@ export default (props) => {
                 </div>
               );
             }
+
           })
         );
         `}/>
@@ -588,6 +590,7 @@ export default (props) => {
               </div>
             );
           }
+
         }
 
         Profile.contextTypes = {
@@ -634,6 +637,7 @@ export default (props) => {
               </div>
             );
           }
+
         }
 
         export default Profile;

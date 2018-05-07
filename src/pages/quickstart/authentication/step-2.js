@@ -66,7 +66,7 @@ export default (props) => {
           audience: 'https://lorejs.auth0.com/userinfo',
           responseType: 'token id_token',
           scope: 'openid'
-        };
+        }
         `}/>
         <CodeTab syntax="ES6" text={`
         // config/auth0.js
@@ -132,7 +132,7 @@ export default (props) => {
           audience: 'https://lorejs.auth0.com/userinfo',
           responseType: 'token id_token',
           scope: 'openid'
-        };
+        }
         `}/>
         <CodeTab syntax="ES6" text={`
         export default {
@@ -142,7 +142,7 @@ export default (props) => {
           audience: 'https://lorejs.auth0.com/userinfo',
           responseType: 'token id_token',
           scope: 'openid'
-        };
+        }
         `}/>
         <CodeTab syntax="ESNext" text={`
         export default {
@@ -152,7 +152,7 @@ export default (props) => {
           audience: 'https://lorejs.auth0.com/userinfo',
           responseType: 'token id_token',
           scope: 'openid'
-        };
+        }
         `}/>
       </CodeTabs>
 

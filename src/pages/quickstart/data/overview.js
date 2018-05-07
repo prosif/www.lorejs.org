@@ -56,7 +56,7 @@ export default (props) => {
         import React from 'react';
         import PropTypes from 'prop-types';
 
-        export default class Tweet extends React.Component {
+        class Tweet extends React.Component {
           render() {
             const { tweet } = this.props;
 
@@ -76,7 +76,7 @@ export default (props) => {
         import React from 'react';
         import PropTypes from 'prop-types';
 
-        export default class Tweet extends React.Component {
+        class Tweet extends React.Component {
 
           static propTypes = {
             tweet: PropTypes.object.isRequired
@@ -90,6 +90,8 @@ export default (props) => {
             );
           }
         }
+
+        export default Tweet;
         `}/>
       </CodeTabs>
 

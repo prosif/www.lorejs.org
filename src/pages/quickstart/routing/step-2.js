@@ -60,7 +60,7 @@ export default (props) => {
         });
         `}/>
         <CodeTab syntax="ES6" text={`
-        class Feed extends Component {
+        class Feed extends React.Component {
 
           render() {
             return (
@@ -80,7 +80,7 @@ export default (props) => {
         export default Feed;
         `}/>
         <CodeTab syntax="ESNext" text={`
-        class Feed extends Component {
+        class Feed extends React.Component {
 
           render() {
             return (
@@ -247,10 +247,9 @@ export default (props) => {
         `}/>
         <CodeTab syntax="ES6" text={`
         import React from 'react';
-        import createReactClass from 'create-react-class';
         import PropTypes from 'prop-types';
 
-        class Feed extends Component {
+        class Feed extends React.Component {
 
           render() {
             return (
@@ -271,10 +270,9 @@ export default (props) => {
         `}/>
         <CodeTab syntax="ESNext" text={`
         import React from 'react';
-        import createReactClass from 'create-react-class';
         import PropTypes from 'prop-types';
 
-        class Feed extends Component {
+        class Feed extends React.Component {
 
           render() {
             return (

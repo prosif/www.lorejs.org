@@ -294,6 +294,7 @@ export default (props) => {
               </div>
             );
           }
+
         }
 
         Feed.propTypes = {
@@ -397,6 +398,7 @@ export default (props) => {
               </div>
             );
           }
+
         }
 
         export default Feed;
@@ -408,7 +410,7 @@ export default (props) => {
       </h2>
 
       <p>
-        Next we're going to <Link to="../step-5/">fetch the user for each tweet</Link>
+        Next we're going to <Link to="../step-5/">fetch the user for each tweet</Link>.
       </p>
     </Template>
   )

@@ -316,6 +316,12 @@ export default (props) => {
 
       <CodeTabs>
         <CodeTab syntax="ES5" text={`
+        /**
+         * This component is intended to reflect the high level structure of your application,
+         * and render any components that are common across all views, such as the header or
+         * top-level navigation. All other components should be rendered by route handlers.
+         **/
+
         import React from 'react';
         import createReactClass from 'create-react-class';
         import PropTypes from 'prop-types';
@@ -342,6 +348,12 @@ export default (props) => {
         });
         `}/>
         <CodeTab syntax="ES6" text={`
+        /**
+         * This component is intended to reflect the high level structure of your application,
+         * and render any components that are common across all views, such as the header or
+         * top-level navigation. All other components should be rendered by route handlers.
+         **/
+
         import React from 'react';
         import PropTypes from 'prop-types';
         import Header from './Header';
@@ -368,6 +380,12 @@ export default (props) => {
         export default Layout;
         `}/>
         <CodeTab syntax="ESNext" text={`
+        /**
+         * This component is intended to reflect the high level structure of your application,
+         * and render any components that are common across all views, such as the header or
+         * top-level navigation. All other components should be rendered by route handlers.
+         **/
+
         import React from 'react';
         import PropTypes from 'prop-types';
         import Header from './Header';

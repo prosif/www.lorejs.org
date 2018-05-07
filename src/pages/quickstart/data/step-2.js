@@ -6,6 +6,8 @@ import CodeTabs from '../../../components/CodeTabs';
 import CodeTab from '../../../components/CodeTab';
 import QuickstartBranch from '../../../components/QuickstartBranch';
 import image from '../../../assets/images/quickstart/data/step-2.png';
+import image2a from '../../../assets/images/quickstart/data/step-2a.png';
+import image2b from '../../../assets/images/quickstart/data/step-2b.png';
 
 export default (props) => {
   return (
@@ -185,7 +187,7 @@ export default (props) => {
         Refresh the browser and your app should now look like this:
       </p>
 
-      <img className="drop-shadow" src="/assets/images/quickstart/data/step-2a.png" />
+      <img className="drop-shadow" src={image2a} />
 
       <h3>
         Update Tweet to Use Mock Data
@@ -232,7 +234,7 @@ export default (props) => {
         Refresh the browser and you should now see the mock data being displayed in the Tweet:
       </p>
 
-      <img className="drop-shadow" src="/assets/images/quickstart/data/step-2b.png" />
+      <img className="drop-shadow" src={image2b} />
 
       <h3>
         Fix the Timestamp

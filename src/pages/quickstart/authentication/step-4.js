@@ -5,7 +5,7 @@ import Markdown from '../../../components/Markdown';
 import CodeTabs from '../../../components/CodeTabs';
 import CodeTab from '../../../components/CodeTab';
 import QuickstartBranch from '../../../components/QuickstartBranch';
-import image from '../../../assets/images/quickstart/authentication/step-1.png';
+import image from '../../../assets/images/quickstart/authentication/login.png';
 
 export default (props) => {
   return (
@@ -86,7 +86,7 @@ export default (props) => {
       <Markdown type="jsx" text={`
       // src/decorators/UserIsAuthenticated.js
       import PropTypes from 'prop-types';
-      import AuthenticationGenerator from './_common/AuthenticationGenerator';
+      import { AuthenticationGenerator } from 'lore-auth';
 
       export default AuthenticationGenerator({
 
@@ -163,7 +163,7 @@ export default (props) => {
 
       <Markdown type="jsx" text={`
       import PropTypes from 'prop-types';
-      import AuthenticationGenerator from './_common/AuthenticationGenerator';
+      import { AuthenticationGenerator } from 'lore-auth';
       import auth from '../utils/auth';
 
       export default AuthenticationGenerator({

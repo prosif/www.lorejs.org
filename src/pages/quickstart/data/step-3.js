@@ -109,7 +109,7 @@ export default (props) => {
         `}/>
         <CodeTab syntax="ESNext" text={`
         // src/components/Tweet.js
-        export default class Tweet extends React.Component {
+        class Tweet extends React.Component {
 
           static propTypes = {
             tweet: PropTypes.object.isRequired,

@@ -103,7 +103,7 @@ export default (props) => {
             })
           };
         })
-        export default class Tweet extends React.Component {
+        class Tweet extends React.Component {
           ...
         }
         `}/>
@@ -207,10 +207,7 @@ export default (props) => {
           },
 
           render() {
-            const {
-              tweet,
-              user
-            } = this.props;
+            const { tweet, user } = this.props;
             const timestamp = moment(tweet.data.createdAt).fromNow().split(' ago')[0];
 
             return (
@@ -247,10 +244,7 @@ export default (props) => {
         class Tweet extends React.Component {
 
           render() {
-            const {
-              tweet,
-              user
-            } = this.props;
+            const { tweet, user } = this.props;
             const timestamp = moment(tweet.data.createdAt).fromNow().split(' ago')[0];
 
             return (
@@ -274,6 +268,7 @@ export default (props) => {
               </li>
             );
           }
+
         }
 
         Tweet.propTypes = {
@@ -314,10 +309,7 @@ export default (props) => {
           };
 
           render() {
-            const {
-              tweet,
-              user
-            } = this.props;
+            const { tweet, user } = this.props;
             const timestamp = moment(tweet.data.createdAt).fromNow().split(' ago')[0];
 
             return (
